@@ -1,0 +1,161 @@
+
+/* 4.0+ styles */
+
+input[type="text"].seamless-donations-invalid-input {
+    background-color: #ff8486;
+}
+
+.seamless-donations-error-message-field {
+    color: red;
+    background-color: yellow;
+}
+
+.seamless-donations-forms-error-message {
+    color: yellow;
+    background-color: red;
+}
+
+.dgx-donate-form-section span.horiz {
+    margin-left: 25px;
+}
+
+.dgx-donate-form-section #designate_fund {
+    margin-top: 1em;
+}
+.dgx-donate-form-section #repeating_checkbox {
+    margin-top: 1em;
+}
+
+div#designated_fund_selector select {
+    max-width: 100%;
+}
+
+.dgx-donate-form-section
+{
+    border: 1px solid darkred !important;
+}
+
+/* Legacy styles pre-4.0 */
+
+#dgx-donate-container
+{
+	border: none;
+	padding: 24px;
+	margin: 0 12px 12px 12px;
+	background: #f8f8f8;
+	border-radius: 8px;
+}
+
+.dgx-donate-form-section
+{
+	border: 1px solid #eee;
+	background: #fff;
+	padding: 32px;
+	margin: 0 0 24px;
+	border-radius: 4px;
+}
+
+.dgx-donate-form-section h2
+{
+	margin-top: 0px;
+	margin-bottom: 12px;
+}
+
+.dgx-donate-form-section hr
+{
+	border: none;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 20px;
+}
+
+.dgx-donate-form-subsection
+{
+	padding-left: 40px;
+	margin-bottom: 24px;
+}
+
+.dgx-donate-comment
+{
+	font-size: 80%;
+	color: #aaa;
+}
+
+.dgx-donate-form-section input
+{
+	width: auto;
+	margin-right: 10px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+	font-family: sans-serif;
+    font-size: 13px;
+    padding: 4px;
+    vertical-align: middle;
+}
+
+.dgx-donate-form-section > p:last-child
+{
+	margin-bottom: 0;
+}
+
+.dgx-donate-form-section select {
+	max-width: 200px;
+}
+
+.dgx-donate-form-section input.horiz
+{
+	margin-left: 50px;
+}
+
+.dgx-donate-form-section .aftertext
+{
+	margin-left: 30px;
+}
+
+.dgx-donate-form-section label
+{
+	width: 144px;
+	display: inline-block;
+}
+
+.dgx-donate-form-indent
+{
+	margin-left: 20px;
+}
+
+.dgx-donate-form-tribute-box, .dgx-donate-form-designated-box
+{
+	margin-top: 24px;
+	display: none; /* initially hidden */
+	border: 1px solid #f0f0f0;
+	background: #f8f8f8;
+	border-radius: 8px;
+	padding: 24px;
+}
+
+.dgx-donate-form-designated-box
+{
+	margin-bottom: 24px;
+}
+
+.dgx-donate-form-section input.dgx-donate-invalid-input
+{
+	background: #faa;
+}
+
+.dgx-donate-busy, .dgx-donate-error-msg, .dgx-donate-pay-disabled
+{
+	display: none;
+}
+
+.dgx-donate-form-section input.dgx-donate-pay-enabled
+{
+	padding: 10px;
+	cursor: pointer;
+	border: none;
+}
+
+.dgx-donate-pay-disabled {
+	padding: 10px;
+}
+

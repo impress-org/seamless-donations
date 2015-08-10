@@ -1,0 +1,85 @@
+.dgxdonatecentered, th.dgxdonatecentered {
+    text-align: center;
+}
+
+#fieldrow-seamless_donations_admin_main_section_data_welcome_information > th {
+    display:none;
+}
+
+.sd-admin-box{
+    position: relative;
+    float: left;
+    margin-bottom: 20px;
+}
+.welcome-box-left{
+    position: relative;
+    float: left;
+    padding:1em;
+    width: 30%;
+    height: 485px;
+    border: 1px solid #dbdbdb;
+    background-color: #ffffff;
+}
+.welcome-box-middle{
+    position: relative;
+    float: left;
+    margin-left: 20px;
+    padding:1em;
+    width: 30%;
+    height: 485px;
+    border: 1px solid #dbdbdb;
+    background-color: #ffffff;
+}
+.welcome-box-right{
+    position: relative;
+    float: left;
+    margin-left: 20px;
+    padding:1em;
+    width: 30%;
+    height: 485px;
+    border: 1px solid #dbdbdb;
+    background-color: #ffffff;
+}
+
+
+.dgxdonateadminfooter {
+    text-align: right;
+    color: #777;
+    padding-right: 5px;
+}
+
+.seamless-donations-plugin-title {
+    display: inline-block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 10px 0;
+}
+
+.seamless-donations-plugin-title h1 {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 2.32em;
+    color: #222;
+    font-weight: 400;
+}
+
+.seamless-donations-plugin-title-right {
+    float: right;
+    clear: right;
+    margin: 1em;
+}
+
+.seamless-donations-plugin-icon {
+    float: left;
+    clear: left;
+    margin: 0 1em;
+    vertical-align: top;
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+}
+
+.seamless-donations-dashicon {
+    font-size: 64px;
+}
