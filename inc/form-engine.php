@@ -21,7 +21,7 @@ function seamless_donations_forms_engine ( $form_array ) {
 		$form_array['method'] = 'post';
 	}
 	if( ! isset( $form_array['onsubmit'] ) ) {
-		$form_array['onsubmit'] = ''; // fixme probably not used
+		$form_array['onsubmit'] = '';
 	}
 	if( isset( $form_array['before'] ) ) {
 		$form_before = $form_array['before'];
@@ -45,7 +45,7 @@ function seamless_donations_forms_engine ( $form_array ) {
 
 	$form_tag_html = '<div class="seamless-donations-forms-engine">'; // all forms inside that class div
 	$form_tag_html .= $form_before . '<form ';
-	// $form_tag_html .= "onsubmit='" . $form_validator . "' "; // doing this in JavaScript
+	$form_tag_html .= "onsubmit='" . $form_validator . "' "; // doing this in JavaScript
 
 	for( $form_index = 0; $form_index < $form_size; ++ $form_index ) {
 		$attribute_name = seamless_donations_name_of ( $form_array, $form_index );

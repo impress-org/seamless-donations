@@ -4,7 +4,7 @@ Donate link: http://zatzlabs.com/project-donations/
 Tags: donation, donations, paypal, donate, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
 Requires at least: 3.4
 Tested up to: 4.2.2
-Stable tag: 4.0.4b2
+Stable tag: 4.0.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

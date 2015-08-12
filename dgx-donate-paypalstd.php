@@ -306,6 +306,7 @@ function dgx_donate_paypalstd_ajax_checkout () {
 	// Log
 	dgx_donate_debug_log ( '----------------------------------------' );
 	dgx_donate_debug_log ( 'DONATION TRANSACTION STARTED' );
+	dgx_donate_debug_log ( 'Test mode: B' );
 	$php_version = phpversion ();
 	dgx_donate_debug_log ( "PHP Version: $php_version" );
 	dgx_donate_debug_log ( "Seamless Donations Version: " . dgx_donate_get_version () );

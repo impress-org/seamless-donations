@@ -209,7 +209,7 @@ jQuery(document).ready(function () {
     }); */
 
     // process form clicks, trigger on the input inside the form-submit div
-    jQuery("#seamless-donations-form").submit(function () {
+ /*   jQuery("#seamless-donations-form").submit(function () {
         // validate and process form here
         // begin validation code
         console.log("jQuery form submit function");
@@ -224,9 +224,13 @@ jQuery(document).ready(function () {
             console.log("jQuery form submit function validator bypassed");
         }
         return valid;
-    });
+    }); */
+
 });
 
+/**
+ * @return {boolean}
+ */
 function SeamlessDonationsFormsEngineValidator() {
     var formOkay = true;
 
@@ -273,10 +277,8 @@ function SeamlessDonationsFormsEngineValidator() {
         return false; // returning false blocks the page loader from executing on submit
     } else {
         // the form is okay, so go on to the form submit function, another JavaScript
-        console.log("-- SeamlessDonationsFormsEngineValidator: before call checkout");
-        SeamlessDonationsCheckout();
-        console.log("-- SeamlessDonationsFormsEngineValidator: after call checkout");
-        return false;
+        console.log("-- SeamlessDonationsFormsEngineValidator: form passed validation");
+        return true;
     }
 }
 
@@ -385,6 +387,20 @@ function SeamlessDonationsValidateCurrency(validationObject) {
     return true;
 }
 
+function SeamlessDonationsTrim(s) {
+    if (s == undefined) {
+        s = "";
+    }
+
+    s = s.replace(/(^\s*)|(\s*$)/gi, "");
+    s = s.replace(/[ ]{2,}/gi, " ");
+    s = s.replace(/\n /, "\n");
+    return s;
+}
+
+// THE FOLLOWING HOT MESS IS DEPRECATED. LEFT IN TEMPORARILY FOR REFERENCE
+
+/*
 function SeamlessDonationsCheckout() {
 
     console.log("SeamlessDonationsCheckout: entered function");
@@ -561,7 +577,7 @@ function SeamlessDonationsCheckout() {
         url: dgxDonateAjax.ajaxurl,
         data: data,
         success: function() {
-// todo need to send post data to form. Redirect works, but not with post data
+
 // form.submit sends the post data, but seems to cycle infinitely because there's a submit handler
 // in the form
 // some notes: http://cwestblog.com/2012/11/21/javascript-go-to-url-using-post-variable/
@@ -588,15 +604,5 @@ function SeamlessDonationsAjaxCallback(data) {
     console.log("Inside SeamlessDonationsAjaxCallback");
     //jQuery('#seamless-donations-form').submit();
 }
+*/
 
-
-function SeamlessDonationsTrim(s) {
-    if (s == undefined) {
-        s = "";
-    }
-
-    s = s.replace(/(^\s*)|(\s*$)/gi, "");
-    s = s.replace(/[ ]{2,}/gi, " ");
-    s = s.replace(/\n /, "\n");
-    return s;
-}

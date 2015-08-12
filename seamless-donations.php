@@ -3,7 +3,7 @@
 Plugin Name: Seamless Donations
 Plugin URI: http://zatzlabs.com/seamless-donations/
 Description: Making online donations easy for your visitors; making donor and donation management easy for you.  Receive donations (now including repeating donations), track donors and send customized thank you messages with Seamless Donations for WordPress.  Works with PayPal accounts. Adopted from Allen Snook.
-Version: 4.0.4b4
+Version: 4.0.5
 Author: David Gewirtz
 Author URI: http://zatzlabs.com/lab-notes/
 Text Domain: seamless-donations
@@ -30,7 +30,7 @@ License: GPL2
 
 function seamless_donations_set_version () {
 
-	update_option ( 'dgx_donate_active_version', '4.0.4b4' );
+	update_option ( 'dgx_donate_active_version', '4.0.5' );
 }
 
 require_once 'inc/geography.php';
@@ -163,19 +163,20 @@ add_shortcode ( 'seamless-donations', 'seamless_donations_shortcode' );
 
 function seamless_donations_shortcode ( $atts ) {
 
-	$output      = '';
+	$sd4_mode = get_option ( 'dgx_donate_start_in_sd4_mode' );
+	$output   = '';
+
 	$show_thanks = false;
+
 	if( isset( $_GET['thanks'] ) ) {
 		$show_thanks = true;
 	} else if( isset( $_GET['auth'] ) ) {
 		$show_thanks = true;
 	}
 
-	// Switch
 	if( $show_thanks ) {
 		$output = dgx_donate_display_thank_you ();
 	} else {
-		$sd4_mode = get_option ( 'dgx_donate_start_in_sd4_mode' );
 		if( $sd4_mode == false ) {
 			$output .= "<div style='background-color:red; color:white'>";
 			$output .= "<P style='padding:5px;'>Warning: This form needs to be updated. ";
