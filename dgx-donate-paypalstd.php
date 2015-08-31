@@ -316,7 +316,7 @@ function dgx_donate_paypalstd_ajax_checkout () {
 	$nonce = $_POST['nonce'];
 	if( ! wp_verify_nonce ( $nonce, 'dgx-donate-nonce' ) ) {
 		dgx_donate_debug_log ( 'Payment process nonce validation failure.' );
-		die( 'Busted!' );
+		die( 'Access Denied.' );
 	} else {
 		dgx_donate_debug_log ( "Payment process nonce $nonce validated." );
 	}

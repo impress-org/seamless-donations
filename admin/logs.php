@@ -12,12 +12,12 @@ Copyright (c) 2015 by David Gewirtz
 //// LOGS - TAB ////
 function seamless_donations_admin_logs ( $setup_object ) {
 
-	do_action('seamless_donations_admin_logs_before', $setup_object);
+	do_action ( 'seamless_donations_admin_logs_before', $setup_object );
 
 	seamless_donations_admin_logs_menu ( $setup_object );
 	seamless_donations_admin_logs_section_data ( $setup_object );
 
-	do_action('seamless_donations_admin_logs_after', $setup_object);
+	do_action ( 'seamless_donations_admin_logs_after', $setup_object );
 
 	add_filter (
 		'validate_page_slug_seamless_donations_admin_logs',
@@ -49,6 +49,8 @@ function validate_page_slug_seamless_donations_admin_logs_callback (
 			delete_option ( 'dgx_donate_log' );
 			$_setup_object->setSettingNotice ( 'Log data cleared.', 'updated' );
 			break;
+		case 'seamless_donations_admin_log_section_extension': // LET EXTENSIONS DO THE PROCESSING
+			break;
 		default:
 			$_setup_object->setSettingNotice (
 				__ ( 'There was an unexpected error in your entry.', 'seamless-donations' ) );
@@ -79,6 +81,31 @@ function seamless_donations_admin_logs_section_data ( $_setup_object ) {
 		}
 	}
 
+	$debug_mode = get_option ( 'dgx_donate_debug_mode' );
+	if( $debug_mode == 1 ) {
+		// we're in debug, so we'll return lots of log info
+
+		$display_options = array(
+			__ ( 'Seamless Donations Log Data', 'seamless-donations' ) => $log_data,
+			// Removes the default data by passing an empty value below.
+			'Admin Page Framework'                                     => '',
+			'Browser'                                                  => '',
+		);
+	} else {
+		$display_options = array(
+			__ ( 'Seamless Donations Log Data', 'seamless-donations' ) => $log_data,
+			// Removes the default data by passing an empty value below.
+			'Admin Page Framework'                                     => '',
+			'WordPress'                                                => '',
+			'PHP'                                                      => '',
+			'Server'                                                   => '',
+			'PHP Error Log'                                            => '',
+			'MySQL'                                                    => '',
+			'MySQL Error Log'                                          => '',
+			'Browser'                                                  => '',
+		);
+	}
+
 	$log_object = array(
 		array(
 			'field_id' => 'submit',
@@ -89,11 +116,7 @@ function seamless_donations_admin_logs_section_data ( $_setup_object ) {
 			'field_id'   => 'system_information',
 			'type'       => 'system',
 			'title'      => __ ( 'System Information', 'seamless-donations' ),
-			'data'       => array(
-				__ ( 'Seamless Donations Log Data', 'seamless-donations' ) => $log_data,
-				'Admin Page Framework'                                     => '',
-				'Browser'                                                  => '',
-			),
+			'data'       => $display_options,
 			'attributes' => array(
 				'name' => '',
 			),

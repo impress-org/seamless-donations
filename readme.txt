@@ -3,8 +3,8 @@ Contributors: dgewirtz
 Donate link: http://zatzlabs.com/project-donations/
 Tags: donation, donations, paypal, donate, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
 Requires at least: 3.4
-Tested up to: 4.2.2
-Stable tag: 4.0.5
+Tested up to: 4.3
+Stable tag: 4.0.7
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,7 @@ https://www.youtube.com/watch?v=75IjGyHp52o
 plugins and themes outside of Seamless Donations.
 * **Designed for extensibility:** The primary design goal of 4.0 was to add hooks in the form of filters and actions that web designers can use to modify the behavior of Seamless Donations to fit individual needs. The plugin was re-architected to allow for loads of extensibility.
 * **Forms engine designed for extensibility:** Rather than just basic form code, Seamless Donations 4.0 now has a brand-new array-driven forms engine, which will give web site builders the ability to modify and access every part of the form before it is displayed to donors.
+* **Shortcode engine designed for extensibility:** The main shortcode for the plugin has been designed so that extensions can add features to the main seamless-donations shortcode.
 * **Admin UI designed for extensibility:** Yep, like everything else, the admin interface has been designed to allow for extensibility.
 * **Translation-ready:** Seamless Donations 4.0 has had numerous tweaks to allow it to be translated into other languages.
 
@@ -44,6 +45,7 @@ Seamless Donations 4.0 was designed from the ground up to be developer-friendly.
 * [Actions and Filters](http://zatzlabs.com/codex/seamless-donations-actions-and-filters/)
 * [Forms Engine](http://zatzlabs.com/codex/seamless-donations-forms-engine/)
 * [Cloak/Reveal System](http://zatzlabs.com/codex/understanding-the-reveal-family-system/)
+* [Training: Customizing Seamless Donations](http://zatzlabs.com/codex/introduction-to-seamless-donations-customization-using-hooks/)
 
 = Support Note =
 
@@ -158,8 +160,25 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 
 == Changelog ==
 
-= 4.0.3 =
+= 4.0.7 =
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
+* Fixed bug in repeating donations
+
+= 4.0.6 =
+* Added a transaction audit database table that replaced the unreliable transient data system.
+* Rewrote payment initiation system. Payments no longer are initiated by JavaScript running on visitors' browsers, but by a PHP script running inside the plugin on the server.
+* Added new shortcode extensibility system.
+* Added a debug mode checkbox to the Settings panel.
+* Added a “Add label tag to input form (may improve form layout for some themes)” tweak to the Form Options panel.
+* Full Lab Notes on update fixes [here](http://zatzlabs.com/reengineering-the-seamless-donations-core-payment-gateway/) and [here](http://zatzlabs.com/seamless-donations-4-0-6-incorporates-many-under-the-hood-improvements/).
+
+= 4.0.5 =
+* Public beta release only
+
+= 4.0.4 =
+* Beta release only
+
+= 4.0.3 =
 * Fixed fatal bug introduced in 4.0.2
 
 = 4.0.2 =
@@ -177,7 +196,7 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * Fixed "undefined index" error
 * Fixed bug where default fields didn't default properly
 * Fixed overly oppressive field sanitization
-* Full blog post on update fixes [here](http://zatzlabs.com/seamless-donations-4-0-1-includes-german-translation-and-bug-fixes/)
+* Full Lab Notes on update fixes [here](http://zatzlabs.com/seamless-donations-4-0-1-includes-german-translation-and-bug-fixes/)
 
 = 4.0.0 =
 * Major update

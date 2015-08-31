@@ -60,6 +60,8 @@ function validate_page_slug_seamless_donations_admin_donors_callback (
 			wp_redirect ( admin_url ( 'admin.php?page=seamless_donations_admin_main' ) );
 			exit(); // required to make wp_redirect work
 			break;
+		case 'seamless_donations_admin_donors_section_extension': // LET EXTENSIONS DO THE PROCESSING
+			break;
 		default:
 			$_setup_object->setSettingNotice (
 				__ ( 'There was an unexpected error in your entry.', 'seamless-donations' ) );

@@ -21,6 +21,7 @@ function seamless_donations_admin_settings ( $setup_object ) {
 	seamless_donations_admin_settings_section_emails ( $setup_object );
 	seamless_donations_admin_settings_section_paypal ( $setup_object );
 	seamless_donations_admin_settings_section_tabs ( $setup_object );
+	seamless_donations_admin_settings_section_debug ($setup_object);
 
 	do_action ( 'seamless_donations_admin_settings_after', $setup_object );
 
@@ -90,6 +91,13 @@ function validate_page_slug_seamless_donations_admin_settings_callback (
 			update_option ( 'dgx_donate_display_admin_donations_tab', 'show' );
 			update_option ( 'dgx_donate_display_admin_funds_tab', 'show' );
 			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
+			break;
+		case 'seamless_donations_admin_settings_section_debug': // SAVE DEBUG //
+			update_option (
+				'dgx_donate_debug_mode', $_submitted_array[ $section ]['dgx_donate_debug_mode'] );
+			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
+			break;
+		case 'seamless_donations_admin_settings_section_extension': // LET EXTENSIONS DO THE PROCESSING
 			break;
 		default:
 			$_setup_object->setSettingNotice (
@@ -228,4 +236,42 @@ function seamless_donations_admin_settings_section_tabs ( $_setup_object ) {
 
 	seamless_donations_process_add_settings_fields_with_options (
 		$settings_tabs_options, $_setup_object, $settings_tabs_section );
+}
+
+//// SETTINGS - SECTION - DEBUG ////
+function seamless_donations_admin_settings_section_debug ( $_setup_object ) {
+
+	$section_desc = 'Enables certain Seamless Donations debugging features. Reduces security. ';
+	$section_desc .= 'Displays annoying (but effective) warning message until turned off.';
+
+	$debug_section = array(
+		'section_id'  => 'seamless_donations_admin_settings_section_debug',    // the section ID
+		'page_slug'   => 'seamless_donations_admin_settings',    // the page slug that the section belongs to
+		'title'       => __ ( 'Debug Mode', 'seamless-donations' ),   // the section title
+		'description' => __ ( $section_desc, 'seamless-donations' ),
+	);
+
+	$debug_section = apply_filters ( 'seamless_donations_admin_settings_section_debug', $debug_section );
+
+	$debug_options = array(
+		array(
+			'field_id'    => 'dgx_donate_debug_mode',
+			'title'       => __ ( 'Debug Mode', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => __ ( 'Enable debug mode', 'seamless-donations'),
+			'default'     => false,
+			'after_label' => '<br />',
+		),
+		array(
+			'field_id' => 'submit',
+			'type'     => 'submit',
+			'label'    => __ ( 'Save Debug Mode', 'seamless-donations' ),
+		)
+	);
+
+	$debug_options = apply_filters (
+		'seamless_donations_admin_settings_section_debug_options', $debug_options );
+
+	seamless_donations_process_add_settings_fields_with_options (
+		$debug_options, $_setup_object, $debug_section );
 }

@@ -3,7 +3,7 @@
 Plugin Name: Seamless Donations
 Plugin URI: http://zatzlabs.com/seamless-donations/
 Description: Making online donations easy for your visitors; making donor and donation management easy for you.  Receive donations (now including repeating donations), track donors and send customized thank you messages with Seamless Donations for WordPress.  Works with PayPal accounts. Adopted from Allen Snook.
-Version: 4.0.5
+Version: 4.0.7
 Author: David Gewirtz
 Author URI: http://zatzlabs.com/lab-notes/
 Text Domain: seamless-donations
@@ -30,7 +30,7 @@ License: GPL2
 
 function seamless_donations_set_version () {
 
-	update_option ( 'dgx_donate_active_version', '4.0.5' );
+	update_option ( 'dgx_donate_active_version', '4.0.7' );
 }
 
 require_once 'inc/geography.php';
@@ -162,21 +162,67 @@ function seamless_donations_get_escaped_formatted_amount ( $amount, $decimal_pla
 add_shortcode ( 'seamless-donations', 'seamless_donations_shortcode' );
 
 function seamless_donations_shortcode ( $atts ) {
+	$output = '';
 
-	$sd4_mode = get_option ( 'dgx_donate_start_in_sd4_mode' );
-	$output   = '';
+	// shortcodes in SD4.0.5 and up are extensible
+	// they are controlled by a $shortcode_features array defined below
+	// it is up to each function to determine whether it should display anything
+	$shortcode_features = array(
+		array( 'seamless_donations_shortcode_form', 'seamless_donations_shortcode_form_filter', 10, 1 ),
+		array( 'seamless_donations_shortcode_thanks', 'seamless_donations_shortcode_thanks_filter', 10, 1 ),
+	);
 
-	$show_thanks = false;
+	// extend the array
+	$shortcode_features = apply_filters ( 'seamless_donations_shortcode_features', $shortcode_features );
 
-	if( isset( $_GET['thanks'] ) ) {
-		$show_thanks = true;
-	} else if( isset( $_GET['auth'] ) ) {
-		$show_thanks = true;
+	// create the filters
+	for( $i = 0; $i < count ( $shortcode_features ); ++ $i ) {
+		$filter_name     = $shortcode_features[ $i ][0];
+		$filter_func     = $shortcode_features[ $i ][1];
+		$filter_priority = $shortcode_features[ $i ][2];
+		$filter_args     = $shortcode_features[ $i ][3];
+		add_filter ( $filter_name, $filter_func, $filter_priority, $filter_args );
 	}
 
-	if( $show_thanks ) {
+	// process each filter in turn, adding to the output (in reality, you want one filter to run)
+	for( $i = 0; $i < count ( $shortcode_features ); ++ $i ) {
+		$filter_name     = $shortcode_features[ $i ][0];
+		$output .= apply_filters ( $filter_name, $atts );
+	}
+
+	return $output;
+}
+
+function seamless_donations_shortcode_thanks_filter ( $atts ) {
+
+	$shortcode_mode = '';
+	$output         = '';
+
+	if( isset( $_GET['thanks'] ) ) {
+		$shortcode_mode = 'show_thanks';
+	} else if( isset( $_GET['auth'] ) ) {
+		$shortcode_mode = 'show_thanks';
+	}
+	if( $shortcode_mode == 'show_thanks' ) {
 		$output = dgx_donate_display_thank_you ();
-	} else {
+	}
+
+	return $output;
+}
+
+function seamless_donations_shortcode_form_filter ( $atts ) {
+
+	$sd4_mode       = get_option ( 'dgx_donate_start_in_sd4_mode' );
+	$shortcode_mode = 'show_form';
+	$output         = '';
+
+	if( isset( $_GET['thanks'] ) ) {
+		$shortcode_mode = 'show_thanks';
+	} else if( isset( $_GET['auth'] ) ) {
+		$shortcode_mode = 'show_thanks';
+	}
+
+	if( $shortcode_mode == 'show_form' and $atts == '') {
 		if( $sd4_mode == false ) {
 			$output .= "<div style='background-color:red; color:white'>";
 			$output .= "<P style='padding:5px;'>Warning: This form needs to be updated. ";
@@ -184,7 +230,7 @@ function seamless_donations_shortcode ( $atts ) {
 			$output .= "</div>";
 		} else {
 			$output = "";
-			$output = seamless_donations_generate_donation_form ( $output );
+			$output = seamless_donations_generate_donation_form (  );
 
 			if( empty( $output ) ) {
 				$output = "<p>Error: No payment gateway selected. ";
@@ -232,10 +278,15 @@ function seamless_donations_init () {
 	}
 
 	// Display an admin notice if we are in sandbox mode
-
 	$payPalServer = get_option ( 'dgx_donate_paypal_server' );
 	if( strcasecmp ( $payPalServer, "SANDBOX" ) == 0 ) {
 		add_action ( 'admin_notices', 'dgx_donate_admin_sandbox_msg' );
+	}
+
+	// Display an admin notice if we are in debug mode
+	$debug_mode = get_option ( 'dgx_donate_debug_mode' );
+	if( $debug_mode == 1 ) {
+		add_action ( 'admin_notices', 'seamless_donations_admin_debug_mode_msg' );
 	}
 }
 
@@ -478,6 +529,11 @@ function seamless_donations_update_audit_option ( $option_name, $option_value ) 
 
 	if( empty( $option_name ) ) {
 		return false;
+	}
+
+	if (! isset($option_value['CURRENCY'])) {
+		$currency = get_option('dgx_donate_currency');
+		$option_value['CURRENCY'] = $currency;
 	}
 
 	// http://codex.wordpress.org/Class_Reference/wpdb#REPLACE_row

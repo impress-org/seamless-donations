@@ -9,6 +9,21 @@ function seamless_donations_name_of ( array $a, $pos ) {
 	return key ( $temp );
 }
 
+// from http://www.w3schools.com/php/filter_validate_url.asp
+// returns a clean URL or false
+// use === false to check it
+function seamless_donations_validate_url ($url) {
+	// Remove all illegal characters from a url
+	$url = filter_var($url, FILTER_SANITIZE_URL);
+
+	// Validate url
+	if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+		return $url;
+	} else {
+		return false;
+	}
+}
+
 function seamless_donations_debug_alert ( $a ) {
 
 	echo "<script>";

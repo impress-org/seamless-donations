@@ -641,23 +641,26 @@ function seamless_donations_get_billing_section () {
 	return $billing_section;
 }
 
+/**
+ * @return array|mixed|void
+ */
 function seamless_donations_get_paypal_section () {
 
 	$paypal_email  = get_option ( 'dgx_donate_paypal_email' );
 	$currency_code = get_option ( 'dgx_donate_currency' );
 
 	$notify_url = plugins_url ( '/dgx-donate-paypalstd-ipn.php', __FILE__ );
-	$session_id = session_id ();
+	//$session_id = session_id ();
 
 	// set up success URL
 	$success_url = dgx_donate_paypalstd_get_current_url ();
-	if( strpos ( $success_url, "?" ) === false ) {
-		$success_url .= "?";
-	} else {
-		$success_url .= "&";
-	}
-	$success_url .= "thanks=1&sessionid=";
-	$success_url .= "$session_id";
+//	if( strpos ( $success_url, "?" ) === false ) {
+//		$success_url .= "?";
+//	} else {
+//		$success_url .= "&";
+//	}
+//	$success_url .= "thanks=1&sessionid=";
+//	$success_url .= "$session_id";
 
 	// not used in core code, but users might be including this somewhere
 	$item_name = apply_filters ( 'dgx_donate_item_name', __ ( 'Donation', 'seamless-donations' ) );
@@ -673,7 +676,7 @@ function seamless_donations_get_paypal_section () {
 			),
 			'cmd'           => array(
 				'type'  => 'hidden',
-				'value' => '_donations',
+				'value' => '',
 			),
 			'business'      => array(
 				'type'  => 'hidden',
@@ -681,7 +684,7 @@ function seamless_donations_get_paypal_section () {
 			),
 			'return'        => array(
 				'type'  => 'hidden',
-				'value' => esc_attr ( $success_url ),
+				'value' => '', // set later in payment function, not really needed here
 			),
 			'first_name'    => array(
 				'type'  => 'hidden',
@@ -753,15 +756,15 @@ function seamless_donations_get_paypal_section () {
 			),
 			'p3'            => array(
 				'type'  => 'hidden', // removed when not repeating
-				'value' => '1',
+				'value' => '',
 			),
 			't3'            => array(
 				'type'  => 'hidden', // removed when not repeating
-				'value' => '1',
+				'value' => '',
 			),
 			'a3'            => array(
 				'type'  => 'hidden', // removed when not repeating
-				'value' => '1',
+				'value' => '',
 			),
 		),
 	);

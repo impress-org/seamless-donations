@@ -119,7 +119,8 @@ function validate_page_slug_seamless_donations_admin_templates_callback (
 			}
 			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
 			break;
-
+		case 'seamless_donations_admin_templates_section_extension': // LET EXTENSIONS DO THE PROCESSING
+			break;
 		default:
 			$_setup_object->setSettingNotice (
 				__ ( 'There was an unexpected error in your entry.', 'seamless-donations' ) );

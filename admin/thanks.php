@@ -64,6 +64,8 @@ function validate_page_slug_seamless_donations_admin_thanks_callback (
 			update_option ( 'dgx_donate_thanks_text', $note );
 			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
 			break;
+		case 'seamless_donations_admin_thanks_section_extension': // LET EXTENSIONS DO THE PROCESSING
+			break;
 		default:
 			$_setup_object->setSettingNotice (
 				__ ( 'There was an unexpected error in your entry.', 'seamless-donations' ) );
@@ -107,29 +109,4 @@ function seamless_donations_admin_thanks_section_note ( $_setup_object ) {
 		'seamless_donations_admin_thanks_section_note_options', $thanks_note_options );
 
 	seamless_donations_process_add_settings_fields_with_options ( $thanks_note_options, $_setup_object, $thanks_note_section );
-}
-
-add_filter ( 'validate_page_slug_seamless_donations_admin_thanks', 'validate_thank_you_page_submit', 10, 3 );
-
-function validate_thank_you_page_submit ( $submitted_array, $existing_array, $setup_object ) {
-
-	if( $submitted_array['thank_you_page_note']['thank_you_page_submit'] == 'Save Changes' ) {
-		if( trim ( $submitted_array['thank_you_page_note']['thank_you_page_message'] ) == "" ) {
-			$_aErrors = array();
-			// $variable[ 'section_id' ]['field_id']
-			$_aErrors['thank_you_page_note']['thank_you_page_message'] = __ (
-				'This value must not be empty.', 'seamless-donations' );
-			$setup_object->setFieldErrors ( $_aErrors );
-			$setup_object->setSettingNotice ( __ ( 'You must enter a thank you page message.', 'seamless-donations' ) );
-		} else {
-			$thank_you_text = $submitted_array['thank_you_page_note']['thank_you_page_message'];
-			$thank_you_text = sanitize_text_field ( $thank_you_text );
-			update_option ( 'dgx_donate_thanks_text', $thank_you_text );
-			// write out the confirmation message for successful completion.
-			$setup_object->oMsg->aMessages['option_updated'] = __ (
-				'Thank you page text has been updated.', 'seamless-donations' );
-		}
-	}
-
-	return $submitted_array;
 }

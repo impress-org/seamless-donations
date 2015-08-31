@@ -111,3 +111,14 @@ if( is_admin () ) {
 	}
 }
 
+function seamless_donations_admin_debug_mode_msg () {
+
+	echo "<div class=\"error\">";
+	echo "<p>";
+	echo esc_html__ (
+		'Warning - Seamless Donations is currently in debug mode (security may be compromised). ' .
+		'Turn off in Seamless Donations -> Settings -> Debug Mode.',
+		'seamless-donations' );
+	echo "</p>";
+	echo "</div>";
+}

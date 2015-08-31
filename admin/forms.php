@@ -122,6 +122,8 @@ function validate_page_slug_seamless_donations_admin_forms_callback (
 				'dgx_donate_labels_for_input', $_submitted_array[ $section ]['dgx_donate_labels_for_input'] );
 			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
 			break;
+		case 'seamless_donations_admin_forms_section_extension': // LET EXTENSIONS DO THE PROCESSING
+			break;
 		default:
 			$_setup_object->setSettingNotice (
 				__ ( 'There was an unexpected error in your entry.', 'seamless-donations' ) );

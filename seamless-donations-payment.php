@@ -39,7 +39,7 @@ dgx_donate_debug_log ( 'IPN: ' . plugins_url ( '/dgx-donate-paypalstd-ipn.php', 
 $nonce = $_POST['nonce'];
 if( ! wp_verify_nonce ( $nonce, 'dgx-donate-nonce' ) ) {
 	dgx_donate_debug_log ( 'Payment process nonce validation failure.' );
-	die( 'Busted!' );
+	die( 'Access Denied.' );
 } else {
 	dgx_donate_debug_log ( "Payment process nonce $nonce validated." );
 }
@@ -72,7 +72,7 @@ if( $session_data !== false ) {
 	// Repack the POST
 	$post_data                     = array();
 	$post_data['REFERRINGURL']     = $_POST['_dgx_donate_redirect_url'];
-	$post_data['SUCCESSURL']     = $_POST['_dgx_donate_success_url'];
+	$post_data['SUCCESSURL']       = $_POST['_dgx_donate_success_url'];
 	$post_data['SESSIONID']        = $_POST['_dgx_donate_session_id'];
 	$post_data['REPEATING']        = $_POST['_dgx_donate_repeating'];
 	$post_data['DESIGNATED']       = $_POST['_dgx_donate_designated'];
@@ -108,6 +108,17 @@ if( $session_data !== false ) {
 	$post_data['EMPLOYERNAME']     = $_POST['_dgx_donate_employer_name'];
 	$post_data['OCCUPATION']       = $_POST['_dgx_donate_occupation'];
 	$post_data['UKGIFTAID']        = $_POST['_dgx_donate_uk_gift_aid'];
+	$post_data['NONCE']            = $_POST['nonce'];
+
+	// pull override data from hidden form (might be modified by users with callbacks)
+	$post_data['BUSINESS']   = $_POST['business'];
+	$post_data['RETURN']     = $_POST['return'];
+	$post_data['NOTIFY_URL'] = $_POST['notify_url'];
+	$post_data['ITEM_NAME']  = $_POST['item_name'];
+	$post_data['CMD']        = $_POST['cmd'];
+	$post_data['P3']         = $_POST['p3'];
+	$post_data['T3']         = $_POST['t3'];
+	$post_data['A3']         = $_POST['a3'];
 
 	// Resolve the donation amount
 	if( strcasecmp ( $_POST['_dgx_donate_amount'], "OTHER" ) == 0 ) {
@@ -128,6 +139,11 @@ if( $session_data !== false ) {
 		$post_data['HONOREEPROVINCE'] = '';
 	}
 
+	// If no country entered, pull in the default
+	if( $post_data['COUNTRY'] == '' ) {
+		$post_data['COUNTRY'] = get_option ( 'dgx_donate_default_country' );
+	}
+
 	if( 'US' == $post_data['COUNTRY'] ) {
 		$post_data['PROVINCE'] = '';
 	} else if( 'CA' == $post_data['COUNTRY'] ) {
@@ -146,6 +162,34 @@ if( $session_data !== false ) {
 		$temp              = str_replace ( "\"", "", $temp );
 		$temp              = strip_tags ( $temp );
 		$post_data[ $key ] = $temp;
+	}
+	// account for different permalink styles
+	$success_url = $post_data['SUCCESSURL'];
+	$qmark       = strpos ( $success_url, '?' );
+	if( $qmark === false ) {
+		$success_url .= "?thanks=true";
+	} else {
+		$success_url .= "&thanks=true";
+	}
+	$post_data['RETURN'] = $success_url;
+
+	dgx_donate_debug_log ( "Success URL: $success_url" );
+
+	$post_data = apply_filters (
+		'seamless_donations_payment_post_data', $post_data );
+
+	// insert extra validation for GoodByeCaptcha and any other validation
+	$challenge_response_passed = apply_filters ( 'seamless_donations_challenge_response_request', true, $post_data );
+
+	if( true !== $challenge_response_passed ) // for sure there is an error
+	{
+		if( is_wp_error ( $challenge_response_passed ) ) {
+			$error_message = $challenge_response_passed->get_error_message ();
+		} else {
+			$error_message = (string) $challenge_response_passed;
+		}
+		dgx_donate_debug_log ( 'Form challenge-response failed:' . $error_message );
+		die( esc_html__ ( 'Invalid response to challenge. Are you human?' ) );
 	}
 
 	if( $sd4_mode == false ) {
@@ -176,10 +220,10 @@ if( $session_data !== false ) {
 	$post_args .= "zip=" . urlencode ( $post_data['ZIP'] ) . "&";
 
 	if( 'US' == $post_data['COUNTRY'] ) {
-		$post_args .= "state=" . urlencode ( $post_data['STATE']  ) . "&";
+		$post_args .= "state=" . urlencode ( $post_data['STATE'] ) . "&";
 	} else {
 		if( 'CA' == $post_data['COUNTRY'] ) {
-			$post_args .= "state=" . urlencode ( $post_data['PROVINCE']  ) . "&";
+			$post_args .= "state=" . urlencode ( $post_data['PROVINCE'] ) . "&";
 		}
 	}
 
@@ -187,27 +231,52 @@ if( $session_data !== false ) {
 	$post_args .= "email=" . urlencode ( $post_data['EMAIL'] ) . "&";
 	$post_args .= "custom=" . urlencode ( $post_data['SESSIONID'] ) . "&";
 
-	if( $repeating == '' ) {
+	// fill in repeating data, overriding if necessary
+	dgx_donate_debug_log ( "Checking for repeat. REPEAT value is [" . $post_data['REPEATING'] . "]." );
+	if( $post_data['REPEATING'] == '' ) {
+		if( $post_data['CMD'] == '' ) {
+			$post_data['CMD'] = '_donations';
+		}
 		$post_args .= "amount=" . urlencode ( $post_data['AMOUNT'] ) . "&";
-		$post_args .= "cmd=" . urlencode ( '_donations' ) . "&";
+		$post_args .= "cmd=" . urlencode ( $post_data['CMD'] ) . "&";
 	} else {
-		$post_args .= "cmd=" . urlencode ( '_xclick-subscriptions' ) . "&";
-		$post_args .= "p3=" . urlencode ( '1' ) . "&";  // 1, M = monthly
-		$post_args .= "t3=" . urlencode ( 'M' ) . "&";
+		if( $post_data['CMD'] == '' ) {
+			$post_data['CMD'] = '_xclick-subscriptions';
+		}
+		if( $post_data['P3'] == '' ) {
+			$post_data['P3'] = '1';
+		}
+		if( $post_data['T3'] == '' ) {
+			$post_data['T3'] = 'M';
+		}
+		$post_args .= "cmd=" . urlencode ( $post_data['CMD'] ) . "&";
+		$post_args .= "p3=" . urlencode ( $post_data['P3'] ) . "&";  // 1, M = monthly
+		$post_args .= "t3=" . urlencode ( $post_data['T3'] ) . "&";
 		$post_args .= "a3=" . urlencode ( $post_data['AMOUNT'] ) . "&";
+		$log_msg = "Enabling repeating donation, cmd=" . $post_data['CMD'];
+		$log_msg .= ", p3=" . $post_data['P3'] . ", t3=" . $post_data['T3'];
+		$log_msg .= ", a3=" . $post_data['AMOUNT'];
+		dgx_donate_debug_log ( $log_msg );
 	}
 
-	$notifyUrl   = plugins_url ( '/dgx-donate-paypalstd-ipn.php', __FILE__ );
-	$successUrl  = $post_data['SUCCESSURL'] . "?thanks=true";
-	$paypalEmail = get_option ( 'dgx_donate_paypal_email' );
+	$notify_url = plugins_url ( '/dgx-donate-paypalstd-ipn.php', __FILE__ );
+
+	$paypal_email  = get_option ( 'dgx_donate_paypal_email' );
 	$currency_code = get_option ( 'dgx_donate_currency' );
 
-	dgx_donate_debug_log ( "Success URL: $successUrl" );
+	// fill in the rest of the form data, overriding if necessary
+	if( $post_data['BUSINESS'] == '' ) {
+		$post_data['BUSINESS'] = $paypal_email;
+	}
+	if( $post_data['NOTIFY_URL'] == '' ) {
+		$post_data['NOTIFY_URL'] = $notify_url;
+	}
+	dgx_donate_debug_log ( "Computed RETURN value: '" . $post_data['RETURN'] . "'" );
 
-	$post_args .= "business=" . urlencode ( $paypalEmail ) . "&";
-	$post_args .= "return=" . urlencode ( $successUrl ) . "&";
-	$post_args .= "notify_url=" . urlencode ( $notifyUrl ) . "&";
-	// $post_args .= "item_name=" . urlencode ( $item_name ) . "&";
+	$post_args .= "business=" . urlencode ( $post_data['BUSINESS'] ) . "&";
+	$post_args .= "return=" . urlencode ( $post_data['RETURN'] ) . "&";
+	$post_args .= "notify_url=" . urlencode ( $post_data['NOTIFY_URL'] ) . "&";
+	$post_args .= "item_name=" . urlencode ( $post_data['ITEM_NAME'] ) . "&";
 	$post_args .= "quantity=" . urlencode ( '1' ) . "&";
 	$post_args .= "currency_code=" . urlencode ( $currency_code ) . "&";
 	$post_args .= "no_note=" . urlencode ( '1' ) . "&";
@@ -219,9 +288,9 @@ if( $session_data !== false ) {
 		$form_action = "https://www.paypal.com/cgi-bin/webscr";
 	}
 
-//	var_dump ( $post_args );
-//
-//	die();
+	//	var_dump ( $post_args );
+	//
+	//	die();
 
 	// dgx_donate_debug_log ( "Post args: " . $post_args );
 
