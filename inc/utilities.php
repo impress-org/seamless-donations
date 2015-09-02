@@ -12,12 +12,13 @@ function seamless_donations_name_of ( array $a, $pos ) {
 // from http://www.w3schools.com/php/filter_validate_url.asp
 // returns a clean URL or false
 // use === false to check it
-function seamless_donations_validate_url ($url) {
+function seamless_donations_validate_url ( $url ) {
+
 	// Remove all illegal characters from a url
-	$url = filter_var($url, FILTER_SANITIZE_URL);
+	$url = filter_var ( $url, FILTER_SANITIZE_URL );
 
 	// Validate url
-	if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+	if( ! filter_var ( $url, FILTER_VALIDATE_URL ) === false ) {
 		return $url;
 	} else {
 		return false;
@@ -131,4 +132,103 @@ function seamless_donations_get_browser_name () {
 		$browser_version = '';
 
 	return $browser_name . ' ' . $browser_version;
+}
+
+// *** EDD LICENSING ***
+
+function seamless_donations_store_url () {
+
+	return "http://zatzlabs.com";
+}
+
+function seamless_donations_get_license_key ( $item ) {
+
+	$license_key   = '';
+	$license_array = unserialize ( get_option ( 'dgxdonate_licenses' ) );
+	if( isset( $license_array[ $item ] ) ) {
+		$license_key = $license_array[ $item ];
+	}
+
+	return $license_key;
+}
+
+function seamless_donations_confirm_license_key($key) {
+	if($key == '') return false;
+	return true;
+}
+
+function seamless_donations_edd_activate_license ( $product, $license, $url ) {
+
+	// retrieve the license from the database
+	$license = trim ( $license );
+
+	// Call the custom API.
+	$response = wp_remote_get (
+		add_query_arg (
+			array(
+				'edd_action' => 'activate_license',
+				'license'    => $license,
+				'item_name'  => urlencode ( $product ) // the name of our product in EDD
+			),
+			$url
+		),
+		array(
+			'timeout'   => 15,
+			'sslverify' => false
+		)
+	);
+
+	// make sure the response came back okay
+	if( is_wp_error ( $response ) ) {
+		return false;
+	}
+
+	// decode the license data
+	$license_data = json_decode ( wp_remote_retrieve_body ( $response ) );
+
+	// $license_data->license will be either "active" or "inactive" <-- "valid"
+	if( isset( $license_data->license ) && $license_data->license == 'active'
+	    || $license_data->license == 'valid'
+	) {
+		return 'valid';
+	}
+
+	return 'invalid';
+}
+
+function seamless_donations_edd_deactivate_license ( $product, $license, $url ) {
+
+	// retrieve the license from the database
+	$license = trim ( $license );
+
+	// Call the custom API.
+	$response = wp_remote_get (
+		add_query_arg (
+			array(
+				'edd_action' => 'deactivate_license',
+				'license'    => $license,
+				'item_name'  => urlencode ( $product ) // the name of our product in EDD
+			),
+			$url
+		),
+		array(
+			'timeout'   => 15,
+			'sslverify' => false
+		)
+	);
+
+	// make sure the response came back okay
+	if( is_wp_error ( $response ) ) {
+		return false;
+	}
+
+	// decode the license data
+	$license_data = json_decode ( wp_remote_retrieve_body ( $response ) );
+
+	// $license_data->license will be either "active" or "inactive" <-- "valid"
+	if( isset( $license_data->license ) && $license_data->license == 'deactivated' ) {
+		return 'deactivated';
+	}
+
+	return 'invalid';
 }

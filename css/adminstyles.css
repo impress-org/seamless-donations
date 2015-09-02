@@ -6,6 +6,10 @@
     display:none;
 }
 
+#fieldrow-seamless_donations_admin_addons_section_data_admin_information > th {
+    display:none;
+}
+
 .sd-admin-box{
     position: relative;
     float: left;
@@ -37,6 +41,35 @@
     padding:1em;
     width: 30%;
     height: 485px;
+    border: 1px solid #dbdbdb;
+    background-color: #ffffff;
+}
+.addon-box-left{
+    position: relative;
+    float: left;
+    padding:1em;
+    width: 30%;
+    height: 585px;
+    border: 1px solid #dbdbdb;
+    background-color: #ffffff;
+}
+.addon-box-middle{
+    position: relative;
+    float: left;
+    margin-left: 20px;
+    padding:1em;
+    width: 30%;
+    height: 585px;
+    border: 1px solid #dbdbdb;
+    background-color: #ffffff;
+}
+.addon-box-right{
+    position: relative;
+    float: left;
+    margin-left: 20px;
+    padding:1em;
+    width: 30%;
+    height: 585px;
     border: 1px solid #dbdbdb;
     background-color: #ffffff;
 }

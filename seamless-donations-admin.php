@@ -72,6 +72,8 @@ class SeamlessDonationsAdmin extends SeamlessDonationsAdminPageFramework {
 		seamless_donations_admin_thanks ( $this );
 		seamless_donations_admin_forms ( $this );
 		seamless_donations_admin_settings ( $this );
+		seamless_donations_admin_addons ( $this );
+		seamless_donations_admin_licenses ( $this );
 		seamless_donations_admin_logs ( $this );
 		//seamless_donations_admin_help ( $this );
 	}

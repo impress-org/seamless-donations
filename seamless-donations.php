@@ -59,6 +59,8 @@ function seamless_donations_admin_loader () {
 	require_once 'admin/settings.php';
 	require_once 'admin/logs.php';
 	require_once 'admin/help.php';
+	require_once 'admin/addons.php';
+	require_once 'admin/licenses.php';
 
 	// bring in the custom post types
 	require_once 'cpt/cpt-donations.php';
