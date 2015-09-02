@@ -55,18 +55,24 @@ function validate_page_slug_seamless_donations_admin_settings_callback (
 
 	switch( $section ) {
 		case 'seamless_donations_admin_settings_section_emails': // SAVE EMAILS //
-			$email = $_submitted_array[ $section ]['dgx_donate_notify_emails'];
-			$email = sanitize_email($email);
-			if( ! is_email ( $email ) ) {
-				$_aErrors[ $section ]['dgx_donate_notify_emails'] = __ (
-					'Valid email address required.', 'seamless-donations' );
-				$_setup_object->setFieldErrors ( $_aErrors );
-				$_setup_object->setSettingNotice (
-					__ ( 'There were errors in your submission.', 'seamless-donations' ) );
-
-				return $_existing_array;
+			$email_list = $_submitted_array[ $section ]['dgx_donate_notify_emails'];
+			$email_array = explode ( ',', $email_list );
+			$clean_email_array = array();
+			foreach( $email_array as $email ) {
+				$email = trim ( $email );
+				$email = sanitize_email($email);
+				array_push($clean_email_array, $email);
+				if( ! is_email ( $email ) ) {
+					$_aErrors[ $section ]['dgx_donate_notify_emails'] = __ (
+						'Valid email address required.', 'seamless-donations' );
+					$_setup_object->setFieldErrors ( $_aErrors );
+					$_setup_object->setSettingNotice (
+						__ ( 'There were errors in your submission.', 'seamless-donations' ) );
+					return $_existing_array;
+				}
 			}
-			update_option ( 'dgx_donate_notify_emails', $email );
+			$email_list = implode(',', $clean_email_array);
+			update_option ( 'dgx_donate_notify_emails', $email_list );
 			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
 			break;
 		case 'seamless_donations_admin_settings_section_paypal': // SAVE PAYPAL //
