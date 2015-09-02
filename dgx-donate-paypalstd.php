@@ -343,116 +343,83 @@ function dgx_donate_paypalstd_ajax_checkout () {
 
 		dgx_donate_debug_log ( 'Duplicate session data not found. Payment process data assembly can proceed.' );
 
-		// all of this no longer necessary for transfer to PayPal, just for storage in local audit table
-		$referringUrl    = $_POST['referringUrl'];
-		$donationAmount  = $_POST['donationAmount'];
-		$userAmount      = $_POST['userAmount'];
-		$repeating       = $_POST['repeating'];
-		$designated      = $_POST['designated'];
-		$designatedFund  = $_POST['designatedFund'];
-		$tributeGift     = $_POST['tributeGift'];
-		$memorialGift    = $_POST['memorialGift'];
-		$honoreeName     = $_POST['honoreeName'];
-		$honorByEmail    = $_POST['honorByEmail'];
-		$honoreeEmail    = $_POST['honoreeEmail'];
-		$honoreeAddress  = $_POST['honoreeAddress'];
-		$honoreeCity     = $_POST['honoreeCity'];
-		$honoreeState    = $_POST['honoreeState'];
-		$honoreeProvince = $_POST['honoreeProvince'];
-		$honoreeCountry  = $_POST['honoreeCountry'];
-
-		if( 'US' == $honoreeCountry ) {
-			$honoreeProvince = '';
-		} else if( 'CA' == $honoreeCountry ) {
-			$honoreeState = '';
-		} else {
-			$honoreeState    = '';
-			$honoreeProvince = '';
+		if( $_POST['honoreeCountry'] == 'US' ) {
+			$_POST['honoreeProvince'] = '';
+		} else if( $_POST['honoreeCountry'] == 'CA' ) {
+            $_POST['honoreeState'] = '';
+		} else if ( $_POST['honoreeCountry'] == '' ) {
+            //default to US if country blank
+            $_POST['honoreeCountry'] = 'US';
+        } else {
+            $_POST['honoreeState']    = '';
+            $_POST['honoreeProvince'] = '';
 		}
 
-		$honoreeZip       = $_POST['honoreeZip'];
-		$honoreeEmailName = $_POST['honoreeEmailName'];
-		$honoreePostName  = $_POST['honoreePostName'];
-		$firstName        = $_POST['firstName'];
-		$lastName         = $_POST['lastName'];
-		$phone            = $_POST['phone'];
-		$email            = $_POST['email'];
-		$addToMailingList = $_POST['addToMailingList'];
-		$address          = $_POST['address'];
-		$address2         = $_POST['address2'];
-		$city             = $_POST['city'];
-		$state            = $_POST['state'];
-		$province         = $_POST['province'];
-		$country          = $_POST['country'];
-
-		if( 'US' == $country ) {
-			$province = '';
-		} else if( 'CA' == $country ) {
-			$state = '';
-		} else {
-			$state    = '';
-			$province = '';
-		}
-
-		$zip             = $_POST['zip'];
-		$increaseToCover = $_POST['increaseToCover'];
-		$anonymous       = $_POST['anonymous'];
-		$employerMatch   = $_POST['employerMatch'];
-		$employerName    = $_POST['employerName'];
-		$occupation      = $_POST['occupation'];
-		$ukGiftAid       = $_POST['ukGiftAid'];
+		if( $_POST['country'] == 'US' ) {
+            $_POST['province'] = '';
+		} else if( 'CA' == $_POST['country'] ) {
+            $_POST['state'] = '';
+		} else if ( $_POST['country'] == '' ) {
+            $_POST['country'] = 'US';
+        } else {
+            $_POST['state']    = '';
+            $_POST['province'] = '';
+        }
 
 		// Resolve the donation amount
-		if( strcasecmp ( $donationAmount, "OTHER" ) == 0 ) {
-			$amount = floatval ( $userAmount );
+		if( strcasecmp ( $_POST['donationAmount'], "OTHER" ) == 0 ) {
+			$_POST['amount'] = floatval ( $_POST['userAmount'] );
 		} else {
-			$amount = floatval ( $donationAmount );
+            $_POST['amount'] = floatval ( $_POST['donationAmount'] );
 		}
-		if( $amount < 1.00 ) {
-			$amount = 1.00;
+		if( $_POST['amount'] < 1.00 ) {
+            $_POST['amount'] = 1.00;
 		}
 
 		// Repack the POST
-		$post_data                     = array();
-		$post_data['REFERRINGURL']     = $referringUrl;
-		$post_data['SESSIONID']        = $session_id;
-		$post_data['AMOUNT']           = $amount;
-		$post_data['REPEATING']        = $repeating;
-		$post_data['DESIGNATED']       = $designated;
-		$post_data['DESIGNATEDFUND']   = $designatedFund;
-		$post_data['TRIBUTEGIFT']      = $tributeGift;
-		$post_data['MEMORIALGIFT']     = $memorialGift;
-		$post_data['HONOREENAME']      = $honoreeName;
-		$post_data['HONORBYEMAIL']     = $honorByEmail;
-		$post_data['HONOREEEMAIL']     = $honoreeEmail;
-		$post_data['HONOREEADDRESS']   = $honoreeAddress;
-		$post_data['HONOREECITY']      = $honoreeCity;
-		$post_data['HONOREESTATE']     = $honoreeState;
-		$post_data['HONOREEPROVINCE']  = $honoreeProvince;
-		$post_data['HONOREECOUNTRY']   = $honoreeCountry;
-		$post_data['HONOREEZIP']       = $honoreeZip;
-		$post_data['HONOREEEMAILNAME'] = $honoreeEmailName;
-		$post_data['HONOREEPOSTNAME']  = $honoreePostName;
-		$post_data['FIRSTNAME']        = $firstName;
-		$post_data['LASTNAME']         = $lastName;
-		$post_data['PHONE']            = $phone;
-		$post_data['EMAIL']            = $email;
-		$post_data['ADDTOMAILINGLIST'] = $addToMailingList;
-		$post_data['ADDRESS']          = $address;
-		$post_data['ADDRESS2']         = $address2;
-		$post_data['CITY']             = $city;
-		$post_data['STATE']            = $state;
-		$post_data['PROVINCE']         = $province;
-		$post_data['COUNTRY']          = $country;
-		$post_data['ZIP']              = $zip;
-		$post_data['INCREASETOCOVER']  = $increaseToCover;
-		$post_data['ANONYMOUS']        = $anonymous;
-		$post_data['PAYMENTMETHOD']    = "PayPal";
-		$post_data['EMPLOYERMATCH']    = $employerMatch;
-		$post_data['EMPLOYERNAME']     = $employerName;
-		$post_data['OCCUPATION']       = $occupation;
-		$post_data['UKGIFTAID']        = $ukGiftAid;
-		$post_data['SDVERSION']        = dgx_donate_get_version ();
+        $acceptedFields = apply_filters( 'seamless_donations_accepted_fields', array( 'referringUrl',
+            'sessionID',
+            'amount',
+            'repeating',
+            'designated',
+            'designatedFund',
+            'tributeGift',
+            'memorialGift',
+            'honoreeName',
+            'honoreeEmail',
+            'honoreeAddress',
+            'honoreeCity',
+            'honoreeState',
+            'honoreeProvince',
+            'honoreeCountry',
+            'honoreeZip',
+            'honoreeEmailName',
+            'honoreePostName',
+            'firstName',
+            'lastName',
+            'phone',
+            'email',
+            'addToMailingList',
+            'address',
+            'address2',
+            'city',
+            'state',
+            'province',
+            'country',
+            'zip',
+            'increaseToCover',
+            'anonymous',
+            'paymentMethod',
+            'employerMatch',
+            'employerName',
+            'occupation',
+            'ukGiftAid',
+        ));
+        foreach ($acceptedFields as $key => $value) {
+            $upper = strtoupper($value);
+            $post_data[$upper] = $_POST[$value];
+        }
+        $post_data['PAYMENTMETHOD'] = 'PayPal';
 
 		// Sanitize the data (remove leading, trailing spaces quotes, brackets)
 		foreach( $post_data as $key => $value ) {
@@ -465,7 +432,14 @@ function dgx_donate_paypalstd_ajax_checkout () {
 		if( $sd4_mode == false ) {
 			// Save it all in a transient
 			$transient_token = $post_data['SESSIONID'];
-			set_transient ( $transient_token, $post_data, 7 * 24 * 60 * 60 ); // 7 days
+            // Capture the result of the transient update call
+            $transient_status = set_transient ( $transient_token, $post_data, 7 * 24 * 60 * 60 ); // 7 days
+            // if transient could not be set, fail and die
+            if ($transient_status===false) {
+                $returnMessage = '1|Failed to save transient';
+                echo $returnMessage;
+                wp_die();
+            }
 			dgx_donate_debug_log ( 'Saving transaction data using legacy mode' );
 		} else {
 			seamless_donations_update_audit_option ( $session_id, $post_data );
@@ -485,7 +459,7 @@ function dgx_donate_paypalstd_ajax_checkout () {
 
 		echo $returnMessage;
 
-		die(); // this is required to return a proper result
+		wp_die(); // this is required to return a proper result
 
 	}
 }

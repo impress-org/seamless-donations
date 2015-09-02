@@ -188,6 +188,7 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 		$element_html       = '';
 		$element_type       = '';  // preload the element attributes
 		$element_id         = '';
+        $element_placeholder= '';
 		$element_value      = '';
 		$element_class      = '';
 		$element_style      = '';
@@ -275,6 +276,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 				case 'source':
 					$element_source = trim ( $form_array[ $element_name ]['source'] );
 					break;
+                case 'placeholder':
+                    $element_placeholder = trim ( $form_array[ $element_name ]['placeholder'] );
+                    break;
 				case 'wrapper':
 					$element_wrapper = strtolower ( ( $form_array[ $element_name ]['wrapper'] ) );
 					if( $element_wrapper != 'div' and $element_wrapper != 'span' ) {
@@ -366,6 +370,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 				if( $element_id != '' ) {
 					$element_html .= "id='" . $element_id . "' ";                           // ID
 				}
+                if ( $element_placeholder != '' ) {
+                    $element_html .= "placeholder='" . $element_placeholder . "' ";         // placeholder
+                }
 				if( $element_reveal != '' ) {
 					$element_html .= "data-reveal='."; // jQuery will look for classes with this name
 					$element_html .= $element_reveal;
@@ -427,6 +434,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 					if( $element_id != '' ) {
 						$element_html .= "id='" . $element_id . "' ";
 					}
+                    if ( $element_placeholder != '') {
+                        $element_html .= "placeholder='" . $element_placeholder . "' ";
+                    }
 					if( $element_class != '' ) {
 						$element_html .= "class='" . $element_class . "' ";
 					}
