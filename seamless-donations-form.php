@@ -66,6 +66,8 @@ function seamless_donations_generate_donation_form () {
 	$form['outermost_container']['paypal_section']   = seamless_donations_get_paypal_section ();
 	$form['outermost_container']['submit_section']   = seamless_donations_get_submit_section ();
 
+    $form = apply_filters( 'seamless_donations_form_section_order', $form);
+
 	// build and display the form
 	$html = seamless_donations_forms_engine ( $form );
 
