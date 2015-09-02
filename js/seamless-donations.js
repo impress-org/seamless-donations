@@ -601,6 +601,7 @@ function SeamlessDonationsCheckout() {
 
 function SeamlessDonationsAjaxCallback(data) {
     // Submit the hidden form to take the user to PayPal
+    console.log(data);
     console.log("Inside SeamlessDonationsAjaxCallback");
     //jQuery('#seamless-donations-form').submit();
 }
