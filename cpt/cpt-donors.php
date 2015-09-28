@@ -40,6 +40,14 @@ class SeamlessDonationsDonorPostType extends SeamlessDonationsAdminPageFramework
 			'menu_icon'         => 'dashicons-palmtree',
 		);
 
+		$compact_menus = get_option ( 'dgx_donate_compact_menus' );
+		if( $compact_menus == 1 ) {
+			$donors_setup['show_ui'] = true;
+			$donors_setup['show_in_menu'] = 'SeamlessDonationsAdmin';
+			unset($donors_setup['public']);
+			unset($donors_setup['menu_icon']);
+		}
+
 		$donors_setup      = apply_filters ( 'seamless_donations_donors_setup', $donors_setup );
 		$donors_type_setup = apply_filters ( 'seamless_donations_donors_type_setup', $donors_type_setup );
 
@@ -69,6 +77,7 @@ class SeamlessDonationsDonorPostType extends SeamlessDonationsAdminPageFramework
 
 		// clean up donor edit page
 		$donor_header_style .= "#edit-slug-box {display:none}" . PHP_EOL;
+		$donor_header_style .= ".page-title-action {display:none}" . PHP_EOL;
 		$donor_header_style .= "#delete-action {display:none}" . PHP_EOL;
 		$donor_header_style .= "a.edit-post-status {display:none}" . PHP_EOL;
 		$donor_header_style .= "a.edit-visibility {display:none}" . PHP_EOL;

@@ -17,11 +17,12 @@ function seamless_donations_admin_settings ( $setup_object ) {
 	// create the admin tab menu
 	seamless_donations_admin_settings_menu ( $setup_object );
 
-	// create the sections
+	// create the sections - tweaks disabled because it doesn't work right
 	seamless_donations_admin_settings_section_emails ( $setup_object );
 	seamless_donations_admin_settings_section_paypal ( $setup_object );
+	seamless_donations_admin_settings_section_tweaks ( $setup_object );
 	seamless_donations_admin_settings_section_tabs ( $setup_object );
-	seamless_donations_admin_settings_section_debug ($setup_object);
+	seamless_donations_admin_settings_section_debug ( $setup_object );
 
 	do_action ( 'seamless_donations_admin_settings_after', $setup_object );
 
@@ -55,29 +56,30 @@ function validate_page_slug_seamless_donations_admin_settings_callback (
 
 	switch( $section ) {
 		case 'seamless_donations_admin_settings_section_emails': // SAVE EMAILS //
-			$email_list = $_submitted_array[ $section ]['dgx_donate_notify_emails'];
-			$email_array = explode ( ',', $email_list );
+			$email_list        = $_submitted_array[ $section ]['dgx_donate_notify_emails'];
+			$email_array       = explode ( ',', $email_list );
 			$clean_email_array = array();
 			foreach( $email_array as $email ) {
 				$email = trim ( $email );
-				$email = sanitize_email($email);
-				array_push($clean_email_array, $email);
+				$email = sanitize_email ( $email );
+				array_push ( $clean_email_array, $email );
 				if( ! is_email ( $email ) ) {
 					$_aErrors[ $section ]['dgx_donate_notify_emails'] = __ (
 						'Valid email address required.', 'seamless-donations' );
 					$_setup_object->setFieldErrors ( $_aErrors );
 					$_setup_object->setSettingNotice (
 						__ ( 'There were errors in your submission.', 'seamless-donations' ) );
+
 					return $_existing_array;
 				}
 			}
-			$email_list = implode(',', $clean_email_array);
+			$email_list = implode ( ',', $clean_email_array );
 			update_option ( 'dgx_donate_notify_emails', $email_list );
 			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
 			break;
 		case 'seamless_donations_admin_settings_section_paypal': // SAVE PAYPAL //
 			$email  = $_submitted_array[ $section ]['dgx_donate_paypal_email'];
-			$email = sanitize_email($email);
+			$email  = sanitize_email ( $email );
 			$option = $_submitted_array[ $section ]['dgx_donate_paypal_server'];
 			if( ! is_email ( $email ) ) {
 				$_aErrors[ $section ]['dgx_donate_paypal_email'] = __ (
@@ -90,6 +92,11 @@ function validate_page_slug_seamless_donations_admin_settings_callback (
 			}
 			update_option ( 'dgx_donate_paypal_email', $email );
 			update_option ( 'dgx_donate_paypal_server', $option );
+			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
+			break;
+		case 'seamless_donations_admin_settings_section_tweaks': // SAVE TWEAKS //
+			update_option (
+				'dgx_donate_compact_menus', $_submitted_array[ $section ]['dgx_donate_compact_menus'] );
 			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
 			break;
 		case 'seamless_donations_admin_settings_section_tabs': // SAVE TABS //
@@ -171,7 +178,7 @@ function seamless_donations_admin_settings_section_paypal ( $_setup_object ) {
 		'LIVE'    => 'Live (Production Server)',
 		'SANDBOX' => 'Sandbox (Test Server)',
 	);
-	$notify_url           = plugins_url ( '/dgx-donate-paypalstd-ipn.php', dirname(__FILE__) );
+	$notify_url           = plugins_url ( '/dgx-donate-paypalstd-ipn.php', dirname ( __FILE__ ) );
 
 	$settings_paypal_section = apply_filters (
 		'seamless_donations_admin_settings_section_paypal', $settings_paypal_section );
@@ -213,11 +220,55 @@ function seamless_donations_admin_settings_section_paypal ( $_setup_object ) {
 		$settings_paypal_options, $_setup_object, $settings_paypal_section );
 }
 
+//// SETTINGS - SECTION - TWEAKS ////
+function seamless_donations_admin_settings_section_tweaks ( $_setup_object ) {
+
+	$section_desc = 'Options that can tweak your settings. Starting with one, undoubtedly more to come.';
+
+	$tweaks_section = array(
+		'section_id'  => 'seamless_donations_admin_settings_section_tweaks',    // the section ID
+		'page_slug'   => 'seamless_donations_admin_settings',    // the page slug that the section belongs to
+		'title'       => __ ( 'Setting Tweaks', 'seamless-donations' ),   // the section title
+		'description' => __ ( $section_desc, 'seamless-donations' ),
+	);
+
+	$tweaks_section = apply_filters ( 'seamless_donations_admin_settings_section_tweaks', $tweaks_section );
+
+	$option_desc = "<span style='color:red'>It may also be necessary to tweak Google Chrome to make this ";
+	$option_desc .= "feature work. See ";
+	$option_desc .= "<A href='http://wptavern.com/a-bug-in-chrome-45-causes-wordpress-admin-menu-to-break'>";
+	$option_desc .= " this article</A> for details. This feature is still under development.</span>";
+
+	$tweaks_options = array(
+		array(
+			'field_id'    => 'dgx_donate_compact_menus',
+			'title'       => __ ( 'Compact Menus', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => __ (
+				'[BETA] Enable compact menu (tucks Donors, Funds, and Donations under Seamless Donations menu)',
+				'seamless-donations' ),
+			'default'     => false,
+			'description' => $option_desc,
+		),
+		array(
+			'field_id' => 'submit',
+			'type'     => 'submit',
+			'label'    => __ ( 'Save Tweaks', 'seamless-donations' ),
+		)
+	);
+
+	$tweaks_options = apply_filters (
+		'seamless_donations_admin_settings_section_tweaks_options', $tweaks_options );
+
+	seamless_donations_process_add_settings_fields_with_options (
+		$tweaks_options, $_setup_object, $tweaks_section );
+}
+
 //// SETTINGS - SECTION - TABS ////
 function seamless_donations_admin_settings_section_tabs ( $_setup_object ) {
 
 	// Test email section
-	$section_desc = 'Restore hidden legacy admin tabs. ';
+	$section_desc = 'Restore hidden legacy v3.x admin tabs. ';
 	$section_desc .= "These tabs were hidden because they're no longer relevant to this interface.";
 
 	$settings_tabs_section
@@ -264,7 +315,7 @@ function seamless_donations_admin_settings_section_debug ( $_setup_object ) {
 			'field_id'    => 'dgx_donate_debug_mode',
 			'title'       => __ ( 'Debug Mode', 'seamless-donations' ),
 			'type'        => 'checkbox',
-			'label'       => __ ( 'Enable debug mode', 'seamless-donations'),
+			'label'       => __ ( 'Enable debug mode', 'seamless-donations' ),
 			'default'     => false,
 			'after_label' => '<br />',
 		),

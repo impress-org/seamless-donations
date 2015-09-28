@@ -350,12 +350,12 @@ function seamless_donations_admin_forms_section_tweaks ( $_setup_object ) {
 
 	$tweaks_options = array(
 		array(
-		       'field_id'    => 'dgx_donate_labels_for_input',
-		       'title'       => __ ( 'Label Tag', 'seamless-donations' ),
-		       'type'        => 'checkbox',
-		       'label'       => __ ( 'Add label tag to input form (may improve form layout for some themes)', 'seamless-donations'),
-		       'default'     => false,
-		       'after_label' => '<br />',
+			'field_id'    => 'dgx_donate_labels_for_input',
+			'title'       => __ ( 'Label Tag', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => __ ( 'Add label tag to input form (may improve form layout for some themes)', 'seamless-donations'),
+			'default'     => false,
+			'after_label' => '<br />',
 		),
 		array(
 			'field_id' => 'submit',

@@ -70,55 +70,241 @@ if( $session_data !== false ) {
 	dgx_donate_debug_log ( 'Duplicate session data not found. Payment process data assembly can proceed.' );
 
 	// Repack the POST
-	$post_data                     = array();
-	$post_data['REFERRINGURL']     = $_POST['_dgx_donate_redirect_url'];
-	$post_data['SUCCESSURL']       = $_POST['_dgx_donate_success_url'];
-	$post_data['SESSIONID']        = $_POST['_dgx_donate_session_id'];
-	$post_data['REPEATING']        = $_POST['_dgx_donate_repeating'];
-	$post_data['DESIGNATED']       = $_POST['_dgx_donate_designated'];
-	$post_data['DESIGNATEDFUND']   = $_POST['_dgx_donate_designated_fund'];
-	$post_data['TRIBUTEGIFT']      = $_POST['_dgx_donate_tribute_gift'];
-	$post_data['MEMORIALGIFT']     = $_POST['_dgx_donate_memorial_gift'];
-	$post_data['HONOREENAME']      = $_POST['_dgx_donate_honoree_name'];
-	$post_data['HONORBYEMAIL']     = $_POST['_dgx_donate_honor_by_email'];
-	$post_data['HONOREEEMAIL']     = $_POST['_dgx_donate_honoree_email'];
-	$post_data['HONOREEADDRESS']   = $_POST['_dgx_donate_honoree_address'];
-	$post_data['HONOREECITY']      = $_POST['_dgx_donate_honoree_city'];
-	$post_data['HONOREESTATE']     = $_POST['_dgx_donate_honoree_state'];
-	$post_data['HONOREEPROVINCE']  = $_POST['_dgx_donate_honoree_province'];
-	$post_data['HONOREECOUNTRY']   = $_POST['_dgx_donate_honoree_country'];
-	$post_data['HONOREEZIP']       = $_POST['_dgx_donate_honoree_zip'];
-	$post_data['HONOREEEMAILNAME'] = $_POST['_dgx_donate_honoree_email_name'];
-	$post_data['HONOREEPOSTNAME']  = $_POST['_dgx_donate_honoree_post_name'];
-	$post_data['FIRSTNAME']        = $_POST['_dgx_donate_donor_first_name'];
-	$post_data['LASTNAME']         = $_POST['_dgx_donate_donor_last_name'];
-	$post_data['PHONE']            = $_POST['_dgx_donate_donor_phone'];
-	$post_data['EMAIL']            = $_POST['_dgx_donate_donor_email'];
-	$post_data['ADDTOMAILINGLIST'] = $_POST['_dgx_donate_add_to_mailing_list'];
-	$post_data['ADDRESS']          = $_POST['_dgx_donate_donor_address'];
-	$post_data['ADDRESS2']         = $_POST['_dgx_donate_donor_address2'];
-	$post_data['CITY']             = $_POST['_dgx_donate_donor_city'];
-	$post_data['STATE']            = $_POST['_dgx_donate_donor_state'];
-	$post_data['PROVINCE']         = $_POST['_dgx_donate_donor_province'];
-	$post_data['COUNTRY']          = $_POST['_dgx_donate_donor_country'];
-	$post_data['ZIP']              = $_POST['_dgx_donate_donor_zip'];
-	$post_data['INCREASETOCOVER']  = $_POST['_dgx_donate_increase_to_cover'];
-	$post_data['ANONYMOUS']        = $_POST['_dgx_donate_anonymous'];
-	$post_data['EMPLOYERMATCH']    = $_POST['_dgx_donate_employer_match'];
-	$post_data['EMPLOYERNAME']     = $_POST['_dgx_donate_employer_name'];
-	$post_data['OCCUPATION']       = $_POST['_dgx_donate_occupation'];
-	$post_data['UKGIFTAID']        = $_POST['_dgx_donate_uk_gift_aid'];
-	$post_data['NONCE']            = $_POST['nonce'];
+	$post_data = array();
+
+	if( isset( $_POST['_dgx_donate_redirect_url'] ) ) {
+		$post_data['REFERRINGURL'] = $_POST['_dgx_donate_redirect_url'];
+	} else {
+		$post_data['REFERRINGURL'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_success_url'] ) ) {
+		$post_data['SUCCESSURL'] = $_POST['_dgx_donate_success_url'];
+	} else {
+		$post_data['SUCCESSURL'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_session_id'] ) ) {
+		$post_data['SESSIONID'] = $_POST['_dgx_donate_session_id'];
+	} else {
+		$post_data['SESSIONID'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_repeating'] ) ) {
+		$post_data['REPEATING'] = $_POST['_dgx_donate_repeating'];
+	} else {
+		$post_data['REPEATING'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_designated'] ) ) {
+		$post_data['DESIGNATED'] = $_POST['_dgx_donate_designated'];
+	} else {
+		$post_data['DESIGNATED'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_designated_fund'] ) ) {
+		$post_data['DESIGNATEDFUND'] = $_POST['_dgx_donate_designated_fund'];
+	} else {
+		$post_data['DESIGNATEDFUND'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_tribute_gift'] ) ) {
+		$post_data['TRIBUTEGIFT'] = $_POST['_dgx_donate_tribute_gift'];
+	} else {
+		$post_data['TRIBUTEGIFT'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_memorial_gift'] ) ) {
+		$post_data['MEMORIALGIFT'] = $_POST['_dgx_donate_memorial_gift'];
+	} else {
+		$post_data['MEMORIALGIFT'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_name'] ) ) {
+		$post_data['HONOREENAME'] = $_POST['_dgx_donate_honoree_name'];
+	} else {
+		$post_data['HONOREENAME'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honor_by_email'] ) ) {
+		$post_data['HONORBYEMAIL'] = $_POST['_dgx_donate_honor_by_email'];
+	} else {
+		$post_data['HONORBYEMAIL'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_email'] ) ) {
+		$post_data['HONOREEEMAIL'] = $_POST['_dgx_donate_honoree_email'];
+	} else {
+		$post_data['HONOREEEMAIL'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_address'] ) ) {
+		$post_data['HONOREEADDRESS'] = $_POST['_dgx_donate_honoree_address'];
+	} else {
+		$post_data['HONOREEADDRESS'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_city'] ) ) {
+		$post_data['HONOREECITY'] = $_POST['_dgx_donate_honoree_city'];
+	} else {
+		$post_data['HONOREECITY'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_state'] ) ) {
+		$post_data['HONOREESTATE'] = $_POST['_dgx_donate_honoree_state'];
+	} else {
+		$post_data['HONOREESTATE'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_province'] ) ) {
+		$post_data['HONOREEPROVINCE'] = $_POST['_dgx_donate_honoree_province'];
+	} else {
+		$post_data['HONOREEPROVINCE'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_country'] ) ) {
+		$post_data['HONOREECOUNTRY'] = $_POST['_dgx_donate_honoree_country'];
+	} else {
+		$post_data['HONOREECOUNTRY'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_zip'] ) ) {
+		$post_data['HONOREEZIP'] = $_POST['_dgx_donate_honoree_zip'];
+	} else {
+		$post_data['HONOREEZIP'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_email_name'] ) ) {
+		$post_data['HONOREEEMAILNAME'] = $_POST['_dgx_donate_honoree_email_name'];
+	} else {
+		$post_data['HONOREEEMAILNAME'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_honoree_post_name'] ) ) {
+		$post_data['HONOREEPOSTNAME'] = $_POST['_dgx_donate_honoree_post_name'];
+	} else {
+		$post_data['HONOREEPOSTNAME'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_first_name'] ) ) {
+		$post_data['FIRSTNAME'] = $_POST['_dgx_donate_donor_first_name'];
+	} else {
+		$post_data['FIRSTNAME'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_last_name'] ) ) {
+		$post_data['LASTNAME'] = $_POST['_dgx_donate_donor_last_name'];
+	} else {
+		$post_data['LASTNAME'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_phone'] ) ) {
+		$post_data['PHONE'] = $_POST['_dgx_donate_donor_phone'];
+	} else {
+		$post_data['PHONE'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_email'] ) ) {
+		$post_data['EMAIL'] = $_POST['_dgx_donate_donor_email'];
+	} else {
+		$post_data['EMAIL'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_add_to_mailing_list'] ) ) {
+		$post_data['ADDTOMAILINGLIST'] = $_POST['_dgx_donate_add_to_mailing_list'];
+	} else {
+		$post_data['ADDTOMAILINGLIST'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_address'] ) ) {
+		$post_data['ADDRESS'] = $_POST['_dgx_donate_donor_address'];
+	} else {
+		$post_data['ADDRESS'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_address2'] ) ) {
+		$post_data['ADDRESS2'] = $_POST['_dgx_donate_donor_address2'];
+	} else {
+		$post_data['ADDRESS2'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_city'] ) ) {
+		$post_data['CITY'] = $_POST['_dgx_donate_donor_city'];
+	} else {
+		$post_data['CITY'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_state'] ) ) {
+		$post_data['STATE'] = $_POST['_dgx_donate_donor_state'];
+	} else {
+		$post_data['STATE'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_province'] ) ) {
+		$post_data['PROVINCE'] = $_POST['_dgx_donate_donor_province'];
+	} else {
+		$post_data['PROVINCE'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_country'] ) ) {
+		$post_data['COUNTRY'] = $_POST['_dgx_donate_donor_country'];
+	} else {
+		$post_data['COUNTRY'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_donor_zip'] ) ) {
+		$post_data['ZIP'] = $_POST['_dgx_donate_donor_zip'];
+	} else {
+		$post_data['ZIP'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_increase_to_cover'] ) ) {
+		$post_data['INCREASETOCOVER'] = $_POST['_dgx_donate_increase_to_cover'];
+	} else {
+		$post_data['INCREASETOCOVER'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_anonymous'] ) ) {
+		$post_data['ANONYMOUS'] = $_POST['_dgx_donate_anonymous'];
+	} else {
+		$post_data['ANONYMOUS'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_employer_match'] ) ) {
+		$post_data['EMPLOYERMATCH'] = $_POST['_dgx_donate_employer_match'];
+	} else {
+		$post_data['EMPLOYERMATCH'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_employer_name'] ) ) {
+		$post_data['EMPLOYERNAME'] = $_POST['_dgx_donate_employer_name'];
+	} else {
+		$post_data['EMPLOYERNAME'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_occupation'] ) ) {
+		$post_data['OCCUPATION'] = $_POST['_dgx_donate_occupation'];
+	} else {
+		$post_data['OCCUPATION'] = '';
+	}
+	if( isset( $_POST['_dgx_donate_uk_gift_aid'] ) ) {
+		$post_data['UKGIFTAID'] = $_POST['_dgx_donate_uk_gift_aid'];
+	} else {
+		$post_data['UKGIFTAID'] = '';
+	}
+	if( isset( $_POST['nonce'] ) ) {
+		$post_data['NONCE'] = $_POST['nonce'];
+	} else {
+		$post_data['NONCE'] = '';
+	}
 
 	// pull override data from hidden form (might be modified by users with callbacks)
-	$post_data['BUSINESS']   = $_POST['business'];
-	$post_data['RETURN']     = $_POST['return'];
-	$post_data['NOTIFY_URL'] = $_POST['notify_url'];
-	$post_data['ITEM_NAME']  = $_POST['item_name'];
-	$post_data['CMD']        = $_POST['cmd'];
-	$post_data['P3']         = $_POST['p3'];
-	$post_data['T3']         = $_POST['t3'];
-	$post_data['A3']         = $_POST['a3'];
+	if( isset( $_POST['business'] ) ) {
+		$post_data['BUSINESS'] = $_POST['business'];
+	} else {
+		$post_data['BUSINESS'] = '';
+	}
+	if( isset( $_POST['return'] ) ) {
+		$post_data['RETURN'] = $_POST['return'];
+	} else {
+		$post_data['RETURN'] = '';
+	}
+	if( isset( $_POST['notify_url'] ) ) {
+		$post_data['NOTIFY_URL'] = $_POST['notify_url'];
+	} else {
+		$post_data['NOTIFY_URL'] = '';
+	}
+	if( isset( $_POST['item_name'] ) ) {
+		$post_data['ITEM_NAME'] = $_POST['item_name'];
+	} else {
+		$post_data['ITEM_NAME'] = '';
+	}
+	if( isset( $_POST['cmd'] ) ) {
+		$post_data['CMD'] = $_POST['cmd'];
+	} else {
+		$post_data['CMD'] = '';
+	}
+	if( isset( $_POST['p3'] ) ) {
+		$post_data['P3'] = $_POST['p3'];
+	} else {
+		$post_data['P3'] = '';
+	}
+	if( isset( $_POST['t3'] ) ) {
+		$post_data['T3'] = $_POST['t3'];
+	} else {
+		$post_data['T3'] = '';
+	}
+	if( isset( $_POST['a3'] ) ) {
+		;
+		$post_data['A3'] = $_POST['a3'];
+	} else {
+		$post_data['A3'] = '';
+	}
 
 	// Resolve the donation amount
 	if( strcasecmp ( $_POST['_dgx_donate_amount'], "OTHER" ) == 0 ) {

@@ -39,10 +39,10 @@ function seamless_donations_generate_donation_form () {
 				'group' => '_dgx_donate_redirect_url',
 				'value' => $form_action,
 			),
-			'success_url_element' => array(
+			'success_url_element'  => array(
 				'type'  => 'hidden', // Save the PayPal redirect URL as a hidden input
 				'group' => '_dgx_donate_success_url',
-				'value' => dgx_donate_paypalstd_get_current_url(),
+				'value' => dgx_donate_paypalstd_get_current_url (),
 			),
 		),
 	);
@@ -66,7 +66,7 @@ function seamless_donations_generate_donation_form () {
 	$form['outermost_container']['paypal_section']   = seamless_donations_get_paypal_section ();
 	$form['outermost_container']['submit_section']   = seamless_donations_get_submit_section ();
 
-    $form = apply_filters( 'seamless_donations_form_section_order', $form);
+	$form = apply_filters ( 'seamless_donations_form_section_order', $form );
 
 	// build and display the form
 	$html = seamless_donations_forms_engine ( $form );
@@ -633,7 +633,11 @@ function seamless_donations_get_billing_section () {
 		default:
 			$billing_section['elements']['_dgx_donate_donor_state']['cloak']    = 'conceal-donor-state';
 			$billing_section['elements']['_dgx_donate_donor_province']['cloak'] = 'conceal-donor-province';
-			$billing_section['elements']['_dgx_donate_donor_zip']['cloak']      = 'conceal-donor-postcode';
+			if(dgx_donate_country_requires_postal_code($default_country)){
+				$billing_section['elements']['_dgx_donate_donor_zip']['class'] = 'conceal-donor-postcode';
+			} else {
+				$billing_section['elements']['_dgx_donate_donor_zip']['cloak'] = 'conceal-donor-postcode';
+			}
 			$billing_section['elements']['dgx_donate_uk_gift_aid']['cloak']     = 'gift-aid';
 	}
 
@@ -656,13 +660,13 @@ function seamless_donations_get_paypal_section () {
 
 	// set up success URL
 	$success_url = dgx_donate_paypalstd_get_current_url ();
-//	if( strpos ( $success_url, "?" ) === false ) {
-//		$success_url .= "?";
-//	} else {
-//		$success_url .= "&";
-//	}
-//	$success_url .= "thanks=1&sessionid=";
-//	$success_url .= "$session_id";
+	//	if( strpos ( $success_url, "?" ) === false ) {
+	//		$success_url .= "?";
+	//	} else {
+	//		$success_url .= "&";
+	//	}
+	//	$success_url .= "thanks=1&sessionid=";
+	//	$success_url .= "$session_id";
 
 	// not used in core code, but users might be including this somewhere
 	$item_name = apply_filters ( 'dgx_donate_item_name', __ ( 'Donation', 'seamless-donations' ) );

@@ -293,7 +293,7 @@ function dgx_donate_get_countries_requiring_postal_code() {
 		'PH', 'PL', 'PT',
 		'RU',
 		'SZ', 'ZA', 'ES', 'SE', 'CH',
-		'TH', 'TR',
+		'TH', 'TR', 'SG',
 		'GB', 'US'
 	);
 

@@ -185,27 +185,27 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 
 	for( $element_index = 0; $element_index < $form_size; ++ $element_index ) {
 
-		$element_html       = '';
-		$element_type       = '';  // preload the element attributes
-		$element_id         = '';
-        $element_placeholder= '';
-		$element_value      = '';
-		$element_class      = '';
-		$element_style      = '';
-		$element_size       = '1';
-		$element_wrapper    = 'div';
-		$element_hide       = '';
-		$element_reveal     = '';
-		$element_conceal    = '';
-		$element_check      = '';
-		$element_uncheck    = '';
-		$element_before     = '';
-		$element_after      = '';
-		$element_prompt     = '';
-		$element_source     = '';
-		$element_select     = false;
-		$element_validation = '';
-		$element_options    = array();
+		$element_html        = '';
+		$element_type        = '';  // preload the element attributes
+		$element_id          = '';
+		$element_placeholder = '';
+		$element_value       = '';
+		$element_class       = '';
+		$element_style       = '';
+		$element_size        = '1';
+		$element_wrapper     = 'div';
+		$element_hide        = '';
+		$element_reveal      = '';
+		$element_conceal     = '';
+		$element_check       = '';
+		$element_uncheck     = '';
+		$element_before      = '';
+		$element_after       = '';
+		$element_prompt      = '';
+		$element_source      = '';
+		$element_select      = false;
+		$element_validation  = '';
+		$element_options     = array();
 
 		$element_name = seamless_donations_name_of ( $form_array, $element_index );
 
@@ -276,9 +276,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 				case 'source':
 					$element_source = trim ( $form_array[ $element_name ]['source'] );
 					break;
-                case 'placeholder':
-                    $element_placeholder = trim ( $form_array[ $element_name ]['placeholder'] );
-                    break;
+				case 'placeholder':
+					$element_placeholder = trim ( $form_array[ $element_name ]['placeholder'] );
+					break;
 				case 'wrapper':
 					$element_wrapper = strtolower ( ( $form_array[ $element_name ]['wrapper'] ) );
 					if( $element_wrapper != 'div' and $element_wrapper != 'span' ) {
@@ -338,12 +338,11 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 			if( in_array ( $element_type, $input_tag_types ) ) {
 				// process input tag
 
-				if( ($generate_input_labels == true) and ($element_type == 'text') ) {
-						// set up the label tag
-						$element_html .= "<label for='". sanitize_text_field ( $element_name ) . "'>";
-						$element_html .= esc_html__ ( $element_before, 'seamless-donations' );
-						$element_html .= " </label>";
-
+				if( ( $generate_input_labels == true ) and ( $element_type == 'text' ) ) {
+					// set up the label tag
+					$element_html .= "<label for='" . sanitize_text_field ( $element_name ) . "'>";
+					$element_html .= esc_html__ ( $element_before, 'seamless-donations' );
+					$element_html .= " </label>";
 				} else {
 					$element_html .= $element_before;  // BEFORE
 				}
@@ -370,9 +369,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 				if( $element_id != '' ) {
 					$element_html .= "id='" . $element_id . "' ";                           // ID
 				}
-                if ( $element_placeholder != '' ) {
-                    $element_html .= "placeholder='" . $element_placeholder . "' ";         // placeholder
-                }
+				if( $element_placeholder != '' ) {
+					$element_html .= "placeholder='" . $element_placeholder . "' ";         // placeholder
+				}
 				if( $element_reveal != '' ) {
 					$element_html .= "data-reveal='."; // jQuery will look for classes with this name
 					$element_html .= $element_reveal;
@@ -418,10 +417,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 
 					if( $generate_input_labels == true ) {
 						// set up the label tag
-						$element_html .= "<label for='". sanitize_text_field ( $element_name ) . "'>";
+						$element_html .= "<label for='" . sanitize_text_field ( $element_name ) . "'>";
 						$element_html .= esc_html__ ( $element_before, 'seamless-donations' );
 						$element_html .= " </label>";
-
 					} else {
 						$element_html .= $element_before;  // BEFORE
 					}
@@ -434,9 +432,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 					if( $element_id != '' ) {
 						$element_html .= "id='" . $element_id . "' ";
 					}
-                    if ( $element_placeholder != '') {
-                        $element_html .= "placeholder='" . $element_placeholder . "' ";
-                    }
+					if( $element_placeholder != '' ) {
+						$element_html .= "placeholder='" . $element_placeholder . "' ";
+					}
 					if( $element_class != '' ) {
 						$element_html .= "class='" . $element_class . "' ";
 					}

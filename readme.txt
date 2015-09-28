@@ -4,55 +4,51 @@ Donate link: http://zatzlabs.com/project-donations/
 Tags: donation, donations, paypal, donate, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
 Requires at least: 3.4
 Tested up to: 4.3
-Stable tag: 4.0.7
+Stable tag: 4.0.9
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Receive and manage donations (including repeating donations), track donors and send customized thank you messages.
+The Most Popular Donations Plugin for WordPress
 
 == Description ==
 
 **IMPORTANT: Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).**
 
-Need more than just a PayPal donation button? Would you like to allow your visitors to donate in honor of someone? Invite them to subscribe to your mailing list? Choose from designated funds? Do donations that automatically repeat each month? Allow them to mark their donation anonymous? Track donors and donations?
+= Five Minutes to Your First Donation =
 
-Seamless Donations does all this and more. All you need to do is embed a simple shortcode and supply your PayPal Website Payments Standard email address to start receiving donations today.
+Seamless Donations is so easy to install and configure that your Web site can accept donations via your PayPal account within five minutes of downloading the plugin.
 
-Seamless Donations is free, open-source, easy-to-use, and developer-friendly. No fees, no commissions.
+**Seamless Donations is free and will never, ever charge you a commission.**
 
 Learn more on the [Seamless Donations home page](http://zatzlabs.com/project/seamless-donations/).
 
-= Seamless Donations 4.0 is here! =
+= Automatic Repeating Donations =
+
+You can instantly give your donors the option to make their donation repeat automatically. You can turn on on the option with a click, which gives your donors a checkbox to make any donation repeat.
+
+= Watch the Intro Tutorial =
 
 https://www.youtube.com/watch?v=75IjGyHp52o
 
-= Here are some of the new features you’ll find in 4.0 =
+= Track Donors and Donations =
 
-* **Updated, modern admin UI:** The admin interface has been updated to a modern tabbed-look.
-* **Custom post types:** Funds and donors have now been implemented as custom post types. This gives you the ability to use all of WordPress’ post management and display tools with donors and funds. The donation data has always been a custom post type, but it is now also available to manipulate using
-plugins and themes outside of Seamless Donations.
-* **Designed for extensibility:** The primary design goal of 4.0 was to add hooks in the form of filters and actions that web designers can use to modify the behavior of Seamless Donations to fit individual needs. The plugin was re-architected to allow for loads of extensibility.
-* **Forms engine designed for extensibility:** Rather than just basic form code, Seamless Donations 4.0 now has a brand-new array-driven forms engine, which will give web site builders the ability to modify and access every part of the form before it is displayed to donors.
-* **Shortcode engine designed for extensibility:** The main shortcode for the plugin has been designed so that extensions can add features to the main seamless-donations shortcode.
-* **Admin UI designed for extensibility:** Yep, like everything else, the admin interface has been designed to allow for extensibility.
-* **Translation-ready:** Seamless Donations 4.0 has had numerous tweaks to allow it to be translated into other languages.
+Seamless Donations uses standard WordPress post types for Donors, Donations, and Funds so not only can you keep track of your most important contributors, you can use all of WordPress’ tools and plugins to manage them.
 
-= Developer Resources =
+= Show Donors Your Appreciation =
 
-Seamless Donations 4.0 was designed from the ground up to be developer-friendly. Here are some of the developer resources you might find useful:
+You can email donors customized email Thank You messages. You can also set up “in honor of” donations and send a customized Thank You email to a designated recipient. With the [Thank You Enhanced extension](http://zatzlabs.com/project/seamless-donations-thank-you-enhanced/) you can display custom Thank You pages personalized for each donor.
 
-* [David's Lab Notes](http://zatzlabs.com/lab-notes/)
-* [Actions and Filters](http://zatzlabs.com/codex/seamless-donations-actions-and-filters/)
-* [Forms Engine](http://zatzlabs.com/codex/seamless-donations-forms-engine/)
-* [Cloak/Reveal System](http://zatzlabs.com/codex/understanding-the-reveal-family-system/)
-* [Training: Customizing Seamless Donations](http://zatzlabs.com/codex/introduction-to-seamless-donations-customization-using-hooks/)
+= Docs, FAQ, Video Tutorials, and Support =
 
-= Support Note =
+Visit [Seamless Donation's comprehensive documentation and video tutorial section](http://zatzlabs.com/seamless-donations-documentation/) for tips, FAQ, training videos, basic skills videos, troubleshooting guides, and more.
 
-Many support questions can be answered by the [growing support FAQ on the plugin's home page](http://zatzlabs.com/seamless-donations/). If you can't find an answer there, you are invited to post questions [here on the Support boards](https://wordpress.org/support/plugin/seamless-donations).
+= Plugins and Extensions =
 
-= Mailing List =
-If you'd like to keep up with the latest updates to this plugin, please visit [David's Lab Notes](http://zatzlabs.com/lab-notes/) and add yourself to the mailing list.
+Seamless Donations supports [compatible free plugins including CAPTCHA, export, and mail integration, plus premium add-ons and extensions](http://zatzlabs.com/project/seamless-donations-plugins-and-extensions/) that can help you get the most out of your fund-raising efforts.
+
+= Fight Back Against Spam =
+
+Seamless Donations and [GoodBye Captcha](https://wordpress.org/plugins/goodbye-captcha/) now work together to keep your site and forms safe. Block spambots without annoying captcha images.
 
 = Currency Support =
 
@@ -90,8 +86,42 @@ Support for the following currencies is built into Seamless Donations 4.0:
 * German translation (as of 4.0.1)
 * Spanish translation, courtesy David Chávez (as of 4.0.2)
 * French translation, courtesy Etienne Lombard (as of 4.0.2)
+* Portuguese translation, courtesy Daniel Sousa (as of 4.0.9)
 * HUGE thank you to users doing these translations!
 * [Assist with translations](https://wordpress.org/support/topic/translators-check-in-here-so-youre-not-duplicating-work)
+
+= Here are some of the major features added in 4.0 =
+
+* **Updated, modern admin UI:** The admin interface has been updated to a modern tabbed-look.
+* **Custom post types:** Funds and donors have now been implemented as custom post types. This gives you the ability to use all of WordPress’ post management and display tools with donors and funds. The donation data has always been a custom post type, but it is now also available to manipulate using
+plugins and themes outside of Seamless Donations.
+* **Designed for extensibility:** The primary design goal of 4.0 was to add hooks in the form of filters and actions that web designers can use to modify the behavior of Seamless Donations to fit individual needs. The plugin was re-architected to allow for loads of extensibility.
+* **Forms engine designed for extensibility:** Rather than just basic form code, Seamless Donations 4.0 now has a brand-new array-driven forms engine, which will give web site builders the ability to modify and access every part of the form before it is displayed to donors.
+* **Shortcode engine designed for extensibility:** The main shortcode for the plugin has been designed so that extensions can add features to the main seamless-donations shortcode.
+* **Admin UI designed for extensibility:** Yep, like everything else, the admin interface has been designed to allow for extensibility.
+* **Translation-ready:** Seamless Donations 4.0 has had numerous tweaks to allow it to be translated into other languages.
+
+= Open Source, Extensible, and Developer-Friendly =
+
+Seamless Donations 4.0 was designed from the ground up to be developer-friendly. Here are some of the developer resources you might find useful:
+
+* [Developer Codex](http://zatzlabs.com/project/seamless-donations-codex/)
+* [David's Lab Notes](http://zatzlabs.com/lab-notes/)
+* [Actions and Filters](http://zatzlabs.com/codex/seamless-donations-actions-and-filters/)
+* [Forms Engine](http://zatzlabs.com/codex/seamless-donations-forms-engine/)
+* [Cloak/Reveal System](http://zatzlabs.com/codex/understanding-the-reveal-family-system/)
+* [Training: Customizing Seamless Donations](http://zatzlabs.com/codex/introduction-to-seamless-donations-customization-using-hooks/)
+
+= Contribute to the Seamless Donations Project =
+
+Seamless Donations is on GitHub. Contributions to the project are welcomed, appreciated, and encouraged. Feel free to issue a pull request from the [Seamless Donations Repository](https://github.com/davidgewirtz/seamless-donations).
+
+= Support Note =
+
+Many support questions can be answered by the [growing support FAQ on the plugin's home page](http://zatzlabs.com/seamless-donations/). If you can't find an answer there, you are invited to post questions [here on the Support boards](https://wordpress.org/support/plugin/seamless-donations).
+
+= Mailing List =
+If you'd like to keep up with the latest updates to this plugin, please visit [David's Lab Notes](http://zatzlabs.com/lab-notes/) and add yourself to the mailing list.
 
 = Adoption Notice =
 
@@ -160,8 +190,22 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 
 == Changelog ==
 
-= 4.0.7 =
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
+
+= 4.0.9 =
+* Added Add-ons and Licensing tabs, along with full licensing and premium extensions support
+* Added a new beta tweak to Settings tab that tucks Donations, Funds, and Donor custom post types under the Seamless Donations menu
+* Added Portuguese translation (thanks to Daniel Sousa)
+* Added Singapore as a country requiring a postal code
+* Fixed initial display of postal code for countries other than US, CA, UK
+* Fixed bug on Donations and Donors list page where "Add New" was an available option. You can only add donations through the shortcode
+
+= 4.0.8 =
+* Added support for GoodBye Captcha spam-blocking plugin
+* Fixed bug limiting notification emails to one email address
+* Fixed other minor and potential bugs in the code
+
+= 4.0.7 =
 * Fixed bug in repeating donations
 
 = 4.0.6 =
@@ -169,7 +213,6 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * Rewrote payment initiation system. Payments no longer are initiated by JavaScript running on visitors' browsers, but by a PHP script running inside the plugin on the server.
 * Added new shortcode extensibility system.
 * Added a debug mode checkbox to the Settings panel.
-* Added a “Add label tag to input form (may improve form layout for some themes)” tweak to the Form Options panel.
 * Full Lab Notes on update fixes [here](http://zatzlabs.com/reengineering-the-seamless-donations-core-payment-gateway/) and [here](http://zatzlabs.com/seamless-donations-4-0-6-incorporates-many-under-the-hood-improvements/).
 
 = 4.0.5 =

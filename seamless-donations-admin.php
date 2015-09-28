@@ -10,7 +10,6 @@
  Copyright (c) 2015 by David Gewirtz
  */
 
-
 if( ! class_exists ( 'SeamlessDonationsAdminPageFramework' ) ) {
 	include_once ( 'library/apf/admin-page-framework.php' );
 }
@@ -27,7 +26,7 @@ class SeamlessDonationsAdmin extends SeamlessDonationsAdminPageFramework {
 
 	public function seamless_donations_set_plugin_title ( $filtered_content ) {
 
-		$plugin_file       = dirname (  __FILE__ )  . '/seamless-donations.php';
+		$plugin_file       = dirname ( __FILE__ ) . '/seamless-donations.php';
 		$plugin_data_array = get_plugin_data ( $plugin_file, false, false );
 
 		$html = "<div class='seamless-donations-plugin-icon'>"
@@ -43,7 +42,7 @@ class SeamlessDonationsAdmin extends SeamlessDonationsAdminPageFramework {
 
 	public function seamless_donations_set_right_header ( $filtered_content ) {
 
-		$plugin_file       = dirname (  __FILE__ )  . '/seamless-donations.php';
+		$plugin_file       = dirname ( __FILE__ ) . '/seamless-donations.php';
 		$plugin_data_array = get_plugin_data ( $plugin_file, false, false );
 
 		$html = "<div class='seamless-donations-plugin-title-right' style=''>"
@@ -90,7 +89,8 @@ class SeamlessDonationsAdmin extends SeamlessDonationsAdminPageFramework {
 		$slug          = $_GET['page'];
 		$filter_name   = 'validate_page_slug_' . $slug;
 		$filter_result = apply_filters ( $filter_name, $submitted_array, $existing_array, $setup_object );
-		$setup_object->oForm->$slug;
+
+		//$setup_object->oForm->$slug;
 
 		return $filter_result;
 	}

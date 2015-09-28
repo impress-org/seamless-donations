@@ -1,4 +1,5 @@
 <?php
+
 /*
 Seamless Donations by David Gewirtz, adopted from Allen Snook
 
@@ -16,32 +17,34 @@ class SeamlessDonationsFundsPostType extends SeamlessDonationsAdminPageFramework
 	 */
 	public function setUp () {
 
+		// argument - http://codex.wordpress.org/Function_Reference/register_post_type#Arguments
 		$funds_type_setup = array();
-		$funds_setup
-		                  = array( // argument - http://codex.wordpress.org/Function_Reference/register_post_type#Arguments
-		                           'labels'    => array(
-			                           'name'                => __ ( 'Funds', 'seamless-donations' ),
-			                           'singular_name'       => __ ( 'Fund', 'seamless-donations' ),
-			                           'add_new_item'        => __ ( 'Fund', 'seamless-donations' ),
-			                           'edit_item'           => __ ( 'Fund', 'seamless-donations' ),
-			                           'new_item'            => __ ( 'Fund', 'seamless-donations' ),
-			                           'view_item'           => __ ( 'Fund', 'seamless-donations' ),
-			                           'search_items'        => __ ( 'Search funds', 'seamless-donations' ),
-			                           'not_found'           => __ ( 'No funds found', 'seamless-donations' ),
-			                           'not_found_in_trash'  => __ ( 'No funds found in Trash', 'seamless-donations' ),
-			                           'restored_from_trash' => __ ( 'fund', 'seamless-donations' ),
-		                           ),
-		                           'supports'  => array( 'title' ),
-		                           'public'    => true,
-		                           'menu_icon' => 'dashicons-palmtree',
+		$funds_setup      = array(
+			'labels'    => array(
+				'name'                => __ ( 'Funds', 'seamless-donations' ),
+				'singular_name'       => __ ( 'Fund', 'seamless-donations' ),
+				'add_new_item'        => __ ( 'Fund', 'seamless-donations' ),
+				'edit_item'           => __ ( 'Fund', 'seamless-donations' ),
+				'new_item'            => __ ( 'Fund', 'seamless-donations' ),
+				'view_item'           => __ ( 'Fund', 'seamless-donations' ),
+				'search_items'        => __ ( 'Search funds', 'seamless-donations' ),
+				'not_found'           => __ ( 'No funds found', 'seamless-donations' ),
+				'not_found_in_trash'  => __ ( 'No funds found in Trash', 'seamless-donations' ),
+				'restored_from_trash' => __ ( 'fund', 'seamless-donations' ),
+			),
+			'supports'  => array( 'title' ),
+			'public'    => true,
+			'menu_icon' => 'dashicons-palmtree',
 
 		);
 
-		// check to see if compact menus has been enabled, which tucks menu item under donations
-		// add the following elements to the array
-		// not adding yet because not yet able to do this AND add tab in main form, so this is temp code for now
-		// 'show_ui'               => true,
-		// 'show_in_menu'          => 'SeamlessDonationsAdmin',
+		$compact_menus = get_option ( 'dgx_donate_compact_menus' );
+		if( $compact_menus == 1 ) {
+			$funds_setup['show_ui'] = true;
+			$funds_setup['show_in_menu'] = 'SeamlessDonationsAdmin';
+			unset($funds_setup['public']);
+			unset($funds_setup['menu_icon']);
+		}
 
 		$funds_setup      = apply_filters ( 'seamless_donations_funds_setup', $funds_setup );
 		$funds_type_setup = apply_filters ( 'seamless_donations_funds_type_setup', $funds_type_setup );
@@ -125,7 +128,7 @@ class SeamlessDonationsFundsCustomPostTypeMetaBox extends SeamlessDonationsAdmin
 // todo make sure user can't add duplicate fund names
 new SeamlessDonationsFundsPostType( 'funds' );
 new SeamlessDonationsFundsCustomPostTypeMetaBox(
-	null,   // meta box ID - can be null.
+	NULL,   // meta box ID - can be null.
 	__ ( 'Fund Settings', 'seamless-donations' ), // title
 	array( 'funds' ),                 // post type slugs: post, page, etc.
 	'normal',                                        // context
