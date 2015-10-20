@@ -66,6 +66,7 @@ $aClassFiles = array(
 	"SeamlessDonationsAdminPageFramework_WPUtility_URL"	=>	SeamlessDonationsAdminPageFramework_Registry::$sDirPath . "/factory/AdminPageFramework_Factory/utility/AdminPageFramework_WPUtility/AdminPageFramework_WPUtility_URL.php", 
 	"SeamlessDonationsAdminPageFramework_FieldTypeRegistration"	=>	SeamlessDonationsAdminPageFramework_Registry::$sDirPath . "/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldTypeRegistration.php", 
 	"SeamlessDonationsAdminPageFramework_PageLoadInfo_Base"	=>	SeamlessDonationsAdminPageFramework_Registry::$sDirPath . "/factory/AdminPageFramework_Factory/view/AdminPageFramework_PageLoadInfo_Base.php", 
+	"SeamlessDonationsAdminPageFramework_TabNavigationBar"	=>	SeamlessDonationsAdminPageFramework_Registry::$sDirPath . "/factory/AdminPageFramework_Factory/view/AdminPageFramework_TabNavigationBar.php", 
 	"SeamlessDonationsAdminPageFramework_FieldType"	=>	SeamlessDonationsAdminPageFramework_Registry::$sDirPath . "/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType.php", 
 	"SeamlessDonationsAdminPageFramework_FieldType_Base"	=>	SeamlessDonationsAdminPageFramework_Registry::$sDirPath . "/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_Base.php", 
 	"SeamlessDonationsAdminPageFramework_FieldType_checkbox"	=>	SeamlessDonationsAdminPageFramework_Registry::$sDirPath . "/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_checkbox.php", 

@@ -4,7 +4,7 @@ Donate link: http://zatzlabs.com/project-donations/
 Tags: donation, donations, paypal, donate, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
 Requires at least: 3.4
 Tested up to: 4.3
-Stable tag: 4.0.9
+Stable tag: 4.0.10
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,14 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 == Changelog ==
 
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
+
+= 4.0.11 =
+* Added helpful upgrade notes
+* Added dgx_donate_thank_you_email_body hook. This works with the legacy text-only mailer, takes in body text of email and returns back a possibly modified body text
+* Minor bug fix
+
+= 4.0.10 =
+* Fixed another bug in repeating donations
 
 = 4.0.9 =
 * Added Add-ons and Licensing tabs, along with full licensing and premium extensions support

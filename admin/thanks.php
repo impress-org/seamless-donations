@@ -50,8 +50,8 @@ function validate_page_slug_seamless_donations_admin_thanks_callback (
 	// no real need for switch, but structured this way for easy expansion
 	switch( $section ) {
 		case 'seamless_donations_admin_thanks_section_note': // SAVE EMAILS //
-			$note = trim($_submitted_array[ $section ]['dgx_donate_thanks_text']);
-			$note = sanitize_text_field($note);
+			$note = trim ( $_submitted_array[ $section ]['dgx_donate_thanks_text'] );
+			$note = sanitize_text_field ( $note );
 			if( $note == "" ) {
 				$_aErrors[ $section ]['dgx_donate_thanks_text'] = __ (
 					'Field must not be empty.', 'seamless-donations' );
@@ -78,6 +78,11 @@ function seamless_donations_admin_thanks_section_note ( $_setup_object ) {
 	$section_desc = 'On this page you can configure a special thank you message which will appear to your ';
 	$section_desc .= 'donors after they complete their donations. This is separate from the thank you email ';
 	$section_desc .= 'that gets emailed to your donors.';
+
+	// promo
+	$feature_desc = 'Thank You Enhanced provides landing page redirect and short codes.';
+	$feature_url  = 'http://zatzlabs.com/project/seamless-donations-thank-you-enhanced/';
+	$section_desc .= seamless_donations_get_feature_promo ( $feature_desc, $feature_url );
 
 	$thanks_note_section = array(
 		'section_id'  => 'seamless_donations_admin_thanks_section_note',    // the section ID
@@ -108,5 +113,6 @@ function seamless_donations_admin_thanks_section_note ( $_setup_object ) {
 	$thanks_note_options = apply_filters (
 		'seamless_donations_admin_thanks_section_note_options', $thanks_note_options );
 
-	seamless_donations_process_add_settings_fields_with_options ( $thanks_note_options, $_setup_object, $thanks_note_section );
+	seamless_donations_process_add_settings_fields_with_options (
+		$thanks_note_options, $_setup_object, $thanks_note_section );
 }

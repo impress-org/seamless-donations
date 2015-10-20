@@ -438,6 +438,7 @@ if( $session_data !== false ) {
 		$post_args .= "cmd=" . urlencode ( $post_data['CMD'] ) . "&";
 		$post_args .= "p3=" . urlencode ( $post_data['P3'] ) . "&";  // 1, M = monthly
 		$post_args .= "t3=" . urlencode ( $post_data['T3'] ) . "&";
+		$post_args .= "src=1&sra=1&"; // repeat until cancelled, retry on failure
 		$post_args .= "a3=" . urlencode ( $post_data['AMOUNT'] ) . "&";
 		$log_msg = "Enabling repeating donation, cmd=" . $post_data['CMD'];
 		$log_msg .= ", p3=" . $post_data['P3'] . ", t3=" . $post_data['T3'];

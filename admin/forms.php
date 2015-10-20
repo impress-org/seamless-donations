@@ -135,6 +135,11 @@ function seamless_donations_admin_forms_section_levels ( $_setup_object ) {
 
 	$section_desc = 'Select one or more suggested giving levels for your donors to choose from.';
 
+	// promo
+	$feature_desc = 'Giving Level Manager customizes donation levels, assigns labels for each level.';
+	$feature_url = 'http://zatzlabs.com/project/seamless-donations-giving-level-manager/';
+	$section_desc .= seamless_donations_get_feature_promo($feature_desc, $feature_url);
+
 	$giving_levels_section = array(
 		'section_id'  => 'seamless_donations_admin_forms_section_levels',    // the section ID
 		'page_slug'   => 'seamless_donations_admin_forms',    // the page slug that the section belongs to

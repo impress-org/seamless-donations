@@ -894,6 +894,8 @@ function dgx_donate_send_thank_you_email ( $donationID, $testAddress = "" ) {
 		$header .= "\"" . $from_email_name . "\" <" . $from_email_address . ">\r\n";
 	}
 
+	$emailBody = apply_filters ( 'dgx_donate_thank_you_email_body', $emailBody );
+
 	$mail_sent = wp_mail ( $toEmail, $subject, $emailBody, $header );
 
 	if( ! $mail_sent ) {

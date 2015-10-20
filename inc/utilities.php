@@ -134,6 +134,22 @@ function seamless_donations_get_browser_name () {
 	return $browser_name . ' ' . $browser_version;
 }
 
+function seamless_donations_get_feature_promo ( $desc, $url, $upgrade = "UPGRADE" ) {
+
+	$feature_desc = sanitize_text_field ( htmlspecialchars ( $desc ) );
+
+	$promo = '<br>';
+	$promo .= '<span style="background-color:DarkGoldenRod; color:white;font-style:normal;text-weight:bold">';
+	$promo .= '&nbsp;' . $upgrade . ':&nbsp;';
+	$promo .= '</span>';
+	$promo .= '<span style="color:DarkGoldenRod;font-style:normal;">';
+	$promo .= '&nbsp;' . $feature_desc . ' ';
+	$promo .= '<A target="_blank" HREF="' . $url . '">Learn more.</A>';
+	$promo .= '</span>';
+
+	return $promo;
+}
+
 // *** EDD LICENSING ***
 
 function seamless_donations_store_url () {
@@ -152,8 +168,12 @@ function seamless_donations_get_license_key ( $item ) {
 	return $license_key;
 }
 
-function seamless_donations_confirm_license_key($key) {
-	if($key == '') return false;
+function seamless_donations_confirm_license_key ( $key ) {
+
+	if( $key == '' ) {
+		return false;
+	}
+
 	return true;
 }
 
