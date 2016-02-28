@@ -1,4 +1,5 @@
 <?php
+
 /*
 Seamless Donations by David Gewirtz, adopted from Allen Snook
 
@@ -42,10 +43,10 @@ class SeamlessDonationsDonationPostType extends SeamlessDonationsAdminPageFramew
 
 		$compact_menus = get_option ( 'dgx_donate_compact_menus' );
 		if( $compact_menus == 1 ) {
-			$donations_setup['show_ui'] = true;
+			$donations_setup['show_ui']      = true;
 			$donations_setup['show_in_menu'] = 'SeamlessDonationsAdmin';
-			unset($donations_setup['public']);
-			unset($donations_setup['menu_icon']);
+			unset( $donations_setup['public'] );
+			unset( $donations_setup['menu_icon'] );
 		}
 
 		$donations_setup      = apply_filters ( 'seamless_donations_donations_setup', $donations_setup );
@@ -66,7 +67,7 @@ class SeamlessDonationsDonationPostType extends SeamlessDonationsAdminPageFramew
 		$donation_header_style = ".add-new-h2 {display:none}" . PHP_EOL;   // delete Add New from top
 		$donation_header_style .= ".bulkactions {display:none}" . PHP_EOL; // delete Bulk Actions section
 		$donation_header_style .= ".edit {display:none}" . PHP_EOL;        // delete the quick actions under the link
-		$donation_header_style .= ".trash {display:none}" . PHP_EOL;
+		$donation_header_style .= ".trash {display:none}" . PHP_EOL;      // Shows Trash on the list of donations
 		$donation_header_style .= ".inline {display:none}" . PHP_EOL;
 		$donation_header_style .= ".view {display:none}" . PHP_EOL;
 
@@ -78,7 +79,7 @@ class SeamlessDonationsDonationPostType extends SeamlessDonationsAdminPageFramew
 
 		// clean up donor edit page
 		$donation_header_style .= "#edit-slug-box {display:none}" . PHP_EOL;
-		$donation_header_style .= "#delete-action {display:none}" . PHP_EOL;
+		$donation_header_style .= "#delete-action {display:none}" . PHP_EOL; // shows trash in the donation item
 		$donation_header_style .= ".page-title-action {display:none}" . PHP_EOL;
 		$donation_header_style .= "a.edit-post-status {display:none}" . PHP_EOL;
 		$donation_header_style .= "a.edit-visibility {display:none}" . PHP_EOL;
@@ -125,6 +126,7 @@ class SeamlessDonationsDonationPostType extends SeamlessDonationsAdminPageFramew
 		}
 		if( $anon == "on" ) {
 			$anon_msg = "Anonymity Requested";
+
 			return esc_attr ( $anon_msg );
 		} else {
 
@@ -183,23 +185,23 @@ class SeamlessDonationsDonationDonorInfoMetaBox extends SeamlessDonationsAdminPa
 	public function setUp () {
 
 		// get display meta data
-		$donation_id  = $_GET['post'];
-		$donor_id = get_post_meta ( $donation_id, '_dgx_donate_donor_id', true );
-		$first    = get_post_meta ( $donor_id, '_dgx_donate_donor_first_name', true );
-		$last     = get_post_meta ( $donor_id, '_dgx_donate_donor_last_name', true );
-		$email    = get_post_meta ( $donor_id, '_dgx_donate_donor_email', true );
-		$phone    = get_post_meta ( $donor_id, '_dgx_donate_donor_phone', true );
-		$address  = get_post_meta ( $donor_id, '_dgx_donate_donor_address', true );
-		$address2 = get_post_meta ( $donor_id, '_dgx_donate_donor_address2', true );
-		$city     = get_post_meta ( $donor_id, '_dgx_donate_donor_city', true );
-		$state    = get_post_meta ( $donor_id, '_dgx_donate_donor_state', true );
-		$province = get_post_meta ( $donor_id, '_dgx_donate_donor_province', true );
-		$country  = get_post_meta ( $donor_id, '_dgx_donate_donor_country', true );
-		$zip      = get_post_meta ( $donor_id, '_dgx_donate_donor_zip', true );
+		$donation_id = $_GET['post'];
+		$donor_id    = get_post_meta ( $donation_id, '_dgx_donate_donor_id', true );
+		$first       = get_post_meta ( $donor_id, '_dgx_donate_donor_first_name', true );
+		$last        = get_post_meta ( $donor_id, '_dgx_donate_donor_last_name', true );
+		$email       = get_post_meta ( $donor_id, '_dgx_donate_donor_email', true );
+		$phone       = get_post_meta ( $donor_id, '_dgx_donate_donor_phone', true );
+		$address     = get_post_meta ( $donor_id, '_dgx_donate_donor_address', true );
+		$address2    = get_post_meta ( $donor_id, '_dgx_donate_donor_address2', true );
+		$city        = get_post_meta ( $donor_id, '_dgx_donate_donor_city', true );
+		$state       = get_post_meta ( $donor_id, '_dgx_donate_donor_state', true );
+		$province    = get_post_meta ( $donor_id, '_dgx_donate_donor_province', true );
+		$country     = get_post_meta ( $donor_id, '_dgx_donate_donor_country', true );
+		$zip         = get_post_meta ( $donor_id, '_dgx_donate_donor_zip', true );
 
-		if ( empty( $country ) ) { /* older versions only did US */
+		if( empty( $country ) ) { /* older versions only did US */
 			$country = 'US';
-			update_post_meta( $donation_id, '_dgx_donate_donor_country', 'US' );
+			update_post_meta ( $donation_id, '_dgx_donate_donor_country', 'US' );
 		}
 
 		// construct basic address info block
@@ -209,18 +211,18 @@ class SeamlessDonationsDonationDonorInfoMetaBox extends SeamlessDonationsAdminPa
 		$html .= $address2 != '' ? $address2 . '<br>' : '';
 		$html .= $city != '' ? $city . ', ' : '';
 
-		if ( 'US' == $country ) {
+		if( 'US' == $country ) {
 			$html .= $state != '' ? $state . ' ' : '';
-		} else if ( 'CA' == $country ) {
+		} else if( 'CA' == $country ) {
 			$html .= $province != '' ? $province . ' ' : '';
 		}
 
-		if ( dgx_donate_country_requires_postal_code( $country ) ) {
+		if( dgx_donate_country_requires_postal_code ( $country ) ) {
 			$html .= $zip != '' ? $zip . '<br>' : '';
 		}
 
-		$countries = dgx_donate_get_countries();
-		$country_name = $countries[$country];
+		$countries    = dgx_donate_get_countries ();
+		$country_name = $countries[ $country ];
 		$html .= $country_name != '' ? $country_name . '<br>' : '';
 		$html .= '<br>';
 		$html .= $phone != '' ? $phone . '<br>' : '';

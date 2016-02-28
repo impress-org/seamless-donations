@@ -9,12 +9,47 @@ Contact: http://zatzlabs.com/contact-us/
 Copyright (c) 2015 by David Gewirtz
 */
 
-// manage the legacy import from Allen's original code
+// manage the legacy import from Allen's original code and any format conversions for new data structures
+
+// for 4.0.12 convert funds to ids
+function seamless_donations_4012_update_indexes () {
+
+	// prior to 4.0.12, donation records did not save fund ids
+	// (even though it could have been a one-line fix, argh!)
+
+	$indexes_updated = get_option ( 'dgx_donate_4012_indexes_updated' );
+
+	if( ! $indexes_updated ) {
+
+		seamless_donations_rebuild_funds_index ();
+		seamless_donations_rebuild_donor_index ();
+
+		$plugin_version = 'sd4012';
+		update_option ( 'dgx_donate_4012_indexes_updated', $plugin_version );
+	}
+}
+
+// for 4.0.13 add anonymous flag to donors
+function seamless_donations_4013_update_anon () {
+
+	// prior to 4.0.13, donor records did not save anonymous requests
+	// now, if any donation requests anonymity, the donor is marked anon
+
+	$anon_updated = get_option ( 'dgx_donate_4013_anon_updated' );
+
+	if( ! $anon_updated ) {
+
+		seamless_donations_rebuild_donor_anon_flag ();
+
+		$plugin_version = 'sd4013';
+		update_option ( 'dgx_donate_4013_anon_updated', $plugin_version );
+	}
+}
 
 // tell users that there is a new version and that they need to update
 function seamless_donations_sd40_update_alert_message () {
 
-	if(isset ($_REQUEST['page'])) {
+	if( isset ( $_REQUEST['page'] ) ) {
 		if( $_REQUEST['page'] != 'dgx_donate_menu_page' ) {
 			$url = get_admin_url () . "admin.php?page=dgx_donate_menu_page";
 			echo "<div class=\"error\">";
@@ -76,17 +111,22 @@ function seamless_donations_sd40_upgrade_form () {
 		<h2>Be sure to <span style="background: red; color: white;">backup and test on a staging server</span>
 			before updating your live server.</h2>
 
-		<P>In March 2015, Seamless Donations was adopted by David Gewirtz. Since then, David has been working hard to
-			bring you great new features and prepare Seamless Donations for a future with lots of new capabilities that
+		<P>In March 2015, Seamless Donations was adopted by David Gewirtz. Since then, David has been working hard
+			to
+			bring you great new features and prepare Seamless Donations for a future with lots of new capabilities
+			that
 			will help you raise funds and make the world a better place. If you'd like to learn more about the new
-			features or dive deep into the development process, feel free to read David's <A HREF="">Seamless Donations
+			features or dive deep into the development process, feel free to read David's <A HREF="">Seamless
+				Donations
 				Lab Notes</A>.</P>
 
 		<H3><STRONG>Here are some of the new features you'll find in 4.0:</STRONG></H3>
 		<UL>
 			<LI><B>Updated, modern admin UI:</B> The admin interface has been updated to a modern tabbed-look.</LI>
-			<LI><B>Custom post types:</B> Funds and donors have now been implemented as custom post types. This gives
-				you the ability to use all of WordPress' post management and display tools with donors and funds. The
+			<LI><B>Custom post types:</B> Funds and donors have now been implemented as custom post types. This
+				gives
+				you the ability to use all of WordPress' post management and display tools with donors and funds.
+				The
 				donation data has always been a custom post type, but it is now also available to manipulate using
 				plugins and themes outside of Seamless Donations.
 			</LI>
@@ -94,15 +134,18 @@ function seamless_donations_sd40_upgrade_form () {
 				filters and actions that web designers can use to modify the behavior of Seamless Donations to fit
 				individual needs. The plugin was re-architected to allow for loads of extensibility.
 			</LI>
-			<LI><B>Forms engine designed for extensibility:</B> Rather than just basic form code, Seamless Donations 4.0
-				now has a brand-new array-driven forms engine, which will give web site builders the ability to modify
+			<LI><B>Forms engine designed for extensibility:</B> Rather than just basic form code, Seamless Donations
+				4.0
+				now has a brand-new array-driven forms engine, which will give web site builders the ability to
+				modify
 				and access
 				every part of the form before it is displayed to donors.
 			</LI>
 			<LI><B>Admin UI designed for extensibility:</B> Yep, like everything else, the admin interface has been
 				designed to allow for extensibility.
 			</LI>
-			<LI><B>Translation-ready:</B> Seamless Donations 4.0 has had numerous tweaks to allow it to be translated
+			<LI><B>Translation-ready:</B> Seamless Donations 4.0 has had numerous tweaks to allow it to be
+				translated
 				into other languages.
 			</LI>
 		</UL>
@@ -111,16 +154,21 @@ function seamless_donations_sd40_upgrade_form () {
 			<LI><B>Change the form shortcode:</B> The [dgx-donate] shortcode is deprecated and will issue an update
 				warning once you update. The new shortcode is [seamless-donations].
 			</LI>
-			<LI><B>Check your CSS:</B> Most of the CSS should remain the same, but because the form interaction has been
+			<LI><B>Check your CSS:</B> Most of the CSS should remain the same, but because the form interaction has
+				been
 				updated, your CSS may change.
 			</LI>
-			<LI><B>Check your data:</B> Great pains have been taken to be sure the data migrates correctly, but please,
+			<LI><B>Check your data:</B> Great pains have been taken to be sure the data migrates correctly, but
+				please,
 				please, PLEASE double-check it.
 			</LI>
 		</UL>
-		<h3><strong>Please watch this "what to look for" video before you begin testing the beta release</strong></h3>
-		<iframe width="640" height="360" src="https://www.youtube.com/embed/SWm6GivlJi0?rel=0" frameborder="0" allowfullscreen></iframe>
+		<h3><strong>Please watch this "what to look for" video before you begin testing the beta release</strong>
+		</h3>
+		<iframe width="640" height="360" src="https://www.youtube.com/embed/SWm6GivlJi0?rel=0" frameborder="0"
+		        allowfullscreen></iframe>
 		<br><br>
+
 		<form method="post" action="<?php echo $url; ?>">
 			<?php wp_nonce_field ( 'upgrade_seamless_donations_sd40' ); ?>
 			<input type="hidden" name="upgrade" value="sd40"/>
@@ -129,7 +177,7 @@ function seamless_donations_sd40_upgrade_form () {
 		</form>
 		<p></p>
 	</div>
-<?php
+	<?php
 }
 
 //********************** FUNDS LEGACY DATA MANAGEMENT *******************************
@@ -180,7 +228,7 @@ function seamless_donations_funds_legacy_import () {
 			next ( $fund_array );
 		}
 		// write out the legacy import completed flag
-		$plugin_version    = 'sd40';
+		$plugin_version = 'sd40';
 		update_option ( 'dgx_donate_designated_funds_legacy_import', $plugin_version );
 	}
 }
@@ -221,7 +269,7 @@ function seamless_donations_donations_legacy_import () {
 		}
 
 		// write out the legacy import completed flag
-		$plugin_version    = 'sd40';
+		$plugin_version = 'sd40';
 		update_option ( '_dgx_donate_donations_legacy_import', $plugin_version );
 	}
 }
@@ -353,7 +401,7 @@ function seamless_donations_donors_legacy_import () {
 		}
 
 		// write out the legacy import completed flag
-		$plugin_version    = 'sd40';
+		$plugin_version = 'sd40';
 		update_option ( 'dgx_donate_donors_legacy_import', $plugin_version );
 	}
 }

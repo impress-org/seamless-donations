@@ -3,8 +3,8 @@ Contributors: dgewirtz
 Donate link: http://zatzlabs.com/project-donations/
 Tags: donation, donations, paypal, donate, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
 Requires at least: 3.4
-Tested up to: 4.3
-Stable tag: 4.0.10
+Tested up to: 4.4
+Stable tag: 4.0.14
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,7 +44,12 @@ Visit [Seamless Donation's comprehensive documentation and video tutorial sectio
 
 = Plugins and Extensions =
 
-Seamless Donations supports [compatible free plugins including CAPTCHA, export, and mail integration, plus premium add-ons and extensions](http://zatzlabs.com/project/seamless-donations-plugins-and-extensions/) that can help you get the most out of your fund-raising efforts.
+Seamless Donations supports [compatible free plugins including CAPTCHA, export, and mail integration, plus premium add-ons and extensions](http://zatzlabs.com/project/seamless-donations-plugins-and-extensions/) that can help you get the most out of your fund-raising efforts. New premium add-ons include:
+
+* [Giving Level Manager](http://zatzlabs.com/project/seamless-donations-giving-level-manager/)
+* [Basic Widget Pack](http://zatzlabs.com/project/seamless-donations-basic-widget-pack/)
+* [Thank You Enhanced](http://zatzlabs.com/project/seamless-donations-thank-you-enhanced/)
+* [Delete Monster](http://zatzlabs.com/project/seamless-donations-delete-monster/)
 
 = Fight Back Against Spam =
 
@@ -191,6 +196,29 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 == Changelog ==
 
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
+
+= 4.0.14 =
+* Update fixing PayPal chatback bug. See [Working around PayPal breakage: the joys of being middleware](http://zatzlabs.com/working-around-paypal-breakage-the-joys-of-being-middleware/).
+
+= 4.0.13 =
+* On the donor detail page, each donation now shows as Yes or No depending on whether the donation was made anonymously
+* On the donor detail page, each donor's overall anonymity flag is displayed under the address
+* Donor records now have an internal overall anonymity flag. If a donor ever specified anonymity in any donation, that donor's record is flagged as anonymous (even if the donor doesn't ask for anonymity in other donations)
+* The cross-reference rebuild option in the Settings Debug Mode now also rebuilds the anonymity indexes
+
+= 4.0.12 =
+* Clicking into a fund now displays a list of donations for each fund
+* Added a new Settings option to Debug Mode that allows users to rebuild the cross-reference index
+* New update to Spanish translation, courtesy David Chavez
+* Added a helpful prompt guiding users to the PayPal video tutorial and another to remind users to switch email addresses when moving from Sandbox to Live mode
+* Implemented important architectural change in funds, so donations and funds now cross-index
+* Implemented cross-reference rebuild function for funds and donors, so databases can be reindexed if necessary
+* Implemented an internal stored running total for funds and donors for performance
+* Modified license check code to provide details to error log
+* Refactored the donations.php file to make it easier to maintain
+* Renamed some donations functions from 'transient' to 'transaction' for accuracy
+* Added a new 'seamless_donations_admin_settings_before_tweaks' action that allows placing items on the Settings tabs before the lower-priority tweaks and debugging elements
+* Fixed bug where funds showed unsupported post-related options that could cause breakage
 
 = 4.0.11 =
 * Added helpful upgrade notes

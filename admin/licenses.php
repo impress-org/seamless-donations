@@ -57,7 +57,7 @@ function validate_page_slug_seamless_donations_admin_licenses_callback (
 	}
 }
 
-//// LICENSES - SECTION - LICENCES ////
+//// LICENSES - SECTION - LICENSES ////
 function seamless_donations_admin_licenses_section_registration ( $_setup_object ) {
 
 	$section_desc = 'If you have purchased any premium extensions, you will be able to enter ';

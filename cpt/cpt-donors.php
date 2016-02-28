@@ -1,4 +1,5 @@
 <?php
+
 /*
 Seamless Donations by David Gewirtz, adopted from Allen Snook
 
@@ -42,10 +43,10 @@ class SeamlessDonationsDonorPostType extends SeamlessDonationsAdminPageFramework
 
 		$compact_menus = get_option ( 'dgx_donate_compact_menus' );
 		if( $compact_menus == 1 ) {
-			$donors_setup['show_ui'] = true;
+			$donors_setup['show_ui']      = true;
 			$donors_setup['show_in_menu'] = 'SeamlessDonationsAdmin';
-			unset($donors_setup['public']);
-			unset($donors_setup['menu_icon']);
+			unset( $donors_setup['public'] );
+			unset( $donors_setup['menu_icon'] );
 		}
 
 		$donors_setup      = apply_filters ( 'seamless_donations_donors_setup', $donors_setup );
@@ -149,7 +150,7 @@ class SeamlessDonationsDonorPostType extends SeamlessDonationsAdminPageFramework
 			next ( $donation_id_array );
 		}
 
-		$currency_code = dgx_donate_get_donation_currency_code ( $donation_id );
+		$currency_code    = dgx_donate_get_donation_currency_code ( $donation_id );
 		$formatted_amount = dgx_donate_get_escaped_formatted_amount ( $amount, 2, $currency_code );
 
 		return esc_attr ( $formatted_amount );
@@ -176,10 +177,11 @@ class SeamlessDonationsDonorInfoMetaBox extends SeamlessDonationsAdminPageFramew
 		$province = get_post_meta ( $post_id, '_dgx_donate_donor_province', true );
 		$country  = get_post_meta ( $post_id, '_dgx_donate_donor_country', true );
 		$zip      = get_post_meta ( $post_id, '_dgx_donate_donor_zip', true );
+		$anon     = get_post_meta ( $post_id, '_dgx_donate_anonymous', true );
 
-		if ( empty( $country ) ) { /* older versions only did US */
+		if( empty( $country ) ) { /* older versions only did US */
 			$country = 'US';
-			update_post_meta( $post_id, '_dgx_donate_donor_country', 'US' );
+			update_post_meta ( $post_id, '_dgx_donate_donor_country', 'US' );
 		}
 
 		// construct basic address info block
@@ -189,22 +191,23 @@ class SeamlessDonationsDonorInfoMetaBox extends SeamlessDonationsAdminPageFramew
 		$html .= $address2 != '' ? $address2 . '<br>' : '';
 		$html .= $city != '' ? $city . ', ' : '';
 
-		if ( 'US' == $country ) {
+		if( 'US' == $country ) {
 			$html .= $state != '' ? $state . ' ' : '';
-		} else if ( 'CA' == $country ) {
+		} else if( 'CA' == $country ) {
 			$html .= $province != '' ? $province . ' ' : '';
 		}
 
-		if ( dgx_donate_country_requires_postal_code( $country ) ) {
+		if( dgx_donate_country_requires_postal_code ( $country ) ) {
 			$html .= $zip != '' ? $zip . '<br>' : '';
 		}
 
-		$countries = dgx_donate_get_countries();
-		$country_name = $countries[$country];
+		$countries    = dgx_donate_get_countries ();
+		$country_name = $countries[ $country ];
 		$html .= $country_name != '' ? $country_name . '<br>' : '';
 		$html .= '<br>';
 		$html .= $phone != '' ? $phone . '<br>' : '';
-		$html .= $email != '' ? $email : '';
+		$html .= $email != '' ? $email . '<br>' : '';
+		$html .= esc_html__ ('Anonymity requested: ', 'seamless-donations') . $anon;
 
 		$this->addSettingFields (
 
@@ -245,6 +248,7 @@ class SeamlessDonationsDonorDetailMetaBox extends SeamlessDonationsAdminPageFram
 			$html .= "<th>" . esc_html__ ( 'Date', 'seamless-donations' ) . "</th>";
 			$html .= "<th>" . esc_html__ ( 'Fund', 'seamless-donations' ) . "</th>";
 			$html .= "<th>" . esc_html__ ( 'Amount', 'seamless-donations' ) . "</th>";
+			$html .= "<th>" . esc_html__ ( 'Anonymous', 'seamless-donations' ) . "</th>";
 			$html .= "</tr>\n";
 
 			$donor_total          = 0;
@@ -256,11 +260,14 @@ class SeamlessDonationsDonorDetailMetaBox extends SeamlessDonationsAdminPageFram
 				$month      = get_post_meta ( $donation_id, '_dgx_donate_month', true );
 				$day        = get_post_meta ( $donation_id, '_dgx_donate_day', true );
 				$time       = get_post_meta ( $donation_id, '_dgx_donate_time', true );
-				$fund_name  = __ ( 'Undesignated', 'seamless-donations' );
 				$designated = get_post_meta ( $donation_id, '_dgx_donate_designated', true );
+				$anonymous  = get_post_meta ( $donation_id, '_dgx_donate_anonymous', true );
+
+				$fund_name = __ ( 'Undesignated', 'seamless-donations' );
 				if( ! empty( $designated ) ) {
 					$fund_name = get_post_meta ( $donation_id, '_dgx_donate_designated_fund', true );
 				}
+
 				$amount                                 = get_post_meta ( $donation_id, '_dgx_donate_amount', true );
 				$donor_total                            = $donor_total + floatval ( $amount );
 				$currency_code                          = dgx_donate_get_donation_currency_code ( $donation_id );
@@ -268,11 +275,19 @@ class SeamlessDonationsDonorDetailMetaBox extends SeamlessDonationsAdminPageFram
 				$formatted_amount                       = dgx_donate_get_escaped_formatted_amount (
 					$amount, 2, $currency_code );
 
+				if($anonymous == 'on') {
+					$anonymous = 'Yes';
+				} else {
+					$anonymous = 'No';
+				}
+
 				$donation_detail = seamless_donations_get_donation_detail_link ( $donation_id );
+
 				$html .= "<tr><td><a href='" . esc_url ( $donation_detail ) . "'>" .
 				         esc_html ( $year . "-" . $month . "- " . $day . " " . $time ) . "</a></td>";
 				$html .= "<td>" . esc_html ( $fund_name ) . "</td>";
 				$html .= "<td>" . $formatted_amount . "</td>";
+				$html .= "<td>" . $anonymous . "</td>";
 				$html .= "</tr>\n";
 			}
 			if( count ( $donor_currency_codes ) > 1 ) {
