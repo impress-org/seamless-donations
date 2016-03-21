@@ -97,6 +97,7 @@ function validate_page_slug_seamless_donations_admin_settings_callback (
 			break;
 		case 'seamless_donations_admin_settings_section_tweaks': // SAVE TWEAKS //
 			$settings_notice = 'Form updated successfully.';
+			update_option ( 'dgx_donate_via_form_action', $_submitted_array[ $section ]['dgx_donate_via_form_action'] );
 			update_option ( 'dgx_donate_compact_menus', $_submitted_array[ $section ]['dgx_donate_compact_menus'] );
 			$_setup_object->setSettingNotice ( $settings_notice, 'updated' );
 			break;
@@ -252,7 +253,18 @@ function seamless_donations_admin_settings_section_tweaks ( $_setup_object ) {
 	$compact_desc .= "<A href='http://wptavern.com/a-bug-in-chrome-45-causes-wordpress-admin-menu-to-break'>";
 	$compact_desc .= " this article</A> for details. This feature is still under development.</span>";
 
+	$via_form_action_desc = "This may help for hosts that generate permission denied error after form submitted.";
+
 	$tweaks_options = array(
+		array(
+			'field_id'    => 'dgx_donate_via_form_action',
+			'title'       => __ ( 'Form Action', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => __ (
+				'[BETA] Process form data via initiating page or post', 'seamless-donations' ),
+			'default'     => false,
+			'description' => $via_form_action_desc,
+		),
 		array(
 			'field_id'    => 'dgx_donate_compact_menus',
 			'title'       => __ ( 'Compact Menus', 'seamless-donations' ),
