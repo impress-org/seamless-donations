@@ -37,6 +37,7 @@ require_once 'inc/geography.php';
 require_once 'inc/currency.php';
 require_once 'inc/utilities.php';
 require_once 'inc/legacy.php';
+require_once 'inc/payment.php';
 
 require_once 'legacy/dgx-donate.php';
 require_once 'legacy/dgx-donate-admin.php';
@@ -263,6 +264,18 @@ function seamless_donations_init () {
 		if( $sd4_mode != false ) {
 			$sd4_mode = true;
 		}
+	}
+
+	// Check to see if we're processing donation form data
+	// This section drives the payment form through the shortcode page, rather than a separate PHP file
+	// done because some hosts can't handle redirecting forms to another php file.
+	$form_via_mode = '';
+
+	if( isset( $_POST['_dgx_donate_form_via'] ) ) {
+		$form_via_mode =  $_POST['_dgx_donate_form_via'] ;
+	}
+	if( $form_via_mode == '1' ) {
+		seamless_donations_process_payment();
 	}
 
 	// Initialize options to defaults as needed

@@ -11,7 +11,19 @@
 
 function seamless_donations_generate_donation_form () {
 
-	$form_action = plugins_url ( '/seamless-donations-payment.php', __FILE__ );
+	$process_form_via = get_option('dgx_donate_form_via_action');
+	// if the option isn't defined, returns false, if defined = '1'
+	// this option exists for host compatibility, where some hosts won't send a form
+	// to another .php file for processing
+
+	if($process_form_via == '1') {
+		$form_action = get_permalink();
+	} else {
+		// redirect to seamless-donations-payment.php, which may cause some hosting errors
+		// but is the default behavior since early 4.0.x releases
+		$form_action = plugins_url ( '/seamless-donations-payment.php', __FILE__ );
+		$process_form_via = '0';
+	}
 
 	//$session_id = $GLOBALS['seamless_donations_session_id'];
 	//$session_id = 'dgxdonate_' . substr ( session_id (), 0, 10 ) . '_' . time ();
@@ -35,7 +47,7 @@ function seamless_donations_generate_donation_form () {
 				'value' => $session_id,
 			),
 			'redirect_url_element' => array(
-				'type'  => 'hidden', // Save the PayPal redirect URL as a hidden input
+				'type'  => 'hidden', // Save the form action as a hidden input
 				'group' => '_dgx_donate_redirect_url',
 				'value' => $form_action,
 			),
@@ -43,6 +55,11 @@ function seamless_donations_generate_donation_form () {
 				'type'  => 'hidden', // Save the PayPal redirect URL as a hidden input
 				'group' => '_dgx_donate_success_url',
 				'value' => dgx_donate_paypalstd_get_current_url (),
+			),
+			'process_via' => array(
+				'type' => 'hidden', // Save the form processing method as a hidden input
+			    'group' => '_dgx_donate_form_via',
+				'value' => $process_form_via,
 			),
 		),
 	);
