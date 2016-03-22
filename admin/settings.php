@@ -258,7 +258,7 @@ function seamless_donations_admin_settings_section_tweaks ( $_setup_object ) {
 	$tweaks_options = array(
 		array(
 			'field_id'    => 'dgx_donate_via_form_action',
-			'title'       => __ ( 'Form Action', 'seamless-donations' ),
+			'title'       => __ ( 'Process Form Via', 'seamless-donations' ),
 			'type'        => 'checkbox',
 			'label'       => __ (
 				'[BETA] Process form data via initiating page or post', 'seamless-donations' ),
