@@ -198,6 +198,7 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
 
 = 4.0.15 =
+* Added failover PayPal security option with cURL TLS support
 * Added new Host Compatibility Options section in settings
 * Added host compatibility option and mechanism to process form data via initiating page or post rather than external PHP file
 * Added host compatibility option and mechanism to bypass nonce validation for those hosts who break nonces on form submission
