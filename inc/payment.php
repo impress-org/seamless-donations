@@ -375,7 +375,15 @@ function seamless_donations_process_payment() {
 		}
 
 		// more log data
-		dgx_donate_debug_log( 'Name: ' . $post_data['FIRSTNAME'] . ' ' . $post_data['LASTNAME'] );
+		$obscurify = get_option( 'dgx_donate_log_obscure_name' ); // false if not set
+		if ( $obscurify == '1' ) {
+			// obscurify for privacy
+			$donor_name = strtolower( $post_data['FIRSTNAME'] . $post_data['LASTNAME'] );
+			$donor_name = seamless_donations_obscurify_string( $donor_name, '*', false );
+		} else {
+			$donor_name = $post_data['FIRSTNAME'] . ' ' . $post_data['LASTNAME'];
+		}
+		dgx_donate_debug_log( 'Name: ' . $donor_name );
 		dgx_donate_debug_log( 'Amount: ' . $post_data['AMOUNT'] );
 
 		dgx_donate_debug_log( "Preparation complete. Entering PHP post code." );

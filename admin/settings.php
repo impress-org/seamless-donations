@@ -110,6 +110,8 @@ function validate_page_slug_seamless_donations_admin_settings_callback (
 		case 'seamless_donations_admin_settings_section_debug': // SAVE DEBUG //
 			$settings_notice = 'Form updated successfully.';
 			update_option ( 'dgx_donate_debug_mode', $_submitted_array[ $section ]['dgx_donate_debug_mode'] );
+			$test = $_submitted_array[ $section ]['dgx_donate_log_settings'][0];
+			update_option ( 'dgx_donate_log_obscure_name', $_submitted_array[ $section ]['dgx_donate_log_settings'][0] );
 			if( $_submitted_array[ $section ]['dgx_donate_rebuild_xref_by_name'] == "1" ) {
 				dgx_donate_debug_log ( '----------------------------------------' );
 				dgx_donate_debug_log ( 'INDEX CROSS-REFERENCE ATTEMPTED' );
@@ -328,7 +330,7 @@ function seamless_donations_admin_settings_section_debug ( $_setup_object ) {
 	$debug_section = array(
 		'section_id'  => 'seamless_donations_admin_settings_section_debug',    // the section ID
 		'page_slug'   => 'seamless_donations_admin_settings',    // the page slug that the section belongs to
-		'title'       => __ ( 'Debug Mode', 'seamless-donations' ),   // the section title
+		'title'       => __ ( 'Debug Options', 'seamless-donations' ),   // the section title
 		'description' => __ ( $section_desc, 'seamless-donations' ),
 	);
 
@@ -337,6 +339,10 @@ function seamless_donations_admin_settings_section_debug ( $_setup_object ) {
 	$xref_name_desc = "<span style='color:red'>This runs once when you click Save Debug Mode. You probably ";
 	$xref_name_desc .= "shouldn't run this unless requested to by the developer. This feature is still under development.</span>";
 
+	// build the log settings values - this is an array because there will probably be more settings
+	$obscurify = get_option('dgx_donate_log_obscure_name');
+	$log_settings_values = array($obscurify);
+
 	$debug_options = array(
 		array(
 			'field_id'    => 'dgx_donate_debug_mode',
@@ -344,6 +350,15 @@ function seamless_donations_admin_settings_section_debug ( $_setup_object ) {
 			'type'        => 'checkbox',
 			'label'       => __ ( 'Enable debug mode', 'seamless-donations' ),
 			'default'     => false,
+			'after_label' => '<br />',
+		),
+		array(
+			'field_id'    => 'dgx_donate_log_settings',
+			'title'       => __ ( 'Log Settings', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => array(__ ( 'Obscurify donor names in log', 'seamless-donations' )),
+			'default'     => array(false),
+			'value' => $log_settings_values,
 			'after_label' => '<br />',
 		),
 		array(

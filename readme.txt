@@ -198,7 +198,11 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
 
 = 4.0.15 =
+* Added host compatibility option and mechanism to process form data via initiating page or post rather than external PHP file
 * Modified YouTube tutorial video in main admin panel to resize responsively
+* Changed name of main Debug Mode section to Debug Options
+* Option to obscurify donor names shown in logs
+* Donor names in logs now default to obscurified names unless otherwise turned off
 
 = 4.0.14 =
 * Update fixing PayPal chatback bug. See [Working around PayPal breakage: the joys of being middleware](http://zatzlabs.com/working-around-paypal-breakage-the-joys-of-being-middleware/).

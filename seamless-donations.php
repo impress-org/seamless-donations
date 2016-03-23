@@ -269,13 +269,16 @@ function seamless_donations_init () {
 	// Check to see if we're processing donation form data
 	// This section drives the payment form through the shortcode page, rather than a separate PHP file
 	// done because some hosts can't handle redirecting forms to another php file.
-	$form_via_mode = '';
+	$process_form_via = get_option('dgx_donate_form_via_action');
+	if($process_form_via == '1') {
+		$form_via_mode = '';
 
-	if( isset( $_POST['_dgx_donate_form_via'] ) ) {
-		$form_via_mode =  $_POST['_dgx_donate_form_via'] ;
-	}
-	if( $form_via_mode == '1' ) {
-		seamless_donations_process_payment();
+		if ( isset( $_POST['_dgx_donate_form_via'] ) ) {
+			$form_via_mode = $_POST['_dgx_donate_form_via'];
+		}
+		if ( $form_via_mode == '1' ) {
+			seamless_donations_process_payment();
+		}
 	}
 
 	// Initialize options to defaults as needed
@@ -496,11 +499,18 @@ function seamless_donations_init_defaults () {
 		update_option ( 'dgx_donate_show_tribute_section', 'true' );
 	}
 
-	// Scripts location default
+	// Scripts location default -- not used since 3.x
 	$scripts_in_footer = get_option ( 'dgx_donate_scripts_in_footer' );
 	if( empty( $scripts_in_footer ) ) {
 		update_option ( 'dgx_donate_scripts_in_footer', 'false' );
 	}
+
+	// Obscurify donor names in logs by default
+	$obscurify = get_option ( 'dgx_donate_log_obscure_name' );
+	if( $obscurify === false ) {
+		update_option ( 'dgx_donate_log_obscure_name', '1' );
+	}
+
 }
 
 function seamless_donations_init_audit () {
