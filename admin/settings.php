@@ -20,6 +20,7 @@ function seamless_donations_admin_settings ( $setup_object ) {
 	// create the sections - tweaks disabled because it doesn't work right
 	seamless_donations_admin_settings_section_emails ( $setup_object );
 	seamless_donations_admin_settings_section_paypal ( $setup_object );
+	seamless_donations_admin_settings_section_hosts ( $setup_object );
 
 	do_action ( 'seamless_donations_admin_settings_before_tweaks', $setup_object );
 
@@ -95,9 +96,14 @@ function validate_page_slug_seamless_donations_admin_settings_callback (
 			update_option ( 'dgx_donate_paypal_server', $option );
 			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
 			break;
-		case 'seamless_donations_admin_settings_section_tweaks': // SAVE TWEAKS //
+		case 'seamless_donations_admin_settings_section_hosts': // SAVE HOSTS //
 			$settings_notice = 'Form updated successfully.';
 			update_option ( 'dgx_donate_form_via_action', $_submitted_array[ $section ]['dgx_donate_form_via_action'] );
+			update_option ( 'dgx_donate_ignore_form_nonce', $_submitted_array[ $section ]['dgx_donate_ignore_form_nonce'] );
+			$_setup_object->setSettingNotice ( $settings_notice, 'updated' );
+			break;
+		case 'seamless_donations_admin_settings_section_tweaks': // SAVE TWEAKS //
+			$settings_notice = 'Form updated successfully.';
 			update_option ( 'dgx_donate_compact_menus', $_submitted_array[ $section ]['dgx_donate_compact_menus'] );
 			$_setup_object->setSettingNotice ( $settings_notice, 'updated' );
 			break;
@@ -110,7 +116,6 @@ function validate_page_slug_seamless_donations_admin_settings_callback (
 		case 'seamless_donations_admin_settings_section_debug': // SAVE DEBUG //
 			$settings_notice = 'Form updated successfully.';
 			update_option ( 'dgx_donate_debug_mode', $_submitted_array[ $section ]['dgx_donate_debug_mode'] );
-			$test = $_submitted_array[ $section ]['dgx_donate_log_settings'][0];
 			update_option ( 'dgx_donate_log_obscure_name', $_submitted_array[ $section ]['dgx_donate_log_settings'][0] );
 			if( $_submitted_array[ $section ]['dgx_donate_rebuild_xref_by_name'] == "1" ) {
 				dgx_donate_debug_log ( '----------------------------------------' );
@@ -236,6 +241,58 @@ function seamless_donations_admin_settings_section_paypal ( $_setup_object ) {
 		$settings_paypal_options, $_setup_object, $settings_paypal_section );
 }
 
+//// SETTINGS - SECTION - HOSTS ////
+function seamless_donations_admin_settings_section_hosts ( $_setup_object ) {
+
+	$section_desc = 'Options that can help increase compatibility with your hosting provider.';
+
+	$hosts_section = array(
+		'section_id'  => 'seamless_donations_admin_settings_section_hosts',    // the section ID
+		'page_slug'   => 'seamless_donations_admin_settings',    // the page slug that the section belongs to
+		'title'       => __ ( 'Host Compatibility Options', 'seamless-donations' ),   // the section title
+		'description' => __ ( $section_desc, 'seamless-donations' ),
+	);
+
+	$hosts_section = apply_filters ( 'seamless_donations_admin_settings_section_hosts', $hosts_section );
+
+	$form_via_action_desc = "This may help for sites/hosts that can't find seamless-donations-payment.php after form submitted.";
+	$form_ignore_nonce_desc = "This may help for sites/hosts that that report permission denied after form submitted. ";
+	$form_ignore_nonce_desc .= "<span style='color:red'>Warning: This could compromise form processing security ";
+	$form_ignore_nonce_desc .= "or reliability. Be sure to perform sandbox tests after enabling this option.</span>";
+
+	$hosts_options = array(
+		array(
+			'field_id'    => 'dgx_donate_form_via_action',
+			'title'       => __ ( 'Process Form Via', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => __ (
+				'[BETA] Process form data via initiating page or post', 'seamless-donations' ),
+			'default'     => false,
+			'description' => $form_via_action_desc,
+		),
+		array(
+			'field_id'    => 'dgx_donate_ignore_form_nonce',
+			'title'       => __ ( 'Form Nonce', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => __ (
+				'[BETA] Ignore form nonce value', 'seamless-donations' ),
+			'default'     => false,
+			'description' => $form_ignore_nonce_desc,
+		),
+		array(
+			'field_id' => 'submit',
+			'type'     => 'submit',
+			'label'    => __ ( 'Save Host Options', 'seamless-donations' ),
+		),
+	);
+
+	$hosts_options = apply_filters (
+		'seamless_donations_admin_settings_section_hosts_options', $hosts_options );
+
+	seamless_donations_process_add_settings_fields_with_options (
+		$hosts_options, $_setup_object, $hosts_section );
+}
+
 //// SETTINGS - SECTION - TWEAKS ////
 function seamless_donations_admin_settings_section_tweaks ( $_setup_object ) {
 
@@ -255,18 +312,7 @@ function seamless_donations_admin_settings_section_tweaks ( $_setup_object ) {
 	$compact_desc .= "<A href='http://wptavern.com/a-bug-in-chrome-45-causes-wordpress-admin-menu-to-break'>";
 	$compact_desc .= " this article</A> for details. This feature is still under development.</span>";
 
-	$form_via_action_desc = "This may help for hosts that generate permission denied error after form submitted.";
-
 	$tweaks_options = array(
-		array(
-			'field_id'    => 'dgx_donate_form_via_action',
-			'title'       => __ ( 'Process Form Via', 'seamless-donations' ),
-			'type'        => 'checkbox',
-			'label'       => __ (
-				'[BETA] Process form data via initiating page or post', 'seamless-donations' ),
-			'default'     => false,
-			'description' => $form_via_action_desc,
-		),
 		array(
 			'field_id'    => 'dgx_donate_compact_menus',
 			'title'       => __ ( 'Compact Menus', 'seamless-donations' ),

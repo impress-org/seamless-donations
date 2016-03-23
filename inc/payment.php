@@ -22,12 +22,19 @@ function seamless_donations_process_payment() {
 	dgx_donate_debug_log( "User browser: " . seamless_donations_get_browser_name() );
 	dgx_donate_debug_log( 'IPN: ' . plugins_url( '/dgx-donate-paypalstd-ipn.php', __FILE__ ) );
 
-	$nonce = $_POST['nonce'];
-	if ( ! wp_verify_nonce( $nonce, 'dgx-donate-nonce' ) ) {
-		dgx_donate_debug_log( 'Payment process nonce validation failure.' );
-		die( 'Access Denied.' );
-	} else {
-		dgx_donate_debug_log( "Payment process nonce $nonce validated." );
+	$nonce_bypass = get_option( 'dgx_donate_ignore_form_nonce' );
+
+	if ( $nonce_bypass != '1' ) {
+		$nonce = $_POST['nonce'];
+		if ( ! wp_verify_nonce( $nonce, 'dgx-donate-nonce' ) ) {
+			$nonce_error = 'Payment process nonce validation failure. ';
+			$nonce_error .= 'Consider turning on Ignore Form Nonce Value in the Seamless Donations ';
+			$nonce_error .= 'Settings tab under Host Compatibility Options.';
+			dgx_donate_debug_log( $nonce_error );
+			die( 'Access Denied. See Seamless Donations log for details.' );
+		} else {
+			dgx_donate_debug_log( "Payment process nonce $nonce validated." );
+		}
 	}
 
 	// todo: not getting session ID ***************************************************
