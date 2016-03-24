@@ -176,6 +176,13 @@ function seamless_donations_get_feature_promo ( $desc, $url, $upgrade = "UPGRADE
 	return $promo;
 }
 
+function seamless_donations_display_label($before='&nbsp;', $message='BETA', $after='') {
+	$label = $before . '<span style="background-color:darkgrey; color:white;font-style:normal;text-weight:bold">';
+	$label .= '&nbsp;' . $message . '&nbsp;';
+	$label .= '</span>' . $after;
+	return $label;
+}
+
 // *** DATABASE REBUILD ***
 
 function seamless_donations_rebuild_funds_index () {

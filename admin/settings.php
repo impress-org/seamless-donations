@@ -266,7 +266,7 @@ function seamless_donations_admin_settings_section_hosts ( $_setup_object ) {
 			'title'       => __ ( 'Process Form Via', 'seamless-donations' ),
 			'type'        => 'checkbox',
 			'label'       => __ (
-				'[BETA] Process form data via initiating page or post', 'seamless-donations' ),
+				'Process form data via initiating page or post', 'seamless-donations' ) . seamless_donations_display_label() ,
 			'default'     => false,
 			'description' => $form_via_action_desc,
 		),
@@ -275,7 +275,7 @@ function seamless_donations_admin_settings_section_hosts ( $_setup_object ) {
 			'title'       => __ ( 'Form Nonce', 'seamless-donations' ),
 			'type'        => 'checkbox',
 			'label'       => __ (
-				'[BETA] Ignore form nonce value', 'seamless-donations' ),
+				'Ignore form nonce value', 'seamless-donations' ) . seamless_donations_display_label(),
 			'default'     => false,
 			'description' => $form_ignore_nonce_desc,
 		),
@@ -318,7 +318,7 @@ function seamless_donations_admin_settings_section_tweaks ( $_setup_object ) {
 			'title'       => __ ( 'Compact Menus', 'seamless-donations' ),
 			'type'        => 'checkbox',
 			'label'       => __ (
-				'[BETA] Enable compact menu (tucks Donors, Funds, and Donations under Seamless Donations menu)', 'seamless-donations' ),
+			                     'Enable compact menu (tucks Donors, Funds, and Donations under Seamless Donations menu)', 'seamless-donations' ) . seamless_donations_display_label(),
 			'default'     => false,
 			'description' => $compact_desc,
 		),

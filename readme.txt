@@ -202,6 +202,7 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * Added new Host Compatibility Options section in settings
 * Added host compatibility option and mechanism to process form data via initiating page or post rather than external PHP file
 * Added host compatibility option and mechanism to bypass nonce validation for those hosts who break nonces on form submission
+* Added nicer styled beta labels
 * Modified YouTube tutorial video in main admin panel to resize responsively
 * Changed name of main Debug Mode section to Debug Options
 * Option to obscurify donor names shown in logs
