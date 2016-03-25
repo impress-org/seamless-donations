@@ -263,7 +263,7 @@ function seamless_donations_admin_settings_section_hosts( $_setup_object ) {
 	$form_via_action_desc
 		                    = "This may help for sites/hosts that can't find seamless-donations-payment.php after form submitted.";
 	$form_ignore_nonce_desc = "This may help for sites/hosts that that report permission denied after form submitted. ";
-	$form_ignore_nonce_desc .= "<span style='color:red'>Warning: This could compromise form processing security ";
+	$form_ignore_nonce_desc .= "<br><span style='color:red'>Warning: This could compromise form processing security ";
 	$form_ignore_nonce_desc .= "or reliability. Be sure to perform sandbox tests after enabling this option.</span>";
 
 	$hosts_options = array(

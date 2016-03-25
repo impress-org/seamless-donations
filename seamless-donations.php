@@ -107,8 +107,6 @@ function seamless_donations_enqueue_scripts () {
 	wp_enqueue_script ( 'jquery' );
 
 	$script_url = plugins_url ( '/js/seamless-donations.js', __FILE__ );
-
-	// wp_register_script ( 'seamless_javascript_code', $script_url, array( 'jquery' ), false );
 	wp_enqueue_script ( 'seamless_javascript_code', $script_url, array( 'jquery' ) );
 
 	// declare the URL to the file that handles the AJAX request (wp-admin/admin-ajax.php)
