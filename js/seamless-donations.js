@@ -10,20 +10,19 @@
 
 jQuery(document).ready(function () {
 
-    // this is the new GUID system that runs optionally in the browser
+    // this is the new option that generates the UUID in the browser
+    // UUID code based on https://github.com/broofa/node-uuid
 
     jQuery("input[name='_dgx_donate_session_id']").val(function () {
         var guid = jQuery(this).val();
-        console.log("guid: " + guid)
-        if (guid == "browser-guid") {
-            console.log("Browser GUID");
+        var ver = 'SDB01-'; // Session ID version: SD=Seamless Donations, B=Browser, 01=first versiom
+
+        if (guid == "browser-uuid") {
+            return ver + uuid.v4().toUpperCase();
         } else {
-            console.log("Server GUID");
-            console.log("New GUID: " + SeamlessDonationsGetGUID());
+            return guid;
         }
     });
-
-
 
     // radio button revealer, works with multiple sets per page
     // each input tag gets either (or both) a data-revealer or data-hide attribute
@@ -258,32 +257,6 @@ function SeamlessDonationsFormsEngineValidator() {
         console.log("-- SeamlessDonationsFormsEngineValidator: form passed validation");
         return true;
     }
-}
-
-// guid generator based on code from
-// https://andywalpole.me/#!/blog/140739/using-javascript-create-guid-from-users-browser-information
-/**
- * @function _guid
- * @description Creates GUID for user based on several different browser variables
- * It will never be RFC4122 compliant but it is robust
- * @returns {Number}
- * @private
- */
-function SeamlessDonationsGetGUID() {
-
-    var nav = window.navigator;
-    var screen = window.screen;
-    var guid = nav.mimeTypes.length;
-    var date = new Date();
-
-    guid += nav.userAgent.replace(/\D+/g, '');
-    guid += '-' + nav.plugins.length;
-    guid += screen.height || '';
-    guid += screen.width || '';
-    guid += screen.pixelDepth || '';
-    guid += '-' + date.getTime();
-
-    return guid;
 }
 
 function SeamlessDonationsValidateRequired(validationObject) {

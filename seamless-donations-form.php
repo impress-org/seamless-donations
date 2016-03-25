@@ -26,9 +26,13 @@ function seamless_donations_generate_donation_form() {
 		$process_form_via_status = 'external php file';
 	}
 
-	//$session_id = $GLOBALS['seamless_donations_session_id'];
-	//$session_id = 'dgxdonate_' . substr ( session_id (), 0, 10 ) . '_' . time ();
-	$session_id = seamless_donations_get_guid( 'sd' );
+	$browser_based_ids = get_option('dgx_donate_browser_uuid');
+	if($browser_based_ids == '1') {
+		$session_id = 'browser-uuid'; // generate UUID in JavaScript
+	} else{
+		$session_id = seamless_donations_get_guid( 'sd' ); // UUID on server
+	}
+
 	dgx_donate_debug_log( '----------------------------------------' );
 	dgx_donate_debug_log( 'PREPARING DONATION FORM' );
 	dgx_donate_debug_log( "Seamless Donations Version: " . dgx_donate_get_version() );

@@ -128,6 +128,8 @@ function seamless_donations_get_submitted_admin_section ( $_the_array ) {
 
 function seamless_donations_get_guid ( $namespace = '' ) {
 
+	$ver = 'SDS01-'; // Session IDs now have versioning SD=Seamless Donations, S=Server, 01=first version
+
 	// based on post by redtrader http://php.net/manual/en/function.uniqid.php#107512
 	$guid = '';
 	$uid  = uniqid ( "", true );
@@ -142,7 +144,7 @@ function seamless_donations_get_guid ( $namespace = '' ) {
 	$guid = substr ( $hash, 0, 8 ) . '-' . substr ( $hash, 8, 4 ) . '-' . substr ( $hash, 12, 4 ) . '-' . substr ( $hash, 16, 4 ) . '-' .
 	        substr ( $hash, 20, 12 );
 
-	return $guid;
+	return $ver . $guid;
 }
 
 function seamless_donations_get_browser_name () {

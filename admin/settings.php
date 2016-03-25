@@ -102,6 +102,7 @@ function validate_page_slug_seamless_donations_admin_settings_callback(
 		case 'seamless_donations_admin_settings_section_hosts': // SAVE HOSTS //
 			$settings_notice = 'Form updated successfully.';
 			update_option( 'dgx_donate_form_via_action', $_submitted_array[ $section ]['dgx_donate_form_via_action'] );
+			update_option( 'dgx_donate_browser_uuid', $_submitted_array[ $section ]['dgx_donate_browser_uuid'] );
 			update_option( 'dgx_donate_ignore_form_nonce',
 			               $_submitted_array[ $section ]['dgx_donate_ignore_form_nonce'] );
 			$_setup_object->setSettingNotice( $settings_notice, 'updated' );
@@ -266,6 +267,12 @@ function seamless_donations_admin_settings_section_hosts( $_setup_object ) {
 	$form_ignore_nonce_desc .= "<br><span style='color:red'>Warning: This could compromise form processing security ";
 	$form_ignore_nonce_desc .= "or reliability. Be sure to perform sandbox tests after enabling this option.</span>";
 
+	$form_transaction_desc = "This may help for sites/hosts that cache transaction IDs. ";
+	$form_transaction_desc .= "Rather than generating the unique transaction ID in PHP on the server, ";
+	$form_transaction_desc .= "this uses the device's native JavaScript.";
+	$form_transaction_desc .= "<br><span style='color:red'>Warning: This could be unpredictable, ";
+	$form_transaction_desc .= "depending on the age and compatibility of your user's device.</span>";
+
 	$hosts_options = array(
 		array(
 			'field_id'    => 'dgx_donate_form_via_action',
@@ -279,12 +286,21 @@ function seamless_donations_admin_settings_section_hosts( $_setup_object ) {
 		),
 		array(
 			'field_id'    => 'dgx_donate_ignore_form_nonce',
-			'title'       => __( 'Form Nonce', 'seamless-donations' ),
+			'title'       => __( 'Form Nonces', 'seamless-donations' ),
 			'type'        => 'checkbox',
 			'label'       => __(
 				                 'Ignore form nonce value', 'seamless-donations' ) . seamless_donations_display_label(),
 			'default'     => false,
 			'description' => $form_ignore_nonce_desc,
+		),
+		array(
+			'field_id'    => 'dgx_donate_browser_uuid',
+			'title'       => __( 'Browser-based IDs', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => __(
+				                 'Generate unique transaction IDs in browser', 'seamless-donations' ) . seamless_donations_display_label(),
+			'default'     => false,
+			'description' => $form_transaction_desc,
 		),
 		array(
 			'field_id' => 'submit',
