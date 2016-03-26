@@ -623,7 +623,7 @@ function seamless_donations_get_billing_section() {
 				'size'   => 10,
 				'before' => esc_html__( 'Postal Code: ', 'seamless-donations' ),
 			),
-			'dgx_donate_uk_gift_aid'     => array(
+			'_dgx_donate_uk_gift_aid'     => array(
 				'type'   => 'checkbox',
 				'prompt' => esc_html__(
 					"I am a UK taxpayer and my gift qualifies for Gift Aid.", 'seamless-donations' ),
@@ -639,19 +639,19 @@ function seamless_donations_get_billing_section() {
 			$billing_section['elements']['_dgx_donate_donor_state']['class']    = 'conceal-donor-state';
 			$billing_section['elements']['_dgx_donate_donor_province']['cloak'] = 'conceal-donor-province';
 			$billing_section['elements']['_dgx_donate_donor_zip']['class']      = 'conceal-donor-postcode';
-			$billing_section['elements']['dgx_donate_uk_gift_aid']['cloak']     = 'gift-aid';
+			$billing_section['elements']['_dgx_donate_uk_gift_aid']['cloak']     = 'gift-aid';
 			break;
 		case 'CA':
 			$billing_section['elements']['_dgx_donate_donor_state']['cloak']    = 'conceal-donor-state';
 			$billing_section['elements']['_dgx_donate_donor_province']['class'] = 'conceal-donor-province';
 			$billing_section['elements']['_dgx_donate_donor_zip']['class']      = 'conceal-donor-postcode';
-			$billing_section['elements']['dgx_donate_uk_gift_aid']['cloak']     = 'gift-aid';
+			$billing_section['elements']['_dgx_donate_uk_gift_aid']['cloak']     = 'gift-aid';
 			break;
 		case 'GB':
 			$billing_section['elements']['_dgx_donate_donor_state']['cloak']    = 'conceal-donor-state';
 			$billing_section['elements']['_dgx_donate_donor_province']['cloak'] = 'conceal-donor-province';
 			$billing_section['elements']['_dgx_donate_donor_zip']['class']      = 'conceal-donor-postcode';
-			$billing_section['elements']['dgx_donate_uk_gift_aid']['class']     = 'gift-aid';
+			$billing_section['elements']['_dgx_donate_uk_gift_aid']['class']     = 'gift-aid';
 			break;
 		default:
 			$billing_section['elements']['_dgx_donate_donor_state']['cloak']    = 'conceal-donor-state';
@@ -661,7 +661,7 @@ function seamless_donations_get_billing_section() {
 			} else {
 				$billing_section['elements']['_dgx_donate_donor_zip']['cloak'] = 'conceal-donor-postcode';
 			}
-			$billing_section['elements']['dgx_donate_uk_gift_aid']['cloak'] = 'gift-aid';
+			$billing_section['elements']['_dgx_donate_uk_gift_aid']['cloak'] = 'gift-aid';
 	}
 
 	$billing_section = apply_filters(

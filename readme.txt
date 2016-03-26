@@ -209,6 +209,7 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * Changed name of main Debug Mode section to Debug Options
 * Option to obscurify donor names shown in logs
 * Donor names in logs now default to obscurified names unless otherwise turned off
+* Fixed a bug where UK Gift Aid selection was not being recorded. Unfortunately, the data wasn't actually written to any transaction logging due to a code typo, so there's no pre-existing gift aid data available for recovery.
 
 = 4.0.14 =
 * Update fixing PayPal chatback bug. See [Working around PayPal breakage: the joys of being middleware](http://zatzlabs.com/working-around-paypal-breakage-the-joys-of-being-middleware/).
