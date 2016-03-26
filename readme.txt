@@ -3,8 +3,8 @@ Contributors: dgewirtz
 Donate link: http://zatzlabs.com/project-donations/
 Tags: donation, donations, paypal, donate, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
 Requires at least: 3.4
-Tested up to: 4.4
-Stable tag: 4.0.14
+Tested up to: 4.5
+Stable tag: 4.0.15
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -198,6 +198,7 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
 
 = 4.0.15 =
+* Added Donations This Month widget
 * Added failover PayPal security option with cURL TLS support
 * Added new Host Compatibility Options section in settings
 * Added host compatibility option and mechanism to process form data via initiating page or post rather than external PHP file
@@ -205,10 +206,10 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * Added host compatibility option and mechanism to generate unique transaction IDs in JavaScript rather than at the host
 * Added nicer styled beta labels
 * Added versioning to transaction IDs
+* Added option to obscurify donor names shown in logs
+* Donor names in logs now default to obscurified names unless otherwise turned off
 * Modified YouTube tutorial video in main admin panel to resize responsively
 * Changed name of main Debug Mode section to Debug Options
-* Option to obscurify donor names shown in logs
-* Donor names in logs now default to obscurified names unless otherwise turned off
 * Fixed a bug where UK Gift Aid selection was not being recorded. Unfortunately, the data wasn't actually written to any transaction logging due to a code typo, so there's no pre-existing gift aid data available for recovery.
 
 = 4.0.14 =
