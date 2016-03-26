@@ -38,6 +38,7 @@ require_once 'inc/currency.php';
 require_once 'inc/utilities.php';
 require_once 'inc/legacy.php';
 require_once 'inc/payment.php';
+require_once 'inc/widget.php';
 
 require_once 'legacy/dgx-donate.php';
 require_once 'legacy/dgx-donate-admin.php';

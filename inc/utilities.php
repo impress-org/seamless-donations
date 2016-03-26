@@ -1,5 +1,15 @@
 <?php
 
+/*
+ Seamless Donations by David Gewirtz, adopted from Allen Snook
+
+ Lab Notes: http://zatzlabs.com/lab-notes/
+ Plugin Page: http://zatzlabs.com/seamless-donations/
+ Contact: http://zatzlabs.com/contact-us/
+
+ Copyright (c) 2015 by David Gewirtz
+ */
+
 // quick array name-of function
 // from http://php.net/manual/en/function.key.php
 function seamless_donations_name_of ( array $a, $pos ) {
