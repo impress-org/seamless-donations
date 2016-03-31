@@ -186,85 +186,15 @@ function seamless_donations_admin_settings_section_emails( $_setup_object ) {
 //// SETTINGS - SECTION - PAYPAL ////
 function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 
+	$security = seamless_donations_get_security_status();
+
 	// Test email section
 	$section_desc = 'Set up your PayPal deposit information. ';
 	$section_desc .= '<span style="color:blue">Confused about setting up PayPal? ' . '</span>';
 	$section_desc .= '<A HREF="https://youtu.be/n8z0ejIEowo"><span style="color:blue">';
 	$section_desc .= 'Watch this video tutorial.</span></A>';
-	// SSL validation info
-	$section_desc .= '<p>';
-	// check to see if fopen is allowed to open remote URLs
-	if ( ini_get( 'allow_url_fopen' ) ) {
-		$section_desc .= 'fopen can open remote URLs: GOOD';
-	} else {
-		$section_desc .= 'fopen can open remote URLs: FAILED';
-	}
-	if ( function_exists( 'curl_init' ) ) {
-		$section_desc .= '<br>CURL exists in PHP: GOOD';
-		$ch = curl_init();
-		if ( $ch != false ) {
-			curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
-			curl_setopt( $ch, CURLOPT_POST, 1 );
-			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-			curl_setopt( $ch, CURLOPT_POSTFIELDS, $request );
-			curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 1 );
-			curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 2 );
-			curl_setopt( $ch, CURLOPT_FORBID_REUSE, 1 );
-			curl_setopt( $ch, CURLOPT_SSLVERSION, 6 ); //Integer NOT string TLS v1.2
 
-			// set TCP timeout to 30 seconds
-			curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 30 );
-			curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Connection: Close' ) );
-
-			$version      = curl_version();
-			$curl_compare = seamless_donations_version_compare( $version['version'], '7.34.0' );
-			$ssl_compare  = seamless_donations_version_compare( $version['ssl_version'], '1.0.1' );
-
-			if ( $curl_compare != '<' ) {
-				$section_desc .= '<br>cURL version: GOOD';
-			} else {
-				$section_desc .= '<br>cURL version: FAILED';
-			}
-			if ( $ssl_compare != '<' ) {
-				$section_desc .= '<br>OpenSSL version: GOOD';
-			} else {
-				$section_desc .= '<br>OpenSSL version: FAILED';
-			}
-
-			// http://zdebug.com/wp-content/plugins/seamless-donations/dgx-donate-paypalstd-ipn.php
-			// https://zdebug.com/wp-content/plugins/seamless-donations/pay/paypalstd/ipn.php
-
-			$section_desc .= "<br>PayPal requires TLSv1.2, which requires cURL 7.34.0 and OpenSSL 1.0.1.";
-			$section_desc .= "<br>See https://en.wikipedia.org/wiki/Comparison_of_TLS_implementations";
-			$section_desc .= "<br>for minimum versions for other implementations.";
-
-			curl_close( $ch );
-		}
-	} else {
-		$section_desc .= '<br>CURL exists in PHP: FAILED';
-	}
-	// check to see if https version of page exists
-	$http_ipn_url  = plugins_url( '/dgx-donate-paypalstd-ipn.php', dirname( __FILE__ ) );
-	$https_ipn_url = plugins_url( '/pay/paypalstd/ipn.php', dirname( __FILE__ ) );
-	$https_ipn_url = str_ireplace( 'http://', 'https://', $https_ipn_url); // force https check
-
-	$section_desc .= "<br>HTTP (not SSL) IPN: " . $http_ipn_url;
-	$test_result = file_get_contents( $http_ipn_url );
-	if ( $test_result !== false ) {
-		$section_desc .= "<br>HTTP (not SSL) IPN works: GOOD";
-	} else {
-		$section_desc .= "<br>HTTP (not SSL) IPN works: FAILED";
-	}
-
-	$section_desc .= "<br>HTTPS (SSL) IPN: " . $https_ipn_url;
-	$test_result = file_get_contents( $https_ipn_url );
-	if ( $test_result !== false ) {
-		$section_desc .= "<br>HTTPS (SSL) IPN works: GOOD";
-	} else {
-		$section_desc .= "<br>HTTPS (SSL) IPN works: FAILED";
-	}
-
-	$section_desc .= '</p>';
+	$section_desc .= seamless_donations_display_security_status( $security );
 
 	$settings_paypal_section
 		= array(
@@ -278,7 +208,10 @@ function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 		'LIVE'    => 'Live (Production Server)',
 		'SANDBOX' => 'Sandbox (Test Server)',
 	);
-	$notify_url           = plugins_url( '/dgx-donate-paypalstd-ipn.php', dirname( __FILE__ ) );
+
+	$http_ipn_url  = plugins_url( '/dgx-donate-paypalstd-ipn.php', dirname( __FILE__ ) );
+	$https_ipn_url = plugins_url( '/pay/paypalstd/ipn.php', dirname( __FILE__ ) );
+	$https_ipn_url = str_ireplace( 'http://', 'https://', $https_ipn_url ); // force https check
 
 	$settings_paypal_section = apply_filters(
 		'seamless_donations_admin_settings_section_paypal', $settings_paypal_section );
@@ -303,10 +236,20 @@ function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 			'label'    => $form_display_options,
 		),
 		array(
-			'field_id'     => 'settings_paypal_ipn_url',
-			'title'        => __( 'PayPal IPN URL', 'seamless-donations' ),
+			'field_id'     => 'settings_paypal_ipn_https_url',
+			'title'        => __( 'PayPal IPN URL (https)', 'seamless-donations' ),
 			'type'         => 'ipn_url_html',
-			'before_field' => $notify_url,
+			'description' => __(
+				'This is the SSL-compliant URL you should use with PayPal once you have a valid SSL certificate installed.' ),
+			'before_field' => $https_ipn_url,
+		),
+		array(
+			'field_id'     => 'settings_paypal_ipn_url',
+			'title'        => __( 'PayPal IPN URL (old)', 'seamless-donations' ),
+			'type'         => 'ipn_url_html',
+			'description' => __(
+				'<span style=\'color:red\'>YOU SHOULD NO LONGER USE THIS. This is the non-https IPN. This may not work in the Sandbox and will definitely not work on live sites after September 30, 2016.</span>' ),
+			'before_field' => $http_ipn_url,
 		),
 		array(
 			'field_id' => 'submit',
@@ -325,6 +268,8 @@ function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 function seamless_donations_admin_settings_section_hosts( $_setup_object ) {
 
 	$section_desc = 'Options that can help increase compatibility with your hosting provider.';
+	$section_desc .= ' Details on what these options do can be found in ';
+	$section_desc .= "<A HREF='http://zatzlabs.com/all-hosts-are-different/'>this Lab Note</A>.";
 
 	$hosts_section = array(
 		'section_id'  => 'seamless_donations_admin_settings_section_hosts',    // the section ID

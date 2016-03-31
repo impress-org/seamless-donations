@@ -116,7 +116,8 @@ class Seamless_Donations_PayPal_IPN_Handler {
 		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
 		$header .= "Content-Length: " . strlen( $request ) . "\r\n\r\n";
 
-		$response = '';
+		$required_curl_version = '7.34.0';
+		$response              = '';
 
 		dgx_donate_debug_log( "IPN chatback attempt via TLS..." );
 		$fp = fsockopen( $this->chat_back_url, 443, $errno, $errstr, 30 );
@@ -144,7 +145,14 @@ class Seamless_Donations_PayPal_IPN_Handler {
 			dgx_donate_debug_log( "IPN chatback attempt via SSL failed, attempting cURL..." );
 			$this->configure_for_production_or_test( 'curl' );
 			if ( function_exists( 'curl_init' ) ) {
-				$ch = curl_init( $this->chat_back_url );
+				$ch           = curl_init( $this->chat_back_url );
+				$version      = curl_version();
+				$curl_compare = seamless_donations_version_compare( $version['version'], $required_curl_version );
+
+				if ( $curl_compare == '<' ) {
+					curl_close( $ch );
+					$ch = false; // kill the curl call
+				}
 				if ( $ch != false ) {
 					curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
 					curl_setopt( $ch, CURLOPT_POST, 1 );

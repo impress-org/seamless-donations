@@ -197,6 +197,12 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
 
+= 4.0.16 =
+* Required update for PayPal https IPN compatibility
+* Added https verification and notification code to PayPal section in preparation for PayPal security update
+* Added https-compliant IPN URL to PayPal settings section in preparation for PayPal security update
+* Added helpful note to Host Compatibility Options section
+
 = 4.0.15 =
 * Added Donations This Month widget
 * Added failover PayPal security option with cURL TLS support

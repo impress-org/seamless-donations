@@ -117,6 +117,24 @@
     font-size: 64px;
 }
 
+.seamless-donations-warning-box {
+    width: 880px;
+    padding: 5px;
+    background-color: pink;
+    border-color: red;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.seamless-donations-success-box {
+    width: 880px;
+    padding: 5px;
+    background-color: lightgreen;
+    border-color: darkgreen;
+    border-style: solid;
+    border-width: 1px;
+}
+
 .seamless-donations-video-container {
     position: relative;
     padding-bottom: 56.25%;
