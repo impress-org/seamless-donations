@@ -92,6 +92,8 @@ Support for the following currencies is built into Seamless Donations 4.0:
 * Spanish translation, courtesy David Chávez (as of 4.0.2)
 * French translation, courtesy Etienne Lombard (as of 4.0.2)
 * Portuguese translation, courtesy Daniel Sousa (as of 4.0.9)
+* Hebrew translation, courtesy user semistazic (as of 4.0.16)
+* Norwegian translation, courtesy of an anonymous user (as of 4.0.16)
 * HUGE thank you to users doing these translations!
 * [Assist with translations](https://wordpress.org/support/topic/translators-check-in-here-so-youre-not-duplicating-work)
 

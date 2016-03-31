@@ -30,14 +30,15 @@ function seamless_donations_get_security_status() {
 	$https_ipn_url = str_ireplace( 'http://', 'https://', $https_ipn_url ); // force https check
 
 	// determine availability and version compatibility
-	if ( function_exists( 'curl_init' ) ) {
+	// all these calls are stfu'd because we have no idea what they'll do across the interwebs
+	if ( @function_exists( 'curl_init' ) ) {
 		$status['curl_enabled'] = true;
 
-		$ch = curl_init();
+		$ch = @curl_init();
 		if ( $ch != false ) {
-			$version                = curl_version();
-			$curl_compare           = seamless_donations_version_compare( $version['version'], $required_curl_version );
-			$ssl_compare            = seamless_donations_version_compare( $version['ssl_version'],
+			$version                = @curl_version();
+			$curl_compare           = @seamless_donations_version_compare( $version['version'], $required_curl_version );
+			$ssl_compare            = @seamless_donations_version_compare( $version['ssl_version'],
 			                                                              $required_ssl_version );
 			$status['curl_version'] = $version['version'];
 			$status['ssl_version']  = $version['ssl_version'];
@@ -49,19 +50,19 @@ function seamless_donations_get_security_status() {
 				$status['ssl_version_ok'] = true;
 			}
 
-			curl_close( $ch );
+			@curl_close( $ch );
 		}
 	}
 
-	if ( ini_get( 'allow_url_fopen' ) ) {
+	if ( @ini_get( 'allow_url_fopen' ) ) {
 		$status['file_get_contents_enabled'] = true;
 
-		$test_result = file_get_contents( $http_ipn_url );
+		$test_result = @file_get_contents( $http_ipn_url );
 		if ( $test_result !== false ) {
 			$status['http_ipn_works'] = true;
 		}
 
-		$test_result = file_get_contents( $https_ipn_url );
+		$test_result = @file_get_contents( $https_ipn_url );
 		if ( $test_result !== false ) {
 			$status['https_ipn_works'] = true;
 		}
@@ -71,12 +72,6 @@ function seamless_donations_get_security_status() {
 }
 
 function seamless_donations_display_security_status( $status ) {
-
-	//  $status['curl_enabled'] = false; // TEST DEBUG
-	//	$status['file_get_contents_enabled'] = false; // TEST DEBUG
-	//	$status['ssl_version_ok'] = false; // TEST DEBUG
-	//	$status['curl_version_ok'] = false; // TEST DEBUG
-	//	$status['https_ipn_works'] = false; // TEST DEBUG
 
 	if ( ! $status['file_get_contents_enabled'] || ! $status['curl_enabled'] || ! $status['ssl_version_ok'] ||
 	     ! $status['curl_version_ok'] || ! $status['https_ipn_works']
@@ -126,6 +121,7 @@ EOT;
 
 		// resources msg
 		$msg .= '<p><b>Additional reading from David: </b><br>' . <<<EOT
+		<a href="http://zatzlabs.com/adding-https-support-to-seamless-donations-4-0-16/">Adding https support to Seamless Donations 4.0.16</a><br>
 		<a href="http://www.zdnet.com/article/paypal-et-al-web-site-kicked-in-the-saas/">PayPal et al: When your web site gets kicked in the SaaS</a><br>
 		<a href="http://zatzlabs.com/tricks-i-learned-installing-my-first-ssl-certificate/">Tricks I learned installing my first SSL certificate</a><br>
 EOT;
