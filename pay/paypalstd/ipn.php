@@ -35,14 +35,38 @@ class Seamless_Donations_PayPal_IPN_Handler {
 
 	public function __construct() {
 
-		dgx_donate_debug_log( '----------------------------------------' );
-		dgx_donate_debug_log( 'PROCESSING PAYPAL IPN TRANSACTION' );
-		dgx_donate_debug_log( "Seamless Donations Version: " . dgx_donate_get_version() );
-
 		// Grab all the post data
 		$post = file_get_contents( 'php://input' );
 		parse_str( $post, $data );
 		$this->post_data = $data;
+
+		/* DEBUGGING STUFF
+		if ( isset( $_POST ) ) {
+			dgx_donate_debug_log( '$_POST array size: ' . count( $_POST ) );
+		} else {
+			dgx_donate_debug_log( '$_POST not set.' );
+		}
+		if ( isset( $_GET ) ) {
+			dgx_donate_debug_log( '$_GET array size: ' . count( $_GET ) );
+		} else {
+			dgx_donate_debug_log( '$_GET not set.' );
+		}
+		seamless_donations_post_array_to_log();
+		seamless_donations_force_a_backtrace_to_log();
+
+		seamless_donations_server_global_to_log( 'PHP_SELF', true );
+		seamless_donations_server_global_to_log( 'REQUEST_METHOD', true );
+		seamless_donations_server_global_to_log( 'HTTP_REFERER' , true);
+		seamless_donations_server_global_to_log( 'HTTPS' , true);
+		seamless_donations_server_global_to_log( 'REQUEST_URI', true);
+		seamless_donations_server_global_to_log( 'QUERY_STRING', true);
+		seamless_donations_server_global_to_log( 'DOCUMENT_ROOT', true);
+		seamless_donations_server_global_to_log( 'HTTP_ACCEPT', true);
+		seamless_donations_server_global_to_log( 'HTTP_HOST', true);
+		seamless_donations_server_global_to_log( 'HTTP_USER_AGENT', true);
+		seamless_donations_server_global_to_log( 'REMOTE_ADDR', true);
+		seamless_donations_server_global_to_log( 'REMOTE_HOST', true);
+		 END DEBUGGING BLOCK */
 
 		// Set up for production or test
 		$this->configure_for_production_or_test();
@@ -51,6 +75,10 @@ class Seamless_Donations_PayPal_IPN_Handler {
 		$this->get_ids_from_post();
 
 		if ( ! empty( $this->session_id ) ) {
+			dgx_donate_debug_log( '----------------------------------------' );
+			dgx_donate_debug_log( 'PROCESSING PAYPAL IPN TRANSACTION (HTTPS)' );
+			dgx_donate_debug_log( "Seamless Donations Version: " . dgx_donate_get_version() );
+
 			$response = $this->reply_to_paypal();
 
 			if ( "VERIFIED" == $response ) {
@@ -60,12 +88,12 @@ class Seamless_Donations_PayPal_IPN_Handler {
 			} else {
 				$this->handle_unrecognized_ipn( $response );
 			}
-		} else {
-			dgx_donate_debug_log( 'Null IPN (Empty session id).  Nothing to do.' );
-		}
 
-		do_action( 'seamless_donations_paypal_ipn_processing_complete', $this->session_id, $this->transaction_id );
-		dgx_donate_debug_log( 'IPN processing complete.' );
+			do_action( 'seamless_donations_paypal_ipn_processing_complete', $this->session_id, $this->transaction_id );
+			dgx_donate_debug_log( 'IPN processing complete.' );
+		} else {
+			// dgx_donate_debug_log( 'Null IPN (Empty session id).  Nothing to do.' );
+		}
 	}
 
 	function configure_for_production_or_test( $tls_or_ssl_or_curl = 'tls' ) {
@@ -328,7 +356,7 @@ class Seamless_Donations_PayPal_IPN_Handler {
 	}
 }
 
-$dgx_donate_ipn_responder = new Seamless_Donations_PayPal_IPN_Handler();
+$seamless_donations_ipn_responder = new Seamless_Donations_PayPal_IPN_Handler();
 
 /**
  * We cannot send nothing, so send back just a simple content-type message

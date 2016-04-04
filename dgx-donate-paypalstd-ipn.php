@@ -35,10 +35,6 @@ class Dgx_Donate_IPN_Handler {
 
 	public function __construct() {
 
-		dgx_donate_debug_log( '----------------------------------------' );
-		dgx_donate_debug_log( 'PROCESSING PAYPAL IPN TRANSACTION' );
-		dgx_donate_debug_log( "Seamless Donations Version: " . dgx_donate_get_version() );
-
 		// Grab all the post data
 		$post = file_get_contents( 'php://input' );
 		parse_str( $post, $data );
@@ -51,6 +47,10 @@ class Dgx_Donate_IPN_Handler {
 		$this->get_ids_from_post();
 
 		if ( ! empty( $this->session_id ) ) {
+			dgx_donate_debug_log( '----------------------------------------' );
+			dgx_donate_debug_log( 'PROCESSING PAYPAL IPN TRANSACTION' );
+			dgx_donate_debug_log( "Seamless Donations Version: " . dgx_donate_get_version() );
+
 			$response = $this->reply_to_paypal();
 
 			if ( "VERIFIED" == $response ) {
@@ -60,12 +60,11 @@ class Dgx_Donate_IPN_Handler {
 			} else {
 				$this->handle_unrecognized_ipn( $response );
 			}
+			do_action( 'seamless_donations_paypal_ipn_processing_complete', $this->session_id, $this->transaction_id );
+			dgx_donate_debug_log( 'IPN processing complete.' );
 		} else {
-			dgx_donate_debug_log( 'Null IPN (Empty session id).  Nothing to do.' );
+			// dgx_donate_debug_log( 'Null IPN (Empty session id).  Nothing to do.' );
 		}
-
-		do_action( 'seamless_donations_paypal_ipn_processing_complete', $this->session_id, $this->transaction_id );
-		dgx_donate_debug_log( 'IPN processing complete.' );
 	}
 
 	function configure_for_production_or_test( $tls_or_ssl_or_curl = 'tls' ) {

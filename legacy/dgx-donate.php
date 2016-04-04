@@ -139,6 +139,7 @@ function dgx_donate_debug_log ( $message ) {
 	update_option ( 'dgx_donate_log', $debug_log );
 }
 
+
 /******************************************************************************************************/
 function dgx_donate_get_meta_map () {
 
