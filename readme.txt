@@ -200,7 +200,9 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
 
 = 4.0.17 =
+* Added processing mode entry to log
 * Fixed spurious blank IPN log entries
+* Fixed bug that wrote incorrect IPN to log entries
 
 = 4.0.16 =
 * Required update for PayPal https IPN compatibility

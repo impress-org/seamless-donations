@@ -13,14 +13,22 @@
 function seamless_donations_process_payment() {
 
 	// Log
+	$paypal_server = get_option( 'dgx_donate_paypal_server' );
+
 	dgx_donate_debug_log( '----------------------------------------' );
 	dgx_donate_debug_log( 'DONATION TRANSACTION STARTED' );
-	dgx_donate_debug_log( 'Test mode: A' );
+	dgx_donate_debug_log( 'Processing mode: ' . $paypal_server );
 	$php_version = phpversion();
 	dgx_donate_debug_log( "PHP Version: $php_version" );
 	dgx_donate_debug_log( "Seamless Donations Version: " . dgx_donate_get_version() );
 	dgx_donate_debug_log( "User browser: " . seamless_donations_get_browser_name() );
-	dgx_donate_debug_log( 'IPN: ' . plugins_url( '/dgx-donate-paypalstd-ipn.php', __FILE__ ) );
+
+	$http_ipn_url  = plugins_url( '/dgx-donate-paypalstd-ipn.php', dirname( __FILE__ ) );
+	$https_ipn_url = plugins_url( '/pay/paypalstd/ipn.php', dirname( __FILE__ ) );
+	$https_ipn_url = str_ireplace( 'http://', 'https://', $https_ipn_url ); // force https check
+
+	dgx_donate_debug_log( 'IPN (http): ' . $http_ipn_url );
+	dgx_donate_debug_log( 'IPN (https): ' . $https_ipn_url );
 
 	$nonce_bypass = get_option( 'dgx_donate_ignore_form_nonce' );
 
@@ -469,8 +477,7 @@ function seamless_donations_process_payment() {
 		$post_args .= "currency_code=" . urlencode( $currency_code ) . "&";
 		$post_args .= "no_note=" . urlencode( '1' ) . "&";
 
-		$payPalServer = get_option( 'dgx_donate_paypal_server' );
-		if ( $payPalServer == "SANDBOX" ) {
+		if ( $paypal_server == "SANDBOX" ) {
 			$form_action = "https://www.sandbox.paypal.com/cgi-bin/webscr";
 		} else {
 			$form_action = "https://www.paypal.com/cgi-bin/webscr";
