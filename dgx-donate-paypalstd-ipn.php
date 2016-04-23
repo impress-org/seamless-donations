@@ -10,7 +10,7 @@
  */
 
 // Load WordPress
-include "../../../wp-config.php";
+require_once "../../../wp-config.php";
 
 // Load Seamless Donations Core
 require_once './inc/geography.php';
@@ -63,7 +63,7 @@ class Dgx_Donate_IPN_Handler {
 			do_action( 'seamless_donations_paypal_ipn_processing_complete', $this->session_id, $this->transaction_id );
 			dgx_donate_debug_log( 'IPN processing complete.' );
 		} else {
-			// dgx_donate_debug_log( 'Null IPN (Empty session id).  Nothing to do.' );
+			dgx_donate_debug_log( 'Null IPN (Empty session id).  Nothing to do.' );
 		}
 	}
 
@@ -319,6 +319,7 @@ class Dgx_Donate_IPN_Handler {
 	}
 }
 
+dgx_donate_debug_log("dgx-donate-paypalstd-ipn.php called outside of constructor.");
 $dgx_donate_ipn_responder = new Dgx_Donate_IPN_Handler();
 
 /**

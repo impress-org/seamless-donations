@@ -17,7 +17,7 @@ function seamless_donations_admin_settings( $setup_object ) {
 	// create the admin tab menu
 	seamless_donations_admin_settings_menu( $setup_object );
 
-	// create the sections - tweaks disabled because it doesn't work right
+	// create the sections
 	seamless_donations_admin_settings_section_emails( $setup_object );
 	seamless_donations_admin_settings_section_paypal( $setup_object );
 	seamless_donations_admin_settings_section_hosts( $setup_object );
@@ -186,15 +186,21 @@ function seamless_donations_admin_settings_section_emails( $_setup_object ) {
 //// SETTINGS - SECTION - PAYPAL ////
 function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 
-	$security = seamless_donations_get_security_status();
-
 	// Test email section
 	$section_desc = 'Set up your PayPal deposit information. ';
 	$section_desc .= '<span style="color:blue">Confused about setting up PayPal? ' . '</span>';
 	$section_desc .= '<A HREF="https://youtu.be/n8z0ejIEowo"><span style="color:blue">';
 	$section_desc .= 'Watch this video tutorial.</span></A>';
 
-	$section_desc .= seamless_donations_display_security_status( $security );
+	// the following code is indicative of a minor architectural flaw in Seamless Donations
+	// in that all admin pages are always instantiated. The approach doesn't seem to cause
+	// too much of a load, except for the following, which calls the IPN processor.
+	// This poorly optimized approach is being left in because callbacks might have been
+	// used by user code that expected this behavior and changing it could cause breakage
+	if($_REQUEST['page'] == 'seamless_donations_admin_settings') {
+		$security = seamless_donations_get_security_status();
+		$section_desc .= seamless_donations_display_security_status( $security );
+	}
 
 	$settings_paypal_section
 		= array(

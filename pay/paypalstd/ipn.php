@@ -92,7 +92,7 @@ class Seamless_Donations_PayPal_IPN_Handler {
 			do_action( 'seamless_donations_paypal_ipn_processing_complete', $this->session_id, $this->transaction_id );
 			dgx_donate_debug_log( 'IPN processing complete.' );
 		} else {
-			// dgx_donate_debug_log( 'Null IPN (Empty session id).  Nothing to do.' );
+			dgx_donate_debug_log( 'Null IPN (Empty session id).  Nothing to do.' );
 		}
 	}
 
@@ -355,7 +355,7 @@ class Seamless_Donations_PayPal_IPN_Handler {
 		dgx_donate_debug_log( "==> " . $paypal_response );
 	}
 }
-
+dgx_donate_debug_log("pay/paypalstd/ipn.php called outside of constructor.");
 $seamless_donations_ipn_responder = new Seamless_Donations_PayPal_IPN_Handler();
 
 /**
