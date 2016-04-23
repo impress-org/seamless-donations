@@ -197,9 +197,11 @@ function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 	// too much of a load, except for the following, which calls the IPN processor.
 	// This poorly optimized approach is being left in because callbacks might have been
 	// used by user code that expected this behavior and changing it could cause breakage
-	if($_REQUEST['page'] == 'seamless_donations_admin_settings') {
-		$security = seamless_donations_get_security_status();
-		$section_desc .= seamless_donations_display_security_status( $security );
+	if ( isset( $_REQUEST['page'] ) ) {
+		if ( $_REQUEST['page'] == 'seamless_donations_admin_settings' ) {
+			$security = seamless_donations_get_security_status();
+			$section_desc .= seamless_donations_display_security_status( $security );
+		}
 	}
 
 	$settings_paypal_section
@@ -245,7 +247,7 @@ function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 			'field_id'     => 'settings_paypal_ipn_https_url',
 			'title'        => __( 'PayPal IPN URL (https)', 'seamless-donations' ),
 			'type'         => 'ipn_url_html',
-			'description' => __(
+			'description'  => __(
 				'This is the SSL-compliant URL you should use with PayPal once you have a valid SSL certificate installed.' ),
 			'before_field' => $https_ipn_url,
 		),
@@ -253,7 +255,7 @@ function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 			'field_id'     => 'settings_paypal_ipn_url',
 			'title'        => __( 'PayPal IPN URL (old)', 'seamless-donations' ),
 			'type'         => 'ipn_url_html',
-			'description' => __(
+			'description'  => __(
 				'<span style=\'color:red\'>YOU SHOULD NO LONGER USE THIS. This is the non-https IPN. This may not work in the Sandbox and will definitely not work on live sites after September 30, 2016.</span>' ),
 			'before_field' => $http_ipn_url,
 		),
