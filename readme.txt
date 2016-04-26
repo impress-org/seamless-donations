@@ -203,7 +203,7 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 * Added processing mode entry to log
 * Fixed spurious blank IPN log entries
 * Fixed bug that wrote incorrect IPN to log entries
-* Fixed bug introduced in 4.0.16 that substantially slowed processing by calling both IPN handlers on every page
+* Fixed nasty little bug introduced in 4.0.16 that substantially slowed processing by calling both IPN handlers on every page
 
 = 4.0.16 =
 * Required update for PayPal https IPN compatibility
