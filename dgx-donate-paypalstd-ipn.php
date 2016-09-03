@@ -119,11 +119,18 @@ class Dgx_Donate_IPN_Handler {
 
 		dgx_donate_debug_log( "IPN chatback attempt via TLS..." );
 		$fp = fsockopen( $this->chat_back_url, 443, $errno, $errstr, 30 );
-		if ( ! $fp ) {
-			dgx_donate_debug_log( "IPN chatback attempt via SSL..." );
-			$this->configure_for_production_or_test( 'ssl' );
-			$fp = stream_socket_client( $this->chat_back_url, $errno, $errstr, 30 );
+
+		$obsolete_legacy_ssl_mode = get_option( 'dgx_donate_obsolete_legacy_ssl_mode' );
+		// if the option isn't defined, returns false, if defined = '1'
+		// this option will run the SSL test, which probably should never be run
+		if ( $obsolete_legacy_ssl_mode == '1' ) {
+					if ( ! $fp ) {
+						dgx_donate_debug_log( "IPN chatback attempt via SSL..." );
+						$this->configure_for_production_or_test( 'ssl' );
+						$fp = stream_socket_client( $this->chat_back_url, $errno, $errstr, 30 );
+					}
 		}
+
 		if ( $fp ) {
 			dgx_donate_debug_log( "IPN chatback attempt completed. Checking response..." );
 			fputs( $fp, $header . $request );

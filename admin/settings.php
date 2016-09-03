@@ -97,6 +97,8 @@ function validate_page_slug_seamless_donations_admin_settings_callback(
 			}
 			update_option( 'dgx_donate_paypal_email', $email );
 			update_option( 'dgx_donate_paypal_server', $option );
+			update_option( 'dgx_donate_obsolete_legacy_ssl_mode',
+			               $_submitted_array[ $section ]['dgx_donate_obsolete_legacy_ssl_mode'] );
 			$_setup_object->setSettingNotice( 'Form updated successfully.', 'updated' );
 			break;
 		case 'seamless_donations_admin_settings_section_hosts': // SAVE HOSTS //
@@ -258,6 +260,17 @@ function seamless_donations_admin_settings_section_paypal( $_setup_object ) {
 			'description'  => __(
 				'<span style=\'color:red\'>YOU SHOULD NO LONGER USE THIS. This is the non-https IPN. This may not work in the Sandbox and will definitely not work on live sites after September 30, 2016.</span>' ),
 			'before_field' => $http_ipn_url,
+		),
+		array(
+			'field_id'    => 'dgx_donate_obsolete_legacy_ssl_mode',
+			'title'       => __( 'PayPal SSL mode (old)', 'seamless-donations' ),
+			'type'        => 'checkbox',
+			'label'       => __( 'Enable obsolete legacy SSL mode', 'seamless-donations' ).
+			                 seamless_donations_display_label(),
+			'default'     => false,
+			'description' => __(
+				'<span style=\'color:red\'>YOU SHOULD NOT USE THIS UNLESS TOLD TO BY THE DEVELOPER. This is an SSL mode that is obsolete. This may not work in the Sandbox and will definitely not work on live sites after September 30, 2016.</span>' ),
+			'after_label' => '<br />',
 		),
 		array(
 			'field_id' => 'submit',
