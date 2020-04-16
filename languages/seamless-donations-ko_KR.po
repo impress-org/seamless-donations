@@ -1,0 +1,1893 @@
+# Copyright (C) 2015 Seamless Donations
+# This file is distributed under the same license as the Seamless Donations package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Seamless Donations 4.0.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/seamless-"
+"donations\n"
+"POT-Creation-Date: 2015-09-09 21:13:29+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2020-04-15 19:22-0700\n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko_KR\n"
+
+#: admin/addons.php:28
+msgid "Add-ons"
+msgstr "애드온"
+
+#: admin/donations.php:42 cpt/cpt-donations.php:24 cpt/cpt-donors.php:310
+#: legacy/admin-views/donations.php:13 legacy/admin-views/donations.php:14
+#: legacy/admin-views/donations.php:25 legacy/admin-views/main.php:47
+msgid "Donations"
+msgstr "기부"
+
+#: admin/donations.php:67 admin/donors.php:67 admin/forms.php:129
+#: admin/funds.php:67 admin/licenses.php:56 admin/logs.php:56
+#: admin/settings.php:116 admin/templates.php:126 admin/thanks.php:71
+msgid "There was an unexpected error in your entry."
+msgstr "항목에 예기치 않은 오류가 발생했습니다."
+
+#: admin/donations.php:77
+msgid "Where Did Donations Go?"
+msgstr "기부금 메뉴는 어디에 있나요?"
+
+#: admin/donations.php:88 admin/donors.php:88 admin/funds.php:88
+msgid "To a menu on the Dashboard"
+msgstr "대시보드의 메뉴로"
+
+#: admin/donations.php:89
+msgid "Donations is now a custom post type available from the main dashboard."
+msgstr ""
+"기부금은 이제 사용자 지정 게시물 유형으로 주 대시보드에서 사용할 수 있습니다."
+
+#: admin/donations.php:96 admin/donors.php:96 admin/funds.php:96
+msgid "Permanently Hide This Tab"
+msgstr "이 탭을 영구적으로 숨김"
+
+#: admin/donors.php:42 cpt/cpt-donors.php:25 legacy/admin-views/donors.php:13
+#: legacy/admin-views/donors.php:14 legacy/admin-views/donors.php:25
+#: legacy/admin-views/main.php:51
+msgid "Donors"
+msgstr "기부자"
+
+#: admin/donors.php:77
+msgid "Where Did Donors Go?"
+msgstr "기부자 메뉴는 어디에 있나요?"
+
+#: admin/donors.php:89
+msgid "Donors is now a custom post type available from the main dashboard."
+msgstr ""
+"기부자는 이제 사용자 지정 게시물 유형으로 주 대시보드에서 사용할 수 있습니다."
+
+#: admin/forms.php:36 legacy/admin-views/form-options.php:80
+#: legacy/admin-views/form-options.php:81
+#: legacy/admin-views/form-options.php:165 legacy/admin-views/main.php:67
+msgid "Form Options"
+msgstr "폼 옵션"
+
+#: admin/forms.php:69
+msgid "At least one giving level is required."
+msgstr "하나 이상의 기부 수준이 필요합니다."
+
+#: admin/forms.php:73 admin/settings.php:71 admin/settings.php:88
+#: admin/templates.php:64 admin/templates.php:80 admin/templates.php:100
+#: admin/thanks.php:60
+msgid "There were errors in your submission."
+msgstr "제출에 오류가 있습니다."
+
+#: admin/forms.php:141 legacy/admin-views/form-options.php:225
+msgid "Giving Levels"
+msgstr "나눔 수준"
+
+#: admin/forms.php:162
+msgid "Display Levels"
+msgstr "수준 보여주기"
+
+#: admin/forms.php:171
+msgid "Save Giving Levels"
+msgstr "기부 수준 저장"
+
+#: admin/forms.php:191
+msgid "Defaults"
+msgstr "기본값"
+
+#: admin/forms.php:201
+msgid "Default Currency"
+msgstr "기본 통화"
+
+#: admin/forms.php:208
+msgid "Default Country"
+msgstr "기본 국가"
+
+#: admin/forms.php:216
+msgid "Save Defaults"
+msgstr "기본값으로 저장"
+
+#: admin/forms.php:235 legacy/admin-views/form-options.php:179
+msgid "Form Fields and Sections"
+msgstr "양식 필드 및 섹션"
+
+#: admin/forms.php:255 legacy/admin-views/form-options.php:15
+msgid "Designated Funds Checkbox and Section"
+msgstr "지정된 자금 확인란 및 섹션"
+
+#: admin/forms.php:262 legacy/admin-views/form-options.php:21
+msgid "Repeating Donation Checkbox"
+msgstr "반복 기부 확인란"
+
+#: admin/forms.php:269 legacy/admin-views/form-options.php:27
+msgid "Tribute Gift Checkbox and Section"
+msgstr "추모 선물 확인란 및 섹션"
+
+#: admin/forms.php:276 legacy/admin-views/form-options.php:33
+msgid "Employer Match Section"
+msgstr "고용주 매치 섹션"
+
+#: admin/forms.php:283 legacy/admin-views/form-options.php:39
+msgid "Donor Telephone Field"
+msgstr "기부자 전화 필드"
+
+#: admin/forms.php:290 legacy/admin-views/form-options.php:45
+msgid "Donor Employer Field"
+msgstr "기부자 고용주 필드"
+
+#: admin/forms.php:297 legacy/admin-views/form-options.php:51
+msgid "Donor Occupation Field"
+msgstr "기부자 직업 분야"
+
+#: admin/forms.php:304 legacy/admin-views/form-options.php:57
+msgid "Mailing List Checkbox"
+msgstr "메일링 리스트 확인란"
+
+#: admin/forms.php:311 legacy/admin-views/form-options.php:63
+msgid "Anonymous Donation Checkbox"
+msgstr "익명 기부 확인란"
+
+#: admin/forms.php:318 legacy/admin-views/form-options.php:69
+msgid "Donor Address Section"
+msgstr "기부자 주소 섹션"
+
+#: admin/forms.php:326
+msgid "Save Fields"
+msgstr "필드 저장"
+
+#: admin/forms.php:345
+msgid "Form Tweaks"
+msgstr "양식 세부조작"
+
+#: admin/forms.php:354
+msgid "Label Tag"
+msgstr "레이블 태그"
+
+#: admin/forms.php:356
+msgid "Add label tag to input form (may improve form layout for some themes)"
+msgstr ""
+"입력 양식에 레이블 태그를 추가합니다(일부 테마에서 양식 레이아웃을 개선할 수 "
+"있음)"
+
+#: admin/forms.php:363 admin/settings.php:248
+msgid "Save Tweaks"
+msgstr "세부조작 저장"
+
+#: admin/funds.php:42 cpt/cpt-funds.php:24 legacy/admin-views/funds.php:13
+#: legacy/admin-views/funds.php:14 legacy/admin-views/main.php:55
+msgid "Funds"
+msgstr "기금"
+
+#: admin/funds.php:77
+msgid "Where Did Funds Go?"
+msgstr "기금 메뉴는 어디에 있나요?"
+
+#: admin/funds.php:89
+msgid "Funds is now a custom post type available from the main dashboard."
+msgstr ""
+"기금은 이제 사용자 지정 게시물 유형으로 주 대시보드에서 사용할 수 있습니다."
+
+#: admin/help.php:17 legacy/admin-views/help.php:13
+#: legacy/admin-views/help.php:14 legacy/admin-views/help.php:51
+#: legacy/admin-views/main.php:79
+msgid "Help/FAQ"
+msgstr "도움말/자주 묻는 질문"
+
+#: admin/licenses.php:33 admin/licenses.php:80
+msgid "Licenses"
+msgstr "라이센스"
+
+#: admin/licenses.php:70
+msgid "License Activation"
+msgstr "라이센스 활성화"
+
+#: admin/licenses.php:82
+msgid "Nothing has been installed or activated that requires a license."
+msgstr "라이센스가 필요한 확장이 설치 되거나 활성화 되지 않았습니다."
+
+#: admin/logs.php:33 legacy/admin-views/log.php:13
+#: legacy/admin-views/log.php:14 legacy/admin-views/log.php:45
+#: legacy/admin-views/main.php:75
+msgid "Log"
+msgstr "로그"
+
+#: admin/logs.php:66
+msgid "Log Data"
+msgstr "로그 데이터"
+
+#: admin/logs.php:74 legacy/admin-views/log.php:57
+msgid "The log is empty."
+msgstr "로그가 비어 있습니다."
+
+#: admin/logs.php:89 admin/logs.php:96
+msgid "Seamless Donations Log Data"
+msgstr "Seamless Donations 로그 데이터"
+
+#: admin/logs.php:113
+msgid "Delete Log"
+msgstr "로그 삭제"
+
+#: admin/logs.php:118
+msgid "System Information"
+msgstr "시스템 정보"
+
+#. Plugin Name of the plugin/theme
+#: admin/main.php:27 legacy/admin-views/main.php:13
+#: legacy/admin-views/main.php:14
+msgid "Seamless Donations"
+msgstr "Seamless Donations"
+
+#: admin/settings.php:40 legacy/admin-views/main.php:71
+#: legacy/admin-views/settings.php:14 legacy/admin-views/settings.php:15
+#: legacy/admin-views/settings.php:61
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:75
+msgid "Settings"
+msgstr "설정"
+
+#: admin/settings.php:67 admin/settings.php:84 admin/templates.php:60
+#: admin/templates.php:76
+msgid "Valid email address required."
+msgstr "유효한 이메일 주소가 필요합니다."
+
+#: admin/settings.php:131 legacy/admin-views/settings.php:75
+msgid "Notification Emails"
+msgstr "이메일 알림"
+
+#: admin/settings.php:141 legacy/admin-views/settings.php:83
+msgid "Notification Email Address(es)"
+msgstr "알림 이메일 주소(들)"
+
+#: admin/settings.php:142 legacy/admin-views/settings.php:85
+msgid ""
+"Email address(es) that should be notified (e.g. administrators) of new "
+"donations."
+msgstr "새 기부금에 대해 알려야 하는 (예: 관리자) 이메일 주소(들)."
+
+#: admin/settings.php:152 legacy/admin-views/donations.php:224
+#: legacy/admin-views/donors.php:213 legacy/admin-views/form-options.php:212
+#: legacy/admin-views/form-options.php:238
+#: legacy/admin-views/form-options.php:251
+#: legacy/admin-views/form-options.php:279 legacy/admin-views/settings.php:88
+#: legacy/admin-views/settings.php:99 legacy/admin-views/settings.php:127
+msgid "Update"
+msgstr "업데이트"
+
+#: admin/settings.php:172
+msgid "PayPal Settings"
+msgstr "페이팔 설정"
+
+#: admin/settings.php:189 dgx-donate-paypalstd.php:68
+msgid "PayPal Email Address"
+msgstr "페이팔 이메일 주소"
+
+#: admin/settings.php:190 dgx-donate-paypalstd.php:71
+msgid "The email address at which to receive payments."
+msgstr "결제를 받을 이메일 주소입니다."
+
+#: admin/settings.php:198
+msgid "PayPal Interface Mode"
+msgstr "페이팔 인터페이스 모드"
+
+#: admin/settings.php:205
+msgid "PayPal IPN URL"
+msgstr "페이팔 IPN URL"
+
+#: admin/settings.php:212
+msgid "Save PayPal Settings"
+msgstr "페이팔 설정 저장"
+
+#: admin/settings.php:230
+msgid "Setting Tweaks"
+msgstr "설정 세부조작"
+
+#: admin/settings.php:239
+msgid "Compact Menus"
+msgstr "컴팩트 메뉴"
+
+#: admin/settings.php:241
+msgid ""
+"Enable compact menu (tucks Donors, Funds, and Donations under Seamless "
+"Donations menu)"
+msgstr ""
+"컴팩트 한 메뉴 활성화 (Seamless Donations 메뉴에 기부자, 기금 및 기부 메뉴가 "
+"위치)"
+
+#: admin/settings.php:270
+msgid "Restore Hidden Tabs"
+msgstr "숨겨진 탭 복원"
+
+#: admin/settings.php:280
+msgid "Show All Tabs"
+msgstr "모든 탭 표시"
+
+#: admin/settings.php:299 admin/settings.php:308
+msgid "Debug Mode"
+msgstr "디버그 모드"
+
+#: admin/settings.php:310
+msgid "Enable debug mode"
+msgstr "디버그 모드 활성화"
+
+#: admin/settings.php:317
+msgid "Save Debug Mode"
+msgstr "디버그 모드 저장"
+
+#: admin/templates.php:38
+msgid "Thank You Templates"
+msgstr "감사장 템플릿"
+
+#: admin/templates.php:96
+msgid "This field must not be empty."
+msgstr "이 필드는 비어 있으면 안 됩니다."
+
+#: admin/templates.php:140 legacy/admin-views/templates.php:221
+msgid "Send a Test Email"
+msgstr "테스트 이메일 보내기"
+
+#: admin/templates.php:149 legacy/admin-views/templates.php:228
+msgid "Email Address"
+msgstr "이메일 주소"
+
+#: admin/templates.php:150 legacy/admin-views/templates.php:230
+msgid "The email address to receive the test message."
+msgstr "테스트 메시지를 받을 이메일 주소입니다."
+
+#: admin/templates.php:159 legacy/admin-views/templates.php:233
+msgid "Send Test Email"
+msgstr "테스트 이메일 보내기"
+
+#: admin/templates.php:181 legacy/admin-views/templates.php:186
+msgid "Email Template"
+msgstr "이메일 템플릿"
+
+#: admin/templates.php:193 legacy/admin-views/templates.php:31
+msgid "From / Reply-To Name"
+msgstr "From / Reply-To 이름"
+
+#: admin/templates.php:194 legacy/admin-views/templates.php:32
+msgid ""
+"The name the thank you email should appear to come from (e.g. your "
+"organization name or your name)."
+msgstr ""
+"감사 이메일의 이름은 (예: 조직 이름 또는 이름)에서 온 것으로 나타납니다."
+
+#: admin/templates.php:205 legacy/admin-views/templates.php:38
+msgid "From / Reply-To Email Address"
+msgstr "From / Reply-To 이메일 주소"
+
+#: admin/templates.php:206 legacy/admin-views/templates.php:39
+msgid "The email address the thank you email should appear to come from."
+msgstr "감사 이메일의 이메일 주소가 보낸 것으로 나타납니다."
+
+#: admin/templates.php:217 legacy/admin-views/templates.php:45
+msgid "Subject"
+msgstr "제목"
+
+#: admin/templates.php:218 legacy/admin-views/templates.php:46
+msgid "The subject of the email (e.g. Thank You for Your Donation)."
+msgstr "이메일의 제목(예: 기부해 주셔서 감사합니다)."
+
+#: admin/templates.php:221
+msgid "Thank you for your donation"
+msgstr "기부해 주셔서 감사합니다"
+
+#: admin/templates.php:229 legacy/admin-views/templates.php:52
+msgid "Body"
+msgstr "본문"
+
+#: admin/templates.php:230 legacy/admin-views/templates.php:53
+msgid "The body of the email message to all donors."
+msgstr "모든 기부자에게 보내는 이메일 메시지의 본문입니다."
+
+#: admin/templates.php:245 legacy/admin-views/templates.php:60
+msgid "Recurring Donations"
+msgstr "반복 기부"
+
+#: admin/templates.php:246 legacy/admin-views/templates.php:61
+msgid ""
+"This message will be included when the donor elects to make their donation "
+"recurring."
+msgstr "이 메시지는 기부자가 기부를 반복하기로 할 때 포함됩니다."
+
+#: admin/templates.php:249 legacy/dgx-donate-admin.php:59
+#: seamless-donations.php:334
+msgid ""
+"Thank you for electing to have your donation automatically repeated each "
+"month."
+msgstr "매달 자동으로 정기 기부를 결정 해주셔서 감사합니다."
+
+#: admin/templates.php:259 cpt/cpt-donations.php:309
+#: legacy/admin-views/donation-detail.php:92
+#: legacy/admin-views/templates.php:68
+msgid "Designated Fund"
+msgstr "지정기금"
+
+#: admin/templates.php:260 legacy/admin-views/templates.php:69
+msgid ""
+"This message will be included when the donor designates their donation to a "
+"specific fund."
+msgstr "이 메시지는 기부자가 특정 기금에 기부를 지정할 때 포함됩니다."
+
+#: admin/templates.php:263
+msgid "Your donation has been designated to the [fund] fund."
+msgstr "귀하의 기부금이 [fund] 기금에 지정되었습니다."
+
+#: admin/templates.php:271 legacy/admin-views/templates.php:76
+msgid "Anonymous Donations"
+msgstr "익명 기부"
+
+#: admin/templates.php:272 legacy/admin-views/templates.php:77
+msgid ""
+"This message will be included when the donor requests their donation get "
+"kept anonymous."
+msgstr "이 메시지는 기부자가 익명으로 기부를 요청할 때 포함됩니다."
+
+#: admin/templates.php:285 legacy/admin-views/templates.php:84
+msgid "Mailing List Join"
+msgstr "메일링 리스트 가입"
+
+#: admin/templates.php:286 legacy/admin-views/templates.php:85
+msgid ""
+"This message will be included when the donor elects to join the mailing list."
+msgstr "이 메시지는 기부자가 메일링 리스트에 가입하도록 선택하면 포함됩니다."
+
+#: admin/templates.php:300 cpt/cpt-donations.php:318
+#: legacy/admin-views/donation-detail.php:101
+#: legacy/admin-views/templates.php:92 legacy/dgx-donate.php:583
+msgid "Employer Match"
+msgstr "고용주 매치"
+
+#: admin/templates.php:301 legacy/admin-views/templates.php:93
+msgid ""
+"This message will be included when the donor selects the employer match."
+msgstr "이 메시지는 기부자가 고용주 매치를 선택할 때 포함됩니다."
+
+#: admin/templates.php:304
+msgid ""
+"You have specified that your employer matches some or all of your donation."
+msgstr ""
+"귀하는 고용주가 기부금의 일부 또는 전부에 대해 매치하여 기금한다고 명시했습니"
+"다."
+
+#: admin/templates.php:313 cpt/cpt-donations.php:406
+#: legacy/admin-views/donation-detail.php:189
+#: legacy/admin-views/templates.php:100 legacy/dgx-donate.php:489
+#: seamless-donations-form.php:292
+msgid "Tribute Gift"
+msgstr "추모 선물"
+
+#: admin/templates.php:314 legacy/admin-views/templates.php:101
+msgid ""
+"This message will be included when the donor elects to make their donation a "
+"tribute gift."
+msgstr "이 메시지는 기부자가 기부를 추모 선물로 삼기로 결정할 때 포함됩니다."
+
+#: admin/templates.php:327 legacy/admin-views/templates.php:108
+msgid "Closing"
+msgstr "폐장 시간"
+
+#: admin/templates.php:328 legacy/admin-views/templates.php:109
+msgid "The closing text of the email message to all donors."
+msgstr "모든 기부자에게 보내는 이메일 메시지의 닫는 내용 입니다."
+
+#: admin/templates.php:331
+msgid "Thanks again for your support!"
+msgstr "당신의 지원을 다시 한번 감사드립니다!"
+
+#: admin/templates.php:339 legacy/admin-views/templates.php:116
+msgid "Signature"
+msgstr "서명"
+
+#: admin/templates.php:340 legacy/admin-views/templates.php:117
+msgid "The signature at the end of the email message to all donors."
+msgstr "모든 기부자에게 보내는 이메일 메시지 끝에 있는 서명입니다."
+
+#: admin/templates.php:343
+msgid "Director of Donor Relations"
+msgstr "기부 관계 디렉터"
+
+#: admin/templates.php:351 admin/thanks.php:104
+#: legacy/admin-views/funds.php:167 legacy/admin-views/templates.php:209
+msgid "Save Changes"
+msgstr "변경사항 저장"
+
+#: admin/thanks.php:33 admin/thanks.php:85 legacy/admin-views/completed.php:14
+#: legacy/admin-views/completed.php:15 legacy/admin-views/completed.php:53
+#: legacy/admin-views/completed.php:97 legacy/admin-views/main.php:63
+msgid "Thank You Page"
+msgstr "감사 페이지"
+
+#: admin/thanks.php:56
+msgid "Field must not be empty."
+msgstr "필드가 비어 있지 않아야 합니다."
+
+#: admin/thanks.php:95 legacy/admin-views/completed.php:77
+msgid "Thank You Page Text"
+msgstr "감사장 페이지 텍스트"
+
+#: admin/thanks.php:96
+msgid "The text to display to a donor after a donation is completed."
+msgstr "기부가 완료된 후 기부자에게 표시할 내용 입니다."
+
+#: cpt/cpt-donations.php:25 cpt/cpt-donations.php:26 cpt/cpt-donations.php:27
+#: cpt/cpt-donations.php:28 cpt/cpt-donations.php:29
+#: dgx-donate-paypalstd.php:202 seamless-donations-form.php:668
+msgid "Donation"
+msgstr "기부"
+
+#: cpt/cpt-donations.php:30
+msgid "Search donations"
+msgstr "기부 검색"
+
+#: cpt/cpt-donations.php:31
+msgid "No donations found"
+msgstr "기부금을 찾을 수 없음"
+
+#: cpt/cpt-donations.php:32
+msgid "No donations found in Trash"
+msgstr "휴지통에서 기부금을 찾을 수 없음"
+
+#: cpt/cpt-donations.php:34
+msgid "donation"
+msgstr "기부"
+
+#: cpt/cpt-donations.php:108
+msgid "Time/Date"
+msgstr "시간/날짜"
+
+#: cpt/cpt-donations.php:109 cpt/cpt-donors.php:26 cpt/cpt-donors.php:27
+#: cpt/cpt-donors.php:28 cpt/cpt-donors.php:29 cpt/cpt-donors.php:30
+#: cpt/cpt-donors.php:107 legacy/admin-views/donations.php:119
+#: legacy/admin-views/main.php:117
+msgid "Donor"
+msgstr "기부자"
+
+#: cpt/cpt-donations.php:110 cpt/cpt-donors.php:245 cpt/cpt-funds.php:25
+#: cpt/cpt-funds.php:26 cpt/cpt-funds.php:27 cpt/cpt-funds.php:28
+#: cpt/cpt-funds.php:29 legacy/admin-views/donor-detail.php:47
+#: legacy/admin-views/donors.php:120
+msgid "Fund"
+msgstr "기금"
+
+#: cpt/cpt-donations.php:111 cpt/cpt-donations.php:283 cpt/cpt-donors.php:246
+#: legacy/admin-views/donation-detail.php:66
+#: legacy/admin-views/donations.php:120 legacy/admin-views/donor-detail.php:48
+#: legacy/admin-views/donors.php:121 legacy/admin-views/main.php:118
+msgid "Amount"
+msgstr "금액"
+
+#: cpt/cpt-donations.php:276 cpt/cpt-donations.php:452 cpt/cpt-donors.php:244
+#: legacy/admin-views/donation-detail.php:59
+#: legacy/admin-views/donation-detail.php:233
+#: legacy/admin-views/donor-detail.php:46 legacy/admin-views/main.php:116
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:72
+msgid "Date"
+msgstr "날짜"
+
+#: cpt/cpt-donations.php:288 cpt/cpt-donations.php:299
+#: cpt/cpt-donations.php:316 cpt/cpt-donations.php:345
+#: cpt/cpt-donations.php:354 cpt/cpt-donations.php:416
+#: legacy/admin-views/donation-detail.php:71
+#: legacy/admin-views/donation-detail.php:82
+#: legacy/admin-views/donation-detail.php:99
+#: legacy/admin-views/donation-detail.php:128
+#: legacy/admin-views/donation-detail.php:137
+#: legacy/admin-views/donation-detail.php:199
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:104
+msgid "Yes"
+msgstr "예"
+
+#: cpt/cpt-donations.php:290 cpt/cpt-donations.php:297
+#: cpt/cpt-donations.php:314 cpt/cpt-donations.php:343
+#: cpt/cpt-donations.php:351 cpt/cpt-donations.php:418
+#: legacy/admin-views/donation-detail.php:73
+#: legacy/admin-views/donation-detail.php:80
+#: legacy/admin-views/donation-detail.php:97
+#: legacy/admin-views/donation-detail.php:126
+#: legacy/admin-views/donation-detail.php:134
+#: legacy/admin-views/donation-detail.php:201
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:105
+msgid "No"
+msgstr "아니오"
+
+#: cpt/cpt-donations.php:292 legacy/admin-views/donation-detail.php:75
+msgid "Add to Mailing List?"
+msgstr "메일링 리스트에 추가 하시겠습니까?"
+
+#: cpt/cpt-donations.php:301 legacy/admin-views/donation-detail.php:84
+msgid "Would like to remain anonymous?"
+msgstr "익명으로 유지하고 싶으신가요?"
+
+#: cpt/cpt-donations.php:304 cpt/cpt-donors.php:258
+#: legacy/admin-views/donation-detail.php:87
+#: legacy/admin-views/donations.php:97 legacy/admin-views/donor-detail.php:61
+#: legacy/admin-views/donors.php:144
+msgid "Undesignated"
+msgstr "지정되지 않음"
+
+#: cpt/cpt-donations.php:327 cpt/cpt-donors.php:110
+#: legacy/admin-views/donation-detail.php:110
+msgid "Employer"
+msgstr "고용주"
+
+#: cpt/cpt-donations.php:336 cpt/cpt-donors.php:109
+#: legacy/admin-views/donation-detail.php:119
+msgid "Occupation"
+msgstr "직업"
+
+#: cpt/cpt-donations.php:347 legacy/admin-views/donation-detail.php:130
+msgid "UK Gift Aid"
+msgstr "영국 Gift Aid"
+
+#: cpt/cpt-donations.php:370 legacy/admin-views/donation-detail.php:153
+msgid "in honor of"
+msgstr "명예의"
+
+#: cpt/cpt-donations.php:372 legacy/admin-views/donation-detail.php:155
+msgid "in memory of"
+msgstr "추모의"
+
+#: cpt/cpt-donations.php:377 legacy/admin-views/donation-detail.php:160
+msgid "Send acknowledgement via email to"
+msgstr "이메일로 승인 보내기"
+
+#: cpt/cpt-donations.php:381 legacy/admin-views/donation-detail.php:164
+msgid "Send acknowledgement via postal mail to"
+msgstr "우편을 통해 승인 보내기"
+
+#: cpt/cpt-donations.php:410 legacy/admin-views/donation-detail.php:193
+msgid "Payment Method"
+msgstr "결제 방법"
+
+#: cpt/cpt-donations.php:420 legacy/admin-views/donation-detail.php:203
+msgid "Repeating"
+msgstr "반복"
+
+#: cpt/cpt-donations.php:424 legacy/admin-views/donation-detail.php:207
+msgid "Session ID"
+msgstr "세션 ID"
+
+#: cpt/cpt-donations.php:428 cpt/cpt-donations.php:453
+#: legacy/admin-views/donation-detail.php:211
+#: legacy/admin-views/donation-detail.php:234
+msgid "Transaction ID"
+msgstr "거래 ID"
+
+#: cpt/cpt-donations.php:442 legacy/admin-views/donation-detail.php:225
+msgid "Related Donations"
+msgstr "관련 기부금"
+
+#: cpt/cpt-donations.php:444 legacy/admin-views/donation-detail.php:227
+msgid ""
+"For repeating donations, displays a list of other donations in the series "
+"(subscription)"
+msgstr "반복 기부의 경우, 시리즈(구독)의 다른 기부금 목록을 표시합니다."
+
+#: cpt/cpt-donations.php:471 legacy/admin-views/donation-detail.php:251
+msgid "No related donations found"
+msgstr "관련 기부금을 찾을 수 없음"
+
+#: cpt/cpt-donations.php:484 cpt/cpt-donors.php:303
+#: legacy/admin-views/donor-detail.php:130 legacy/dgx-donate.php:600
+#: seamless-donations-form.php:421
+msgid "Donor Information"
+msgstr "기부자 정보"
+
+#: cpt/cpt-donations.php:491 legacy/admin-views/donation-detail.php:50
+msgid "Donation Details"
+msgstr "기부 세부 정보"
+
+#: cpt/cpt-donors.php:31
+msgid "Search donors"
+msgstr "기부자 검색"
+
+#: cpt/cpt-donors.php:32
+msgid "No donors found"
+msgstr "기부자를 찾을 수 없음"
+
+#: cpt/cpt-donors.php:33
+msgid "No donors found in Trash"
+msgstr "휴지통에 기부자 없음"
+
+#: cpt/cpt-donors.php:35
+msgid "donor"
+msgstr "기부자"
+
+#: cpt/cpt-donors.php:108
+msgid "Email"
+msgstr "이메일"
+
+#: cpt/cpt-donors.php:111
+msgid "Total Donated"
+msgstr "총 기부액"
+
+#: cpt/cpt-donors.php:240 legacy/admin-views/donations.php:185
+#: legacy/admin-views/donor-detail.php:37 legacy/admin-views/main.php:155
+msgid "No donations found."
+msgstr "기부금을 찾을 수 없습니다."
+
+#: cpt/cpt-donors.php:283 legacy/admin-views/donor-detail.php:84
+msgid "Donor Total"
+msgstr "기부자 합계"
+
+#: cpt/cpt-funds.php:30
+msgid "Search funds"
+msgstr "기금 검색"
+
+#: cpt/cpt-funds.php:31
+msgid "No funds found"
+msgstr "기금 없음"
+
+#: cpt/cpt-funds.php:32
+msgid "No funds found in Trash"
+msgstr "휴지통에 기금 없음"
+
+#: cpt/cpt-funds.php:33
+msgid "fund"
+msgstr "기금"
+
+#: cpt/cpt-funds.php:65
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:67
+msgid "Title"
+msgstr "제목"
+
+#: cpt/cpt-funds.php:66 legacy/admin-views/funds.php:141
+msgid "Display on Donation Form"
+msgstr "기부 양식에 표시"
+
+#: cpt/cpt-funds.php:106
+msgid "Display on donation form"
+msgstr "기부 양식에 표시"
+
+#: cpt/cpt-funds.php:132
+msgid "Fund Settings"
+msgstr "기금 설정"
+
+#: dgx-donate-paypalstd.php:74
+msgid "Mode:"
+msgstr "모드:"
+
+#: dgx-donate-paypalstd.php:76
+msgid "Sandbox (Test Server)"
+msgstr "샌드박스 (테스트 서버)"
+
+#: dgx-donate-paypalstd.php:78
+msgid "Live (Production Server)"
+msgstr "라이브 (프로덕션 서버)"
+
+#: dgx-donate-paypalstd.php:79
+msgid "IPN URL"
+msgstr "IPN URL"
+
+#: dgx-donate-paypalstd.php:253 legacy/dgx-donate.php:356
+#: seamless-donations-form.php:91
+msgid ""
+"Warning - Seamless Donations is currently configured to use the Sandbox "
+"(Test Server)."
+msgstr ""
+"경고 - Seamless Donations는 현재 샌드박스(테스트 서버)를 사용하도록 구성되어 "
+"있습니다."
+
+#: dgx-donate-paypalstd.php:265
+msgid "Warning:  To make a donation, you must first enable JavaScript."
+msgstr "경고: 기부하려면 먼저 자바스크립트를 활성화해야 합니다."
+
+#: dgx-donate-paypalstd.php:285 seamless-donations-form.php:794
+msgid "Donate Now"
+msgstr "지금 기부하기"
+
+#: inc/form-engine.php:37
+msgid "JavaScript is not enabled. You must enable JavaScript to use this form."
+msgstr ""
+"자바 스크립트를 사용할 수 없습니다. 이 양식을 사용하려면 자바스크립트를 활성"
+"화해야 합니다."
+
+#: inc/legacy.php:22
+msgid "Alert - Seamless Donations has had a major update. "
+msgstr "경고 - Seamless Donations는 주요 업데이트를 수행 했습니다. "
+
+#: inc/legacy.php:25
+msgid "to learn about enabling your new features "
+msgstr "새 기능 사용 에 대해 알아보려면 "
+
+#: inc/legacy.php:27
+msgid "(they will remain off until you manually enable them)."
+msgstr "(수동으로 활성화할 때까지 꺼집니다)."
+
+#: legacy/admin-views/completed.php:24 legacy/admin-views/completed.php:37
+#: legacy/admin-views/donation-detail.php:9
+#: legacy/admin-views/donation-detail.php:22
+#: legacy/admin-views/donations.php:29 legacy/admin-views/donations.php:40
+#: legacy/admin-views/donors.php:29 legacy/admin-views/donors.php:40
+#: legacy/admin-views/form-options.php:99
+#: legacy/admin-views/form-options.php:108 legacy/admin-views/funds.php:24
+#: legacy/admin-views/funds.php:39 legacy/admin-views/help.php:23
+#: legacy/admin-views/log.php:23 legacy/admin-views/log.php:30
+#: legacy/admin-views/main.php:24 legacy/admin-views/settings.php:24
+#: legacy/admin-views/settings.php:31 legacy/admin-views/templates.php:24
+#: legacy/admin-views/templates.php:128
+msgid "You do not have sufficient permissions to access this page."
+msgstr "이 페이지에 접근할 충분한 권한이 없습니다."
+
+#: legacy/admin-views/completed.php:44
+msgid "Thank you page content updated."
+msgstr "감사장 페이지 내용이 업데이트 되었습니다."
+
+#: legacy/admin-views/completed.php:71
+msgid "Thank You Page Details"
+msgstr "감사장 페이지 세부내용"
+
+#: legacy/admin-views/completed.php:78
+msgid "The text to display to the donor after they complete their donation."
+msgstr "기부를 완료한 후 기부자에게 표시할 내용입니다."
+
+#: legacy/admin-views/completed.php:98
+msgid ""
+"On this page you can configure a special thank you message which will appear "
+"to your donors after they complete their donation.  This is separate from "
+"the thank you email that gets emailed to your donor."
+msgstr ""
+"이 페이지에서 기부를 완료한 후 기부자에게 표시되는 특별 감사 메시지를 구성할 "
+"수 있습니다.  이것은 귀하의 기부자에게 이메일로 전송되는 감사 이메일과는 별개"
+"입니다."
+
+#: legacy/admin-views/donation-detail.php:28
+msgid "Donation Detail"
+msgstr "기부 세부 정보"
+
+#: legacy/admin-views/donation-detail.php:35
+msgid "Donation deleted"
+msgstr "삭제된 기부 내역"
+
+#: legacy/admin-views/donation-detail.php:269
+msgid "Delete this Donation"
+msgstr "이 기부 삭제"
+
+#: legacy/admin-views/donation-detail.php:270
+msgid ""
+"Click the following button to delete this donation.  This will also remove "
+"this donation from all reports.  This operation cannot be undone."
+msgstr ""
+"다음 버튼을 클릭하여 이 기부를 삭제합니다.  이렇게 하면 모든 보고서에서 이 기"
+"부가 제거됩니다.  이 작업은 취소할 수 없습니다."
+
+#: legacy/admin-views/donation-detail.php:273
+msgid ""
+"This is a repeating donation (subscription).  Deleting this donation does "
+"NOT end the subscription.  The donor will need to log into PayPal to end the "
+"subscription."
+msgstr ""
+"이것은 반복 기부 (구독)입니다.  이 기부를 삭제해도 구독이 종료되지 않습니"
+"다.  기부자는 구독을 종료하기 위해 페이팔에 로그인해야합니다."
+
+#: legacy/admin-views/donation-detail.php:280
+msgid "Delete Donation"
+msgstr "기부 삭제"
+
+#: legacy/admin-views/donations.php:57
+msgid "Donation Report for %1$s to %2$s"
+msgstr "%1$s ~ %2$s에 대한 기부 보고서"
+
+#: legacy/admin-views/donations.php:118
+msgid "Fund/Date"
+msgstr "기금/날짜"
+
+#: legacy/admin-views/donations.php:166
+msgid "Fund Subtotal"
+msgstr "기금 소계"
+
+#: legacy/admin-views/donations.php:179 legacy/admin-views/donors.php:183
+msgid "Grand Total"
+msgstr "총 합계"
+
+#: legacy/admin-views/donations.php:199
+msgid "Export Report as Spreadsheet (CSV)"
+msgstr "스프레드시트(CSV)로 보고서 내보내기"
+
+#: legacy/admin-views/donations.php:200
+msgid ""
+"Click the following button to export detailed information for each donation "
+"in this report to a comma-separated-value (CSV) file compatible with most "
+"spreadsheet software."
+msgstr ""
+"다음 단추를 클릭하여 이 보고서의 각 기부에 대한 자세한 정보를 대부분의 스프레"
+"드시트 소프트웨어와 호환되는 CSV(쉼표 구분값) 파일로 내보냅니다."
+
+#: legacy/admin-views/donations.php:205
+msgid "Export Report"
+msgstr "보고서 내보내기"
+
+#: legacy/admin-views/donations.php:210
+msgid "Date Range"
+msgstr "날짜 범위"
+
+#: legacy/admin-views/donations.php:217 legacy/admin-views/donors.php:206
+msgid "Start Date"
+msgstr "시작일"
+
+#: legacy/admin-views/donations.php:220 legacy/admin-views/donors.php:209
+msgid "End Date"
+msgstr "종료일"
+
+#: legacy/admin-views/donor-detail.php:12
+msgid "Donor Detail"
+msgstr "기부자 세부 정보"
+
+#: legacy/admin-views/donor-detail.php:43
+msgid "Donations by This Donor"
+msgstr "이 기부자의 기부 내역"
+
+#: legacy/admin-views/donors.php:57
+msgid "Donor Report for %1$s to %2$s"
+msgstr "%1$s에서 %2$s에 대한 기부자 보고서"
+
+#: legacy/admin-views/donors.php:119
+msgid "Donor/Date"
+msgstr "기부자/날짜"
+
+#: legacy/admin-views/donors.php:170
+msgid "Donor Subtotal"
+msgstr "기부자 소계"
+
+#: legacy/admin-views/donors.php:188
+msgid "No donors found."
+msgstr "기부자가 발견되지 않았습니다."
+
+#: legacy/admin-views/form-options.php:119
+#: legacy/admin-views/form-options.php:128
+#: legacy/admin-views/form-options.php:135
+#: legacy/admin-views/form-options.php:142
+#: legacy/admin-views/form-options.php:149
+#: legacy/admin-views/form-options.php:156 legacy/admin-views/settings.php:39
+#: legacy/admin-views/settings.php:50
+msgid "Settings updated."
+msgstr "설정이 업데이트되었습니다."
+
+#: legacy/admin-views/form-options.php:180
+msgid ""
+"Choose which form fields and sections you would like to show or require."
+msgstr "표시하거나 요구할 양식 필드및 섹션을 선택합니다."
+
+#: legacy/admin-views/form-options.php:188
+msgid "Field/Section"
+msgstr "필드/섹션"
+
+#: legacy/admin-views/form-options.php:189
+msgid "Don't Show"
+msgstr "보이지 않기"
+
+#: legacy/admin-views/form-options.php:190
+msgid "Show"
+msgstr "보이기"
+
+#: legacy/admin-views/form-options.php:191
+msgid "Require"
+msgstr "필수"
+
+#: legacy/admin-views/form-options.php:226
+msgid ""
+"Select one or more suggested giving levels for your donors to choose from."
+msgstr "기부자가 선택할 수 있는 하나 이상의 추천 기부 레벨을 선택합니다."
+
+#: legacy/admin-views/form-options.php:243
+msgid "Currency"
+msgstr "통화"
+
+#: legacy/admin-views/form-options.php:244
+msgid "Select the currency you'd like to receive donations in."
+msgstr "기부를 받을 통화를 선택합니다."
+
+#: legacy/admin-views/form-options.php:257
+msgid "Default Country / State / Province"
+msgstr "기본 국가 / 주 / 지방"
+
+#: legacy/admin-views/form-options.php:258
+msgid "Select the default country / state / province for the donation form."
+msgstr "기부 양식의 기본 국가/주/지방을 선택합니다."
+
+#: legacy/admin-views/funds.php:45 legacy/admin-views/funds.php:133
+msgid "Designated Funds"
+msgstr "지정 기금"
+
+#: legacy/admin-views/funds.php:49
+msgid "Fund added."
+msgstr "기금이 추가 되었습니다."
+
+#: legacy/admin-views/funds.php:78 legacy/admin-views/funds.php:84
+msgid "Fund(s) updated."
+msgstr "기금이 업데이트되었습니다."
+
+#: legacy/admin-views/funds.php:99
+msgid "Fund(s) deleted."
+msgstr "기금이 삭제되었습니다."
+
+#: legacy/admin-views/funds.php:140
+msgid "Fund Name"
+msgstr "기금 이름"
+
+#: legacy/admin-views/funds.php:142
+msgid "Delete"
+msgstr "삭제"
+
+#: legacy/admin-views/funds.php:165
+msgid ""
+"Note:  Deleting a fund from this list does NOT affect any donations already "
+"made to that fund, or any reports for that fund."
+msgstr ""
+"참고: 이 목록에서 기금을 삭제해도 해당 기금에 이미 기부된 기부금이나 해당 기"
+"금에 대한 보고서에는 영향을 미치지 않습니다."
+
+#: legacy/admin-views/funds.php:171
+msgid "You have no designated funds defined"
+msgstr "수립된 지정 기금이 없음"
+
+#: legacy/admin-views/funds.php:180 legacy/admin-views/funds.php:190
+msgid "Add New Designated Fund"
+msgstr "새로운 지정 기금 추가"
+
+#: legacy/admin-views/funds.php:185
+msgid "Name"
+msgstr "이름"
+
+#: legacy/admin-views/funds.php:187
+msgid "The name of the desginated fund, as you want it to appear to visitors."
+msgstr "방문자에게 표시 할 지정 기금의 이름 입니다."
+
+#: legacy/admin-views/help.php:28
+msgid ""
+"What is the shortcode I need to insert on a page to see the donation form?"
+msgstr "기부 양식을 보기위해 페이지에 삽입해야 하는 단축코드는 무엇입니까?"
+
+#: legacy/admin-views/help.php:32
+msgid "Do I need to set my IPN notification URL at PayPal?"
+msgstr "PayPal에서 IPN 알림 URL을 설정해야 하나요?"
+
+#: legacy/admin-views/help.php:33
+msgid ""
+"In general it is not needed, but some users have needed to set it to get "
+"notifications working correctly."
+msgstr ""
+"일반적으로 는 필요하지 않습니다, 하지만 일부 사용자는 제대로 작동 알림을 받"
+"기 위해 설정해야합니다."
+
+#: legacy/admin-views/help.php:36
+msgid "What URL should I use for the IPN notification URL at PayPal?"
+msgstr "PayPal의 IPN 알림 URL에는 어떤 URL을 사용해야 하나요?"
+
+#: legacy/admin-views/help.php:37
+msgid ""
+"The correct URL to use is displayed on your settings page under Payment "
+"Gateways."
+msgstr "사용할 올바른 URL은 결제 게이트웨이 아래의 설정 페이지에 표시됩니다."
+
+#: legacy/admin-views/help.php:40
+msgid "How does my donor end a repeating donation?"
+msgstr "기부자는 어떻게 반복 기부를 종료합니까?"
+
+#: legacy/admin-views/help.php:41
+msgid ""
+"The donor can log into their PayPal account, go to their profile under 'My "
+"Account,' then 'Preapproved Payments', and end the repeating donation there."
+msgstr ""
+"기부자는 PayPal 계정에 로그인하여 '내 계정' 아래의 프로필에 가서 '사전 승인"
+"된 결제'로 이동한 다음 기부를 종료할 수 있습니다."
+
+#: legacy/admin-views/help.php:44
+msgid ""
+"I have a question not answered here.  Where can I find the plugin's support "
+"forum?"
+msgstr ""
+"여기서 원하는 대답을 찾을 수 없습니다.  플러그인의 지원 포럼은 어디에서 찾을 "
+"수 있습니까?"
+
+#: legacy/admin-views/help.php:45
+msgid "You can find the support forum at"
+msgstr "지원 포럼을 찾으려면 다음을 참고하세요: "
+
+#: legacy/admin-views/log.php:40
+msgid "Log cleared"
+msgstr "로그 지워짐"
+
+#: legacy/admin-views/log.php:72
+msgid "Clear Log"
+msgstr "로그 지우기"
+
+#: legacy/admin-views/main.php:42
+msgid "Seamless Donations for WordPress"
+msgstr "워드 프레스 용 Seamless Donations"
+
+#: legacy/admin-views/main.php:59 legacy/admin-views/templates.php:14
+#: legacy/admin-views/templates.php:15 legacy/admin-views/templates.php:165
+msgid "Thank You Emails"
+msgstr "감사 이메일"
+
+#: legacy/admin-views/main.php:84
+msgid "Quick Links"
+msgstr "빠른 링크"
+
+#: legacy/admin-views/main.php:104
+msgid "Recent Donations"
+msgstr "최근 기부"
+
+#: legacy/admin-views/main.php:168
+msgid "Latest News"
+msgstr "최신 뉴스"
+
+#: legacy/admin-views/main.php:175
+msgid "What's up with Seamless Donations"
+msgstr "Seamless Donations 새소식"
+
+#: legacy/admin-views/settings.php:76
+msgid ""
+"Enter one or more emails that should be notified when a new donation "
+"arrives.  You can separate multiple email addresses with commas."
+msgstr ""
+"새 기부금이 도착하면 알림을 받아야 하는 이메일을 하나 이상 입력합니다.  쉼표"
+"로 여러 이메일 주소를 구분할 수 있습니다."
+
+#: legacy/admin-views/settings.php:102
+msgid "Error: No payment gateways found"
+msgstr "오류: 결제 게이트웨이를 찾을 수 없음"
+
+#: legacy/admin-views/settings.php:115
+msgid "Scripts"
+msgstr "스크립트"
+
+#: legacy/admin-views/settings.php:116
+msgid "Whether to load scripts in the header or footer."
+msgstr "헤더 또는 바닥글에 스크립트를 로드할지 여부를 결정합니다."
+
+#: legacy/admin-views/settings.php:124
+msgid "Load scripts in the header (default)"
+msgstr "헤더에 스크립트 로드(기본값)"
+
+#: legacy/admin-views/settings.php:125
+msgid "Load scripts in the footer"
+msgstr "바닥글에 스크립트 로드"
+
+#: legacy/admin-views/templates.php:147
+msgid "Templates updated."
+msgstr "템플릿이 업데이트되었습니다."
+
+#: legacy/admin-views/templates.php:156
+msgid "Test email sent."
+msgstr "테스트 이메일이 전송되었습니다."
+
+#: legacy/admin-views/templates.php:188
+msgid ""
+"You can include placeholders such as [firstname] [lastname] [fund] and/or "
+"[amount]."
+msgstr ""
+"자리 표시자는 [firstname] [lastname] [fund] 및/또는 [amount]과 같은 자리 표시"
+"자를 포함할 수 있습니다."
+
+#: legacy/admin-views/templates.php:189
+msgid ""
+"These placeholders will automatically be filled in with the donor and "
+"donation details."
+msgstr "이러한 자리 표시자들은 자동으로 기부자 및 기부 세부 정보로 채워집니다."
+
+#: legacy/admin-views/templates.php:222
+msgid ""
+"Enter an email address (e.g. your own) to have a test email sent using the "
+"template."
+msgstr ""
+"템플릿을 사용하여 테스트 전자 메일을 보내려면 전자 메일 주소(예: 당신의 이메"
+"일)를 입력합니다."
+
+#: legacy/dgx-donate.php:397 seamless-donations-form.php:114
+msgid "Donation Information"
+msgstr "기부 정보"
+
+#: legacy/dgx-donate.php:399 seamless-donations-form.php:120
+msgid "I would like to make a donation in the amount of:"
+msgstr "나는 다음의 금액 만큼을 기부하고 싶습니다:"
+
+#: legacy/dgx-donate.php:419 seamless-donations-form.php:173
+msgid "Other: "
+msgstr "기타: "
+
+#: legacy/dgx-donate.php:442 seamless-donations-form.php:204
+msgid "I would like to designate this donation to a specific fund"
+msgstr "이 기부금을 특정한 기금으로 지정하고 싶습니다"
+
+#: legacy/dgx-donate.php:447 seamless-donations-form.php:222
+msgid "Designated Fund: "
+msgstr "지정 기금: "
+
+#: legacy/dgx-donate.php:468 seamless-donations-form.php:243
+msgid "I would like this donation to automatically repeat each month"
+msgstr "이 기부가 매월 자동으로 반복 되기를 원합니다"
+
+#: legacy/dgx-donate.php:493 seamless-donations-form.php:300
+msgid "Check here to donate in honor or memory of someone"
+msgstr "누군가에 대한 명예나 추모로서 기부하려면 여기를 체크"
+
+#: legacy/dgx-donate.php:498 seamless-donations-form.php:306
+msgid "Check here if this is a memorial gift"
+msgstr "추모 선물이라면 이쪽을 확인해 보세요"
+
+#: legacy/dgx-donate.php:502
+msgid "Honoree's Name:"
+msgstr "수상자 이름:"
+
+#: legacy/dgx-donate.php:508
+msgid "Send acknowledgement via email to "
+msgstr "다음 사람에게 이메일로 승인을 보냄: "
+
+#: legacy/dgx-donate.php:512 legacy/dgx-donate.php:528
+msgid "Name:"
+msgstr "이름:"
+
+#: legacy/dgx-donate.php:517 legacy/dgx-donate.php:645
+#: seamless-donations-form.php:439
+msgid "Email:"
+msgstr "이메일:"
+
+#: legacy/dgx-donate.php:524
+msgid "Send acknowledgement via postal mail to "
+msgstr "다음 사람에게 우편을 통해 승인을 보냄: "
+
+#: legacy/dgx-donate.php:533 legacy/dgx-donate.php:684
+msgid "Address:"
+msgstr "주소:"
+
+#: legacy/dgx-donate.php:538 legacy/dgx-donate.php:695
+msgid "City:"
+msgstr "도시:"
+
+#: legacy/dgx-donate.php:545 legacy/dgx-donate.php:701
+msgid "State:"
+msgstr "상태 :"
+
+#: legacy/dgx-donate.php:550 legacy/dgx-donate.php:705
+msgid "Province:"
+msgstr "지방:"
+
+#: legacy/dgx-donate.php:555 legacy/dgx-donate.php:710
+msgid "Country:"
+msgstr "국가:"
+
+#: legacy/dgx-donate.php:560 legacy/dgx-donate.php:715
+msgid "Postal Code:"
+msgstr "우편번호:"
+
+#: legacy/dgx-donate.php:586 seamless-donations-form.php:492
+msgid "Check here if your employer matches donations"
+msgstr "고용주 매치 기부라면 체크"
+
+#: legacy/dgx-donate.php:602 seamless-donations-form.php:427
+msgid "First Name:"
+msgstr "이름:"
+
+#: legacy/dgx-donate.php:607 seamless-donations-form.php:433
+msgid "Last Name:"
+msgstr "성:"
+
+#: legacy/dgx-donate.php:616 seamless-donations-form.php:469
+msgid "Phone:"
+msgstr "전화:"
+
+#: legacy/dgx-donate.php:628 seamless-donations-form.php:484
+msgid "Employer:"
+msgstr "고용주:"
+
+#: legacy/dgx-donate.php:638 seamless-donations-form.php:502
+msgid "Occupation:"
+msgstr "직업:"
+
+#: legacy/dgx-donate.php:652 seamless-donations-form.php:458
+msgid "Add me to your mailing list"
+msgstr "나를 메일링 리스트에 추가"
+
+#: legacy/dgx-donate.php:659
+msgid "Please do not publish my name.  I would like to remain anonymous."
+msgstr "내 이름을 게시하지 마십시오.  나는 익명으로 유지하고 싶습니다."
+
+#: legacy/dgx-donate.php:681 seamless-donations-form.php:555
+msgid "Donor Address"
+msgstr "기부자 주소"
+
+#: legacy/dgx-donate.php:689
+msgid "Address 2:"
+msgstr "주소 2:"
+
+#: legacy/dgx-donate.php:690 seamless-donations-form.php:569
+msgid "(optional)"
+msgstr "(선택사항)"
+
+#: legacy/dgx-donate.php:910
+msgid "A donation has been received"
+msgstr "기부를 받음"
+
+#: legacy/dgx-donate.php:913
+msgid ""
+"A donation has been received.  Here are some details about the donation."
+msgstr "기부금을 받았습니다.  다음은 기부에 대한 몇 가지 세부 정보입니다."
+
+#: legacy/dgx-donate.php:930
+msgid ""
+"NOTE:  The donor is making this donation in honor of / in memory of someone."
+msgstr "참고 : 기부자는 누군가에 대한 명예/추모 기부를 하고 있습니다."
+
+#: legacy/dgx-donate.php:934 legacy/dgx-donate.php:944
+msgid ""
+"Please see the donation details (using the link below) for more information."
+msgstr "자세한 내용은 기부 세부 정보(아래 링크 사용)를 참조하십시오."
+
+#: legacy/dgx-donate.php:943
+msgid "NOTE:  The donor is making this donation with an employer match."
+msgstr "참고 : 기부자는 고용주 매치 기부를 하고 있습니다."
+
+#: legacy/dgx-donate.php:954
+msgid "Donation:"
+msgstr "기부:"
+
+#: legacy/dgx-donate.php:955
+msgid "Amount:"
+msgstr "금액:"
+
+#: legacy/dgx-donate.php:958
+msgid "Click on the following link to view all details for this donation:"
+msgstr "이 기부에 대한 모든 세부 정보를 보려면 다음 링크를 클릭하십시오:"
+
+#: library/apf/admin-page-framework.php:47
+msgid "The method is called too early. Perform <code>%2$s</code> earlier."
+msgstr ""
+"메서드를 너무 일찍 호출 했습니다. <code>%2$s</code>가 이르게 수행 되었습니다."
+
+#: library/apf/factory/AdminPageFramework/AdminPageFramework_Form_Controller.php:57
+msgid "The method is deprecated: %1$s. Use %2$s instead."
+msgstr "이 방법은 더 이상 사용되지 않습니다: %1$s. 대신 %2$s를 사용합니다."
+
+#: library/apf/factory/AdminPageFramework/AdminPageFramework_Form_Model_Validation.php:37
+msgid "The hook <code>%1$s</code>is deprecated. Use <code>%2$s</code> instead."
+msgstr ""
+"후크가 <code>%1$s</code> 더 이상 사용되지 않습니다. 대신 <code>%2$s</code> 사"
+"용합니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/AdminPageFramework_Factory_Router.php:162
+msgid "The method is not defined: %1$s"
+msgstr "메서드가 정의되지 않음: %1$s"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:44
+msgid "The options have been updated."
+msgstr "옵션이 업데이트되었습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:45
+msgid "The options have been cleared."
+msgstr "옵션이 지워졌습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:46
+msgid "Export"
+msgstr "내보내기"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:47
+msgid "Export Options"
+msgstr "내보내기 옵션"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:48
+msgid "Import"
+msgstr "가져오기"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:49
+msgid "Import Options"
+msgstr "가져오기 옵션"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:50
+msgid "Submit"
+msgstr "제출"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:51
+msgid "An error occurred while uploading the import file."
+msgstr "가져오기 파일을 업로드하는 동안 오류가 발생했습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:52
+msgid "The uploaded file type is not supported: %1$s"
+msgstr "업로드된 파일 형식이 지원되지 않음: %1$s"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:53
+msgid "Could not load the importing data."
+msgstr "가져오기 데이터를 로드할 수 없습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:54
+msgid "The uploaded file has been imported."
+msgstr "업로드된 파일을 가져왔습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:55
+msgid "No data could be imported."
+msgstr "데이터를 가져올 수 없습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:56
+msgid "Upload Image"
+msgstr "이미지 업로드"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:57
+msgid "Use This Image"
+msgstr "이 이미지를 사용"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:58
+msgid "Insert from URL"
+msgstr "URL에서 삽입"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:59
+msgid "Are you sure you want to reset the options?"
+msgstr "옵션을 재설정하시겠습니까?"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:60
+msgid "Please confirm your action."
+msgstr "동작을 확인해주십시오."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:61
+msgid "The specified options have been deleted."
+msgstr "지정된 옵션이 삭제되었습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:62
+msgid "A problem occurred while processing the form data. Please try again."
+msgstr "양식 데이터를 처리하는 동안 문제가 발생했습니다. 다시 시도하십시오."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:63
+msgid "Is it okay to send the email?"
+msgstr "이메일을 보내도 괜찮습니까?"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:64
+msgid "The email has been sent."
+msgstr "이메일이 전송되었습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:65
+msgid "The email has been scheduled."
+msgstr "이메일이 예약되었습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:66
+msgid "There was a problem sending the email"
+msgstr "이메일을 보내는 데 문제가 있습니다"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:68
+msgid "Author"
+msgstr "작성자"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:69
+msgid "Categories"
+msgstr "카테고리"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:70
+msgid "Tags"
+msgstr "태그"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:71
+msgid "Comments"
+msgstr "댓글"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:73
+msgid "Show All"
+msgstr "모두 보기"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:74
+msgid "Powered by"
+msgstr "Powered by"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:76
+msgid "Manage"
+msgstr "관리"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:77
+msgid "Select Image"
+msgstr "이미지 선택"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:78
+msgid "Upload File"
+msgstr "파일 업로드"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:79
+msgid "Use This File"
+msgstr "이 파일을 사용"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:80
+msgid "Select File"
+msgstr "파일 선택"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:81
+msgid "Remove Value"
+msgstr "값 제거"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:82
+msgid "Select All"
+msgstr "모두 선택"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:83
+msgid "Select None"
+msgstr "없음을 선택"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:84
+msgid "No term found."
+msgstr "용어를 찾을 수 없습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:85
+msgid "Select"
+msgstr "선택"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:86
+msgid "Insert"
+msgstr "삽입"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:87
+msgid "Use This"
+msgstr "이것을 사용"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:88
+msgid "Return to Library"
+msgstr "라이브러리로 돌아가기"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:89
+msgid "%1$s queries in %2$s seconds."
+msgstr "%2$s 초에 %1$s 쿼리."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:90
+msgid "%1$s out of %2$s MB (%3$s) memory used."
+msgstr "%2$s MB(%3$s) 중 %1$s 메모리 사용."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:91
+msgid "Peak memory usage %1$s MB."
+msgstr "최대 메모리 사용량 %1$s MB."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:92
+msgid "Initial memory usage  %1$s MB."
+msgstr "초기 메모리 사용량 %1$s MB."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:93
+msgid "The allowed maximum number of fields is {0}."
+msgstr "허용되는 최대 필드 수는 {0}."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:94
+msgid "The allowed minimum number of fields is {0}."
+msgstr "허용되는 최소 필드 수는 {0}."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:95
+msgid "Add"
+msgstr "추가"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:96
+msgid "Remove"
+msgstr "제거"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:97
+msgid "The allowed maximum number of sections is {0}"
+msgstr "허용되는 최대 섹션 수는 {0}"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:98
+msgid "The allowed minimum number of sections is {0}"
+msgstr "허용되는 최소 섹션 수는 {0}"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:99
+msgid "Add Section"
+msgstr "섹션 추가"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:100
+msgid "Remove Section"
+msgstr "섹션 제거"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:101
+msgid "Toggle All"
+msgstr "모두 전환"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:102
+msgid "Toggle all collapsible sections"
+msgstr "모든 접힘 섹션 토글"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:103
+msgid "Reset"
+msgstr "초기화"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:106
+msgid "On"
+msgstr "켜기"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:107
+msgid "Off"
+msgstr "끄기"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:108
+msgid "Enabled"
+msgstr "활성화"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:109
+msgid "Disabled"
+msgstr "비활성화"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:110
+msgid "Supported"
+msgstr "지원"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:111
+msgid "Not Supported"
+msgstr "지원되지 않음"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:112
+msgid "Functional"
+msgstr "작동"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:113
+msgid "Not Functional"
+msgstr "작동하지 않음"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:114
+msgid "Too Long"
+msgstr "너무 김"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:115
+msgid "Acceptable"
+msgstr "용인됨"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:116
+msgid "No log found."
+msgstr "로그를 찾을 수 없습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:109
+msgid "No browser information found."
+msgstr "브라우저 정보를 찾을 수 없습니다."
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Version"
+msgstr "버전"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Language"
+msgstr "언어"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Memory Limit"
+msgstr "메모리 제한"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Multi-site"
+msgstr "다중 사이트"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Permalink Structure"
+msgstr "고유주소 구조"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Active Theme"
+msgstr "활성화 테마"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Registered Post Statuses"
+msgstr "등록된 게시물 상태"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix"
+msgstr "데이터베이스 테이블 접두사"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix Length"
+msgstr "테이블 접두사 길이"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix Status"
+msgstr "테이블 접두사 상태"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "WP_CONTENT_DIR Writeable"
+msgstr "WP_CONTENT_DIR 쓰기 가능"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Active Plugins"
+msgstr "활성된 플러그인"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Network Active Plugins"
+msgstr "네트워크 활성 플러그인"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Constants"
+msgstr "영구"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Safe Mode"
+msgstr "안전모드"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Upload Max Size"
+msgstr "최대 업로드 크기"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Post Max Size"
+msgstr "글 최대 크기"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Upload Max File Size"
+msgstr "최대 업로드 파일 크기"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Max Execution Time"
+msgstr "최대 실행 시간"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Max Input Vars"
+msgstr "최대 입력 값"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Argument Separator"
+msgstr "인수 구분 기호"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Allow URL File Open"
+msgstr "URL 파일 열기 허용"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Display Errors"
+msgstr "오류 표시"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Log Errors"
+msgstr "오류 로그"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Error log location"
+msgstr "오류 로그 위치"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Error Reporting Level"
+msgstr "오류 보고 수준"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "FSOCKOPEN"
+msgstr "FSOCKOPEN"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "cURL"
+msgstr "cURL"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "SOAP"
+msgstr "SOAP"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "SUHOSIN"
+msgstr "SUHOSIN"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Web Server"
+msgstr "웹 서버"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session"
+msgstr "세션"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Name"
+msgstr "세션 이름"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Cookie Path"
+msgstr "세션 쿠키 경로"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Save Path"
+msgstr "세션 저장 경로"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Use Cookies"
+msgstr "세션 사용 쿠키"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Use Only Cookies"
+msgstr "세션 전용 쿠키"
+
+#: seamless-donations-form.php:158
+msgid "Other"
+msgstr "기타"
+
+#: seamless-donations-form.php:313
+msgid "Name of person to be honored: "
+msgstr "영예로운 사람의 이름: "
+
+#: seamless-donations-form.php:323
+msgid "Send acknowledgement via email"
+msgstr "이메일을 통해 승인 보내기"
+
+#: seamless-donations-form.php:333
+msgid "Send acknowledgement via postal mail"
+msgstr "우편으로 승인 보내기"
+
+#: seamless-donations-form.php:340
+msgid "Email Name: "
+msgstr "이메일 이름: "
+
+#: seamless-donations-form.php:347
+msgid "Email: "
+msgstr "이메일: "
+
+#: seamless-donations-form.php:353
+msgid "Name: "
+msgstr "이름: "
+
+#: seamless-donations-form.php:359 seamless-donations-form.php:561
+msgid "Address: "
+msgstr "주소: "
+
+#: seamless-donations-form.php:365 seamless-donations-form.php:575
+msgid "City: "
+msgstr "도시: "
+
+#: seamless-donations-form.php:372 seamless-donations-form.php:581
+msgid "State : "
+msgstr "주 : "
+
+#: seamless-donations-form.php:379 seamless-donations-form.php:587
+msgid "Province: "
+msgstr "지방: "
+
+#: seamless-donations-form.php:389 seamless-donations-form.php:596
+msgid "Country: "
+msgstr "국가: "
+
+#: seamless-donations-form.php:395 seamless-donations-form.php:601
+msgid "Postal Code: "
+msgstr "우편 번호: "
+
+#: seamless-donations-form.php:448
+msgid ""
+"Please do not display my name publicly. I would like to remain anonymous"
+msgstr "내 이름을 공개적으로 표시하지 마십시오. 익명으로 유지하고 싶습니다"
+
+#: seamless-donations-form.php:566
+msgid "Address 2: "
+msgstr "주소 2: "
+
+#: seamless-donations-form.php:605
+msgid "I am a UK taxpayer and my gift qualifies for Gift Aid."
+msgstr "저는 영국 납세자이며, 제 선물은 Gift Aid 자격이 있습니다."
+
+#: seamless-donations-payment.php:378
+msgid "Invalid response to challenge. Are you human?"
+msgstr "챌린지에 대한 잘못된 응답. 당신은 사람 입니까?"
+
+#. Plugin URI of the plugin/theme
+msgid "http://zatzlabs.com/seamless-donations/"
+msgstr "http://zatzlabs.com/seamless-donations/"
+
+#. Description of the plugin/theme
+msgid ""
+"Making online donations easy for your visitors; making donor and donation "
+"management easy for you.  Receive donations (now including repeating "
+"donations), track donors and send customized thank you messages with "
+"Seamless Donations for WordPress.  Works with PayPal accounts. Adopted from "
+"Allen Snook."
+msgstr ""
+"방문자를 위한 온라인 기부를 쉽게 만들기; 기부자 및 기부 관리를 쉽게 할 수 있"
+"습니다.  Seamless Donations으로 기부금을 받고 (반복 기부 지원 포함), 기부자"
+"를 추적하고, 사용자 정의 감사 메시지를 보낼 수 있습니다.  페이팔 계정과 함께 "
+"작동합니다. Allen Snook에서 채택."
+
+#. Author of the plugin/theme
+msgid "David Gewirtz"
+msgstr "게위츠 데이비드 (David Gewirtz)"
+
+#. Author URI of the plugin/theme
+msgid "http://zatzlabs.com/lab-notes/"
+msgstr "http://zatzlabs.com/lab-notes/"
