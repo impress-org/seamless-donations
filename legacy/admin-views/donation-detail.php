@@ -2,6 +2,9 @@
 
 /* Copyright 2013 Allen Snook (email: allendav@allendav.com) */
 
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
 class Dgx_Donate_Admin_Donation_Detail_View {
 	static function show( $donation_id ) {
 		// Validate User

@@ -2,6 +2,9 @@
 
 /* Copyright 2013 Allen Snook (email: allendav@allendav.com) */
 
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
 include( '../../../../wp-config.php' );
 
 if ( ! current_user_can( 'manage_options' ) ) {

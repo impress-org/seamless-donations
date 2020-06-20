@@ -21,7 +21,7 @@ require_once './inc/donations.php';
 
 require_once './legacy/dgx-donate.php';
 require_once './legacy/dgx-donate-admin.php';
-require_once './seamless-donations-admin.php';
+//require_once './seamless-donations-admin.php';
 require_once './seamless-donations-form.php';
 require_once './dgx-donate-paypalstd.php';
 
@@ -305,7 +305,7 @@ class Dgx_Donate_IPN_Handler {
 				update_post_meta( $donation_id, '_dgx_donate_donation_currency', $currency_code );
 			}
 
-			// @todo - send different notification for recurring?
+
 
 			// Send admin notification
 			dgx_donate_send_donation_notification( $donation_id );

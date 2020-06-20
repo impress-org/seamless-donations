@@ -9,6 +9,9 @@ Contact: http://zatzlabs.com/contact-us/
 Copyright (c) 2015 by David Gewirtz
 */
 
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
 function dgx_donate_get_currencies () {
 
 	$currencies = array(

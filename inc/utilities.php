@@ -7,8 +7,11 @@
  Plugin Page: http://zatzlabs.com/seamless-donations/
  Contact: http://zatzlabs.com/contact-us/
 
- Copyright (c) 2015 by David Gewirtz
+ Copyright (c) 2015-2020 by David Gewirtz
  */
+
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
 
 // quick array name-of function
 // from http://php.net/manual/en/function.key.php
@@ -102,6 +105,21 @@ function seamless_donations_var_dump_to_log( $mixed = NULL ) {
 	update_option( 'dgx_donate_log', $debug_log );
 }
 
+function seamless_donations_printr_to_log( $mixed = NULL ) {
+
+    $debug_log = get_option( 'dgx_donate_log' );
+
+    if ( empty( $debug_log ) ) {
+        $debug_log = array();
+    }
+
+    $message = print_r( $mixed, true );
+
+    $debug_log[] = $message;
+
+    update_option( 'dgx_donate_log', $debug_log );
+}
+
 function seamless_donations_post_array_to_log() {
 
 	$debug_log = get_option( 'dgx_donate_log' );
@@ -181,6 +199,7 @@ function seamless_donations_version_compare( $ver1, $ver2 ) {
 	return '=';
 }
 
+// PRE 5.0 - obsolete with 5.0
 // This function builds both options and settings based on passed arrays
 // The $options_array is an array that would be passed to the addSettingsField method
 // If $settings_array is passed (not false), it will create a section and add the options to that section
@@ -274,11 +293,11 @@ function seamless_donations_get_browser_name() {
 
 // label display functions
 
-function seamless_donations_get_feature_promo( $desc, $url, $upgrade = "UPGRADE" ) {
+function seamless_donations_get_feature_promo( $desc, $url, $upgrade = "UPGRADE", $break='<BR>') {
 
 	$feature_desc = sanitize_text_field( htmlspecialchars( $desc ) );
 
-	$promo = '<br>';
+	$promo = $break;
 	$promo .= '<span style="background-color:DarkGoldenRod; color:white;font-style:normal;text-weight:bold">';
 	$promo .= '&nbsp;' . $upgrade . ':&nbsp;';
 	$promo .= '</span>';
@@ -290,14 +309,26 @@ function seamless_donations_get_feature_promo( $desc, $url, $upgrade = "UPGRADE"
 	return $promo;
 }
 
-function seamless_donations_display_label( $before = '&nbsp;', $message = 'BETA', $after = '' ) {
+function seamless_donations_display_label( $before = '&nbsp;', $message = 'BETA', $after = '', $background='' ) {
 
-	$label = $before . '<span style="background-color:darkgrey; color:white;font-style:normal;text-weight:bold">';
+    if($background == '') {
+        $background = 'darkgrey';
+    }
+	$label = $before . '<span style="background-color:' . $background . '; color:white;font-style:normal;text-weight:bold">';
 	$label .= '&nbsp;' . $message . '&nbsp;';
 	$label .= '</span>' . $after;
 
 	return $label;
 }
+
+function seamless_donations_display_fail() {
+    return seamless_donations_display_label('&nbsp;', 'FAIL', '', 'red') ;
+}
+
+function seamless_donations_display_pass() {
+    return seamless_donations_display_label('&nbsp;', 'PASS', '', 'green') ;
+}
+
 
 // *** DATABASE REBUILD ***
 
@@ -508,8 +539,7 @@ function seamless_donations_recalculate_donor_total( $donor_id ) {
 // *** EDD LICENSING ***
 
 function seamless_donations_store_url() {
-
-	return "http://zatzlabs.com";
+	return "https://zatzlabs.com";
 }
 
 function seamless_donations_get_license_key( $item ) {

@@ -5,6 +5,9 @@
 // *********** THIS CODE HAS BEEN MIGRATED TO 4.0 -- DG
 // *********** THIS FILE CAN BE DELETED AT CONSOLIDATION TIME
 
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
 class Dgx_Donate_Admin_Donor_Detail_View {
 	static function show( $donor_id ) {
 		echo "<div class='wrap'>\n";

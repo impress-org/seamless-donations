@@ -2,6 +2,9 @@
 
 /* Copyright 2014 Allen Snook (email: allendav@allendav.com) */
 
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
 class Dgx_Donate_Admin_Form_Options_View {
 	private $form_options;
 

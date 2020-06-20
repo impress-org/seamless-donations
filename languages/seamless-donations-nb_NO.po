@@ -1,0 +1,1908 @@
+# Copyright (C) 2015 Seamless Donations
+# This file is distributed under the same license as the Seamless Donations package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Seamless Donations 4.0.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/seamless-"
+"donations\n"
+"POT-Creation-Date: 2016-03-05 13:02+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-03-07 08:40+0100\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.7\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nb_NO\n"
+
+#: admin/addons.php:28
+msgid "Add-ons"
+msgstr "Utvidelser"
+
+#: admin/donations.php:42 cpt/cpt-donations.php:24 cpt/cpt-donors.php:310
+#: legacy/admin-views/donations.php:13 legacy/admin-views/donations.php:14
+#: legacy/admin-views/donations.php:25 legacy/admin-views/main.php:47
+msgid "Donations"
+msgstr "Donasjoner"
+
+#: admin/donations.php:67 admin/donors.php:67 admin/forms.php:129
+#: admin/funds.php:67 admin/licenses.php:56 admin/logs.php:56
+#: admin/settings.php:116 admin/templates.php:126 admin/thanks.php:71
+msgid "There was an unexpected error in your entry."
+msgstr "Det var en uventet feil i oppføringen."
+
+#: admin/donations.php:77
+msgid "Where Did Donations Go?"
+msgstr "Hvor ble det av Donasjoner?"
+
+#: admin/donations.php:88 admin/donors.php:88 admin/funds.php:88
+msgid "To a menu on the Dashboard"
+msgstr "Til en meny på dashbordet"
+
+#: admin/donations.php:89
+msgid "Donations is now a custom post type available from the main dashboard."
+msgstr ""
+"Donasjoner er nå en tilpasset type innlegg fra kontrollpanelet til WordPress"
+
+#: admin/donations.php:96 admin/donors.php:96 admin/funds.php:96
+msgid "Permanently Hide This Tab"
+msgstr "Skjul denne fanen permanent"
+
+#: admin/donors.php:42 cpt/cpt-donors.php:25 legacy/admin-views/donors.php:13
+#: legacy/admin-views/donors.php:14 legacy/admin-views/donors.php:25
+#: legacy/admin-views/main.php:51
+msgid "Donors"
+msgstr "Donorer"
+
+#: admin/donors.php:77
+msgid "Where Did Donors Go?"
+msgstr "Hvor ble det av Donorer?"
+
+#: admin/donors.php:89
+msgid "Donors is now a custom post type available from the main dashboard."
+msgstr ""
+"Donasjoner er nå en tilpasset type innlegg fra kontrollpanelet til WordPress"
+
+#: admin/forms.php:36 legacy/admin-views/form-options.php:80
+#: legacy/admin-views/form-options.php:81
+#: legacy/admin-views/form-options.php:165 legacy/admin-views/main.php:67
+msgid "Form Options"
+msgstr "Alternativer for skjema"
+
+#: admin/forms.php:69
+msgid "At least one giving level is required."
+msgstr "Minst ett donornivå er nødvendig."
+
+#: admin/forms.php:73 admin/settings.php:71 admin/settings.php:88
+#: admin/templates.php:64 admin/templates.php:80 admin/templates.php:100
+#: admin/thanks.php:60
+msgid "There were errors in your submission."
+msgstr "Det oppsto et problem med innsendingen."
+
+#: admin/forms.php:141 legacy/admin-views/form-options.php:225
+msgid "Giving Levels"
+msgstr "Gavenivåer"
+
+#: admin/forms.php:162
+msgid "Display Levels"
+msgstr "Visningsnivåer"
+
+#: admin/forms.php:171
+msgid "Save Giving Levels"
+msgstr "Lagre Gavenivåer"
+
+#: admin/forms.php:191
+msgid "Defaults"
+msgstr "Standardinnstillinger"
+
+#: admin/forms.php:201
+msgid "Default Currency"
+msgstr "Standardvaluta"
+
+#: admin/forms.php:208
+msgid "Default Country"
+msgstr "Standardland"
+
+#: admin/forms.php:216
+msgid "Save Defaults"
+msgstr "Lagre standardinnstillinger"
+
+#: admin/forms.php:235 legacy/admin-views/form-options.php:179
+msgid "Form Fields and Sections"
+msgstr "Skjemafelt og Seksjoner"
+
+#: admin/forms.php:255 legacy/admin-views/form-options.php:15
+msgid "Designated Funds Checkbox and Section"
+msgstr "Dedikerte midler-sjekkboks og -seksjon"
+
+#: admin/forms.php:262 legacy/admin-views/form-options.php:21
+msgid "Repeating Donation Checkbox"
+msgstr "Faste donasjoner-sjekkboks"
+
+#: admin/forms.php:269 legacy/admin-views/form-options.php:27
+msgid "Tribute Gift Checkbox and Section"
+msgstr "Gavesjekkboks og -seksjon"
+
+#: admin/forms.php:276 legacy/admin-views/form-options.php:33
+msgid "Employer Match Section"
+msgstr "Arbeidsgiverseksjon"
+
+#: admin/forms.php:283 legacy/admin-views/form-options.php:39
+msgid "Donor Telephone Field"
+msgstr "Donorens telefonnummer-felt"
+
+#: admin/forms.php:290 legacy/admin-views/form-options.php:45
+msgid "Donor Employer Field"
+msgstr "Donorens arbeidsgiver-felt"
+
+#: admin/forms.php:297 legacy/admin-views/form-options.php:51
+msgid "Donor Occupation Field"
+msgstr "Donorens yrke-felt"
+
+#: admin/forms.php:304 legacy/admin-views/form-options.php:57
+msgid "Mailing List Checkbox"
+msgstr "Mailingliste-sjekkboks"
+
+#: admin/forms.php:311 legacy/admin-views/form-options.php:63
+msgid "Anonymous Donation Checkbox"
+msgstr "Anonym donasjon-sjekkboks"
+
+#: admin/forms.php:318 legacy/admin-views/form-options.php:69
+msgid "Donor Address Section"
+msgstr "Donoradresse-seksjon"
+
+#: admin/forms.php:326
+msgid "Save Fields"
+msgstr "Lagre Felter"
+
+#: admin/forms.php:345
+msgid "Form Tweaks"
+msgstr "Skjematilpasninger"
+
+#: admin/forms.php:354
+msgid "Label Tag"
+msgstr "Etikett-Tag"
+
+#: admin/forms.php:356
+msgid "Add label tag to input form (may improve form layout for some themes)"
+msgstr ""
+"Legg til etikettkode for skjema (kan forbedre skjemaoppsett for noen temaer)"
+
+#: admin/forms.php:363 admin/settings.php:248
+msgid "Save Tweaks"
+msgstr "Lagre tilpasninger"
+
+#: admin/funds.php:42 cpt/cpt-funds.php:24 legacy/admin-views/funds.php:13
+#: legacy/admin-views/funds.php:14 legacy/admin-views/main.php:55
+msgid "Funds"
+msgstr "Midler"
+
+#: admin/funds.php:77
+msgid "Where Did Funds Go?"
+msgstr "Hvor ble det av Midler?"
+
+#: admin/funds.php:89
+msgid "Funds is now a custom post type available from the main dashboard."
+msgstr ""
+"Midler er nå en tilpasset type innlegg fra kontrollpanelet til WordPress"
+
+#: admin/help.php:17 legacy/admin-views/help.php:13
+#: legacy/admin-views/help.php:14 legacy/admin-views/help.php:51
+#: legacy/admin-views/main.php:79
+msgid "Help/FAQ"
+msgstr "Hjelp/vanlige spørsmål"
+
+#: admin/licenses.php:33 admin/licenses.php:80
+msgid "Licenses"
+msgstr "Lisenser"
+
+#: admin/licenses.php:70
+msgid "License Activation"
+msgstr "Lisensaktivering"
+
+#: admin/licenses.php:82
+msgid "Nothing has been installed or activated that requires a license."
+msgstr "Ingenting har blitt installert eller aktivert som krever en lisens."
+
+#: admin/logs.php:33 legacy/admin-views/log.php:13
+#: legacy/admin-views/log.php:14 legacy/admin-views/log.php:45
+#: legacy/admin-views/main.php:75
+msgid "Log"
+msgstr "Logg"
+
+#: admin/logs.php:66
+msgid "Log Data"
+msgstr "Loggdata"
+
+#: admin/logs.php:74 legacy/admin-views/log.php:57
+msgid "The log is empty."
+msgstr "Loggen er tom."
+
+#: admin/logs.php:89 admin/logs.php:96
+msgid "Seamless Donations Log Data"
+msgstr "Loggdata for sømløse donasjoner."
+
+#: admin/logs.php:113
+msgid "Delete Log"
+msgstr "Slett logg"
+
+#: admin/logs.php:118
+msgid "System Information"
+msgstr "Systeminformasjon"
+
+#. Plugin Name of the plugin/theme
+#: admin/main.php:27 legacy/admin-views/main.php:13
+#: legacy/admin-views/main.php:14
+msgid "Seamless Donations"
+msgstr "Sømløse donasjoner"
+
+#: admin/settings.php:40 legacy/admin-views/main.php:71
+#: legacy/admin-views/settings.php:14 legacy/admin-views/settings.php:15
+#: legacy/admin-views/settings.php:61
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:75
+msgid "Settings"
+msgstr "Innstillinger"
+
+#: admin/settings.php:67 admin/settings.php:84 admin/templates.php:60
+#: admin/templates.php:76
+msgid "Valid email address required."
+msgstr "Gyldig epostadresse kreves."
+
+#: admin/settings.php:131 legacy/admin-views/settings.php:75
+msgid "Notification Emails"
+msgstr "Varslingseposter"
+
+#: admin/settings.php:141 legacy/admin-views/settings.php:83
+msgid "Notification Email Address(es)"
+msgstr "Varslings-e-postadresse(r)"
+
+#: admin/settings.php:142 legacy/admin-views/settings.php:85
+msgid ""
+"Email address(es) that should be notified (e.g. administrators) of new "
+"donations."
+msgstr ""
+"Epostadresser som skal varsles (f.eks administratorer) ved nye donasjoner."
+
+#: admin/settings.php:152 legacy/admin-views/donations.php:224
+#: legacy/admin-views/donors.php:213 legacy/admin-views/form-options.php:212
+#: legacy/admin-views/form-options.php:238
+#: legacy/admin-views/form-options.php:251
+#: legacy/admin-views/form-options.php:279 legacy/admin-views/settings.php:88
+#: legacy/admin-views/settings.php:99 legacy/admin-views/settings.php:127
+msgid "Update"
+msgstr "Oppdater"
+
+#: admin/settings.php:172
+msgid "PayPal Settings"
+msgstr "Innstillinger for PayPal"
+
+#: admin/settings.php:189 dgx-donate-paypalstd.php:68
+msgid "PayPal Email Address"
+msgstr "PayPal-e-postadresse"
+
+#: admin/settings.php:190 dgx-donate-paypalstd.php:71
+msgid "The email address at which to receive payments."
+msgstr "E-postadressen der du ønsker å motta betalinger."
+
+#: admin/settings.php:198
+msgid "PayPal Interface Mode"
+msgstr "PayPal-grensesnittmodus"
+
+#: admin/settings.php:205
+msgid "PayPal IPN URL"
+msgstr "PayPal IPN URL"
+
+#: admin/settings.php:212
+msgid "Save PayPal Settings"
+msgstr "Lagre PayPal-innstillinger"
+
+#: admin/settings.php:230
+msgid "Setting Tweaks"
+msgstr "Tilpasninger"
+
+#: admin/settings.php:239
+msgid "Compact Menus"
+msgstr "Kompakte menyer"
+
+#: admin/settings.php:241
+msgid ""
+"Enable compact menu (tucks Donors, Funds, and Donations under Seamless "
+"Donations menu)"
+msgstr "Aktivere kompakt meny"
+
+#: admin/settings.php:270
+msgid "Restore Hidden Tabs"
+msgstr "Gjenopprette skjulte faner"
+
+#: admin/settings.php:280
+msgid "Show All Tabs"
+msgstr "Vis alle faner"
+
+#: admin/settings.php:299 admin/settings.php:308
+msgid "Debug Mode"
+msgstr "Feilsøkemodus"
+
+#: admin/settings.php:310
+msgid "Enable debug mode"
+msgstr "Slå på feilsøkemodus"
+
+#: admin/settings.php:317
+msgid "Save Debug Mode"
+msgstr "Lagre feilsøkemodus"
+
+#: admin/templates.php:38
+msgid "Thank You Templates"
+msgstr "Takkemaler"
+
+#: admin/templates.php:96
+msgid "This field must not be empty."
+msgstr "Dette feltet kan ikke være tomt."
+
+#: admin/templates.php:140 legacy/admin-views/templates.php:221
+msgid "Send a Test Email"
+msgstr "Send en prøveepost"
+
+#: admin/templates.php:149 legacy/admin-views/templates.php:228
+msgid "Email Address"
+msgstr "E-postadresse"
+
+#: admin/templates.php:150 legacy/admin-views/templates.php:230
+msgid "The email address to receive the test message."
+msgstr "E-postadresse for å motta testmeldinger."
+
+#: admin/templates.php:159 legacy/admin-views/templates.php:233
+msgid "Send Test Email"
+msgstr "Send en prøveepost"
+
+#: admin/templates.php:181 legacy/admin-views/templates.php:186
+msgid "Email Template"
+msgstr "Epost-mal"
+
+#: admin/templates.php:193 legacy/admin-views/templates.php:31
+msgid "From / Reply-To Name"
+msgstr "Fra / svar til-navn"
+
+#: admin/templates.php:194 legacy/admin-views/templates.php:32
+msgid ""
+"The name the thank you email should appear to come from (e.g. your "
+"organization name or your name)."
+msgstr ""
+"Navnet takkeeposten skal se ut som den kommer fra (f.eks. din organisasjon "
+"sitt eller ditt navn)"
+
+#: admin/templates.php:205 legacy/admin-views/templates.php:38
+msgid "From / Reply-To Email Address"
+msgstr "Fra / svar til e-postadresse"
+
+#: admin/templates.php:206 legacy/admin-views/templates.php:39
+msgid "The email address the thank you email should appear to come from."
+msgstr ""
+"E-postadressen som skal vises i takkeeposten skal se ut som den kommer fra."
+
+#: admin/templates.php:217 legacy/admin-views/templates.php:45
+msgid "Subject"
+msgstr "Emne"
+
+#: admin/templates.php:218 legacy/admin-views/templates.php:46
+msgid "The subject of the email (e.g. Thank You for Your Donation)."
+msgstr "Emnet på eposten (f.eks. Takk for din donasjon)."
+
+#: admin/templates.php:221
+msgid "Thank you for your donation"
+msgstr "Takk for din donasjon"
+
+#: admin/templates.php:229 legacy/admin-views/templates.php:52
+msgid "Body"
+msgstr "Brødtekst"
+
+#: admin/templates.php:230 legacy/admin-views/templates.php:53
+msgid "The body of the email message to all donors."
+msgstr "Brødteksten i epostmeldingen til donorene."
+
+#: admin/templates.php:245 legacy/admin-views/templates.php:60
+msgid "Recurring Donations"
+msgstr "Gjentakende donasjoner"
+
+#: admin/templates.php:246 legacy/admin-views/templates.php:61
+msgid ""
+"This message will be included when the donor elects to make their donation "
+"recurring."
+msgstr ""
+"Denne meldingen vil bli inkludert når giveren velger å gjøre sine donasjon "
+"regelmessig."
+
+#: admin/templates.php:249 legacy/dgx-donate-admin.php:59
+#: seamless-donations.php:334
+msgid ""
+"Thank you for electing to have your donation automatically repeated each "
+"month."
+msgstr "Takk for å velger å automatisk gjenta donasjonen hver måned."
+
+#: admin/templates.php:259 cpt/cpt-donations.php:309
+#: legacy/admin-views/donation-detail.php:92
+#: legacy/admin-views/templates.php:68
+msgid "Designated Fund"
+msgstr "Øremerkede midler"
+
+#: admin/templates.php:260 legacy/admin-views/templates.php:69
+msgid ""
+"This message will be included when the donor designates their donation to a "
+"specific fund."
+msgstr ""
+"Denne meldingen vil bli inkludert når giveren øremerker sin donasjon til en "
+"sak."
+
+#: admin/templates.php:263
+msgid "Your donation has been designated to the [fund] fund."
+msgstr "Din donasjon har blitt øremerket [fund]."
+
+#: admin/templates.php:271 legacy/admin-views/templates.php:76
+msgid "Anonymous Donations"
+msgstr "Anonyme donasjoner"
+
+#: admin/templates.php:272 legacy/admin-views/templates.php:77
+msgid ""
+"This message will be included when the donor requests their donation get "
+"kept anonymous."
+msgstr "Denne meldingen vil bli inkludert når giver ber om anonym donasjon."
+
+#: admin/templates.php:285 legacy/admin-views/templates.php:84
+msgid "Mailing List Join"
+msgstr "Abonner på mailingliste"
+
+#: admin/templates.php:286 legacy/admin-views/templates.php:85
+msgid ""
+"This message will be included when the donor elects to join the mailing list."
+msgstr ""
+"Denne meldingen vil bli inkludert når giver velger å abonnere på "
+"mailinglisten."
+
+#: admin/templates.php:300 cpt/cpt-donations.php:318
+#: legacy/admin-views/donation-detail.php:101
+#: legacy/admin-views/templates.php:92 legacy/dgx-donate.php:583
+msgid "Employer Match"
+msgstr "Arbeidsgiver"
+
+#: admin/templates.php:301 legacy/admin-views/templates.php:93
+msgid ""
+"This message will be included when the donor selects the employer match."
+msgstr ""
+"Denne meldingen vil bli inkludert når giveren velger arbeidsgivermatch."
+
+#: admin/templates.php:304
+msgid ""
+"You have specified that your employer matches some or all of your donation."
+msgstr ""
+"Du har oppgitt at din arbeidsgiver matcher noe av eller hele donasjonen."
+
+#: admin/templates.php:313 cpt/cpt-donations.php:406
+#: legacy/admin-views/donation-detail.php:189
+#: legacy/admin-views/templates.php:100 legacy/dgx-donate.php:489
+#: seamless-donations-form.php:292
+msgid "Tribute Gift"
+msgstr "Gave"
+
+#: admin/templates.php:314 legacy/admin-views/templates.php:101
+msgid ""
+"This message will be included when the donor elects to make their donation a "
+"tribute gift."
+msgstr ""
+"Denne meldingen vil bli inkludert når giver velger å gjøre sin donasjon til "
+"en en gave."
+
+#: admin/templates.php:327 legacy/admin-views/templates.php:108
+msgid "Closing"
+msgstr "Avslutning"
+
+#: admin/templates.php:328 legacy/admin-views/templates.php:109
+msgid "The closing text of the email message to all donors."
+msgstr "Den avsluttende teksten i e-postmelding til alle givere."
+
+#: admin/templates.php:331
+msgid "Thanks again for your support!"
+msgstr "Takk for støtten!"
+
+#: admin/templates.php:339 legacy/admin-views/templates.php:116
+msgid "Signature"
+msgstr "Underskrift"
+
+#: admin/templates.php:340 legacy/admin-views/templates.php:117
+msgid "The signature at the end of the email message to all donors."
+msgstr "Signaturen på slutten av e-postmelding til alle givere."
+
+#: admin/templates.php:343
+msgid "Director of Donor Relations"
+msgstr "Direktør for donorrelasjoner"
+
+#: admin/templates.php:351 admin/thanks.php:104
+#: legacy/admin-views/funds.php:167 legacy/admin-views/templates.php:209
+msgid "Save Changes"
+msgstr "Lagre endringene"
+
+#: admin/thanks.php:33 admin/thanks.php:85 legacy/admin-views/completed.php:14
+#: legacy/admin-views/completed.php:15 legacy/admin-views/completed.php:53
+#: legacy/admin-views/completed.php:97 legacy/admin-views/main.php:63
+msgid "Thank You Page"
+msgstr "Takkeside"
+
+#: admin/thanks.php:56
+msgid "Field must not be empty."
+msgstr "Dette feltet kan ikke være tomt."
+
+#: admin/thanks.php:95 legacy/admin-views/completed.php:77
+msgid "Thank You Page Text"
+msgstr "Takkesidetekst"
+
+#: admin/thanks.php:96
+msgid "The text to display to a donor after a donation is completed."
+msgstr "Teksten som skal vises til en donor etter en donasjon er fullført."
+
+#: cpt/cpt-donations.php:25 cpt/cpt-donations.php:26 cpt/cpt-donations.php:27
+#: cpt/cpt-donations.php:28 cpt/cpt-donations.php:29
+#: dgx-donate-paypalstd.php:202 seamless-donations-form.php:668
+msgid "Donation"
+msgstr "Donasjon"
+
+#: cpt/cpt-donations.php:30
+msgid "Search donations"
+msgstr "Søk i donasjoner"
+
+#: cpt/cpt-donations.php:31
+msgid "No donations found"
+msgstr "Ingen donasjoner funnet"
+
+#: cpt/cpt-donations.php:32
+msgid "No donations found in Trash"
+msgstr "Ingen donasjoner funnet i papirkurven"
+
+#: cpt/cpt-donations.php:34
+msgid "donation"
+msgstr "donasjon"
+
+#: cpt/cpt-donations.php:108
+msgid "Time/Date"
+msgstr "Klokkeslett/dato"
+
+#: cpt/cpt-donations.php:109 cpt/cpt-donors.php:26 cpt/cpt-donors.php:27
+#: cpt/cpt-donors.php:28 cpt/cpt-donors.php:29 cpt/cpt-donors.php:30
+#: cpt/cpt-donors.php:107 legacy/admin-views/donations.php:119
+#: legacy/admin-views/main.php:117
+msgid "Donor"
+msgstr "Donor"
+
+#: cpt/cpt-donations.php:110 cpt/cpt-donors.php:245 cpt/cpt-funds.php:25
+#: cpt/cpt-funds.php:26 cpt/cpt-funds.php:27 cpt/cpt-funds.php:28
+#: cpt/cpt-funds.php:29 legacy/admin-views/donor-detail.php:47
+#: legacy/admin-views/donors.php:120
+msgid "Fund"
+msgstr "Fond"
+
+#: cpt/cpt-donations.php:111 cpt/cpt-donations.php:283 cpt/cpt-donors.php:246
+#: legacy/admin-views/donation-detail.php:66
+#: legacy/admin-views/donations.php:120 legacy/admin-views/donor-detail.php:48
+#: legacy/admin-views/donors.php:121 legacy/admin-views/main.php:118
+msgid "Amount"
+msgstr "Beløp"
+
+#: cpt/cpt-donations.php:276 cpt/cpt-donations.php:452 cpt/cpt-donors.php:244
+#: legacy/admin-views/donation-detail.php:59
+#: legacy/admin-views/donation-detail.php:233
+#: legacy/admin-views/donor-detail.php:46 legacy/admin-views/main.php:116
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:72
+msgid "Date"
+msgstr "Dato"
+
+#: cpt/cpt-donations.php:288 cpt/cpt-donations.php:299
+#: cpt/cpt-donations.php:316 cpt/cpt-donations.php:345
+#: cpt/cpt-donations.php:354 cpt/cpt-donations.php:416
+#: legacy/admin-views/donation-detail.php:71
+#: legacy/admin-views/donation-detail.php:82
+#: legacy/admin-views/donation-detail.php:99
+#: legacy/admin-views/donation-detail.php:128
+#: legacy/admin-views/donation-detail.php:137
+#: legacy/admin-views/donation-detail.php:199
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:104
+msgid "Yes"
+msgstr "Ja"
+
+#: cpt/cpt-donations.php:290 cpt/cpt-donations.php:297
+#: cpt/cpt-donations.php:314 cpt/cpt-donations.php:343
+#: cpt/cpt-donations.php:351 cpt/cpt-donations.php:418
+#: legacy/admin-views/donation-detail.php:73
+#: legacy/admin-views/donation-detail.php:80
+#: legacy/admin-views/donation-detail.php:97
+#: legacy/admin-views/donation-detail.php:126
+#: legacy/admin-views/donation-detail.php:134
+#: legacy/admin-views/donation-detail.php:201
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:105
+msgid "No"
+msgstr "Nei"
+
+#: cpt/cpt-donations.php:292 legacy/admin-views/donation-detail.php:75
+msgid "Add to Mailing List?"
+msgstr "Legge til i mailinglisten?"
+
+#: cpt/cpt-donations.php:301 legacy/admin-views/donation-detail.php:84
+msgid "Would like to remain anonymous?"
+msgstr "Ønsker du å være anonym?"
+
+#: cpt/cpt-donations.php:304 cpt/cpt-donors.php:258
+#: legacy/admin-views/donation-detail.php:87
+#: legacy/admin-views/donations.php:97 legacy/admin-views/donor-detail.php:61
+#: legacy/admin-views/donors.php:144
+msgid "Undesignated"
+msgstr "Ikke designert"
+
+#: cpt/cpt-donations.php:327 cpt/cpt-donors.php:110
+#: legacy/admin-views/donation-detail.php:110
+msgid "Employer"
+msgstr "Arbeidsgiver"
+
+#: cpt/cpt-donations.php:336 cpt/cpt-donors.php:109
+#: legacy/admin-views/donation-detail.php:119
+msgid "Occupation"
+msgstr "Yrke"
+
+#: cpt/cpt-donations.php:347 legacy/admin-views/donation-detail.php:130
+msgid "UK Gift Aid"
+msgstr ""
+
+#: cpt/cpt-donations.php:370 legacy/admin-views/donation-detail.php:153
+msgid "in honor of"
+msgstr "til ære for"
+
+#: cpt/cpt-donations.php:372 legacy/admin-views/donation-detail.php:155
+msgid "in memory of"
+msgstr "til minne om"
+
+#: cpt/cpt-donations.php:377 legacy/admin-views/donation-detail.php:160
+msgid "Send acknowledgement via email to"
+msgstr "Send bekreftelse via e-post til"
+
+#: cpt/cpt-donations.php:381 legacy/admin-views/donation-detail.php:164
+msgid "Send acknowledgement via postal mail to"
+msgstr "Send bekreftelse via post til"
+
+#: cpt/cpt-donations.php:410 legacy/admin-views/donation-detail.php:193
+msgid "Payment Method"
+msgstr "Betalingsm&aring;te:"
+
+#: cpt/cpt-donations.php:420 legacy/admin-views/donation-detail.php:203
+msgid "Repeating"
+msgstr "Fast donasjon"
+
+#: cpt/cpt-donations.php:424 legacy/admin-views/donation-detail.php:207
+msgid "Session ID"
+msgstr "Øktnummer"
+
+#: cpt/cpt-donations.php:428 cpt/cpt-donations.php:453
+#: legacy/admin-views/donation-detail.php:211
+#: legacy/admin-views/donation-detail.php:234
+msgid "Transaction ID"
+msgstr "Transaksjons-ID"
+
+#: cpt/cpt-donations.php:442 legacy/admin-views/donation-detail.php:225
+msgid "Related Donations"
+msgstr "Relaterte donasjoner"
+
+#: cpt/cpt-donations.php:444 legacy/admin-views/donation-detail.php:227
+msgid ""
+"For repeating donations, displays a list of other donations in the series "
+"(subscription)"
+msgstr ""
+"En liste over andre donasjoner i serien (abonnement) vises for gjentakende "
+"donasjoner"
+
+#: cpt/cpt-donations.php:471 legacy/admin-views/donation-detail.php:251
+msgid "No related donations found"
+msgstr "Ingen relaterte donasjoner funnet"
+
+#: cpt/cpt-donations.php:484 cpt/cpt-donors.php:303
+#: legacy/admin-views/donor-detail.php:130 legacy/dgx-donate.php:600
+#: seamless-donations-form.php:421
+msgid "Donor Information"
+msgstr "Ditt navn (du forblir anonym)"
+
+#: cpt/cpt-donations.php:491 legacy/admin-views/donation-detail.php:50
+msgid "Donation Details"
+msgstr "Donasjonsdetaljer"
+
+#: cpt/cpt-donors.php:31
+msgid "Search donors"
+msgstr "Søk i givere"
+
+#: cpt/cpt-donors.php:32
+msgid "No donors found"
+msgstr "Ingen givere funnet"
+
+#: cpt/cpt-donors.php:33
+msgid "No donors found in Trash"
+msgstr "Ingen givere funnet i papirkurven"
+
+#: cpt/cpt-donors.php:35
+msgid "donor"
+msgstr "donor"
+
+#: cpt/cpt-donors.php:108
+msgid "Email"
+msgstr "Epost"
+
+#: cpt/cpt-donors.php:111
+msgid "Total Donated"
+msgstr "Totalt donert"
+
+#: cpt/cpt-donors.php:240 legacy/admin-views/donations.php:185
+#: legacy/admin-views/donor-detail.php:37 legacy/admin-views/main.php:155
+msgid "No donations found."
+msgstr "Ingen donasjoner funnet."
+
+#: cpt/cpt-donors.php:283 legacy/admin-views/donor-detail.php:84
+msgid "Donor Total"
+msgstr "Donortotal"
+
+#: cpt/cpt-funds.php:30
+msgid "Search funds"
+msgstr "Søk i midler"
+
+#: cpt/cpt-funds.php:31
+msgid "No funds found"
+msgstr "Ingen fond funnet"
+
+#: cpt/cpt-funds.php:32
+msgid "No funds found in Trash"
+msgstr "Ingen fond funnet i papirkurven"
+
+#: cpt/cpt-funds.php:33
+msgid "fund"
+msgstr "Fond"
+
+#: cpt/cpt-funds.php:65
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:67
+msgid "Title"
+msgstr "Tittel"
+
+#: cpt/cpt-funds.php:66 legacy/admin-views/funds.php:141
+msgid "Display on Donation Form"
+msgstr "Vis på donationsskjema"
+
+#: cpt/cpt-funds.php:106
+msgid "Display on donation form"
+msgstr "Vis på donationsskjema"
+
+#: cpt/cpt-funds.php:132
+msgid "Fund Settings"
+msgstr "Fondsnnstillinger"
+
+#: dgx-donate-paypalstd.php:74
+msgid "Mode:"
+msgstr "Modus:"
+
+#: dgx-donate-paypalstd.php:76
+msgid "Sandbox (Test Server)"
+msgstr "Sandbox (Test Server)"
+
+#: dgx-donate-paypalstd.php:78
+msgid "Live (Production Server)"
+msgstr "Live (Produksjonsserver)"
+
+#: dgx-donate-paypalstd.php:79
+msgid "IPN URL"
+msgstr ""
+
+#: dgx-donate-paypalstd.php:253 legacy/dgx-donate.php:356
+#: seamless-donations-form.php:91
+msgid ""
+"Warning - Seamless Donations is currently configured to use the Sandbox "
+"(Test Server)."
+msgstr ""
+"Advarsel - Sømløse donasjoner er konfigurert til å bruke Sandbox (Test "
+"Server)."
+
+#: dgx-donate-paypalstd.php:265
+msgid "Warning:  To make a donation, you must first enable JavaScript."
+msgstr "Advarsel: For å gjøre en donasjon, må du først aktivere Javascript."
+
+#: dgx-donate-paypalstd.php:285 seamless-donations-form.php:794
+msgid "Donate Now"
+msgstr "Donér nå"
+
+#: inc/form-engine.php:37
+msgid "JavaScript is not enabled. You must enable JavaScript to use this form."
+msgstr ""
+"Javascript er ikke aktivert. Du må aktivere Javascript for å bruke dette "
+"skjemaet."
+
+#: inc/legacy.php:22
+msgid "Alert - Seamless Donations has had a major update. "
+msgstr "Advarsel - Sømløse Donasjoner har hatt en stor oppdatering."
+
+#: inc/legacy.php:25
+msgid "to learn about enabling your new features "
+msgstr "for å lære om aktivering av de nye funksjonene"
+
+#: inc/legacy.php:27
+msgid "(they will remain off until you manually enable them)."
+msgstr "(De vil forbli av inntil du manuelt skrur dem på)."
+
+#: legacy/admin-views/completed.php:24 legacy/admin-views/completed.php:37
+#: legacy/admin-views/donation-detail.php:9
+#: legacy/admin-views/donation-detail.php:22
+#: legacy/admin-views/donations.php:29 legacy/admin-views/donations.php:40
+#: legacy/admin-views/donors.php:29 legacy/admin-views/donors.php:40
+#: legacy/admin-views/form-options.php:99
+#: legacy/admin-views/form-options.php:108 legacy/admin-views/funds.php:24
+#: legacy/admin-views/funds.php:39 legacy/admin-views/help.php:23
+#: legacy/admin-views/log.php:23 legacy/admin-views/log.php:30
+#: legacy/admin-views/main.php:24 legacy/admin-views/settings.php:24
+#: legacy/admin-views/settings.php:31 legacy/admin-views/templates.php:24
+#: legacy/admin-views/templates.php:128
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+"Du har ikke tilstrekkelige tillatelser til å få tilgang til denne siden."
+
+#: legacy/admin-views/completed.php:44
+msgid "Thank you page content updated."
+msgstr "Takkesidetekst oppdatert."
+
+#: legacy/admin-views/completed.php:71
+msgid "Thank You Page Details"
+msgstr "Takkesidedetaljer"
+
+#: legacy/admin-views/completed.php:78
+msgid "The text to display to the donor after they complete their donation."
+msgstr "Teksten som skal vises til donor etter at de fullfører sin donasjon."
+
+#: legacy/admin-views/completed.php:98
+msgid ""
+"On this page you can configure a special thank you message which will appear "
+"to your donors after they complete their donation.  This is separate from "
+"the thank you email that gets emailed to your donor."
+msgstr ""
+"På denne siden kan du konfigurere en spesiell takkemelding som vil vises til "
+"givere etter at de har fullført sin donasjon. Dette er atskilt fra takke-e-"
+"posten som blir sendt til din donor."
+
+#: legacy/admin-views/donation-detail.php:28
+msgid "Donation Detail"
+msgstr "Donasjonsdetaljer"
+
+#: legacy/admin-views/donation-detail.php:35
+msgid "Donation deleted"
+msgstr "Donasjon slettet"
+
+#: legacy/admin-views/donation-detail.php:269
+msgid "Delete this Donation"
+msgstr "Slett donasjon"
+
+#: legacy/admin-views/donation-detail.php:270
+msgid ""
+"Click the following button to delete this donation.  This will also remove "
+"this donation from all reports.  This operation cannot be undone."
+msgstr ""
+"Klikk på denne knappen for å slette donasjonen. Dette vil også fjerne "
+"donasjon fra alle rapporter. Denne operasjonen kan ikke omgjøres."
+
+#: legacy/admin-views/donation-detail.php:273
+msgid ""
+"This is a repeating donation (subscription).  Deleting this donation does "
+"NOT end the subscription.  The donor will need to log into PayPal to end the "
+"subscription."
+msgstr ""
+"Dette er et gjentagende donasjon (abonnement). Sletting av denne donasjonen "
+"vil IKKE avslutte abonnementet. Donor må logge inn PayPal for å avslutte "
+"abonnementet."
+
+#: legacy/admin-views/donation-detail.php:280
+msgid "Delete Donation"
+msgstr "Slett donasjon"
+
+#: legacy/admin-views/donations.php:57
+msgid "Donation Report for %1$s to %2$s"
+msgstr "Donasjonsrapport for %1$s til %2$s"
+
+#: legacy/admin-views/donations.php:118
+msgid "Fund/Date"
+msgstr "Fond / Dato"
+
+#: legacy/admin-views/donations.php:166
+msgid "Fund Subtotal"
+msgstr "Fondets subtotal"
+
+#: legacy/admin-views/donations.php:179 legacy/admin-views/donors.php:183
+msgid "Grand Total"
+msgstr "Totalsum:"
+
+#: legacy/admin-views/donations.php:199
+msgid "Export Report as Spreadsheet (CSV)"
+msgstr "Eksporter rapport som regneark (CSV)"
+
+#: legacy/admin-views/donations.php:200
+msgid ""
+"Click the following button to export detailed information for each donation "
+"in this report to a comma-separated-value (CSV) file compatible with most "
+"spreadsheet software."
+msgstr ""
+"Klikk på denne knappen for å eksportere detaljert informasjon for hver "
+"donasjon i denne rapporten til en kommaseparert-verdi (CSV) kompatibel med "
+"de fleste regnearkprogramvarer."
+
+#: legacy/admin-views/donations.php:205
+msgid "Export Report"
+msgstr "Eksporter rapport"
+
+#: legacy/admin-views/donations.php:210
+msgid "Date Range"
+msgstr "Datoperiode:"
+
+#: legacy/admin-views/donations.php:217 legacy/admin-views/donors.php:206
+msgid "Start Date"
+msgstr "Startdato"
+
+#: legacy/admin-views/donations.php:220 legacy/admin-views/donors.php:209
+msgid "End Date"
+msgstr "Sluttdato"
+
+#: legacy/admin-views/donor-detail.php:12
+msgid "Donor Detail"
+msgstr "Donordetaljer"
+
+#: legacy/admin-views/donor-detail.php:43
+msgid "Donations by This Donor"
+msgstr "Donasjoner av denne donoren"
+
+#: legacy/admin-views/donors.php:57
+msgid "Donor Report for %1$s to %2$s"
+msgstr "Donorrapport for %1$s til %2$s"
+
+#: legacy/admin-views/donors.php:119
+msgid "Donor/Date"
+msgstr "Donor / dato"
+
+#: legacy/admin-views/donors.php:170
+msgid "Donor Subtotal"
+msgstr "Donorsubtotal"
+
+#: legacy/admin-views/donors.php:188
+msgid "No donors found."
+msgstr "Ingen givere funnet."
+
+#: legacy/admin-views/form-options.php:119
+#: legacy/admin-views/form-options.php:128
+#: legacy/admin-views/form-options.php:135
+#: legacy/admin-views/form-options.php:142
+#: legacy/admin-views/form-options.php:149
+#: legacy/admin-views/form-options.php:156 legacy/admin-views/settings.php:39
+#: legacy/admin-views/settings.php:50
+msgid "Settings updated."
+msgstr "Innstillinger oppdatert."
+
+#: legacy/admin-views/form-options.php:180
+msgid ""
+"Choose which form fields and sections you would like to show or require."
+msgstr "Velg hvilke skjemafelt og delene du ønsker å vise eller kreve."
+
+#: legacy/admin-views/form-options.php:188
+msgid "Field/Section"
+msgstr "Felt / seksjon"
+
+#: legacy/admin-views/form-options.php:189
+msgid "Don't Show"
+msgstr "Ikke vis"
+
+#: legacy/admin-views/form-options.php:190
+msgid "Show"
+msgstr "Vis"
+
+#: legacy/admin-views/form-options.php:191
+msgid "Require"
+msgstr "Krev"
+
+#: legacy/admin-views/form-options.php:226
+msgid ""
+"Select one or more suggested giving levels for your donors to choose from."
+msgstr "Velg ett eller flere foreslåtte givernivåer for givere å velge mellom."
+
+#: legacy/admin-views/form-options.php:243
+msgid "Currency"
+msgstr "Valuta"
+
+#: legacy/admin-views/form-options.php:244
+msgid "Select the currency you'd like to receive donations in."
+msgstr "Velg valutaen du ønsker å motta donasjoner i."
+
+#: legacy/admin-views/form-options.php:257
+msgid "Default Country / State / Province"
+msgstr "Standard Land / fylke"
+
+#: legacy/admin-views/form-options.php:258
+msgid "Select the default country / state / province for the donation form."
+msgstr "Velg standard land / fylke for donasjonsskjema."
+
+#: legacy/admin-views/funds.php:45 legacy/admin-views/funds.php:133
+msgid "Designated Funds"
+msgstr "Øremerkede midler"
+
+#: legacy/admin-views/funds.php:49
+msgid "Fund added."
+msgstr "Fond lagt til."
+
+#: legacy/admin-views/funds.php:78 legacy/admin-views/funds.php:84
+msgid "Fund(s) updated."
+msgstr "Fond oppdatert."
+
+#: legacy/admin-views/funds.php:99
+msgid "Fund(s) deleted."
+msgstr "Fond slettet."
+
+#: legacy/admin-views/funds.php:140
+msgid "Fund Name"
+msgstr "Fondsnavn"
+
+#: legacy/admin-views/funds.php:142
+msgid "Delete"
+msgstr "Slett"
+
+#: legacy/admin-views/funds.php:165
+msgid ""
+"Note:  Deleting a fund from this list does NOT affect any donations already "
+"made to that fund, or any reports for that fund."
+msgstr ""
+"Merk: Hvis du sletter et fond fra denne listen påvirker ikke eventuelle "
+"donasjoner som allerede er gjort til fondet, eller rapporter for fondet."
+
+#: legacy/admin-views/funds.php:171
+msgid "You have no designated funds defined"
+msgstr "Du har ingen øremerkede midler definert"
+
+#: legacy/admin-views/funds.php:180 legacy/admin-views/funds.php:190
+msgid "Add New Designated Fund"
+msgstr "Legg til nytt øremerket fond"
+
+#: legacy/admin-views/funds.php:185
+msgid "Name"
+msgstr "Navn"
+
+#: legacy/admin-views/funds.php:187
+msgid "The name of the desginated fund, as you want it to appear to visitors."
+msgstr ""
+"Navnet på det øremerkede fondet, slik du vil at det skal vises for besøkende."
+
+#: legacy/admin-views/help.php:28
+msgid ""
+"What is the shortcode I need to insert on a page to see the donation form?"
+msgstr ""
+"Hva er shortcode som jeg trenger å sette inn på en side for å se "
+"donasjonsskjemaet?"
+
+#: legacy/admin-views/help.php:32
+msgid "Do I need to set my IPN notification URL at PayPal?"
+msgstr "Må jeg stille inn min IPN-varslings-URL hos PayPal?"
+
+#: legacy/admin-views/help.php:33
+msgid ""
+"In general it is not needed, but some users have needed to set it to get "
+"notifications working correctly."
+msgstr ""
+"Generelt er det ikke nødvendig, men noen brukere har behov for å sette den "
+"for å få varslinger til å fungere."
+
+#: legacy/admin-views/help.php:36
+msgid "What URL should I use for the IPN notification URL at PayPal?"
+msgstr "Hvilken URL skal jeg bruke for IPN-varsling hos PayPal?"
+
+#: legacy/admin-views/help.php:37
+msgid ""
+"The correct URL to use is displayed on your settings page under Payment "
+"Gateways."
+msgstr "Riktig nettadresse vises under innstillinger under betalingsløsninger."
+
+#: legacy/admin-views/help.php:40
+msgid "How does my donor end a repeating donation?"
+msgstr "Hvordan min donor avslutte en gjentagende donasjon?"
+
+#: legacy/admin-views/help.php:41
+msgid ""
+"The donor can log into their PayPal account, go to their profile under 'My "
+"Account,' then 'Preapproved Payments', and end the repeating donation there."
+msgstr ""
+"Den donor kan logge seg på sin PayPal-konto, gå til sin profil under «Min "
+"konto», deretter «forhåndsgodkjente betalinger», og kan avslutte gjentagende "
+"donasjon der."
+
+#: legacy/admin-views/help.php:44
+msgid ""
+"I have a question not answered here.  Where can I find the plugin's support "
+"forum?"
+msgstr ""
+"Jeg har et spørsmål som ikke er besvart her. Hvor kan jeg finne "
+"støtteforumet?"
+
+#: legacy/admin-views/help.php:45
+msgid "You can find the support forum at"
+msgstr "Du kan finne støtteforumet på"
+
+#: legacy/admin-views/log.php:40
+msgid "Log cleared"
+msgstr "Logg nullstilt"
+
+#: legacy/admin-views/log.php:72
+msgid "Clear Log"
+msgstr "Tøm Logg"
+
+#: legacy/admin-views/main.php:42
+msgid "Seamless Donations for WordPress"
+msgstr "Sømløse Donasjoner for WordPress"
+
+#: legacy/admin-views/main.php:59 legacy/admin-views/templates.php:14
+#: legacy/admin-views/templates.php:15 legacy/admin-views/templates.php:165
+msgid "Thank You Emails"
+msgstr "Takke-e-post"
+
+#: legacy/admin-views/main.php:84
+msgid "Quick Links"
+msgstr "Hurtiglenker"
+
+#: legacy/admin-views/main.php:104
+msgid "Recent Donations"
+msgstr "Nye donasjoner"
+
+#: legacy/admin-views/main.php:168
+msgid "Latest News"
+msgstr "Siste nytt"
+
+#: legacy/admin-views/main.php:175
+msgid "What's up with Seamless Donations"
+msgstr "Hva er det med Sømløse Donasjoner"
+
+#: legacy/admin-views/settings.php:76
+msgid ""
+"Enter one or more emails that should be notified when a new donation "
+"arrives.  You can separate multiple email addresses with commas."
+msgstr ""
+"Angi en eller flere e-poster som skal varsles når en ny donasjon kommer. Du "
+"kan skille flere e-postadresser med komma."
+
+#: legacy/admin-views/settings.php:102
+msgid "Error: No payment gateways found"
+msgstr "Feil: Ingen betalingsløsninger funnet"
+
+#: legacy/admin-views/settings.php:115
+msgid "Scripts"
+msgstr "Script"
+
+#: legacy/admin-views/settings.php:116
+msgid "Whether to load scripts in the header or footer."
+msgstr "Om man skal laste script i topp- eller bunnteksten."
+
+#: legacy/admin-views/settings.php:124
+msgid "Load scripts in the header (default)"
+msgstr "Last inn skript i toppen (standard)"
+
+#: legacy/admin-views/settings.php:125
+msgid "Load scripts in the footer"
+msgstr "Last inn skript i bunnen"
+
+#: legacy/admin-views/templates.php:147
+msgid "Templates updated."
+msgstr "Maler oppdatert."
+
+#: legacy/admin-views/templates.php:156
+msgid "Test email sent."
+msgstr "Test-e-post sendt."
+
+#: legacy/admin-views/templates.php:188
+msgid ""
+"You can include placeholders such as [firstname] [lastname] [fund] and/or "
+"[amount]."
+msgstr ""
+"Du kan ta med plassholdere som [fornavn] [etternavn] [fond] og / eller "
+"[beløp]."
+
+#: legacy/admin-views/templates.php:189
+msgid ""
+"These placeholders will automatically be filled in with the donor and "
+"donation details."
+msgstr ""
+"Disse plassholderne vil automatisk bli fylt med donor- og donasjonsdetaljer."
+
+#: legacy/admin-views/templates.php:222
+msgid ""
+"Enter an email address (e.g. your own) to have a test email sent using the "
+"template."
+msgstr ""
+"Angi en e-postadresse (f.eks din egen) for en test e-post sendt ved hjelp av "
+"malen."
+
+#: legacy/dgx-donate.php:397 seamless-donations-form.php:114
+msgid "Donation Information"
+msgstr "Din gave"
+
+#: legacy/dgx-donate.php:399 seamless-donations-form.php:120
+msgid "I would like to make a donation in the amount of:"
+msgstr "Jeg vil gjerne bidra med:"
+
+#: legacy/dgx-donate.php:419 seamless-donations-form.php:173
+msgid "Other: "
+msgstr "Annet:"
+
+#: legacy/dgx-donate.php:442 seamless-donations-form.php:204
+msgid "I would like to designate this donation to a specific fund"
+msgstr "Jeg vil gjerne designere denne donasjonen til noe spesifikt"
+
+#: legacy/dgx-donate.php:447 seamless-donations-form.php:222
+msgid "Designated Fund: "
+msgstr "Spesifik donasjon:"
+
+#: legacy/dgx-donate.php:468 seamless-donations-form.php:243
+msgid "I would like this donation to automatically repeat each month"
+msgstr "Jeg vil gjerne gjenta donasjonen hver måned"
+
+#: legacy/dgx-donate.php:493 seamless-donations-form.php:300
+msgid "Check here to donate in honor or memory of someone"
+msgstr "Klikk her for å donere til ære eller minne om noen"
+
+#: legacy/dgx-donate.php:498 seamless-donations-form.php:306
+msgid "Check here if this is a memorial gift"
+msgstr "Klikk her om dette er en minnegave"
+
+#: legacy/dgx-donate.php:502
+msgid "Honoree's Name:"
+msgstr "Den beæredes navn:"
+
+#: legacy/dgx-donate.php:508
+msgid "Send acknowledgement via email to "
+msgstr "Send bekreftelse via e-post til"
+
+#: legacy/dgx-donate.php:512 legacy/dgx-donate.php:528
+msgid "Name:"
+msgstr "Navn:"
+
+#: legacy/dgx-donate.php:517 legacy/dgx-donate.php:645
+#: seamless-donations-form.php:439
+msgid "Email:"
+msgstr "E-post:"
+
+#: legacy/dgx-donate.php:524
+msgid "Send acknowledgement via postal mail to "
+msgstr "Send bekreftelse via post til"
+
+#: legacy/dgx-donate.php:533 legacy/dgx-donate.php:684
+msgid "Address:"
+msgstr "Adresse:"
+
+#: legacy/dgx-donate.php:538 legacy/dgx-donate.php:695
+msgid "City:"
+msgstr "By:"
+
+#: legacy/dgx-donate.php:545 legacy/dgx-donate.php:701
+msgid "State:"
+msgstr "Stat:"
+
+#: legacy/dgx-donate.php:550 legacy/dgx-donate.php:705
+msgid "Province:"
+msgstr "Fylke:"
+
+#: legacy/dgx-donate.php:555 legacy/dgx-donate.php:710
+msgid "Country:"
+msgstr "Land:"
+
+#: legacy/dgx-donate.php:560 legacy/dgx-donate.php:715
+msgid "Postal Code:"
+msgstr "Postnummer:"
+
+#: legacy/dgx-donate.php:586 seamless-donations-form.php:492
+msgid "Check here if your employer matches donations"
+msgstr "Sjekk her om din arbeidsgiver matcher donasjonene"
+
+#: legacy/dgx-donate.php:602 seamless-donations-form.php:427
+msgid "First Name:"
+msgstr "Fornavn:"
+
+#: legacy/dgx-donate.php:607 seamless-donations-form.php:433
+msgid "Last Name:"
+msgstr "Etternavn:"
+
+#: legacy/dgx-donate.php:616 seamless-donations-form.php:469
+msgid "Phone:"
+msgstr "Tlf:"
+
+#: legacy/dgx-donate.php:628 seamless-donations-form.php:484
+msgid "Employer:"
+msgstr "Arbeidsgiver:"
+
+#: legacy/dgx-donate.php:638 seamless-donations-form.php:502
+msgid "Occupation:"
+msgstr "Yrke:"
+
+#: legacy/dgx-donate.php:652 seamless-donations-form.php:458
+msgid "Add me to your mailing list"
+msgstr "Legg meg til mailinglisten"
+
+#: legacy/dgx-donate.php:659
+msgid "Please do not publish my name.  I would like to remain anonymous."
+msgstr "Vennligst ikke publisere navnet mitt. Jeg ønsker å være anonym."
+
+#: legacy/dgx-donate.php:681 seamless-donations-form.php:555
+msgid "Donor Address"
+msgstr "Donoradresse"
+
+#: legacy/dgx-donate.php:689
+msgid "Address 2:"
+msgstr "Adresse 2:"
+
+#: legacy/dgx-donate.php:690 seamless-donations-form.php:569
+msgid "(optional)"
+msgstr "(valgfritt)"
+
+#: legacy/dgx-donate.php:910
+msgid "A donation has been received"
+msgstr "En donasjon er mottatt"
+
+#: legacy/dgx-donate.php:913
+msgid ""
+"A donation has been received.  Here are some details about the donation."
+msgstr "En donasjon er mottatt. Her er noen detaljer om donasjonen."
+
+#: legacy/dgx-donate.php:930
+msgid ""
+"NOTE:  The donor is making this donation in honor of / in memory of someone."
+msgstr "MERK: donor gir donasjonen til ære for / til minne om noen."
+
+#: legacy/dgx-donate.php:934 legacy/dgx-donate.php:944
+msgid ""
+"Please see the donation details (using the link below) for more information."
+msgstr ""
+"Vennligst se detaljer om donasjonen (ved hjelp av lenken nedenfor) for mer "
+"informasjon."
+
+#: legacy/dgx-donate.php:943
+msgid "NOTE:  The donor is making this donation with an employer match."
+msgstr "MERK: donor gjør denne donasjonen med en arbeidsgivermatch."
+
+#: legacy/dgx-donate.php:954
+msgid "Donation:"
+msgstr "Donasjon:"
+
+#: legacy/dgx-donate.php:955
+msgid "Amount:"
+msgstr "Beløp:"
+
+#: legacy/dgx-donate.php:958
+msgid "Click on the following link to view all details for this donation:"
+msgstr "Klikk på følgende link for å se alle detaljene for denne donasjonen:"
+
+#: library/apf/admin-page-framework.php:47
+msgid "The method is called too early. Perform <code>%2$s</code> earlier."
+msgstr "Metoden kalles for tidlig. Utfør <code>%2$s</code> tidligere."
+
+#: library/apf/factory/AdminPageFramework/AdminPageFramework_Form_Controller.php:57
+msgid "The method is deprecated: %1$s. Use %2$s instead."
+msgstr "Metoden er foreldet: %1$s. Bruk %2$s i stedet."
+
+#: library/apf/factory/AdminPageFramework/AdminPageFramework_Form_Model_Validation.php:37
+msgid "The hook <code>%1$s</code>is deprecated. Use <code>%2$s</code> instead."
+msgstr "Krok <code>%1$s</code>er foreldet. Bruk <code>%2$s</code> i stedet."
+
+#: library/apf/factory/AdminPageFramework_Factory/AdminPageFramework_Factory_Router.php:162
+msgid "The method is not defined: %1$s"
+msgstr "Metoden er ikke definert: %1$s"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:44
+msgid "The options have been updated."
+msgstr "Innstillingene har blitt oppdatert."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:45
+msgid "The options have been cleared."
+msgstr "Innstillingene har blitt nullstilt."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:46
+msgid "Export"
+msgstr "Eksporter"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:47
+msgid "Export Options"
+msgstr "Eksportinnstillinger"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:48
+msgid "Import"
+msgstr "Importer"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:49
+msgid "Import Options"
+msgstr "Importinnstillinger"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:50
+msgid "Submit"
+msgstr "Send"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:51
+msgid "An error occurred while uploading the import file."
+msgstr "Det oppstod en feil under opplasting importfilen."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:52
+msgid "The uploaded file type is not supported: %1$s"
+msgstr "Den opplastede filtypen støttes ikke: %1$s"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:53
+msgid "Could not load the importing data."
+msgstr "Kunne ikke laste inn importdata."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:54
+msgid "The uploaded file has been imported."
+msgstr "Den opplastede filen har blitt importert."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:55
+msgid "No data could be imported."
+msgstr "Ingen data kan importeres."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:56
+msgid "Upload Image"
+msgstr "Last opp bilde"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:57
+msgid "Use This Image"
+msgstr "Bruk dette bildet"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:58
+msgid "Insert from URL"
+msgstr "Sett fra URL"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:59
+msgid "Are you sure you want to reset the options?"
+msgstr "Er du sikker på at du vil tilbakestille alternativene?"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:60
+msgid "Please confirm your action."
+msgstr "Vennligst bekreft din handling."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:61
+msgid "The specified options have been deleted."
+msgstr "De angitte alternativene er slettet."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:62
+msgid "A problem occurred while processing the form data. Please try again."
+msgstr ""
+"Det oppstod et problem under behandling av skjemadataene. Vær så snill, prøv "
+"på nytt."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:63
+msgid "Is it okay to send the email?"
+msgstr "Er det greit å sende e-posten?"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:64
+msgid "The email has been sent."
+msgstr "E-posten er sendt"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:65
+msgid "The email has been scheduled."
+msgstr "E-posten har blitt planlagt."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:66
+msgid "There was a problem sending the email"
+msgstr "Det var et problem med å sende e-posten"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:68
+msgid "Author"
+msgstr "Forfatter"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:69
+msgid "Categories"
+msgstr "Kategorier"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:70
+msgid "Tags"
+msgstr "Tagger"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:71
+msgid "Comments"
+msgstr "Kommentarer"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:73
+msgid "Show All"
+msgstr "Vis alle"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:74
+msgid "Powered by"
+msgstr "Drevet av"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:76
+msgid "Manage"
+msgstr "Administrere"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:77
+msgid "Select Image"
+msgstr "Velg bilde"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:78
+msgid "Upload File"
+msgstr "Last opp fil"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:79
+msgid "Use This File"
+msgstr "Bruk denne filen"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:80
+msgid "Select File"
+msgstr "Velg fil"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:81
+msgid "Remove Value"
+msgstr "Fjern verdi"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:82
+msgid "Select All"
+msgstr "Velg alle"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:83
+msgid "Select None"
+msgstr "Velg ingen"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:84
+msgid "No term found."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:85
+msgid "Select"
+msgstr "Velg"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:86
+msgid "Insert"
+msgstr "Sett inn"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:87
+msgid "Use This"
+msgstr "Bruk denne"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:88
+msgid "Return to Library"
+msgstr "Gå tilbake til biblioteket"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:89
+msgid "%1$s queries in %2$s seconds."
+msgstr "%1$s spørringer på %2$s sekunder."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:90
+msgid "%1$s out of %2$s MB (%3$s) memory used."
+msgstr "%1$s av %2$s MB (%3$s) minne brukes."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:91
+msgid "Peak memory usage %1$s MB."
+msgstr "Toppminnebruk %1$s MB."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:92
+msgid "Initial memory usage  %1$s MB."
+msgstr "Minnebruk i utgangspunktet %1$s MB."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:93
+msgid "The allowed maximum number of fields is {0}."
+msgstr "Det maksimale antallet tillatte felt er {0}."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:94
+msgid "The allowed minimum number of fields is {0}."
+msgstr "Det minste antallet tillatte felt er {0}."
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:95
+msgid "Add"
+msgstr "Legg til"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:96
+msgid "Remove"
+msgstr "Fjern"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:97
+msgid "The allowed maximum number of sections is {0}"
+msgstr "Det maksimale tillatte antall seksjoner er {0}"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:98
+msgid "The allowed minimum number of sections is {0}"
+msgstr "Det minste tillatte antall seksjoner er {0}"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:99
+msgid "Add Section"
+msgstr "Legg til seksjon"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:100
+msgid "Remove Section"
+msgstr "Fjern seksjon"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:101
+msgid "Toggle All"
+msgstr "Lukke/åpne alle"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:102
+msgid "Toggle all collapsible sections"
+msgstr "Lukke/åpne alle kollapsbare seksjoner"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:103
+msgid "Reset"
+msgstr "Nullstill"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:106
+msgid "On"
+msgstr "På"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:107
+msgid "Off"
+msgstr "Av"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:108
+msgid "Enabled"
+msgstr "Aktivert"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:109
+msgid "Disabled"
+msgstr "Deaktivert"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:110
+msgid "Supported"
+msgstr "Støttet"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:111
+msgid "Not Supported"
+msgstr "Ikke st&oslash;ttet"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:112
+msgid "Functional"
+msgstr "Funksjonell"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:113
+msgid "Not Functional"
+msgstr "Ikke funksjonell"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:114
+msgid "Too Long"
+msgstr "For lenge"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:115
+msgid "Acceptable"
+msgstr "Akseptabelt"
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:116
+msgid "No log found."
+msgstr "Ingen logg funnet."
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:109
+msgid "No browser information found."
+msgstr "Ingen nettleserinformasjon funnet."
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Version"
+msgstr "Versjon"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Language"
+msgstr "Språk"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Memory Limit"
+msgstr "Minnegrense"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Multi-site"
+msgstr "Multi-nettsted"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Permalink Structure"
+msgstr "Permalenkestruktur"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Active Theme"
+msgstr "Aktivt tema"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Registered Post Statuses"
+msgstr "Registrerte poststatuser"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix"
+msgstr "Tabellprefiks"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix Length"
+msgstr "Tabellprefikslengde"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix Status"
+msgstr "Tabellprefiksstatus"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "WP_CONTENT_DIR Writeable"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Active Plugins"
+msgstr "Aktive plugins"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Network Active Plugins"
+msgstr "Aktive plugins (nettverk)"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Constants"
+msgstr "Konstanter"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Safe Mode"
+msgstr "Sikkerhetsmodus"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Upload Max Size"
+msgstr "Maksstørrelse for opplastninger"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Post Max Size"
+msgstr "Maksstørrelse for innlegg"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Upload Max File Size"
+msgstr "Maksimum filstørrelse for opplastning"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Max Execution Time"
+msgstr "Maksimum kjøretid"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Max Input Vars"
+msgstr "Maksimum inputvariabler"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Argument Separator"
+msgstr "Argumentseparator"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Allow URL File Open"
+msgstr "Tillat URL-fil&aring;pning"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Display Errors"
+msgstr "Vis feil"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Log Errors"
+msgstr "Logg feil"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Error log location"
+msgstr "Feilloggplassering"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Error Reporting Level"
+msgstr "Feilrapporteringsniv&aring;"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "FSOCKOPEN"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "cURL"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "SOAP"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "SUHOSIN"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Web Server"
+msgstr "Nettjener"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session"
+msgstr "Sesjon"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Name"
+msgstr "Sesjonsnavn"
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Cookie Path"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Save Path"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Use Cookies"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Use Only Cookies"
+msgstr ""
+
+#: seamless-donations-form.php:158
+msgid "Other"
+msgstr "Annet"
+
+#: seamless-donations-form.php:313
+msgid "Name of person to be honored: "
+msgstr "Den beæredes navn:"
+
+#: seamless-donations-form.php:323
+msgid "Send acknowledgement via email"
+msgstr "Send bekreftelse via e-post"
+
+#: seamless-donations-form.php:333
+msgid "Send acknowledgement via postal mail"
+msgstr "Send bekreftelse via post til"
+
+#: seamless-donations-form.php:340
+msgid "Email Name: "
+msgstr "E-post-navn:"
+
+#: seamless-donations-form.php:347
+msgid "Email: "
+msgstr "E-post:"
+
+#: seamless-donations-form.php:353
+msgid "Name: "
+msgstr "Navn:"
+
+#: seamless-donations-form.php:359 seamless-donations-form.php:561
+msgid "Address: "
+msgstr "Adresse:"
+
+#: seamless-donations-form.php:365 seamless-donations-form.php:575
+msgid "City: "
+msgstr "By:"
+
+#: seamless-donations-form.php:372 seamless-donations-form.php:581
+msgid "State : "
+msgstr "Stat:"
+
+#: seamless-donations-form.php:379 seamless-donations-form.php:587
+msgid "Province: "
+msgstr "Fylke:"
+
+#: seamless-donations-form.php:389 seamless-donations-form.php:596
+msgid "Country: "
+msgstr "Land:"
+
+#: seamless-donations-form.php:395 seamless-donations-form.php:601
+msgid "Postal Code: "
+msgstr "Postnummer:"
+
+#: seamless-donations-form.php:448
+msgid ""
+"Please do not display my name publicly. I would like to remain anonymous"
+msgstr "Vennligst ikke vis mitt navn offentlig. Jeg ønsker å være anonym"
+
+#: seamless-donations-form.php:566
+msgid "Address 2: "
+msgstr "Adresse 2:"
+
+#: seamless-donations-form.php:605
+msgid "I am a UK taxpayer and my gift qualifies for Gift Aid."
+msgstr ""
+
+#: seamless-donations-payment.php:378
+msgid "Invalid response to challenge. Are you human?"
+msgstr "Ugyldig svar. Er du menneske?"
+
+#. Plugin URI of the plugin/theme
+msgid "http://zatzlabs.com/seamless-donations/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Making online donations easy for your visitors; making donor and donation "
+"management easy for you.  Receive donations (now including repeating "
+"donations), track donors and send customized thank you messages with "
+"Seamless Donations for WordPress.  Works with PayPal accounts. Adopted from "
+"Allen Snook."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "David Gewirtz"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://zatzlabs.com/lab-notes/"
+msgstr ""

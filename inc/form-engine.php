@@ -1,13 +1,17 @@
 <?php
-/*
-Seamless Donations by David Gewirtz, adopted from Allen Snook
+/**
+ * Seamless Donations by David Gewirtz, adopted from Allen Snook
+ *
+ * Lab Notes: http://zatzlabs.com/lab-notes/
+ * Plugin Page: http://zatzlabs.com/seamless-donations/
+ * Contact: http://zatzlabs.com/contact-us/
+ *
+ * Copyright (c) 2015-2020 by David Gewirtz
+ *
+ */
 
-Lab Notes: http://zatzlabs.com/lab-notes/
-Plugin Page: http://zatzlabs.com/seamless-donations/
-Contact: http://zatzlabs.com/contact-us/
-
-Copyright (c) 2015 by David Gewirtz
-*/
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
 
 function seamless_donations_forms_engine ( $form_array ) {
 
@@ -191,6 +195,8 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 		$element_placeholder = '';
 		$element_value       = '';
 		$element_class       = '';
+		$element_label_class = '';
+		$element_input_class = '';
 		$element_style       = '';
 		$element_size        = '1';
 		$element_wrapper     = 'div';
@@ -249,6 +255,12 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 				case 'class':
 					$element_class = trim ( $form_array[ $element_name ]['class'] );
 					break;
+                case 'class-label':
+                    $element_label_class = trim ( $form_array[ $element_name ]['class-label'] );
+                    break;
+                case 'class-input':
+                    $element_input_class = trim ( $form_array[ $element_name ]['class-input'] );
+                    break;
 				case 'style':
 					$element_style = trim ( $form_array[ $element_name ]['style'] );
 					break;
@@ -340,13 +352,22 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 
 				if( ( $generate_input_labels == true ) and ( $element_type == 'text' ) ) {
 					// set up the label tag
+                    if($element_label_class != ''){
+                      $element_html .= "<div class='" . sanitize_text_field ( $element_label_class ) . "'>";
+                    }
 					$element_html .= "<label for='" . sanitize_text_field ( $element_name ) . "'>";
 					$element_html .= esc_html__ ( $element_before, 'seamless-donations' );
 					$element_html .= " </label>";
-				} else {
+                    if($element_label_class != ''){
+                        $element_html .= "</div>";
+                    }
+                } else {
 					$element_html .= $element_before;  // BEFORE
 				}
-				$element_html .= "<input type='" . $element_type . "' ";                    // INPUT
+                if($element_input_class != ''){
+                    $element_html .= "<div class='" . sanitize_text_field ( $element_input_class ) . "'>";
+                }
+                $element_html .= "<input type='" . $element_type . "' ";                    // INPUT
 				// process the name and radio group
 				if( isset( $form_array[ $element_name ]['group'] ) ) {
 					$element_group = $form_array[ $element_name ]['group'];                 // GROUP
@@ -398,6 +419,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 					$element_html .= "' ";
 				}
 				$element_html .= '/>';
+                if($element_input_class != ''){
+                    $element_html .= "</div>";
+                }
 				if( $element_prompt != '' ) {                                               // PROMPT
 					$element_html .= $element_prompt;
 				}
@@ -417,13 +441,22 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 
 					if( $generate_input_labels == true ) {
 						// set up the label tag
+                        if($element_label_class != ''){
+                            $element_html .= "<div class='" . sanitize_text_field ( $element_label_class ) . "'>";
+                        }
 						$element_html .= "<label for='" . sanitize_text_field ( $element_name ) . "'>";
 						$element_html .= esc_html__ ( $element_before, 'seamless-donations' );
 						$element_html .= " </label>";
+                        if($element_label_class != ''){
+                            $element_html .= "</div>";
+                        }
 					} else {
 						$element_html .= $element_before;  // BEFORE
 					}
 
+                    if($element_input_class != ''){
+                        $element_html .= "<div class='" . sanitize_text_field ( $element_input_class ) . "'>";
+                    }
 					$element_html .= "<select ";
 					$element_html .= "name='" . sanitize_text_field ( $element_name ) . "' ";
 					if( $element_size != '' ) {
@@ -473,6 +506,9 @@ function seamless_donations_forms_engine_element_list ( $form_array, $form_html 
 						$element_html .= "</option>";
 					}
 					$element_html .= "</select>";
+                    if($element_input_class != ''){
+                        $element_html .= "</div>";
+                    }
 					$element_html .= $element_after;
 				}
 			}

@@ -1,34 +1,40 @@
-=== Seamless Donations ===
+=== Seamless Donations: A Platform for Global Fundraising and Rebuilding using Stripe and PayPal ===
 Contributors: dgewirtz
 Donate link: http://zatzlabs.com/project-donations/
-Tags: donation, donations, paypal, donate, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
+Tags: donation, donations, donate, stripe, paypal, recurring donations, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
 Requires at least: 3.4
-Tested up to: 4.6
-Stable tag: 4.0.18
+Tested up to: 5.4.2
+Stable tag: 5.0.10
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The Most Popular Donations Plugin for WordPress
-
 == Description ==
-
-**IMPORTANT: Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).**
 
 = Five Minutes to Your First Donation =
 
-Seamless Donations is so easy to install and configure that your Web site can accept donations via your PayPal account within five minutes of downloading the plugin.
+Seamless Donations is so easy to install and configure that your Web site can accept donations via your Stripe or PayPal account within five minutes of downloading the plugin.
 
 **Seamless Donations is free and will never, ever charge you a commission.**
 
 Learn more on the [Seamless Donations home page](http://zatzlabs.com/project/seamless-donations/).
 
-= Automatic Repeating Donations =
+= Automatic Recurring Donations For Stripe and PayPal =
 
-You can instantly give your donors the option to make their donation repeat automatically. You can turn on on the option with a click, which gives your donors a checkbox to make any donation repeat.
+You can instantly give your donors the option to make their donation repeat automatically. You can turn on on the option with a click, which gives your donors a checkbox to make any donation repeat. This feature is free for both Stripe and PayPal.
+
+= Other Free Premium Features =
+
+Seamless Donations comes with free features other plugin vendors charge hundreds of dollars for. In addition to free recurring donations and the Stripe gateway, Seamless Donations includes:
+
+* **Tributes:** Designate a donation "in honor of" or "in memory of" and specify both the honoree and person to notify when the honor donation is made.
+* **Gift Aid:** For those of you in the UK, once you specify UK as your country, Gift Aid is automatically enabled.
 
 = Watch the Intro Tutorial =
 
 https://www.youtube.com/watch?v=75IjGyHp52o
+
+= Gorgeous, Compelling Responsive Forms =
+The default Modern form is fully responsive and scales for mobile devices. Seamless Donations users can also purchase the [Beautiful Donation Forms](https://zatzlabs.com/project/seamless-donations-beautiful-donation-forms/) or the [Colorful Donation Forms](https://zatzlabs.com/project/seamless-donations-colorful-donation-forms/) style pack, containing hand-crafted, responsive forms designed to encourage donors to gift to your organization.
 
 = Track Donors and Donations =
 
@@ -47,6 +53,8 @@ Visit [Seamless Donation's comprehensive documentation and video tutorial sectio
 Seamless Donations supports [compatible free plugins including CAPTCHA, export, and mail integration, plus premium add-ons and extensions](http://zatzlabs.com/project/seamless-donations-plugins-and-extensions/) that can help you get the most out of your fund-raising efforts. New premium add-ons include:
 
 * [Giving Level Manager](http://zatzlabs.com/project/seamless-donations-giving-level-manager/)
+* [Beautiful Donation Forms](https://zatzlabs.com/project/seamless-donations-beautiful-donation-forms/)
+* [Colorful Donation Forms](https://zatzlabs.com/project/seamless-donations-colorful-donation-forms/)
 * [Basic Widget Pack](http://zatzlabs.com/project/seamless-donations-basic-widget-pack/)
 * [Thank You Enhanced](http://zatzlabs.com/project/seamless-donations-thank-you-enhanced/)
 * [Delete Monster](http://zatzlabs.com/project/seamless-donations-delete-monster/)
@@ -97,8 +105,10 @@ Support for the following currencies is built into Seamless Donations 4.0:
 * HUGE thank you to users doing these translations!
 * [Assist with translations](https://wordpress.org/support/topic/translators-check-in-here-so-youre-not-duplicating-work)
 
-= Here are some of the major features added in 4.0 =
+= Here are some of the major features added since 4.0 =
 
+* **Full Stripe support:** Seamless Donations now provides full, native Stripe support, including support for recurring donations
+* **Gorgeous donation forms:** Redesigned, responsive default form, plus a library of 35 additional form designs available for purchase.
 * **Updated, modern admin UI:** The admin interface has been updated to a modern tabbed-look.
 * **Custom post types:** Funds and donors have now been implemented as custom post types. This gives you the ability to use all of WordPress’ post management and display tools with donors and funds. The donation data has always been a custom post type, but it is now also available to manipulate using
 plugins and themes outside of Seamless Donations.
@@ -110,7 +120,7 @@ plugins and themes outside of Seamless Donations.
 
 = Open Source, Extensible, and Developer-Friendly =
 
-Seamless Donations 4.0 was designed from the ground up to be developer-friendly. Here are some of the developer resources you might find useful:
+Seamless Donations was designed from the ground up to be developer-friendly. Here are some of the developer resources you might find useful:
 
 * [Developer Codex](http://zatzlabs.com/project/seamless-donations-codex/)
 * [David's Lab Notes](http://zatzlabs.com/lab-notes/)
@@ -125,16 +135,18 @@ Seamless Donations is on GitHub. Contributions to the project are welcomed, appr
 
 = Support Note =
 
-Many support questions can be answered by the [growing support FAQ on the plugin's home page](http://zatzlabs.com/seamless-donations/). If you can't find an answer there, you are invited to post questions [here on the Support boards](https://wordpress.org/support/plugin/seamless-donations).
+Support has moved to the ZATZLabs site and is no longer provided on the WordPress.org forums. If you need a timely reply from the developer, please [open a ticket](http://zatzlabs.com/submit-ticket/).
 
 = Mailing List =
 If you'd like to keep up with the latest updates to this plugin, please visit [David's Lab Notes](http://zatzlabs.com/lab-notes/) and add yourself to the mailing list.
 
 = Adoption Notice =
 
-This plugin was adopted in March 2015 by David Gewirtz. Ongoing support and updates have continued, as evidenced by the major 4.0 upgrade. Feel free to visit [David's Lab Notes](http://zatzlabs.com/category/seamless-donations/) for a development roadmap and additional details. Special thanks to Allen Snook for originally creating the plugin and making adoption possible.
+This plugin was adopted in March 2015 by David Gewirtz. Ongoing support and updates have continued, as evidenced by the major 4.0 and 5.0 upgrades. Feel free to visit [David's Lab Notes](http://zatzlabs.com/category/seamless-donations/) for a development roadmap and additional details. Special thanks to Allen Snook for originally creating the plugin and making adoption possible.
 
 == Installation ==
+
+**IMPORTANT: Support has moved to the ZATZLabs site and is no longer provided on the WordPress.org forums. Please visit the new [Seamless Donations Community Forums](http://zatzlabs.com/forums/). If you need a timely reply from the developer, please [open a ticket](http://zatzlabs.com/submit-ticket/).**
 
 1. Upload/install the Seamless Donations plugin
 2. Activate the plugin
@@ -145,16 +157,20 @@ This plugin was adopted in March 2015 by David Gewirtz. Ongoing support and upda
 
 For those updating from 3.3 to 4.0, go to your Plugins page and deactivate Seamless Donations. Then delete the plugin. Refresh your plugins page (this is very important, make sure to refresh). Now you can Add New and bring Seamless Donations 4.0 onto your site. **If you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).**
 
+If you are updating from 4.0.x to 5.0.x and are using add-ons, [this guide](https://zatzlabs.com/how-to-apply-the-beta-plugins-to-your-wordpress-install/) may help.
+
 This video will provide more details:
 
 https://www.youtube.com/watch?v=SWm6GivlJi0
 
-= Be sure to test for the following changes in the new version =
+= Be sure to test for the following changes moving from 3.0 to 4.0 or 5.0 =
 * **Change the form shortcode:** The [dgx-donate] shortcode is deprecated and will issue an update warning once you update. The new shortcode is [seamless-donations].
 * **Check your CSS:** Most of the CSS should remain the same, but because the form interaction has been updated, your CSS may change.
 * **Check your data:** Great pains have been taken to be sure the data migrates correctly, but please, please, PLEASE double-check it.
 
 == Frequently Asked Questions ==
+
+**IMPORTANT: Support has moved to the ZATZLabs site and is no longer provided on the WordPress.org forums. Please visit the new [Seamless Donations Community Forums](http://zatzlabs.com/forums/). If you need a timely reply from the developer, please [open a ticket](http://zatzlabs.com/submit-ticket/).**
 
 = Does this work with US and non-US PayPal accounts? =
 
@@ -189,15 +205,86 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 
 == Screenshots ==
 
-1. The donation form your visitor sees
-2. Dashboard >> Seamless Donations Main Menu
-3. Dashboard >> Donations custom post type
-4. Dashboard >> Form Options tab
-5. Dashboard >> Thank You Email template options
+1. The default, mobile-responsive donation form
+2. Forms in the Colorful Donation Forms add-on pack
+3. Forms in the Beautiful Donation Forms add-on pack
+4. Payment gateway settings tab
+5. Donation list screen
+6. Form options screen from core plugin
 
 == Changelog ==
 
-* **IMPORTANT:** Before upgrading from 3.3 or if you are experiencing problems upgrading from v3 to v4, [read this](http://zatzlabs.com/fixing-seamless-donations-4-0-updateactivation-problems/).
+**IMPORTANT: Support has moved to the ZATZLabs site and is no longer provided on the WordPress.org forums. If you need a timely reply from the developer, please [open a ticket](http://zatzlabs.com/submit-ticket/).**
+
+= 5.0.10 =
+* Added helpful up-to-the-minute server status info link to Logs page for PayPal servers
+* Added fully-responsive default Modern-style donation form
+
+= 5.0.9 =
+* Fixed serious bug where gateway would default to Stripe even if PayPal was live
+
+= 5.0.8 =
+* Soft launch of new form styling code... much more to come
+
+= 5.0.7 =
+* Fixed Stripe production processing bug
+
+= 5.0.6 =
+* Add Stylesheet Priority option to Form Options to help prevent themes from corrupting form styles
+
+= 5.0.5 =
+* Added support for Stripe Checkout with recurring donations
+* Added link to comprehensive SSL report for domain, located on Log screen
+* Added security features to prevent most Seamless Donations' php files from being executed directly
+* Added additional debug options to debug mode
+* Updated Add-ons screen with data export plugin and link to tutorial
+
+= 5.0.4 =
+* Very minor tweak to make updating add-ons a bit easier
+
+= 5.0.3 =
+* First public repository release of major 5.0 admin UI rebuild (5.0.0, 5.0.1, and 5.0.2 were beta releases only)
+
+= 5.0.2 =
+* Added new action seamless_donations_tab_settings_before_payments which runs just before seamless_donations_tab_settings_before_paypal.
+  These two are separated out as unique elements because the PayPal engine may not always be there.
+* Added a new Payments Processor Compatibility table on the Logs tab
+* Fixed a problem introduced in 5.0.0 where the WordPress Media tab would hang
+
+= 5.0.1 =
+* Added two settings action callbacks: seamless_donations_tab_settings_before_paypal and seamless_donations_tab_settings_before_host
+* Added two css action callbacks: seamless_donations_add_styles_first and seamless_donations_add_styles_after
+* Fixed bug that caused an error because it was attempting to include a file no longer needed
+* Fixed bug in sd4 add-on retirement code so it now retires better
+
+= 5.0.0 =
+* Enabled the ability for donors, donations, and funds to be listed as Public, Private, or Password Protected. Also allowed donor, donation, and funds pages to be unpublished, if desired.
+* Enabled the permalink on the donor, donation, and fund detail pages for easy preview of the donor, donation, and fund pages.
+* Added helpful link to the IPN entry location in PayPal (on Settings tab).
+* Rebuilt entire plugin on CMB2 admin UI library.
+* Fixed issue where couldn't create a new fund when Compact Menus enabled and Funds tucked under main Seamless Donations menu.
+* Fixed issue where the log obscurify feature didn't properly initialize/
+* Deprecated the following admin filters: seamless_donations_donor_header_style and seamless_donations_donation_header_style. This is now formatted in adminstyles.css
+* Changed how admin validation filters are called. Before, the filter took three parameters. Now, it's only passed one, the $_POST. You can process admin form validations for any button pressed in the Seamless Donations admin UI. The filter is validate_page_slug_[page_slug_name]. For example, if a page’s slug is seamless_donations_tab_thanks, it calls the filter validate_page_slug_seamless_donations_tab_thanks.
+* Changed the naming convention for all admin callbacks. Prior to 5.0, admin pages were previously of the form seamless_donations_admin_[name] and, as of 5.0, are now of the form seamless_donations_tab_[name]. Therefore any callback that would have used the slug seamless_donations_admin_[name] must now use the slug seamless_donations_tab_[name].
+* Fixed issue in Basic Widget Pack where a crash was caused when deactivating Seamless Donations itself. Other Seamless Donations add-ons did not have this problem.
+
+= 4.0.23 =
+* Fixed a typo (an extra slash) introduced in 4.0.22. Thanks again, Jacob!
+
+= 4.0.22 =
+* Incorporated fixes from user Rachel3004 (Jacob) for PayPal's apparent deprecation of fsockopen.
+
+= 4.0.21 =
+* Added PayPal TLS test results to Settings panel
+* Removed option to see obsolete IPN
+
+= 4.0.20 =
+* Tweak that might help some very out-of-date users update more successfully.
+* Tweak to PayPal arguments to provide better plugin support
+
+= 4.0.19 =
+* Minor update to add new support information and notice
 
 = 4.0.18 =
 * Minor update to improve TLS compatibility with PayPal

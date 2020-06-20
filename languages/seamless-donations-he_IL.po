@@ -1,0 +1,1848 @@
+# Copyright (C) 2015 Seamless Donations
+# This file is distributed under the same license as the Seamless Donations package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Seamless Donations 4.0.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/seamless-"
+"donations\n"
+"POT-Creation-Date: 2015-09-09 21:13:29+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-12-01 18:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: he_IL\n"
+"X-Generator: Poedit 1.8.6\n"
+
+#: admin/addons.php:28
+msgid "Add-ons"
+msgstr ""
+
+#: admin/donations.php:42 cpt/cpt-donations.php:24 cpt/cpt-donors.php:310
+#: legacy/admin-views/donations.php:13 legacy/admin-views/donations.php:14
+#: legacy/admin-views/donations.php:25 legacy/admin-views/main.php:47
+msgid "Donations"
+msgstr ""
+
+#: admin/donations.php:67 admin/donors.php:67 admin/forms.php:129
+#: admin/funds.php:67 admin/licenses.php:56 admin/logs.php:56
+#: admin/settings.php:116 admin/templates.php:126 admin/thanks.php:71
+msgid "There was an unexpected error in your entry."
+msgstr ""
+
+#: admin/donations.php:77
+msgid "Where Did Donations Go?"
+msgstr ""
+
+#: admin/donations.php:88 admin/donors.php:88 admin/funds.php:88
+msgid "To a menu on the Dashboard"
+msgstr ""
+
+#: admin/donations.php:89
+msgid "Donations is now a custom post type available from the main dashboard."
+msgstr ""
+
+#: admin/donations.php:96 admin/donors.php:96 admin/funds.php:96
+msgid "Permanently Hide This Tab"
+msgstr ""
+
+#: admin/donors.php:42 cpt/cpt-donors.php:25 legacy/admin-views/donors.php:13
+#: legacy/admin-views/donors.php:14 legacy/admin-views/donors.php:25
+#: legacy/admin-views/main.php:51
+msgid "Donors"
+msgstr ""
+
+#: admin/donors.php:77
+msgid "Where Did Donors Go?"
+msgstr ""
+
+#: admin/donors.php:89
+msgid "Donors is now a custom post type available from the main dashboard."
+msgstr ""
+
+#: admin/forms.php:36 legacy/admin-views/form-options.php:80
+#: legacy/admin-views/form-options.php:81
+#: legacy/admin-views/form-options.php:165 legacy/admin-views/main.php:67
+msgid "Form Options"
+msgstr ""
+
+#: admin/forms.php:69
+msgid "At least one giving level is required."
+msgstr ""
+
+#: admin/forms.php:73 admin/settings.php:71 admin/settings.php:88
+#: admin/templates.php:64 admin/templates.php:80 admin/templates.php:100
+#: admin/thanks.php:60
+msgid "There were errors in your submission."
+msgstr ""
+
+#: admin/forms.php:141 legacy/admin-views/form-options.php:225
+msgid "Giving Levels"
+msgstr ""
+
+#: admin/forms.php:162
+msgid "Display Levels"
+msgstr ""
+
+#: admin/forms.php:171
+msgid "Save Giving Levels"
+msgstr ""
+
+#: admin/forms.php:191
+msgid "Defaults"
+msgstr ""
+
+#: admin/forms.php:201
+msgid "Default Currency"
+msgstr ""
+
+#: admin/forms.php:208
+msgid "Default Country"
+msgstr ""
+
+#: admin/forms.php:216
+msgid "Save Defaults"
+msgstr ""
+
+#: admin/forms.php:235 legacy/admin-views/form-options.php:179
+msgid "Form Fields and Sections"
+msgstr ""
+
+#: admin/forms.php:255 legacy/admin-views/form-options.php:15
+msgid "Designated Funds Checkbox and Section"
+msgstr ""
+
+#: admin/forms.php:262 legacy/admin-views/form-options.php:21
+msgid "Repeating Donation Checkbox"
+msgstr ""
+
+#: admin/forms.php:269 legacy/admin-views/form-options.php:27
+msgid "Tribute Gift Checkbox and Section"
+msgstr ""
+
+#: admin/forms.php:276 legacy/admin-views/form-options.php:33
+msgid "Employer Match Section"
+msgstr ""
+
+#: admin/forms.php:283 legacy/admin-views/form-options.php:39
+msgid "Donor Telephone Field"
+msgstr ""
+
+#: admin/forms.php:290 legacy/admin-views/form-options.php:45
+msgid "Donor Employer Field"
+msgstr ""
+
+#: admin/forms.php:297 legacy/admin-views/form-options.php:51
+msgid "Donor Occupation Field"
+msgstr ""
+
+#: admin/forms.php:304 legacy/admin-views/form-options.php:57
+msgid "Mailing List Checkbox"
+msgstr ""
+
+#: admin/forms.php:311 legacy/admin-views/form-options.php:63
+msgid "Anonymous Donation Checkbox"
+msgstr ""
+
+#: admin/forms.php:318 legacy/admin-views/form-options.php:69
+msgid "Donor Address Section"
+msgstr ""
+
+#: admin/forms.php:326
+msgid "Save Fields"
+msgstr ""
+
+#: admin/forms.php:345
+msgid "Form Tweaks"
+msgstr ""
+
+#: admin/forms.php:354
+msgid "Label Tag"
+msgstr ""
+
+#: admin/forms.php:356
+msgid "Add label tag to input form (may improve form layout for some themes)"
+msgstr ""
+
+#: admin/forms.php:363 admin/settings.php:248
+msgid "Save Tweaks"
+msgstr ""
+
+#: admin/funds.php:42 cpt/cpt-funds.php:24 legacy/admin-views/funds.php:13
+#: legacy/admin-views/funds.php:14 legacy/admin-views/main.php:55
+msgid "Funds"
+msgstr ""
+
+#: admin/funds.php:77
+msgid "Where Did Funds Go?"
+msgstr ""
+
+#: admin/funds.php:89
+msgid "Funds is now a custom post type available from the main dashboard."
+msgstr ""
+
+#: admin/help.php:17 legacy/admin-views/help.php:13
+#: legacy/admin-views/help.php:14 legacy/admin-views/help.php:51
+#: legacy/admin-views/main.php:79
+msgid "Help/FAQ"
+msgstr ""
+
+#: admin/licenses.php:33 admin/licenses.php:80
+msgid "Licenses"
+msgstr ""
+
+#: admin/licenses.php:70
+msgid "License Activation"
+msgstr ""
+
+#: admin/licenses.php:82
+msgid "Nothing has been installed or activated that requires a license."
+msgstr ""
+
+#: admin/logs.php:33 legacy/admin-views/log.php:13
+#: legacy/admin-views/log.php:14 legacy/admin-views/log.php:45
+#: legacy/admin-views/main.php:75
+msgid "Log"
+msgstr ""
+
+#: admin/logs.php:66
+msgid "Log Data"
+msgstr ""
+
+#: admin/logs.php:74 legacy/admin-views/log.php:57
+msgid "The log is empty."
+msgstr ""
+
+#: admin/logs.php:89 admin/logs.php:96
+msgid "Seamless Donations Log Data"
+msgstr ""
+
+#: admin/logs.php:113
+msgid "Delete Log"
+msgstr ""
+
+#: admin/logs.php:118
+msgid "System Information"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: admin/main.php:27 legacy/admin-views/main.php:13
+#: legacy/admin-views/main.php:14
+msgid "Seamless Donations"
+msgstr ""
+
+#: admin/settings.php:40 legacy/admin-views/main.php:71
+#: legacy/admin-views/settings.php:14 legacy/admin-views/settings.php:15
+#: legacy/admin-views/settings.php:61
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:75
+msgid "Settings"
+msgstr ""
+
+#: admin/settings.php:67 admin/settings.php:84 admin/templates.php:60
+#: admin/templates.php:76
+msgid "Valid email address required."
+msgstr ""
+
+#: admin/settings.php:131 legacy/admin-views/settings.php:75
+msgid "Notification Emails"
+msgstr ""
+
+#: admin/settings.php:141 legacy/admin-views/settings.php:83
+msgid "Notification Email Address(es)"
+msgstr ""
+
+#: admin/settings.php:142 legacy/admin-views/settings.php:85
+msgid ""
+"Email address(es) that should be notified (e.g. administrators) of new "
+"donations."
+msgstr ""
+
+#: admin/settings.php:152 legacy/admin-views/donations.php:224
+#: legacy/admin-views/donors.php:213 legacy/admin-views/form-options.php:212
+#: legacy/admin-views/form-options.php:238
+#: legacy/admin-views/form-options.php:251
+#: legacy/admin-views/form-options.php:279 legacy/admin-views/settings.php:88
+#: legacy/admin-views/settings.php:99 legacy/admin-views/settings.php:127
+msgid "Update"
+msgstr ""
+
+#: admin/settings.php:172
+msgid "PayPal Settings"
+msgstr ""
+
+#: admin/settings.php:189 dgx-donate-paypalstd.php:68
+msgid "PayPal Email Address"
+msgstr ""
+
+#: admin/settings.php:190 dgx-donate-paypalstd.php:71
+msgid "The email address at which to receive payments."
+msgstr ""
+
+#: admin/settings.php:198
+msgid "PayPal Interface Mode"
+msgstr ""
+
+#: admin/settings.php:205
+msgid "PayPal IPN URL"
+msgstr ""
+
+#: admin/settings.php:212
+msgid "Save PayPal Settings"
+msgstr ""
+
+#: admin/settings.php:230
+msgid "Setting Tweaks"
+msgstr ""
+
+#: admin/settings.php:239
+msgid "Compact Menus"
+msgstr ""
+
+#: admin/settings.php:241
+msgid ""
+"Enable compact menu (tucks Donors, Funds, and Donations under Seamless "
+"Donations menu)"
+msgstr ""
+
+#: admin/settings.php:270
+msgid "Restore Hidden Tabs"
+msgstr ""
+
+#: admin/settings.php:280
+msgid "Show All Tabs"
+msgstr ""
+
+#: admin/settings.php:299 admin/settings.php:308
+msgid "Debug Mode"
+msgstr ""
+
+#: admin/settings.php:310
+msgid "Enable debug mode"
+msgstr ""
+
+#: admin/settings.php:317
+msgid "Save Debug Mode"
+msgstr ""
+
+#: admin/templates.php:38
+msgid "Thank You Templates"
+msgstr ""
+
+#: admin/templates.php:96
+msgid "This field must not be empty."
+msgstr ""
+
+#: admin/templates.php:140 legacy/admin-views/templates.php:221
+msgid "Send a Test Email"
+msgstr ""
+
+#: admin/templates.php:149 legacy/admin-views/templates.php:228
+msgid "Email Address"
+msgstr ""
+
+#: admin/templates.php:150 legacy/admin-views/templates.php:230
+msgid "The email address to receive the test message."
+msgstr ""
+
+#: admin/templates.php:159 legacy/admin-views/templates.php:233
+msgid "Send Test Email"
+msgstr ""
+
+#: admin/templates.php:181 legacy/admin-views/templates.php:186
+msgid "Email Template"
+msgstr ""
+
+#: admin/templates.php:193 legacy/admin-views/templates.php:31
+msgid "From / Reply-To Name"
+msgstr ""
+
+#: admin/templates.php:194 legacy/admin-views/templates.php:32
+msgid ""
+"The name the thank you email should appear to come from (e.g. your "
+"organization name or your name)."
+msgstr ""
+
+#: admin/templates.php:205 legacy/admin-views/templates.php:38
+msgid "From / Reply-To Email Address"
+msgstr ""
+
+#: admin/templates.php:206 legacy/admin-views/templates.php:39
+msgid "The email address the thank you email should appear to come from."
+msgstr ""
+
+#: admin/templates.php:217 legacy/admin-views/templates.php:45
+msgid "Subject"
+msgstr ""
+
+#: admin/templates.php:218 legacy/admin-views/templates.php:46
+msgid "The subject of the email (e.g. Thank You for Your Donation)."
+msgstr ""
+
+#: admin/templates.php:221
+msgid "Thank you for your donation"
+msgstr ""
+
+#: admin/templates.php:229 legacy/admin-views/templates.php:52
+msgid "Body"
+msgstr ""
+
+#: admin/templates.php:230 legacy/admin-views/templates.php:53
+msgid "The body of the email message to all donors."
+msgstr ""
+
+#: admin/templates.php:245 legacy/admin-views/templates.php:60
+msgid "Recurring Donations"
+msgstr ""
+
+#: admin/templates.php:246 legacy/admin-views/templates.php:61
+msgid ""
+"This message will be included when the donor elects to make their donation "
+"recurring."
+msgstr ""
+
+#: admin/templates.php:249 legacy/dgx-donate-admin.php:59
+#: seamless-donations.php:334
+msgid ""
+"Thank you for electing to have your donation automatically repeated each "
+"month."
+msgstr ""
+
+#: admin/templates.php:259 cpt/cpt-donations.php:309
+#: legacy/admin-views/donation-detail.php:92
+#: legacy/admin-views/templates.php:68
+msgid "Designated Fund"
+msgstr ""
+
+#: admin/templates.php:260 legacy/admin-views/templates.php:69
+msgid ""
+"This message will be included when the donor designates their donation to a "
+"specific fund."
+msgstr ""
+
+#: admin/templates.php:263
+msgid "Your donation has been designated to the [fund] fund."
+msgstr ""
+
+#: admin/templates.php:271 legacy/admin-views/templates.php:76
+msgid "Anonymous Donations"
+msgstr ""
+
+#: admin/templates.php:272 legacy/admin-views/templates.php:77
+msgid ""
+"This message will be included when the donor requests their donation get "
+"kept anonymous."
+msgstr ""
+
+#: admin/templates.php:285 legacy/admin-views/templates.php:84
+msgid "Mailing List Join"
+msgstr ""
+
+#: admin/templates.php:286 legacy/admin-views/templates.php:85
+msgid ""
+"This message will be included when the donor elects to join the mailing list."
+msgstr ""
+
+#: admin/templates.php:300 cpt/cpt-donations.php:318
+#: legacy/admin-views/donation-detail.php:101
+#: legacy/admin-views/templates.php:92 legacy/dgx-donate.php:583
+msgid "Employer Match"
+msgstr ""
+
+#: admin/templates.php:301 legacy/admin-views/templates.php:93
+msgid ""
+"This message will be included when the donor selects the employer match."
+msgstr ""
+
+#: admin/templates.php:304
+msgid ""
+"You have specified that your employer matches some or all of your donation."
+msgstr ""
+
+#: admin/templates.php:313 cpt/cpt-donations.php:406
+#: legacy/admin-views/donation-detail.php:189
+#: legacy/admin-views/templates.php:100 legacy/dgx-donate.php:489
+#: seamless-donations-form.php:292
+msgid "Tribute Gift"
+msgstr "הוקרה"
+
+#: admin/templates.php:314 legacy/admin-views/templates.php:101
+msgid ""
+"This message will be included when the donor elects to make their donation a "
+"tribute gift."
+msgstr ""
+
+#: admin/templates.php:327 legacy/admin-views/templates.php:108
+msgid "Closing"
+msgstr ""
+
+#: admin/templates.php:328 legacy/admin-views/templates.php:109
+msgid "The closing text of the email message to all donors."
+msgstr ""
+
+#: admin/templates.php:331
+msgid "Thanks again for your support!"
+msgstr ""
+
+#: admin/templates.php:339 legacy/admin-views/templates.php:116
+msgid "Signature"
+msgstr ""
+
+#: admin/templates.php:340 legacy/admin-views/templates.php:117
+msgid "The signature at the end of the email message to all donors."
+msgstr ""
+
+#: admin/templates.php:343
+msgid "Director of Donor Relations"
+msgstr ""
+
+#: admin/templates.php:351 admin/thanks.php:104
+#: legacy/admin-views/funds.php:167 legacy/admin-views/templates.php:209
+msgid "Save Changes"
+msgstr ""
+
+#: admin/thanks.php:33 admin/thanks.php:85 legacy/admin-views/completed.php:14
+#: legacy/admin-views/completed.php:15 legacy/admin-views/completed.php:53
+#: legacy/admin-views/completed.php:97 legacy/admin-views/main.php:63
+msgid "Thank You Page"
+msgstr ""
+
+#: admin/thanks.php:56
+msgid "Field must not be empty."
+msgstr ""
+
+#: admin/thanks.php:95 legacy/admin-views/completed.php:77
+msgid "Thank You Page Text"
+msgstr ""
+
+#: admin/thanks.php:96
+msgid "The text to display to a donor after a donation is completed."
+msgstr ""
+
+#: cpt/cpt-donations.php:25 cpt/cpt-donations.php:26 cpt/cpt-donations.php:27
+#: cpt/cpt-donations.php:28 cpt/cpt-donations.php:29
+#: dgx-donate-paypalstd.php:202 seamless-donations-form.php:668
+msgid "Donation"
+msgstr ""
+
+#: cpt/cpt-donations.php:30
+msgid "Search donations"
+msgstr ""
+
+#: cpt/cpt-donations.php:31
+msgid "No donations found"
+msgstr ""
+
+#: cpt/cpt-donations.php:32
+msgid "No donations found in Trash"
+msgstr ""
+
+#: cpt/cpt-donations.php:34
+msgid "donation"
+msgstr ""
+
+#: cpt/cpt-donations.php:108
+msgid "Time/Date"
+msgstr ""
+
+#: cpt/cpt-donations.php:109 cpt/cpt-donors.php:26 cpt/cpt-donors.php:27
+#: cpt/cpt-donors.php:28 cpt/cpt-donors.php:29 cpt/cpt-donors.php:30
+#: cpt/cpt-donors.php:107 legacy/admin-views/donations.php:119
+#: legacy/admin-views/main.php:117
+msgid "Donor"
+msgstr ""
+
+#: cpt/cpt-donations.php:110 cpt/cpt-donors.php:245 cpt/cpt-funds.php:25
+#: cpt/cpt-funds.php:26 cpt/cpt-funds.php:27 cpt/cpt-funds.php:28
+#: cpt/cpt-funds.php:29 legacy/admin-views/donor-detail.php:47
+#: legacy/admin-views/donors.php:120
+msgid "Fund"
+msgstr ""
+
+#: cpt/cpt-donations.php:111 cpt/cpt-donations.php:283 cpt/cpt-donors.php:246
+#: legacy/admin-views/donation-detail.php:66
+#: legacy/admin-views/donations.php:120 legacy/admin-views/donor-detail.php:48
+#: legacy/admin-views/donors.php:121 legacy/admin-views/main.php:118
+msgid "Amount"
+msgstr ""
+
+#: cpt/cpt-donations.php:276 cpt/cpt-donations.php:452 cpt/cpt-donors.php:244
+#: legacy/admin-views/donation-detail.php:59
+#: legacy/admin-views/donation-detail.php:233
+#: legacy/admin-views/donor-detail.php:46 legacy/admin-views/main.php:116
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:72
+msgid "Date"
+msgstr ""
+
+#: cpt/cpt-donations.php:288 cpt/cpt-donations.php:299
+#: cpt/cpt-donations.php:316 cpt/cpt-donations.php:345
+#: cpt/cpt-donations.php:354 cpt/cpt-donations.php:416
+#: legacy/admin-views/donation-detail.php:71
+#: legacy/admin-views/donation-detail.php:82
+#: legacy/admin-views/donation-detail.php:99
+#: legacy/admin-views/donation-detail.php:128
+#: legacy/admin-views/donation-detail.php:137
+#: legacy/admin-views/donation-detail.php:199
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:104
+msgid "Yes"
+msgstr ""
+
+#: cpt/cpt-donations.php:290 cpt/cpt-donations.php:297
+#: cpt/cpt-donations.php:314 cpt/cpt-donations.php:343
+#: cpt/cpt-donations.php:351 cpt/cpt-donations.php:418
+#: legacy/admin-views/donation-detail.php:73
+#: legacy/admin-views/donation-detail.php:80
+#: legacy/admin-views/donation-detail.php:97
+#: legacy/admin-views/donation-detail.php:126
+#: legacy/admin-views/donation-detail.php:134
+#: legacy/admin-views/donation-detail.php:201
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:105
+msgid "No"
+msgstr ""
+
+#: cpt/cpt-donations.php:292 legacy/admin-views/donation-detail.php:75
+msgid "Add to Mailing List?"
+msgstr ""
+
+#: cpt/cpt-donations.php:301 legacy/admin-views/donation-detail.php:84
+msgid "Would like to remain anonymous?"
+msgstr ""
+
+#: cpt/cpt-donations.php:304 cpt/cpt-donors.php:258
+#: legacy/admin-views/donation-detail.php:87
+#: legacy/admin-views/donations.php:97 legacy/admin-views/donor-detail.php:61
+#: legacy/admin-views/donors.php:144
+msgid "Undesignated"
+msgstr ""
+
+#: cpt/cpt-donations.php:327 cpt/cpt-donors.php:110
+#: legacy/admin-views/donation-detail.php:110
+msgid "Employer"
+msgstr ""
+
+#: cpt/cpt-donations.php:336 cpt/cpt-donors.php:109
+#: legacy/admin-views/donation-detail.php:119
+msgid "Occupation"
+msgstr ""
+
+#: cpt/cpt-donations.php:347 legacy/admin-views/donation-detail.php:130
+msgid "UK Gift Aid"
+msgstr ""
+
+#: cpt/cpt-donations.php:370 legacy/admin-views/donation-detail.php:153
+msgid "in honor of"
+msgstr ""
+
+#: cpt/cpt-donations.php:372 legacy/admin-views/donation-detail.php:155
+msgid "in memory of"
+msgstr ""
+
+#: cpt/cpt-donations.php:377 legacy/admin-views/donation-detail.php:160
+msgid "Send acknowledgement via email to"
+msgstr ""
+
+#: cpt/cpt-donations.php:381 legacy/admin-views/donation-detail.php:164
+msgid "Send acknowledgement via postal mail to"
+msgstr ""
+
+#: cpt/cpt-donations.php:410 legacy/admin-views/donation-detail.php:193
+msgid "Payment Method"
+msgstr ""
+
+#: cpt/cpt-donations.php:420 legacy/admin-views/donation-detail.php:203
+msgid "Repeating"
+msgstr ""
+
+#: cpt/cpt-donations.php:424 legacy/admin-views/donation-detail.php:207
+msgid "Session ID"
+msgstr ""
+
+#: cpt/cpt-donations.php:428 cpt/cpt-donations.php:453
+#: legacy/admin-views/donation-detail.php:211
+#: legacy/admin-views/donation-detail.php:234
+msgid "Transaction ID"
+msgstr ""
+
+#: cpt/cpt-donations.php:442 legacy/admin-views/donation-detail.php:225
+msgid "Related Donations"
+msgstr ""
+
+#: cpt/cpt-donations.php:444 legacy/admin-views/donation-detail.php:227
+msgid ""
+"For repeating donations, displays a list of other donations in the series "
+"(subscription)"
+msgstr ""
+
+#: cpt/cpt-donations.php:471 legacy/admin-views/donation-detail.php:251
+msgid "No related donations found"
+msgstr ""
+
+#: cpt/cpt-donations.php:484 cpt/cpt-donors.php:303
+#: legacy/admin-views/donor-detail.php:130 legacy/dgx-donate.php:600
+#: seamless-donations-form.php:421
+msgid "Donor Information"
+msgstr "מידע על התורם"
+
+#: cpt/cpt-donations.php:491 legacy/admin-views/donation-detail.php:50
+msgid "Donation Details"
+msgstr ""
+
+#: cpt/cpt-donors.php:31
+msgid "Search donors"
+msgstr ""
+
+#: cpt/cpt-donors.php:32
+msgid "No donors found"
+msgstr ""
+
+#: cpt/cpt-donors.php:33
+msgid "No donors found in Trash"
+msgstr ""
+
+#: cpt/cpt-donors.php:35
+msgid "donor"
+msgstr ""
+
+#: cpt/cpt-donors.php:108
+msgid "Email"
+msgstr ""
+
+#: cpt/cpt-donors.php:111
+msgid "Total Donated"
+msgstr ""
+
+#: cpt/cpt-donors.php:240 legacy/admin-views/donations.php:185
+#: legacy/admin-views/donor-detail.php:37 legacy/admin-views/main.php:155
+msgid "No donations found."
+msgstr ""
+
+#: cpt/cpt-donors.php:283 legacy/admin-views/donor-detail.php:84
+msgid "Donor Total"
+msgstr ""
+
+#: cpt/cpt-funds.php:30
+msgid "Search funds"
+msgstr ""
+
+#: cpt/cpt-funds.php:31
+msgid "No funds found"
+msgstr ""
+
+#: cpt/cpt-funds.php:32
+msgid "No funds found in Trash"
+msgstr ""
+
+#: cpt/cpt-funds.php:33
+msgid "fund"
+msgstr ""
+
+#: cpt/cpt-funds.php:65
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:67
+msgid "Title"
+msgstr ""
+
+#: cpt/cpt-funds.php:66 legacy/admin-views/funds.php:141
+msgid "Display on Donation Form"
+msgstr ""
+
+#: cpt/cpt-funds.php:106
+msgid "Display on donation form"
+msgstr ""
+
+#: cpt/cpt-funds.php:132
+msgid "Fund Settings"
+msgstr ""
+
+#: dgx-donate-paypalstd.php:74
+msgid "Mode:"
+msgstr ""
+
+#: dgx-donate-paypalstd.php:76
+msgid "Sandbox (Test Server)"
+msgstr ""
+
+#: dgx-donate-paypalstd.php:78
+msgid "Live (Production Server)"
+msgstr ""
+
+#: dgx-donate-paypalstd.php:79
+msgid "IPN URL"
+msgstr ""
+
+#: dgx-donate-paypalstd.php:253 legacy/dgx-donate.php:356
+#: seamless-donations-form.php:91
+msgid ""
+"Warning - Seamless Donations is currently configured to use the Sandbox "
+"(Test Server)."
+msgstr ""
+
+#: dgx-donate-paypalstd.php:265
+msgid "Warning:  To make a donation, you must first enable JavaScript."
+msgstr ""
+
+#: dgx-donate-paypalstd.php:285 seamless-donations-form.php:794
+msgid "Donate Now"
+msgstr ""
+
+#: inc/form-engine.php:37
+msgid "JavaScript is not enabled. You must enable JavaScript to use this form."
+msgstr ""
+
+#: inc/legacy.php:22
+msgid "Alert - Seamless Donations has had a major update. "
+msgstr ""
+
+#: inc/legacy.php:25
+msgid "to learn about enabling your new features "
+msgstr ""
+
+#: inc/legacy.php:27
+msgid "(they will remain off until you manually enable them)."
+msgstr ""
+
+#: legacy/admin-views/completed.php:24 legacy/admin-views/completed.php:37
+#: legacy/admin-views/donation-detail.php:9
+#: legacy/admin-views/donation-detail.php:22
+#: legacy/admin-views/donations.php:29 legacy/admin-views/donations.php:40
+#: legacy/admin-views/donors.php:29 legacy/admin-views/donors.php:40
+#: legacy/admin-views/form-options.php:99
+#: legacy/admin-views/form-options.php:108 legacy/admin-views/funds.php:24
+#: legacy/admin-views/funds.php:39 legacy/admin-views/help.php:23
+#: legacy/admin-views/log.php:23 legacy/admin-views/log.php:30
+#: legacy/admin-views/main.php:24 legacy/admin-views/settings.php:24
+#: legacy/admin-views/settings.php:31 legacy/admin-views/templates.php:24
+#: legacy/admin-views/templates.php:128
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: legacy/admin-views/completed.php:44
+msgid "Thank you page content updated."
+msgstr ""
+
+#: legacy/admin-views/completed.php:71
+msgid "Thank You Page Details"
+msgstr ""
+
+#: legacy/admin-views/completed.php:78
+msgid "The text to display to the donor after they complete their donation."
+msgstr ""
+
+#: legacy/admin-views/completed.php:98
+msgid ""
+"On this page you can configure a special thank you message which will appear "
+"to your donors after they complete their donation.  This is separate from "
+"the thank you email that gets emailed to your donor."
+msgstr ""
+
+#: legacy/admin-views/donation-detail.php:28
+msgid "Donation Detail"
+msgstr ""
+
+#: legacy/admin-views/donation-detail.php:35
+msgid "Donation deleted"
+msgstr ""
+
+#: legacy/admin-views/donation-detail.php:269
+msgid "Delete this Donation"
+msgstr ""
+
+#: legacy/admin-views/donation-detail.php:270
+msgid ""
+"Click the following button to delete this donation.  This will also remove "
+"this donation from all reports.  This operation cannot be undone."
+msgstr ""
+
+#: legacy/admin-views/donation-detail.php:273
+msgid ""
+"This is a repeating donation (subscription).  Deleting this donation does "
+"NOT end the subscription.  The donor will need to log into PayPal to end the "
+"subscription."
+msgstr ""
+
+#: legacy/admin-views/donation-detail.php:280
+msgid "Delete Donation"
+msgstr ""
+
+#: legacy/admin-views/donations.php:57
+msgid "Donation Report for %1$s to %2$s"
+msgstr ""
+
+#: legacy/admin-views/donations.php:118
+msgid "Fund/Date"
+msgstr ""
+
+#: legacy/admin-views/donations.php:166
+msgid "Fund Subtotal"
+msgstr ""
+
+#: legacy/admin-views/donations.php:179 legacy/admin-views/donors.php:183
+msgid "Grand Total"
+msgstr ""
+
+#: legacy/admin-views/donations.php:199
+msgid "Export Report as Spreadsheet (CSV)"
+msgstr ""
+
+#: legacy/admin-views/donations.php:200
+msgid ""
+"Click the following button to export detailed information for each donation "
+"in this report to a comma-separated-value (CSV) file compatible with most "
+"spreadsheet software."
+msgstr ""
+
+#: legacy/admin-views/donations.php:205
+msgid "Export Report"
+msgstr ""
+
+#: legacy/admin-views/donations.php:210
+msgid "Date Range"
+msgstr ""
+
+#: legacy/admin-views/donations.php:217 legacy/admin-views/donors.php:206
+msgid "Start Date"
+msgstr ""
+
+#: legacy/admin-views/donations.php:220 legacy/admin-views/donors.php:209
+msgid "End Date"
+msgstr ""
+
+#: legacy/admin-views/donor-detail.php:12
+msgid "Donor Detail"
+msgstr ""
+
+#: legacy/admin-views/donor-detail.php:43
+msgid "Donations by This Donor"
+msgstr ""
+
+#: legacy/admin-views/donors.php:57
+msgid "Donor Report for %1$s to %2$s"
+msgstr ""
+
+#: legacy/admin-views/donors.php:119
+msgid "Donor/Date"
+msgstr ""
+
+#: legacy/admin-views/donors.php:170
+msgid "Donor Subtotal"
+msgstr ""
+
+#: legacy/admin-views/donors.php:188
+msgid "No donors found."
+msgstr ""
+
+#: legacy/admin-views/form-options.php:119
+#: legacy/admin-views/form-options.php:128
+#: legacy/admin-views/form-options.php:135
+#: legacy/admin-views/form-options.php:142
+#: legacy/admin-views/form-options.php:149
+#: legacy/admin-views/form-options.php:156 legacy/admin-views/settings.php:39
+#: legacy/admin-views/settings.php:50
+msgid "Settings updated."
+msgstr ""
+
+#: legacy/admin-views/form-options.php:180
+msgid ""
+"Choose which form fields and sections you would like to show or require."
+msgstr ""
+
+#: legacy/admin-views/form-options.php:188
+msgid "Field/Section"
+msgstr ""
+
+#: legacy/admin-views/form-options.php:189
+msgid "Don't Show"
+msgstr ""
+
+#: legacy/admin-views/form-options.php:190
+msgid "Show"
+msgstr ""
+
+#: legacy/admin-views/form-options.php:191
+msgid "Require"
+msgstr ""
+
+#: legacy/admin-views/form-options.php:226
+msgid ""
+"Select one or more suggested giving levels for your donors to choose from."
+msgstr ""
+
+#: legacy/admin-views/form-options.php:243
+msgid "Currency"
+msgstr ""
+
+#: legacy/admin-views/form-options.php:244
+msgid "Select the currency you'd like to receive donations in."
+msgstr ""
+
+#: legacy/admin-views/form-options.php:257
+msgid "Default Country / State / Province"
+msgstr ""
+
+#: legacy/admin-views/form-options.php:258
+msgid "Select the default country / state / province for the donation form."
+msgstr ""
+
+#: legacy/admin-views/funds.php:45 legacy/admin-views/funds.php:133
+msgid "Designated Funds"
+msgstr ""
+
+#: legacy/admin-views/funds.php:49
+msgid "Fund added."
+msgstr ""
+
+#: legacy/admin-views/funds.php:78 legacy/admin-views/funds.php:84
+msgid "Fund(s) updated."
+msgstr ""
+
+#: legacy/admin-views/funds.php:99
+msgid "Fund(s) deleted."
+msgstr ""
+
+#: legacy/admin-views/funds.php:140
+msgid "Fund Name"
+msgstr ""
+
+#: legacy/admin-views/funds.php:142
+msgid "Delete"
+msgstr ""
+
+#: legacy/admin-views/funds.php:165
+msgid ""
+"Note:  Deleting a fund from this list does NOT affect any donations already "
+"made to that fund, or any reports for that fund."
+msgstr ""
+
+#: legacy/admin-views/funds.php:171
+msgid "You have no designated funds defined"
+msgstr ""
+
+#: legacy/admin-views/funds.php:180 legacy/admin-views/funds.php:190
+msgid "Add New Designated Fund"
+msgstr ""
+
+#: legacy/admin-views/funds.php:185
+msgid "Name"
+msgstr ""
+
+#: legacy/admin-views/funds.php:187
+msgid "The name of the desginated fund, as you want it to appear to visitors."
+msgstr ""
+
+#: legacy/admin-views/help.php:28
+msgid ""
+"What is the shortcode I need to insert on a page to see the donation form?"
+msgstr ""
+
+#: legacy/admin-views/help.php:32
+msgid "Do I need to set my IPN notification URL at PayPal?"
+msgstr ""
+
+#: legacy/admin-views/help.php:33
+msgid ""
+"In general it is not needed, but some users have needed to set it to get "
+"notifications working correctly."
+msgstr ""
+
+#: legacy/admin-views/help.php:36
+msgid "What URL should I use for the IPN notification URL at PayPal?"
+msgstr ""
+
+#: legacy/admin-views/help.php:37
+msgid ""
+"The correct URL to use is displayed on your settings page under Payment "
+"Gateways."
+msgstr ""
+
+#: legacy/admin-views/help.php:40
+msgid "How does my donor end a repeating donation?"
+msgstr ""
+
+#: legacy/admin-views/help.php:41
+msgid ""
+"The donor can log into their PayPal account, go to their profile under 'My "
+"Account,' then 'Preapproved Payments', and end the repeating donation there."
+msgstr ""
+
+#: legacy/admin-views/help.php:44
+msgid ""
+"I have a question not answered here.  Where can I find the plugin's support "
+"forum?"
+msgstr ""
+
+#: legacy/admin-views/help.php:45
+msgid "You can find the support forum at"
+msgstr ""
+
+#: legacy/admin-views/log.php:40
+msgid "Log cleared"
+msgstr ""
+
+#: legacy/admin-views/log.php:72
+msgid "Clear Log"
+msgstr ""
+
+#: legacy/admin-views/main.php:42
+msgid "Seamless Donations for WordPress"
+msgstr ""
+
+#: legacy/admin-views/main.php:59 legacy/admin-views/templates.php:14
+#: legacy/admin-views/templates.php:15 legacy/admin-views/templates.php:165
+msgid "Thank You Emails"
+msgstr ""
+
+#: legacy/admin-views/main.php:84
+msgid "Quick Links"
+msgstr ""
+
+#: legacy/admin-views/main.php:104
+msgid "Recent Donations"
+msgstr ""
+
+#: legacy/admin-views/main.php:168
+msgid "Latest News"
+msgstr ""
+
+#: legacy/admin-views/main.php:175
+msgid "What's up with Seamless Donations"
+msgstr ""
+
+#: legacy/admin-views/settings.php:76
+msgid ""
+"Enter one or more emails that should be notified when a new donation "
+"arrives.  You can separate multiple email addresses with commas."
+msgstr ""
+
+#: legacy/admin-views/settings.php:102
+msgid "Error: No payment gateways found"
+msgstr ""
+
+#: legacy/admin-views/settings.php:115
+msgid "Scripts"
+msgstr ""
+
+#: legacy/admin-views/settings.php:116
+msgid "Whether to load scripts in the header or footer."
+msgstr ""
+
+#: legacy/admin-views/settings.php:124
+msgid "Load scripts in the header (default)"
+msgstr ""
+
+#: legacy/admin-views/settings.php:125
+msgid "Load scripts in the footer"
+msgstr ""
+
+#: legacy/admin-views/templates.php:147
+msgid "Templates updated."
+msgstr ""
+
+#: legacy/admin-views/templates.php:156
+msgid "Test email sent."
+msgstr ""
+
+#: legacy/admin-views/templates.php:188
+msgid ""
+"You can include placeholders such as [firstname] [lastname] [fund] and/or "
+"[amount]."
+msgstr ""
+
+#: legacy/admin-views/templates.php:189
+msgid ""
+"These placeholders will automatically be filled in with the donor and "
+"donation details."
+msgstr ""
+
+#: legacy/admin-views/templates.php:222
+msgid ""
+"Enter an email address (e.g. your own) to have a test email sent using the "
+"template."
+msgstr ""
+
+#: legacy/dgx-donate.php:397 seamless-donations-form.php:114
+msgid "Donation Information"
+msgstr "פרטי התרומה"
+
+#: legacy/dgx-donate.php:399 seamless-donations-form.php:120
+msgid "I would like to make a donation in the amount of:"
+msgstr "הסכום שברצוני לתרום:"
+
+#: legacy/dgx-donate.php:419 seamless-donations-form.php:173
+msgid "Other: "
+msgstr "הסכום לתרומה:"
+
+#: legacy/dgx-donate.php:442 seamless-donations-form.php:204
+msgid "I would like to designate this donation to a specific fund"
+msgstr "ברצוני להפנות את תרומתי לקרן ייעודית"
+
+#: legacy/dgx-donate.php:447 seamless-donations-form.php:222
+msgid "Designated Fund: "
+msgstr "רשימת הקרנות הייעודיות:"
+
+#: legacy/dgx-donate.php:468 seamless-donations-form.php:243
+msgid "I would like this donation to automatically repeat each month"
+msgstr "ברצוני שתרומה זו תחזור על עצמה בכל חודש באופן אוטומטי"
+
+#: legacy/dgx-donate.php:493 seamless-donations-form.php:300
+msgid "Check here to donate in honor or memory of someone"
+msgstr "סמנ/י תיבה זו באם התרומה מוקדשת לכבודו או לזכרו של אדם קרוב"
+
+#: legacy/dgx-donate.php:498 seamless-donations-form.php:306
+msgid "Check here if this is a memorial gift"
+msgstr "סמנ/י תיבה זו עבור תרומה לשם הנצחה"
+
+#: legacy/dgx-donate.php:502
+msgid "Honoree's Name:"
+msgstr ""
+
+#: legacy/dgx-donate.php:508
+msgid "Send acknowledgement via email to "
+msgstr ""
+
+#: legacy/dgx-donate.php:512 legacy/dgx-donate.php:528
+msgid "Name:"
+msgstr ""
+
+#: legacy/dgx-donate.php:517 legacy/dgx-donate.php:645
+#: seamless-donations-form.php:439
+msgid "Email:"
+msgstr "דוא\"ל:"
+
+#: legacy/dgx-donate.php:524
+msgid "Send acknowledgement via postal mail to "
+msgstr ""
+
+#: legacy/dgx-donate.php:533 legacy/dgx-donate.php:684
+msgid "Address:"
+msgstr "כתובת:"
+
+#: legacy/dgx-donate.php:538 legacy/dgx-donate.php:695
+msgid "City:"
+msgstr "עיר:"
+
+#: legacy/dgx-donate.php:545 legacy/dgx-donate.php:701
+msgid "State:"
+msgstr ""
+
+#: legacy/dgx-donate.php:550 legacy/dgx-donate.php:705
+msgid "Province:"
+msgstr ""
+
+#: legacy/dgx-donate.php:555 legacy/dgx-donate.php:710
+msgid "Country:"
+msgstr "ארץ"
+
+#: legacy/dgx-donate.php:560 legacy/dgx-donate.php:715
+msgid "Postal Code:"
+msgstr ""
+
+#: legacy/dgx-donate.php:586 seamless-donations-form.php:492
+msgid "Check here if your employer matches donations"
+msgstr "סמנ/י תיבה זו באם המעסיק שלך משווה תרומות (matches donations)"
+
+#: legacy/dgx-donate.php:602 seamless-donations-form.php:427
+msgid "First Name:"
+msgstr "שם פרטי:"
+
+#: legacy/dgx-donate.php:607 seamless-donations-form.php:433
+msgid "Last Name:"
+msgstr "שם משפחה:"
+
+#: legacy/dgx-donate.php:616 seamless-donations-form.php:469
+msgid "Phone:"
+msgstr "טלפון:"
+
+#: legacy/dgx-donate.php:628 seamless-donations-form.php:484
+msgid "Employer:"
+msgstr "מעסיק:"
+
+#: legacy/dgx-donate.php:638 seamless-donations-form.php:502
+msgid "Occupation:"
+msgstr "תחום עיסוק:"
+
+#: legacy/dgx-donate.php:652 seamless-donations-form.php:458
+msgid "Add me to your mailing list"
+msgstr "נא לצרף אותי לרשימת התפוצה"
+
+#: legacy/dgx-donate.php:659
+msgid "Please do not publish my name.  I would like to remain anonymous."
+msgstr ""
+
+#: legacy/dgx-donate.php:681 seamless-donations-form.php:555
+msgid "Donor Address"
+msgstr "כתובת התורם"
+
+#: legacy/dgx-donate.php:689
+msgid "Address 2:"
+msgstr "כתובת 2:"
+
+#: legacy/dgx-donate.php:690 seamless-donations-form.php:569
+msgid "(optional)"
+msgstr "(אופציונאלי)"
+
+#: legacy/dgx-donate.php:910
+msgid "A donation has been received"
+msgstr ""
+
+#: legacy/dgx-donate.php:913
+msgid ""
+"A donation has been received.  Here are some details about the donation."
+msgstr ""
+
+#: legacy/dgx-donate.php:930
+msgid ""
+"NOTE:  The donor is making this donation in honor of / in memory of someone."
+msgstr ""
+
+#: legacy/dgx-donate.php:934 legacy/dgx-donate.php:944
+msgid ""
+"Please see the donation details (using the link below) for more information."
+msgstr ""
+
+#: legacy/dgx-donate.php:943
+msgid "NOTE:  The donor is making this donation with an employer match."
+msgstr ""
+
+#: legacy/dgx-donate.php:954
+msgid "Donation:"
+msgstr ""
+
+#: legacy/dgx-donate.php:955
+msgid "Amount:"
+msgstr ""
+
+#: legacy/dgx-donate.php:958
+msgid "Click on the following link to view all details for this donation:"
+msgstr ""
+
+#: library/apf/admin-page-framework.php:47
+msgid "The method is called too early. Perform <code>%2$s</code> earlier."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework/AdminPageFramework_Form_Controller.php:57
+msgid "The method is deprecated: %1$s. Use %2$s instead."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework/AdminPageFramework_Form_Model_Validation.php:37
+msgid "The hook <code>%1$s</code>is deprecated. Use <code>%2$s</code> instead."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/AdminPageFramework_Factory_Router.php:162
+msgid "The method is not defined: %1$s"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:44
+msgid "The options have been updated."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:45
+msgid "The options have been cleared."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:46
+msgid "Export"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:47
+msgid "Export Options"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:48
+msgid "Import"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:49
+msgid "Import Options"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:50
+msgid "Submit"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:51
+msgid "An error occurred while uploading the import file."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:52
+msgid "The uploaded file type is not supported: %1$s"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:53
+msgid "Could not load the importing data."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:54
+msgid "The uploaded file has been imported."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:55
+msgid "No data could be imported."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:56
+msgid "Upload Image"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:57
+msgid "Use This Image"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:58
+msgid "Insert from URL"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:59
+msgid "Are you sure you want to reset the options?"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:60
+msgid "Please confirm your action."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:61
+msgid "The specified options have been deleted."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:62
+msgid "A problem occurred while processing the form data. Please try again."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:63
+msgid "Is it okay to send the email?"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:64
+msgid "The email has been sent."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:65
+msgid "The email has been scheduled."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:66
+msgid "There was a problem sending the email"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:68
+msgid "Author"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:69
+msgid "Categories"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:70
+msgid "Tags"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:71
+msgid "Comments"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:73
+msgid "Show All"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:74
+msgid "Powered by"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:76
+msgid "Manage"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:77
+msgid "Select Image"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:78
+msgid "Upload File"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:79
+msgid "Use This File"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:80
+msgid "Select File"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:81
+msgid "Remove Value"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:82
+msgid "Select All"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:83
+msgid "Select None"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:84
+msgid "No term found."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:85
+msgid "Select"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:86
+msgid "Insert"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:87
+msgid "Use This"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:88
+msgid "Return to Library"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:89
+msgid "%1$s queries in %2$s seconds."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:90
+msgid "%1$s out of %2$s MB (%3$s) memory used."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:91
+msgid "Peak memory usage %1$s MB."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:92
+msgid "Initial memory usage  %1$s MB."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:93
+msgid "The allowed maximum number of fields is {0}."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:94
+msgid "The allowed minimum number of fields is {0}."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:95
+msgid "Add"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:96
+msgid "Remove"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:97
+msgid "The allowed maximum number of sections is {0}"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:98
+msgid "The allowed minimum number of sections is {0}"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:99
+msgid "Add Section"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:100
+msgid "Remove Section"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:101
+msgid "Toggle All"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:102
+msgid "Toggle all collapsible sections"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:103
+msgid "Reset"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:106
+msgid "On"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:107
+msgid "Off"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:108
+msgid "Enabled"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:109
+msgid "Disabled"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:110
+msgid "Supported"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:111
+msgid "Not Supported"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:112
+msgid "Functional"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:113
+msgid "Not Functional"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:114
+msgid "Too Long"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:115
+msgid "Acceptable"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/model/AdminPageFramework_Message.php:116
+msgid "No log found."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:109
+msgid "No browser information found."
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Version"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Language"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Memory Limit"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Multi-site"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Permalink Structure"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Active Theme"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Registered Post Statuses"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix Length"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Table Prefix Status"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "WP_CONTENT_DIR Writeable"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Active Plugins"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+msgid "Network Active Plugins"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:136
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Constants"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Safe Mode"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Upload Max Size"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Post Max Size"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Upload Max File Size"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Max Execution Time"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Max Input Vars"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Argument Separator"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Allow URL File Open"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Display Errors"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Log Errors"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Error log location"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "Error Reporting Level"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "FSOCKOPEN"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "cURL"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "SOAP"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:202
+msgid "SUHOSIN"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Web Server"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Name"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Cookie Path"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Save Path"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Use Cookies"
+msgstr ""
+
+#: library/apf/factory/AdminPageFramework_Factory/view/AdminPageFramework_FieldType/AdminPageFramework_FieldType_system.php:206
+msgid "Session Use Only Cookies"
+msgstr ""
+
+#: seamless-donations-form.php:158
+msgid "Other"
+msgstr "אחר:"
+
+#: seamless-donations-form.php:313
+msgid "Name of person to be honored: "
+msgstr "שם האדם לו מוקדשת התרומה:"
+
+#: seamless-donations-form.php:323
+msgid "Send acknowledgement via email"
+msgstr "שלח מכתב הוקרה בדוא\"ל"
+
+#: seamless-donations-form.php:333
+msgid "Send acknowledgement via postal mail"
+msgstr "שלח מכתב הוקרה בדואר רגיל"
+
+#: seamless-donations-form.php:340
+msgid "Email Name: "
+msgstr "שם הנמען:"
+
+#: seamless-donations-form.php:347
+msgid "Email: "
+msgstr ""
+
+#: seamless-donations-form.php:353
+msgid "Name: "
+msgstr "שם הנמען:"
+
+#: seamless-donations-form.php:359 seamless-donations-form.php:561
+msgid "Address: "
+msgstr "כתובת:"
+
+#: seamless-donations-form.php:365 seamless-donations-form.php:575
+msgid "City: "
+msgstr "עיר:"
+
+#: seamless-donations-form.php:372 seamless-donations-form.php:581
+msgid "State : "
+msgstr ""
+
+#: seamless-donations-form.php:379 seamless-donations-form.php:587
+msgid "Province: "
+msgstr ""
+
+#: seamless-donations-form.php:389 seamless-donations-form.php:596
+msgid "Country: "
+msgstr ""
+
+#: seamless-donations-form.php:395 seamless-donations-form.php:601
+msgid "Postal Code: "
+msgstr "מיקוד:"
+
+#: seamless-donations-form.php:448
+msgid ""
+"Please do not display my name publicly. I would like to remain anonymous"
+msgstr "נא לא להציג את שמי בפומבי . ברצוני להישאר בעילום שם"
+
+#: seamless-donations-form.php:566
+msgid "Address 2: "
+msgstr ""
+
+#: seamless-donations-form.php:605
+msgid "I am a UK taxpayer and my gift qualifies for Gift Aid."
+msgstr ""
+
+#: seamless-donations-payment.php:378
+msgid "Invalid response to challenge. Are you human?"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://zatzlabs.com/seamless-donations/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Making online donations easy for your visitors; making donor and donation "
+"management easy for you.  Receive donations (now including repeating "
+"donations), track donors and send customized thank you messages with "
+"Seamless Donations for WordPress.  Works with PayPal accounts. Adopted from "
+"Allen Snook."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "David Gewirtz"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://zatzlabs.com/lab-notes/"
+msgstr ""

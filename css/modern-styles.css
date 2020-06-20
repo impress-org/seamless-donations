@@ -1,0 +1,364 @@
+/*
+ * Seamless Donations by David Gewirtz, adopted from Allen Snook
+ *
+ * Lab Notes: http://zatzlabs.com/lab-notes/
+ * Plugin Page: http://zatzlabs.com/seamless-donations/
+ * Contact: http://zatzlabs.com/contact-us/
+ *
+ * Copyright (c) 2015-2020 by David Gewirtz
+ *
+ */
+
+/* FONT IMPORT */
+
+/*noinspection CssUnknownTarget*/
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@700&display=swap');
+
+/* TEST FOR RESPONSIVE FORM STYLE */
+
+/* Floating column for labels: 25% width */
+.seamless-donations-col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.seamless-donations-col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.seamless-donations-form-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* BOX MODEL */
+
+#dgx-donate-container {
+    border: none;
+    margin: 0 12px 12px 12px;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.dgx-donate-form-section {
+    background: #fff;
+    padding: 20px;
+    margin: 0 0;
+}
+
+#dgx-donate-form-donation-section,
+#dgx-donate-form-tribute-section,
+#dgx-donate-form-donor-section,
+#dgx-donate-form-billing-section,
+#dgx-donate-form-payment-section {
+    border-left-color: black;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-right-color: black;
+    border-right-width: 1px;
+    border-right-style: solid;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    -webkit-box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.75);
+}
+
+#dgx-donate-form-header-section {
+    display:none;
+}
+
+#dgx-donate-form-donation-section {
+    background-color: white;
+    border-radius: 0;
+    border-top-color: #8b8b8b;
+    border-top-width: 12px;
+    border-top-style: solid;
+}
+
+#dgx-donate-form-tribute-section {
+    background-color: white;
+    border-radius: 0;
+    border-top-color: black;
+    border-top-width: 1px;
+}
+
+#dgx-donate-form-donor-section {
+    background-color: white;
+    border-radius: 0;
+    border-top-color: black;
+    border-top-width: 1px;
+}
+
+#dgx-donate-form-billing-section {
+    background-color: white;
+    border-radius: 0;
+    border-top-color: black;
+    border-top-width: 1px;
+}
+
+#dgx-donate-form-payment-section {
+    background-color: #E0E0e0;
+    border-radius: 0;
+    border-top-color: black;
+    border-top-width: 1px;
+}
+
+#dgx-donate-form-footer-section {
+    display:none;
+}
+
+/* WARNING MESSAGE */
+
+#dgx-donate-form-sandbox-warning:after, #dgx-donate-form-sandbox-warning:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+#dgx-donate-form-sandbox-warning:after {
+    border-color: rgba(153, 6, 16, 0);
+    border-top-color: #990610;
+    border-width: 30px;
+    margin-left: -30px;
+}
+#dgx-donate-form-sandbox-warning:before {
+    border-color: rgba(238, 70, 73, 0);
+    border-top-color: black;
+    border-width: 36px;
+    margin-left: -36px;
+}
+
+#dgx-donate-form-sandbox-warning {
+    margin-bottom: 35px;
+    border-radius: 8px;
+    padding: 10px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    background: #990610;
+    border: 4px solid black;
+}
+
+#dgx-donate-form-sandbox-warning p {
+    font-family: Helvetica, "Segoe UI", Arial, sans-serif;
+    font-size: 20px;
+    line-height: 22px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* TEXT AND INPUT FORM */
+
+
+.dgx-donate-form-section h2 {
+    font-family: 'Teko', cursive;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    border-bottom-width: medium;
+}
+
+#_dgx_donate_designated,
+#_dgx_donate_honor_by_email {
+    margin-top: 10px;
+}
+
+.dgx-donate-form-section h2:before {
+    /* this is here to clean up a weird theme issue */
+    content: unset !important;
+}
+
+
+.dgx-donate-form-section p {
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+.dgx-donate-form-section label {
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+    vertical-align: middle;
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 4px;
+    width: 125px;
+    display: inline-block;
+    background-color: #c8c8c8;
+    min-height: 40px;
+    line-height: 40px;
+}
+
+/* format the horizontal giving levels */
+.dgx-donate-form-section .horiz {
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.dgx-donate-form-section input[type="text"] {
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+    width: 100%;
+    margin-right: 10px;
+    font-size: 18px;
+    padding: 4px;
+    vertical-align: middle;
+    height: 2em;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 40px;
+    background-color: #F1F1F1;
+}
+
+.dgx-donate-form-section input[type="checkbox"] {
+    margin-right: 0.5em;
+    border: 1px solid gray;
+}
+
+.dgx-donate-form-section input[type="radio"] {
+    margin-right: 0.5em;
+    border: 1px solid gray;
+}
+
+.dgx-donate-form-section select {
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+    max-width: 200px;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: vertical;
+    vertical-align: middle;
+}
+
+#_dgx_donate_honoree_name > label {
+    width: unset;
+    display: inline-block;
+}
+
+.dgx-donate-form-section input.dgx-donate-pay-enabled {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.dgx-donate-pay-disabled {
+    padding: 10px;
+}
+
+.dgx-donate-form-section input[type="submit"] {
+    width: 100%;
+    background-color: #008ec2;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/* ERROR MANAGEMENT */
+
+.seamless-donations-error-message-field {
+    color: red;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+input[type="text"].seamless-donations-invalid-input {
+    background-color: lightpink;
+}
+
+.dgx-donate-form-section input.dgx-donate-invalid-input {
+    background: #faa;
+}
+
+.dgx-donate-busy, .dgx-donate-error-msg, .dgx-donate-pay-disabled {
+    display: none;
+}
+
+
+/* UNTESTED */
+
+.dgx-donate-form-section #designate_fund {
+    margin-top: 1em;
+}
+
+.dgx-donate-form-section #repeating_checkbox {
+    margin-top: 1em;
+}
+
+div#designated_fund_selector select {
+    max-width: 100%;
+}
+
+
+.dgx-donate-form-designated-box {
+    margin-bottom: 24px;
+}
+
+.dgx-donate-form-section span.horiz {
+    margin-left: 10px;
+}
+
+.dgx-donate-form-section #header_desc + span.horiz {
+    margin-left: unset;
+}
+
+/* MEDIA SCREEN WIDTH VARIATIONS */
+
+/* Responsive layout - when the screen is less than 600px wide,
+make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .seamless-donations-col-25, .seamless-donations-col-75 {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .dgx-donate-form-section label {
+        vertical-align: bottom;
+        font-size: 14px;
+        background-color: unset;
+        min-height: unset;
+        line-height: unset;
+        position: relative;
+        top: 5px;
+    }
+
+    .dgx-donate-form-section p {
+        font-size: 14px;
+        padding: 0;
+        margin: 0;
+    }
+    .dgx-donate-form-section span.horiz {
+        display:block;
+        margin-left: unset;
+    }
+
+}
+
+

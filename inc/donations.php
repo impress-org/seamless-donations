@@ -9,6 +9,9 @@ Contact: http://zatzlabs.com/contact-us/
 Copyright (c) 2015 by David Gewirtz
 */
 
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
 function seamless_donations_create_donation_from_transaction_audit_table ( $transaction_form_data ) {
 
 	// Create a new donation record

@@ -9,6 +9,9 @@ Contact: http://zatzlabs.com/contact-us/
 Copyright (c) 2015 by David Gewirtz
 */
 
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
 /* Abbreviations for Countries
  * lists country codes defined by ISO 3166-1
  * Based on list at https://developer.paypal.com/docs/classic/api/country_codes/

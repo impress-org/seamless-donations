@@ -1,5 +1,5 @@
 # seamless-donations
-The Most Popular Donations Plugin for WordPress
+A reasonably popular donations plugin for WordPress
 
 Pull Requests Welcome
 =====================

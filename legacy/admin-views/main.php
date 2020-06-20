@@ -3,6 +3,9 @@
 /* Copyright 2013 Allen Snook (email: allendav@allendav.com) */
 /* Copyright 2015 David Gewirtz, based on code by Allen Snook */
 
+//	Exit if .php file accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
 class Dgx_Donate_Admin_Main_View {
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'menu_item' ), 9 );

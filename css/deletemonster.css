@@ -1,0 +1,17 @@
+/*
+ * Seamless Donations by David Gewirtz, adopted from Allen Snook
+ *
+ * Lab Notes: http://zatzlabs.com/lab-notes/
+ * Plugin Page: http://zatzlabs.com/seamless-donations/
+ * Contact: http://zatzlabs.com/contact-us/
+ *
+ * Copyright (c) 2015-2020 by David Gewirtz
+ *
+ */
+
+.seamless_donations_cpt_donor_list .trash {display: inline !important}
+.seamless_donations_cpt_donor_detail #delete-action {display: inline !important}
+.seamless_donations_cpt_funds_list .trash {display: inline !important}
+.seamless_donations_cpt_funds_detail #delete-action {display: inline !important}
+.seamless_donations_cpt_donation_list .trash {display: inline !important}
+.seamless_donations_cpt_donation_detail #delete-action {display: inline !important}
