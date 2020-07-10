@@ -285,7 +285,7 @@ function seamless_donations_get_donation_section() {
                 'id'     => 'dgx-donate-designated',
                 'reveal' => 'specific-fund',
                 'prompt' => esc_html__(
-                    "I would like to this donation to go to a specific fund", 'seamless-donations'),
+                    "I would like this donation to go to a specific fund", 'seamless-donations'),
                 'before' => '<p>',
                 'after'  => '</p>',
             );
