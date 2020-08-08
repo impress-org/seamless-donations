@@ -56,6 +56,7 @@ if (!class_exists('\Stripe\Stripe')) {
 require_once 'inc5/alerts5.php';
 require_once 'inc/geography.php';
 require_once 'inc/currency.php';
+require_once 'inc/debug.php';
 require_once 'inc/utilities.php';
 require_once 'inc/legacy.php';
 require_once 'inc/payment.php';
