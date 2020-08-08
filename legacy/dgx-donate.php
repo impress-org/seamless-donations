@@ -130,26 +130,7 @@ function seamless_donations_display_cancel_page($cancel_code) {
     return $output;
 }
 
-/******************************************************************************************************/
-function dgx_donate_debug_log($message) {
-    $max_log_line_count = 200;
 
-    $debug_log = get_option('dgx_donate_log');
-
-    if (empty($debug_log)) {
-        $debug_log = array();
-    }
-
-    $timestamp = current_time('mysql');
-
-    $debug_log[] = $timestamp . ' ' . $message;
-
-    if (count($debug_log) > $max_log_line_count) {
-        $debug_log = array_slice($debug_log, -$max_log_line_count, 0);
-    }
-
-    update_option('dgx_donate_log', $debug_log);
-}
 
 /******************************************************************************************************/
 function dgx_donate_get_meta_map() {
