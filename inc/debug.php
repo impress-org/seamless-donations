@@ -10,6 +10,22 @@
  *
  */
 
+
+function seamless_donations_debug_alert( $a ) {
+
+    echo "<script>";
+    echo 'alert("' . $a . '");';
+    echo "</script>";
+}
+
+function seamless_donations_debug_log( $a ) {
+
+    echo "<script>";
+    echo 'console.log("' . $a . '");';
+    echo "</script>";
+}
+
+
 // based on http://php.net/manual/en/function.var-dump.php notes by edwardzyang
 function seamless_donations_var_dump_to_string( $mixed = NULL ) {
 

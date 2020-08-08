@@ -55,20 +55,6 @@ function seamless_donations_time_elapsed_string($secs){
 }
 
 
-function seamless_donations_debug_alert( $a ) {
-
-	echo "<script>";
-	echo 'alert("' . $a . '");';
-	echo "</script>";
-}
-
-function seamless_donations_debug_log( $a ) {
-
-	echo "<script>";
-	echo 'console.log("' . $a . '");';
-	echo "</script>";
-}
-
 function seamless_donations_obscurify_string( $s, $char = '*', $inner_obscure = true ) {
 
 	$length = strlen( $s );
