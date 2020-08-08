@@ -1,63 +1,102 @@
 <?php
-/*
-Seamless Donations by David Gewirtz, adopted from Allen Snook
+/**
+ * Seamless Donations by David Gewirtz, adopted from Allen Snook
+ *
+ * Lab Notes: http://zatzlabs.com/lab-notes/
+ * Plugin Page: http://zatzlabs.com/seamless-donations/
+ * Contact: http://zatzlabs.com/contact-us/
+ *
+ * Copyright (c) 2015-2020 by David Gewirtz
+ *
+ */
 
-Lab Notes: http://zatzlabs.com/lab-notes/
-Plugin Page: http://zatzlabs.com/seamless-donations/
-Contact: http://zatzlabs.com/contact-us/
+//	Exit if .php file accessed directly
+if (!defined('ABSPATH')) exit;
 
-Copyright (c) 2015 by David Gewirtz
-*/
-
-//// MAIN - TAB ////
-function seamless_donations_admin_main ( $setup_object ) {
-
-	do_action ( 'seamless_donations_admin_main_before', $setup_object );
-
-	seamless_donations_admin_main_menu ( $setup_object );
-	seamless_donations_admin_main_section_data ( $setup_object );
-
-	do_action ( 'seamless_donations_admin_main_after', $setup_object );
-}
+add_action('cmb2_admin_init', 'seamless_donations_admin_main_menu');
 
 //// MAIN - MENU ////
-function seamless_donations_admin_main_menu ( $_setup_object ) {
+function seamless_donations_admin_main_menu() {
+    $args = array(
+        'id'           => 'seamless_donations_tab_main_page',
+        'title'        => 'Seamless Donations',
+        // page title
+        'menu_title'   => 'Seamless Donations',
+        // title on left sidebar
+        'tab_title'    => 'Seamless Donations',
+        // title displayed on the tab
+        'object_types' => array('options-page'),
+        'option_key'   => 'seamless_donations_tab_main',
+        'tab_group'    => 'seamless_donations_tab_set',
+        'icon_url'     => 'dashicons-palmtree',
+    );
 
-	$sub_menu_array = array(
-		'title'     => __ ( 'Seamless Donations', 'seamless-donations' ),
-		'page_slug' => 'seamless_donations_admin_main',
-	);
-	$sub_menu_array = apply_filters ( 'seamless_donations_admin_main_menu', $sub_menu_array );
-	$_setup_object->addSubMenuPage ( $sub_menu_array );
+    // 'tab_group' property is supported in > 2.4.0.
+    if (version_compare(CMB2_VERSION, '2.4.0')) {
+        $args['display_cb'] = 'seamless_donations_cmb_options_display_with_tabs';
+    }
+
+    do_action('seamless_donations_tab_main_before', $args);
+
+    // call on button hit for page save
+    add_action('admin_post_seamless_donations_tab_main', 'seamless_donations_tab_main_process_buttons');
+
+    $args         = apply_filters('seamless_donations_tab_main_menu', $args);
+    $main_options = new_cmb2_box($args);
+
+    if (isset($_REQUEST['page'])) {
+        if ($_REQUEST['page'] == 'seamless_donations_tab_main') {
+            seamless_donations_admin_main_section_data($main_options);
+
+            do_action('seamless_donations_tab_main_after', $main_options);
+        }
+    }
 }
 
-//// LOGS - SECTION - DATA ////
-function seamless_donations_admin_main_section_data ( $_setup_object ) {
-
-	$main_section = array(
-		'section_id' => 'seamless_donations_admin_main_section_data',    // the section ID
-		'page_slug'  => 'seamless_donations_admin_main',    // the page slug that the section belongs to
-		//'title'      => __ ( 'Seamless Donations', 'seamless-donations' ),   // the section title
-	);
-	$main_section = apply_filters ( 'seamless_donations_admin_main_section_data', $main_section );
-
-	$html_folder = dirname ( dirname ( __FILE__ ) ) . '/html/';
-	$html_file   = $html_folder . 'admin-main.html';
-	$html_readme = file_get_contents ( $html_file );
-
-	$main_object = array(
-		array(
-			'field_id'     => 'welcome_information',
-			'type'         => 'welcome_html',
-			'before_field' => $html_readme,
-		),
-
-	);
-
-	$main_object = apply_filters ( 'seamless_donations_admin_main_section_data_options', $main_object );
-
-	seamless_donations_process_add_settings_fields_with_options ( $main_object, $_setup_object, $main_section );
+// Remove primary Save button
+// derived from https://github.com/CMB2/CMB2-Snippet-Library/blob/master/filters-and-actions/custom-css-for-specific-metabox.php
+function seamless_donations_delete_welcome_button($post_id, $cmb) {
+    ?>
+    <style type="text/css" media="screen">
+        input#submit-cmb.button.button-primary {
+            display : none;
+        }
+    </style>
+    <?php
 }
 
-function seamless_donations_admin_main_section_html () {
+$object = 'options-page'; // could also be post | term
+$cmb_id = 'seamless_donations_tab_main_page';
+add_action("cmb2_after_{$object}_form_{$cmb_id}", 'seamless_donations_delete_welcome_button', 10, 2);
+
+//// MAIN - SECTION - DATA ////
+function seamless_donations_admin_main_section_data($section_options) {
+    $section_options = apply_filters('seamless_donations_tab_main_section_data', $section_options);
+
+    $section_options->add_field(array(
+        'name'          => 'Welcome to Seamless Donations',
+        'id'            => 'seamless_donations_welcome_area',
+        'type'          => 'text',
+        'savetxt'       => '',
+        'render_row_cb' => 'seamless_donations_render_main_tab_html',
+        // this builds static text as provided
+    ));
+    $section_options = apply_filters('seamless_donations_tab_main_section_data_options', $section_options);
+}
+
+function seamless_donations_render_main_tab_html($field_args, $field) {
+    $html_folder = dirname(dirname(__FILE__)) . '/html/';
+    $html_file   = $html_folder . 'admin-main.html';
+    $html_readme = file_get_contents($html_file);
+
+    $html_readme = apply_filters('seamless_donations_admin_main_section_data_options', $html_readme);
+
+    echo $html_readme;
+}
+
+//// ADDONS - PROCESS FORM SUBMISSIONS
+function seamless_donations_tab_main_process_buttons() {
+    // Process Save changes button
+
+    $_POST = apply_filters('validate_page_slug_seamless_donations_tab_main', $_POST);
 }

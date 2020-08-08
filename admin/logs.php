@@ -1,129 +1,175 @@
 <?php
-/*
-Seamless Donations by David Gewirtz, adopted from Allen Snook
+/**
+ *
+ * Seamless Donations by David Gewirtz, adopted from Allen Snook
+ *
+ * Lab Notes: http://zatzlabs.com/lab-notes/
+ * Plugin Page: http://zatzlabs.com/seamless-donations/
+ * Contact: http://zatzlabs.com/contact-us/
+ *
+ * Copyright (c) 2015-2020 by David Gewirtz
+ * /
+ */
 
-Lab Notes: http://zatzlabs.com/lab-notes/
-Plugin Page: http://zatzlabs.com/seamless-donations/
-Contact: http://zatzlabs.com/contact-us/
+//	Exit if .php file accessed directly
+if (!defined('ABSPATH')) exit;
 
-Copyright (c) 2015 by David Gewirtz
-*/
-
-//// LOGS - TAB ////
-function seamless_donations_admin_logs ( $setup_object ) {
-
-	do_action ( 'seamless_donations_admin_logs_before', $setup_object );
-
-	seamless_donations_admin_logs_menu ( $setup_object );
-	seamless_donations_admin_logs_section_data ( $setup_object );
-
-	do_action ( 'seamless_donations_admin_logs_after', $setup_object );
-
-	add_filter (
-		'validate_page_slug_seamless_donations_admin_logs',
-		'validate_page_slug_seamless_donations_admin_logs_callback',
-		10, // priority (for this, always 10)
-		3 ); // number of arguments passed (for this, always 3)
-}
+add_action('cmb2_admin_init', 'seamless_donations_admin_logs_menu');
 
 //// LOGS - MENU ////
-function seamless_donations_admin_logs_menu ( $_setup_object ) {
+function seamless_donations_admin_logs_menu() {
+    $args = array(
+        'id'           => 'seamless_donations_tab_logs_page',
+        'title'        => 'Seamless Donations - Logs',
+        // page title
+        'menu_title'   => 'Logs',
+        // title on left sidebar
+        'tab_title'    => 'Logs',
+        // title displayed on the tab
+        'object_types' => array('options-page'),
+        'option_key'   => 'seamless_donations_tab_logs',
+        'parent_slug'  => 'seamless_donations_tab_main',
+        'tab_group'    => 'seamless_donations_tab_set',
+        'save_button'  => 'Delete Log',
+    );
 
-	$sub_menu_array = array(
-		'title'     => __ ( 'Log', 'seamless-donations' ),
-		'page_slug' => 'seamless_donations_admin_logs',
-	);
-	$sub_menu_array = apply_filters ( 'seamless_donations_admin_logs_menu', $sub_menu_array );
-	$_setup_object->addSubMenuPage ( $sub_menu_array );
-}
+    // 'tab_group' property is supported in > 2.4.0.
+    if (version_compare(CMB2_VERSION, '2.4.0')) {
+        $args['display_cb'] = 'seamless_donations_cmb_options_display_with_tabs';
+    }
 
-//// LOGS - PROCESS ////
-function validate_page_slug_seamless_donations_admin_logs_callback (
-	$_submitted_array, $_existing_array, $_setup_object ) {
+    do_action('seamless_donations_tab_logs_before', $args);
 
-	$section = seamless_donations_get_submitted_admin_section ( $_submitted_array );
+    // call on button hit for page save
+    add_action('admin_post_seamless_donations_tab_logs', 'seamless_donations_tab_logs_process_buttons');
 
-	// no real need for switch, but structured this way for easy expansion
-	switch( $section ) {
-		case 'seamless_donations_admin_logs_section_data':
-			delete_option ( 'dgx_donate_log' );
-			$_setup_object->setSettingNotice ( 'Log data cleared.', 'updated' );
-			break;
-		case 'seamless_donations_admin_log_section_extension': // LET EXTENSIONS DO THE PROCESSING
-			break;
-		default:
-			$_setup_object->setSettingNotice (
-				__ ( 'There was an unexpected error in your entry.', 'seamless-donations' ) );
-	}
+    // clear previous error messages if coming from another page
+    seamless_donations_clear_cmb2_submit_button_messages($args['option_key']);
+
+    $args        = apply_filters('seamless_donations_tab_logs_menu', $args);
+    $log_options = new_cmb2_box($args);
+
+    if (isset($_REQUEST['page'])) {
+        if ($_REQUEST['page'] == 'seamless_donations_tab_logs') {
+            seamless_donations_admin_logs_section_ssl($log_options);
+            seamless_donations_admin_logs_section_data($log_options);
+
+            do_action('seamless_donations_tab_logs_after', $log_options);
+        }
+    }
 }
 
 //// LOGS - SECTION - DATA ////
-function seamless_donations_admin_logs_section_data ( $_setup_object ) {
+function seamless_donations_admin_logs_section_ssl($section_options) {
+    $gateway = get_option('dgx_donate_payment_processor_choice');
+    if ($gateway == 'PAYPAL') {
+        // the following code is indicative of a minor architectural flaw in Seamless Donations
+        // in that all admin pages are always instantiated. The approach doesn't seem to cause
+        // too much of a load, except for the following, which calls the IPN processor.
+        // This poorly optimized approach is being left in because callbacks might have been
+        // used by user code that expected this behavior and changing it could cause breakage
+        if (isset($_REQUEST['page'])) {
+            if ($_REQUEST['page'] == 'seamless_donations_tab_logs') {
+                $security     = seamless_donations_get_security_status();
+                $section_desc = seamless_donations_display_tls_status($security);
+                $section_desc .= '<BR>Get comprehensive SSL report for ';
+                $section_desc .= '<A target="_blank" HREF="https://www.ssllabs.com/ssltest/analyze.html?d=';
+                $section_desc .= $security["ipn_domain_url"] . '">' . $security["ipn_domain_url"] . '</A>.';
+                $section_desc .= ' Review up-to-the-minute system operation status for PayPal ';
+                $section_desc .= '<A target="_blank" HREF="https://www.paypal-status.com/product/sandbox">Sandbox</A> and ';
+                $section_desc .= '<A target="_blank" HREF="https://www.paypal-status.com/product/production">Live</A> ';
+                $section_desc .= 'servers.';
+            }
+        }
 
-	$log_section = array(
-		'section_id' => 'seamless_donations_admin_logs_section_data',    // the section ID
-		'page_slug'  => 'seamless_donations_admin_logs',    // the page slug that the section belongs to
-		'title'      => __ ( 'Log Data', 'seamless-donations' ),   // the section title
-	);
-	$log_section = apply_filters ( 'seamless_donations_admin_logs_section_data', $log_section );
+        $section_options->add_field(array(
+            'name'        => __('Payment Processor Compatibility', 'cmb2'),
+            'id'          => 'seamless_donations_log_ssl',
+            'type'        => 'title',
+            'after_field' => $section_desc,
 
-	$debug_log_content = get_option ( 'dgx_donate_log' );
-	$log_data          = '';
+        ));
+        $section_options = apply_filters('seamless_donations_tab_logs_section_ssl', $section_options);
+    }
+}
 
-	if( empty( $debug_log_content ) ) {
-		$log_data = esc_html__ ( 'The log is empty.', 'seamless-donations' );
-	} else {
-		foreach( $debug_log_content as $debug_log_entry ) {
-			if( $log_data != "" ) {
-				$log_data .= "\n";
-			}
-			$log_data .= esc_html ( $debug_log_entry );
-		}
-	}
+//// LOGS - SECTION - DATA ////
+function seamless_donations_admin_logs_section_data($section_options) {
+    $section_options->add_field(array(
+        'name'    => __('Log Data', 'cmb2'),
+        'id'      => 'seamless_donations_log_data',
+        'type'    => 'title',
+        'default' => 'log data',
+    ));
+    $section_options = apply_filters('seamless_donations_tab_logs_section_data', $section_options);
 
-	$debug_mode = get_option ( 'dgx_donate_debug_mode' );
-	if( $debug_mode == 1 ) {
-		// we're in debug, so we'll return lots of log info
+    $debug_log_option  = get_option('dgx_donate_debug_mode');
+    $debug_log_content = get_option('dgx_donate_log');
+    $log_data          = '';
 
-		$display_options = array(
-			__ ( 'Seamless Donations Log Data', 'seamless-donations' ) => $log_data,
-			// Removes the default data by passing an empty value below.
-			'Admin Page Framework'                                     => '',
-			'Browser'                                                  => '',
-		);
-	} else {
-		$display_options = array(
-			__ ( 'Seamless Donations Log Data', 'seamless-donations' ) => $log_data,
-			// Removes the default data by passing an empty value below.
-			'Admin Page Framework'                                     => '',
-			'WordPress'                                                => '',
-			'PHP'                                                      => '',
-			'Server'                                                   => '',
-			'PHP Error Log'                                            => '',
-			'MySQL'                                                    => '',
-			'MySQL Error Log'                                          => '',
-			'Browser'                                                  => '',
-		);
-	}
+    if (empty($debug_log_content)) {
+        $log_data = esc_html__('The log is empty.', 'seamless-donations');
+    } else {
+        foreach ($debug_log_content as $debug_log_entry) {
+            if ($log_data != "") {
+                $log_data .= "\n";
+            }
+            if ($debug_log_option == 'RAWLOG') {
+                $log_data .= $debug_log_entry;
+            } else {
+                $log_data .= esc_html($debug_log_entry);
+            }
+        }
+    }
 
-	$log_object = array(
-		array(
-			'field_id' => 'submit',
-			'type'     => 'submit',
-			'label'    => __ ( 'Delete Log', 'seamless-donations' ),
-		),
-		array(
-			'field_id'   => 'system_information',
-			'type'       => 'system',
-			'title'      => __ ( 'System Information', 'seamless-donations' ),
-			'data'       => $display_options,
-			'attributes' => array(
-				'name' => '',
-			),
-		)
-	);
+    $debug_mode = get_option('dgx_donate_debug_mode');
+    if ($debug_mode == 'VERBOSE') {
+        // we're in debug, so we'll return lots of log info
 
-	$log_object = apply_filters ( 'seamless_donations_admin_logs_section_data_options', $log_object );
+        $display_options = array(
+            __('Seamless Donations Log Data', 'seamless-donations') => $log_data,
+            // Removes the default data by passing an empty value below.
+            'Admin Page Framework'                                  => '',
+            'Browser'                                               => '',
+        );
+    } else {
+        $display_options = array(
+            __('Seamless Donations Log Data', 'seamless-donations') => $log_data,
+            // Removes the default data by passing an empty value below.
+            'Admin Page Framework'                                  => '',
+            'WordPress'                                             => '',
+            'PHP'                                                   => '',
+            'Server'                                                => '',
+            'PHP Error Log'                                         => '',
+            'MySQL'                                                 => '',
+            'MySQL Error Log'                                       => '',
+            'Browser'                                               => '',
+        );
+    }
 
-	seamless_donations_process_add_settings_fields_with_options ( $log_object, $_setup_object, $log_section );
+    $section_options->add_field(array(
+        'name'    => __('System Information', 'cmb2'),
+        'id'      => 'seamless_donations_system_information',
+        'type'    => 'textarea_code',
+        'default' => $log_data,
+    ));
+
+    seamless_donations_display_cmb2_submit_button($section_options, array(
+        'button_id'          => 'dgx_donate_button_settings_logs_delete',
+        'button_text'        => 'Delete Log',
+        'button_success_msg' => __('Log deleted.', 'seamless-donations'),
+        'button_error_msg'   => '',
+    ));
+
+    $section_options = apply_filters('seamless_donations_tab_logs_section_data_options', $section_options);
+}
+
+//// LOGS - PROCESS ////
+function seamless_donations_tab_logs_process_buttons() {
+    $_POST = apply_filters('validate_page_slug_seamless_donations_tab_logs', $_POST);
+
+    if (isset($_POST['dgx_donate_button_settings_logs_delete'])) {
+        delete_option('dgx_donate_log');
+        seamless_donations_flag_cmb2_submit_button_success('dgx_donate_button_settings_logs_delete');
+    }
 }

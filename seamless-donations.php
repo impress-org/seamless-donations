@@ -3,7 +3,7 @@
 Plugin Name: Seamless Donations
 Plugin URI: http://zatzlabs.com/seamless-donations/
 Description: A platform for global fundraising and rebuilding.
-Version: 5.0.10
+Version: 5.0.20
 Author: David Gewirtz
 Author URI: http://zatzlabs.com/lab-notes/
 Text Domain: seamless-donations
@@ -12,7 +12,7 @@ License: GPL2
 */
 
 /*  Copyright 2014 Allen Snook (email: allendav@allendav.com)
-	Copyright 2015-2019 David Gewirtz (http://zatzlabs.com/contact-us/)
+	Copyright 2015-2020 David Gewirtz (http://zatzlabs.com/contact-us/)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -75,28 +75,31 @@ function seamless_donations_admin_loader() {
     // load UI library elements
     require_once 'library/cmb2-addons/cmb2-radio-image.php';
 
-    // bring in the admin5 page tabs
-    require_once 'admin5/main5.php';
-    require_once 'admin5/templates5.php';
-    require_once 'admin5/thanks5.php';
-    require_once 'admin5/forms5.php';
-    require_once 'admin5/addons5.php';
-    require_once 'admin5/settings5.php';
-    require_once 'admin5/licenses5.php';
-    require_once 'admin5/logs5.php';
+    // bring in telemetry
+    require_once 'telemetry/deactivate.php';
+    //require_once 'telemetry/telemetry.php';
+
+    // bring in the admin page tabs
+    require_once 'admin/main.php';
+    require_once 'admin/templates.php';
+    require_once 'admin/thanks.php';
+    require_once 'admin/forms.php';
+    require_once 'admin/addons.php';
+    require_once 'admin/settings.php';
+    require_once 'admin/licenses.php';
+    require_once 'admin/logs.php';
 
     // bring in the v5.0 custom post types
-    require_once 'cpt5/donor-list5.php';
-    require_once 'cpt5/donor-detail5.php';
-    require_once 'cpt5/funds-list5.php';
-    require_once 'cpt5/funds-detail5.php';
-    require_once 'cpt5/donation-list5.php';
-    require_once 'cpt5/donation-detail5.php';
+    require_once 'cpt/donor-list.php';
+    require_once 'cpt/donor-detail.php';
+    require_once 'cpt/funds-list.php';
+    require_once 'cpt/funds-detail.php';
+    require_once 'cpt/donation-list.php';
+    require_once 'cpt/donation-detail.php';
 
     // bring in other resources
     require_once 'inc/form-engine.php';
     require_once 'inc/donations.php';
-
 }
 
 function seamless_donations_legacy_admin_loader() {
@@ -159,6 +162,11 @@ function seamless_donations_admin_enqueue_scripts() {
     wp_enqueue_script('jquery-ui-accordion');
     wp_enqueue_script('custom-accordion', $script_url, array('jquery'));
 
+    // remodal library used by telemetry
+    wp_enqueue_script('remodal', plugins_url('/library/remodal/remodal.min.js', __FILE__));
+    wp_enqueue_style('remodal', plugins_url('/library/remodal/remodal.css', __FILE__));
+    wp_enqueue_style('remodal-default-theme', plugins_url('/library/remodal/remodal-default-theme.css', __FILE__));
+
     $script_url = plugins_url('/js/tabs.js', __FILE__);
     wp_enqueue_script('custom-tabs', $script_url, array('jquery'));
     wp_enqueue_script('jquery-ui-tabs');
@@ -167,9 +175,14 @@ function seamless_donations_admin_enqueue_scripts() {
         plugins_url('/css/jquery-ui-1.12.1/jquery-ui.css', __FILE__),
         array(), '1', 'screen');
     wp_enqueue_style('jquery-custom-style');
+
+    // cmb2 add-ons to the bottom
+    $script_url = plugins_url('/js/admin-scripts.js', __FILE__);
+    wp_register_script('admin-scripts', $script_url, array('jquery'), '1.0', true);
+    wp_enqueue_script('admin-scripts');
 }
 
-add_action('wp_enqueue_scripts', 'seamless_donations_enqueue_scripts'); // DG version of scripts
+add_action('wp_enqueue_scripts', 'seamless_donations_enqueue_scripts');          // DG version of scripts
 add_action('admin_enqueue_scripts', 'seamless_donations_admin_enqueue_scripts'); // DG version of scripts
 
 function seamless_donations_queue_stylesheet() {
@@ -182,13 +195,13 @@ function seamless_donations_queue_stylesheet() {
             $styleurl = plugins_url('/css/modern-styles.css', __FILE__);
             break;
         case 'none':
-            break;
+            return;
     }
+
     $styleurl = apply_filters('seamless_donations_stylesheet_enqueue', $styleurl);
-    if ($form_style != 'none') {
-        wp_register_style('seamless_donations_css', $styleurl);
-        wp_enqueue_style('seamless_donations_css');
-    }
+
+    wp_register_style('seamless_donations_css', $styleurl);
+    wp_enqueue_style('seamless_donations_css');
 }
 
 // enqueue styles, preserving legacy style for existing sites
@@ -319,7 +332,7 @@ function seamless_donations_shortcode_form_filter($atts) {
     if (isset($_GET['cancel'])) {
         $shortcode_mode = 'show_error';
     }
-    if(!isset($_GET['noshow'])) {
+    if (!isset($_GET['noshow'])) {
         if ($shortcode_mode == 'show_form' and $atts == '') {
             if ($sd4_mode == false) {
                 $output .= "<div style='background-color:red; color:white'>";
@@ -348,6 +361,10 @@ function seamless_donations_init() {
     seamless_donations_5000_check_addons();
 
     // Check to see if first-time run
+    $first_run_time = get_option('dgx_donate_first_run_time');
+    if ($first_run_time == false) {
+        update_option('dgx_donate_first_run_time', time());
+    }
     $from_name = get_option('dgx_donate_email_name');
     if ($from_name == false) {
         // this is a pure 4.0+ start
@@ -403,7 +420,7 @@ function seamless_donations_init() {
 
     // Display an admin notice if we are in sandbox mode
     $gateway = get_option('dgx_donate_payment_processor_choice');
-    if($gateway == 'STRIPE') {
+    if ($gateway == 'STRIPE') {
         $stripe_mode = get_option('dgx_donate_stripe_server');
         if (strcasecmp($stripe_mode, "SANDBOX") == 0) {
             add_action('admin_notices', 'dgx_donate_admin_sandbox_msg');
@@ -434,11 +451,14 @@ function seamless_donations_init() {
     }
 
     // Display an admin notice if add-ons are out of date and need to be updated
-    $pre_5_licenses = get_option('dgx_donate_5000_deactivated_addons');
+    $skip_addon_check = get_option('dgx_donate_legacy_addon_check');
+    if ($skip_addon_check != 'on') {
+        $pre_5_licenses = get_option('dgx_donate_5000_deactivated_addons');
 
-    if ($pre_5_licenses != false) {
-        if ($pre_5_licenses != '') {
-            add_action('admin_notices', 'seamless_donations_5000_disabled_addon_message');
+        if ($pre_5_licenses != false) {
+            if ($pre_5_licenses != '') {
+                add_action('admin_notices', 'seamless_donations_5000_disabled_addon_message');
+            }
         }
     }
 }
@@ -543,16 +563,16 @@ function seamless_donations_init_defaults() {
 
     // pre-5.0.5
     $paymentGateway = get_option('dgx_donate_payment_gateway');
-    if($paymentGateway == false) {
+    if ($paymentGateway == false) {
         // old pre-Stripe gateway never initialized
         $newGateway = get_option('dgx_donate_payment_processor_choice');
-        if($newGateway == false) {
+        if ($newGateway == false) {
             update_option('dgx_donate_payment_processor_choice', 'STRIPE');
         }
     } else {
         // we have data
         $newGateway = get_option('dgx_donate_payment_processor_choice');
-        if($newGateway == false) {
+        if ($newGateway == false) {
             // old gateway was initialized (had to be to PayPal), new gateway was not
             update_option('dgx_donate_payment_processor_choice', 'PAYPAL');
         }
@@ -610,6 +630,26 @@ function seamless_donations_init_defaults() {
         update_option('dgx_donate_form_style', 'classic');
     }
 
+    $style_tweaks = get_option('dgx_donate_stylesheet_priority');
+    if ($style_tweaks == false) {
+        if ($form_styles == false or empty($form_styles)) {
+            update_option('dgx_donate_stylesheet_priority', false);
+            update_option('dgx_donate_labels_for_input', false);
+        } else {
+            update_option('dgx_donate_stylesheet_priority', true);
+            update_option('dgx_donate_labels_for_input', true);
+        }
+    }
+    if (empty($style_tweaks)) {
+        if ($form_styles == false or empty($form_styles)) {
+            update_option('dgx_donate_stylesheet_priority', false);
+            update_option('dgx_donate_labels_for_input', false);
+        } else {
+            update_option('dgx_donate_stylesheet_priority', true);
+            update_option('dgx_donate_labels_for_input', true);
+        }
+    }
+
     // Currency
     $currency = get_option('dgx_donate_currency');
     if (empty($currency)) {
@@ -625,7 +665,7 @@ function seamless_donations_init_defaults() {
     // State default
     $default_state = get_option('dgx_donate_default_state');
     if (empty($default_state)) {
-        update_option('dgx_donate_default_state', 'WA');
+        update_option('dgx_donate_default_state', 'NY');
     }
 
     // Province default
@@ -695,11 +735,16 @@ function seamless_donations_init_add_plugin_link($links, $file) {
             'support' => '<a href="' . esc_url('https://zatzlabs.com/submit-ticket/') .
                 '" target="_blank" aria-label="' . esc_attr__('Get support', 'seamless-donations') .
                 '">' . esc_html__('Open a support ticket', 'seamless-donations') . '</a>',
-            'update'  => '<a href="' . esc_url('https://zatzlabs.com/seamless-donations-5-0-released-important-tips/') .
-                '" target="_blank" aria-label="' . esc_attr__('How to update', 'seamless-donations') .
-                '" style="color:red;">' . esc_html__('How to update add-ons', 'seamless-donations') . '</a>',
         );
-
+        if (seamless_donations_addon_legacy_addons_still_loaded()) {
+            $row_meta['update'] = '<a href="' . esc_url('https://zatzlabs.com/seamless-donations-5-0-released-important-tips/') .
+                '" target="_blank" aria-label="' . esc_attr__('How to update', 'seamless-donations') .
+                '" style="color:red;">' . esc_html__('How to update add-ons', 'seamless-donations') . '</a>';
+        } else {
+            $row_meta['rate'] = '<a href="' . esc_url('https://wordpress.org/support/plugin/seamless-donations/reviews/') .
+                '" target="_blank" aria-label="' . esc_attr__('Please review', 'seamless-donations') .
+                '">' . esc_html__('Please post a review ★★★★★', 'seamless-donations') . '</a>';
+        }
         return array_merge($links, $row_meta);
     }
     return (array)$links;

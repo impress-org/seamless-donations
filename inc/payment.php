@@ -555,6 +555,7 @@ function seamless_donations_build_paypal_query_string($post_data, $notify_url) {
     $post_args .= "currency_code=" . urlencode($currency_code) . "&";
     $post_args .= "no_note=" . urlencode('1') . "&";
     $post_args .= "bn=" . urlencode('SeamlessDonations_SP') . "&";
+    $post_args = apply_filters('seamless_donations_paypal_checkout_data', $post_args);
 
     dgx_donate_debug_log("Returning PayPal query string.");
     return $post_args;
@@ -626,9 +627,13 @@ function seamless_donations_redirect_to_paypal($post_args, $paypal_server) {
 
 function seamless_donations_redirect_to_stripe($post_data, $api_key, $notify_url, $cancel_url) {
     $session = false;
+    dgx_donate_debug_log('Preparing Stripe donation description...');
     $desc    = seamless_donations_build_donation_description($post_data);
 
+    dgx_donate_debug_log('Preparing redirect to Stripe...');
+    dgx_donate_debug_log('-- Using API key: ' . seamless_donations_obscurify_stripe_key($api_key));
     \Stripe\Stripe::setApiKey($api_key);
+    dgx_donate_debug_log('Completed setting Stripe API key.');
 
     if ($post_data['REPEATING'] != '') {
         // this is a recurring donation
@@ -636,38 +641,38 @@ function seamless_donations_redirect_to_stripe($post_data, $api_key, $notify_url
             'payment_method_types' => ['card'],
             'line_items'           => [
                 [
-                    'price_data' => [
-                        'currency'  => get_option('dgx_donate_currency'),
+                    'price_data'  => [
+                        'currency'     => get_option('dgx_donate_currency'),
                         'product_data' => [
                             'name' => $desc,
                         ],
-                        'recurring' => [
+                        'recurring'    => [
                             'interval' => 'month',
                         ],
-                        'unit_amount'    => $post_data['AMOUNT'] * 100,
+                        'unit_amount'  => $post_data['AMOUNT'] * 100,
                     ],
-                    'quantity'  => 1,
+                    'quantity'    => 1,
                     'description' => $desc,
                 ],
             ],
-            'mode' => 'subscription',
-            'metadata'       => [
+            'mode'                 => 'subscription',
+            'metadata'             => [
                 'sd_session_id' => $post_data['SESSIONID'],
             ],
-            'success_url'    => $post_data['RETURN'],
-            'cancel_url'     => $cancel_url,
-            'customer_email' => $post_data["EMAIL"],
+            'success_url'          => $post_data['RETURN'],
+            'cancel_url'           => $cancel_url,
+            'customer_email'       => $post_data["EMAIL"],
         ];
     } else {
         $donation = [
             'payment_method_types' => ['card'],
             'line_items'           => [
                 [
-                    'name'        => $desc,
+                    'name'     => $desc,
                     //'description' => $desc,
-                    'amount'      => $post_data['AMOUNT'] * 100,
-                    'currency'    => get_option('dgx_donate_currency'),
-                    'quantity'    => 1,
+                    'amount'   => $post_data['AMOUNT'] * 100,
+                    'currency' => get_option('dgx_donate_currency'),
+                    'quantity' => 1,
                 ],
             ],
             'metadata'             => [
@@ -681,6 +686,7 @@ function seamless_donations_redirect_to_stripe($post_data, $api_key, $notify_url
     }
     $donation = apply_filters('seamless_donations_stripe_checkout_data', $donation);
 
+    // https://www.php.net/manual/en/class.exception.php
     try {
         // Use Stripe's library to make requests
         $session = \Stripe\Checkout\Session::create($donation);
@@ -694,25 +700,42 @@ function seamless_donations_redirect_to_stripe($post_data, $api_key, $notify_url
         dgx_donate_debug_log('Message is:' . $e->getError()->message);
     } catch (\Stripe\Exception\RateLimitException $e) {
         dgx_donate_debug_log("Too many requests made to the API too quickly");
+        dgx_donate_debug_log('-- Stripe message is: ' . $e->getMessage());
         // Too many requests made to the API too quickly
     } catch (\Stripe\Exception\InvalidRequestException $e) {
         dgx_donate_debug_log("Invalid parameters were supplied to Stripe API");
-        // Invalid parameters were supplied to Stripe's API
+        dgx_donate_debug_log('-- Stripe message is: ' . $e->getMessage());
+          // Invalid parameters were supplied to Stripe's API
     } catch (\Stripe\Exception\AuthenticationException $e) {
         dgx_donate_debug_log("Authentication with Stripe API failed");
+        dgx_donate_debug_log('-- Stripe message is: ' . $e->getMessage());
         // Authentication with Stripe's API failed
         // (maybe you changed API keys recently)
     } catch (\Stripe\Exception\ApiConnectionException $e) {
         dgx_donate_debug_log("Network communication with Stripe failed");
+        dgx_donate_debug_log('-- Stripe message is: ' . $e->getMessage());
         // Network communication with Stripe failed
     } catch (\Stripe\Exception\ApiErrorException $e) {
-        dgx_donate_debug_log(isset($e->getError()->message) ? ' ' . $e->getError()->message : '');
+        dgx_donate_debug_log("Stripe API error exception.");
+        dgx_donate_debug_log('-- Stripe message is: ' . $e->getMessage());
         // Display a very generic error to the user, and maybe send
         // yourself an email
     } catch (Exception $e) {
         dgx_donate_debug_log("A Stripe invocation failure occurred unrelated to Stripe functionality.");
+        dgx_donate_debug_log('-- Stripe message is: ' . $e->getMessage());
         // Something else happened, completely unrelated to Stripe
     }
+
+//    https://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
+//    $body = $e->getJsonBody();
+//    $err  = $body['error'];
+//
+//    print('Status is:' . $e->getHttpStatus() . "\n");
+//    print('Type is:' . $err['type'] . "\n");
+//    print('Code is:' . $err['code'] . "\n");
+//    // param is '' in this case
+//    print('Param is:' . $err['param'] . "\n");
+//    print('Message is:' . $err['message'] . "\n");
 
     return $session;
 }
@@ -735,6 +758,61 @@ function seamless_donations_init_payment_gateways() {
     }
 }
 
+/* unfinished version with more diagnostics
+function seamless_donations_stripe_js_redirect($session) {
+    $stripe_mode = get_option('dgx_donate_stripe_server');
+    if ($stripe_mode == 'LIVE') {
+        $api_key = get_option('dgx_donate_live_stripe_api_key');
+    } else {
+        $api_key = get_option('dgx_donate_test_stripe_api_key');
+    }
+
+    dgx_donate_debug_log('Entering stripe js test with mode ' . $stripe_mode);
+    dgx_donate_debug_log('Stripe session id: ' . $session['id']);
+    // https://stackoverflow.com/questions/58093187/how-do-i-handle-stripe-errors-for-redirecttocheckout
+    ?>
+    <script src='https://js.stripe.com/v3/?ver=5.4.1'></script>
+    <script>
+        console.log('JS Stripe redirect');
+        try {
+            var stripe = Stripe(<?php echo '\'' . $api_key . '\''; ?>);
+            stripe.redirectToCheckout({
+                // Make the id field from the Checkout Session creation API response
+                // available to this file, so you can provide it as parameter here
+                // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+                <?php
+                echo 'sessionId: \'' . $session['id'] . '\'';
+                ?>
+            })
+                .then(function (result) {
+                    if (result.error) {
+                        // Error scenario 1
+                        // If `redirectToCheckout` fails due to a browser or network
+                        // error, display the localized error message to your customer.
+                        alert(result.error.message);
+                    }
+                }).catch(function (error) {
+                if (result.error) {
+                    // Error scenario 2
+                    // If the promise throws an error
+                    alert("We are experiencing issues connecting to our"
+                        + " payments provider. " + error);
+                }
+            });
+        } catch (error) {
+            // Error scenario 3
+            // If there is no internet connection at all
+            alert("We are experiencing issues connecting to our"
+                + " payments provider. You have not been charged. Please check"
+                + " your internet connection and try again. If the problem"
+                + " persists please contact us.");
+        }
+    </script>
+    <?php
+}
+*/
+
+
 function seamless_donations_stripe_js_redirect($session) {
     $stripe_mode = get_option('dgx_donate_stripe_server');
     if ($stripe_mode == 'LIVE') {
@@ -749,6 +827,7 @@ function seamless_donations_stripe_js_redirect($session) {
     ?>
     <script src='https://js.stripe.com/v3/?ver=5.4.1'></script>
     <script>
+        console.log('JS Stripe redirect');
         var stripe = Stripe(<?php echo '\'' . $api_key . '\''; ?>);
         stripe.redirectToCheckout({
             // Make the id field from the Checkout Session creation API response
@@ -766,6 +845,7 @@ function seamless_donations_stripe_js_redirect($session) {
     <?php
 }
 
+
 function seamless_donations_stripe_poll_payments() {
     // https://stripe.com/docs/payments/checkout/accept-a-payment#payment-success
     // https://stripe.com/docs/cli/flags
@@ -778,7 +858,7 @@ function seamless_donations_stripe_poll_payments() {
     $server_mode         = get_option('dgx_donate_stripe_server');
     if ($server_mode == 'LIVE') {
         $stripe_secret_key = get_option('dgx_donate_live_stripe_secret_key');
-        $stripe_secret_key = get_option('dgx_donate_live_webhook_stripe_secret_key');
+        $endpoint_secret   = get_option('dgx_donate_live_webhook_stripe_secret_key');
     } else {
         $stripe_secret_key = get_option('dgx_donate_test_stripe_secret_key');
         //$stripe_secret_key = get_option('dgx_donate_test_stripe_api_key');
@@ -788,6 +868,7 @@ function seamless_donations_stripe_poll_payments() {
     // Set your secret key. Remember to switch to your live secret key in production!
     // See your keys here: https://dashboard.stripe.com/account/apikeys
     \Stripe\Stripe::setApiKey($stripe_secret_key);
+    dgx_donate_debug_log('Stripe API key set');
 
     $events = \Stripe\Event::all([
         'type'    => 'checkout.session.completed',
@@ -796,6 +877,8 @@ function seamless_donations_stripe_poll_payments() {
             'gte' => time() - 24 * 60 * 60,
         ],
     ]);
+
+    dgx_donate_debug_log('Checking for donations');
 
     foreach ($events->autoPagingIterator() as $event) {
         $stripe_session    = $event->data->object;
@@ -812,6 +895,8 @@ function seamless_donations_stripe_poll_payments() {
 
     if ($donation_succeeded) {
         seamless_donations_process_confirmed_purchase('STRIPE', $currency_code, $donation_session_id, $stripe_payment_id, $stripe_session);
+    } else {
+        dgx_donate_debug_log('Donation not showing as succeeded');
     }
     return 'PASS';
 }

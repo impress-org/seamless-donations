@@ -9,8 +9,26 @@
  Copyright (c) 2015 by David Gewirtz
  */
 
-// Load WordPress
-include "../../../../../wp-config.php";
+// Find a way to load WordPress
+$root = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))));
+
+if (!defined('ABSPATH')) {
+    if (file_exists($root . "/wp-load.php")) {
+        include($root . "/wp-load.php");
+    }
+}
+
+if (!defined('ABSPATH')) {
+    if (file_exists($root . "/wp-config.php")) {
+        include $root . "/wp-config.php";
+    }
+}
+
+if (!defined('ABSPATH')) {
+    if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/wp-config.php")) {
+            include $_SERVER["DOCUMENT_ROOT"] . "/wp-config.php";
+    }
+}
 
 // Load Seamless Donations Core
 require_once '../../inc/geography.php';
@@ -39,39 +57,51 @@ class Seamless_Donations_PayPal_IPN_Handler
         parse_str($post, $data);
         $this->post_data = $data;
 
-        /* DEBUGGING STUFF
-        if ( isset( $_POST ) ) {
-            dgx_donate_debug_log( '$_POST array size: ' . count( $_POST ) );
-        } else {
-            dgx_donate_debug_log( '$_POST not set.' );
-        }
-        if ( isset( $_GET ) ) {
-            dgx_donate_debug_log( '$_GET array size: ' . count( $_GET ) );
-        } else {
-            dgx_donate_debug_log( '$_GET not set.' );
-        }
-        seamless_donations_post_array_to_log();
-        seamless_donations_force_a_backtrace_to_log();
+        $debug_mode = get_option('dgx_donate_debug_mode');
+        if ($debug_mode == 'PAYPALIPN') {
+            dgx_donate_debug_log('PayPal IPN debug mode is turned ON.');
+            if (isset($_POST)) {
+                dgx_donate_debug_log('$_POST array size: ' . count($_POST));
+            } else {
+                dgx_donate_debug_log('$_POST not set.');
+            }
+            if (isset($_GET)) {
+                dgx_donate_debug_log('$_GET array size: ' . count($_GET));
+            } else {
+                dgx_donate_debug_log('$_GET not set.');
+            }
+            seamless_donations_post_array_to_log();
+            seamless_donations_force_a_backtrace_to_log();
 
-        seamless_donations_server_global_to_log( 'PHP_SELF', true );
-        seamless_donations_server_global_to_log( 'REQUEST_METHOD', true );
-        seamless_donations_server_global_to_log( 'HTTP_REFERER' , true);
-        seamless_donations_server_global_to_log( 'HTTPS' , true);
-        seamless_donations_server_global_to_log( 'REQUEST_URI', true);
-        seamless_donations_server_global_to_log( 'QUERY_STRING', true);
-        seamless_donations_server_global_to_log( 'DOCUMENT_ROOT', true);
-        seamless_donations_server_global_to_log( 'HTTP_ACCEPT', true);
-        seamless_donations_server_global_to_log( 'HTTP_HOST', true);
-        seamless_donations_server_global_to_log( 'HTTP_USER_AGENT', true);
-        seamless_donations_server_global_to_log( 'REMOTE_ADDR', true);
-        seamless_donations_server_global_to_log( 'REMOTE_HOST', true);
-         END DEBUGGING BLOCK */
+            seamless_donations_server_global_to_log('PHP_SELF', true);
+            seamless_donations_server_global_to_log('REQUEST_METHOD', true);
+            seamless_donations_server_global_to_log('HTTP_REFERER', true);
+            seamless_donations_server_global_to_log('HTTPS', true);
+            seamless_donations_server_global_to_log('REQUEST_URI', true);
+            seamless_donations_server_global_to_log('QUERY_STRING', true);
+            seamless_donations_server_global_to_log('DOCUMENT_ROOT', true);
+            seamless_donations_server_global_to_log('HTTP_ACCEPT', true);
+            seamless_donations_server_global_to_log('HTTP_HOST', true);
+            seamless_donations_server_global_to_log('HTTP_USER_AGENT', true);
+            seamless_donations_server_global_to_log('REMOTE_ADDR', true);
+            seamless_donations_server_global_to_log('REMOTE_HOST', true);
+        }
 
         // Set up for production or test
+        if ($debug_mode == 'PAYPALIPN') {
+            dgx_donate_debug_log('Before configure_for_production_or_test');
+        }
         $this->configure_for_production_or_test();
 
         // Extract the session and transaction IDs from the POST
+        if ($debug_mode == 'PAYPALIPN') {
+            dgx_donate_debug_log('Before get_ids_from_post');
+        }
         $this->get_ids_from_post();
+
+        if ($debug_mode == 'PAYPALIPN') {
+            dgx_donate_debug_log('Before checking session_id for not empty');
+        }
 
         if (!empty($this->session_id)) {
             dgx_donate_debug_log('----------------------------------------');
@@ -96,7 +126,19 @@ class Seamless_Donations_PayPal_IPN_Handler
             do_action('seamless_donations_paypal_ipn_processing_complete', $this->session_id, $this->transaction_id);
             dgx_donate_debug_log('IPN processing complete.');
         } else {
-            dgx_donate_debug_log('Null IPN (Empty session id).  Nothing to do.');
+            if (!isset($_GET['status_check'])) {
+                dgx_donate_debug_log('Null IPN (Empty session id).  Nothing to do.');
+            }
+        }
+        if ($debug_mode == 'PAYPALIPN') {
+            dgx_donate_debug_log('Exiting construct.');
+        } else {
+            if ($debug_mode == 'PAYPALIPN') {
+                dgx_donate_debug_log('Session ID not processed because empty');
+            }
+        }
+        if ($debug_mode == 'PAYPALIPN') {
+            dgx_donate_debug_log('Leaving __construct');
         }
     }
 
@@ -356,7 +398,13 @@ class Seamless_Donations_PayPal_IPN_Handler
     }
 }
 
-dgx_donate_debug_log("pay/paypalstd/ipn.php called outside of constructor.");
+if (isset($_GET['status_check'])) {
+    dgx_donate_debug_log('Executing payment processor compatibility check on ipn.php.');
+    dgx_donate_debug_log('(This should happen each time the Logs tab is opened.)');
+} else {
+    dgx_donate_debug_log("pay/paypalstd/ipn.php called outside of constructor.");
+}
+
 $seamless_donations_ipn_responder = new Seamless_Donations_PayPal_IPN_Handler();
 
 /**

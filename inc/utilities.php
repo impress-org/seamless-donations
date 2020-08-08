@@ -38,6 +38,23 @@ function seamless_donations_validate_url( $url ) {
 	}
 }
 
+function seamless_donations_time_elapsed_string($secs){
+    $bit = array(
+        'y' => $secs / 31556926 % 12,
+        'w' => $secs / 604800 % 52,
+        'd' => $secs / 86400 % 7,
+        'h' => $secs / 3600 % 24,
+        'm' => $secs / 60 % 60,
+        's' => $secs % 60
+    );
+
+    foreach($bit as $k => $v)
+        if($v > 0)$ret[] = $v . $k;
+
+    return join(' ', $ret);
+}
+
+
 function seamless_donations_debug_alert( $a ) {
 
 	echo "<script>";
@@ -72,6 +89,12 @@ function seamless_donations_obscurify_string( $s, $char = '*', $inner_obscure = 
 	}
 
 	return $s;
+}
+
+function seamless_donations_obscurify_stripe_key($key) {
+    $left = substr($key, 0, 8);
+    $right = substr($key, -3, 3);
+    return $left . '******************************' . $right;
 }
 
 // based on http://php.net/manual/en/function.var-dump.php notes by edwardzyang
@@ -278,17 +301,51 @@ function seamless_donations_get_guid( $namespace = '' ) {
 
 function seamless_donations_get_browser_name() {
 
-	$path = plugin_dir_path( __FILE__ );
-	$path = dirname( dirname( dirname( dirname( $path ) ) ) ); // up the path (probably a better way)
-	$path .= '/wp-admin/includes/dashboard.php';
+//	$path = plugin_dir_path( __FILE__ );
+//	$path = dirname( dirname( dirname( dirname( $path ) ) ) ); // up the path (probably a better way)
+//	$path .= '/wp-admin/includes/dashboard.php';
+// from https://artisansweb.net/detect-browser-php-javascript/
+    $arr_browsers = ["Opera", "Edge", "Chrome", "Safari", "Firefox", "MSIE", "Trident"];
 
-	require_once( $path );
-	$browser_data = wp_check_browser_version();
+    $user_browser = 'undefined';
+    if(isset($_SERVER['HTTP_USER_AGENT'])) {
+        $agent = $_SERVER['HTTP_USER_AGENT'];
 
-	isset( $browser_data['name'] ) ? $browser_name = $browser_data['name'] : $browser_name = '';
-	isset( $browser_data['version'] ) ? $browser_version = $browser_data['version'] : $browser_version = '';
+        $user_browser = '';
+        foreach ($arr_browsers as $browser) {
+            if (strpos($agent, $browser) !== false) {
+                $user_browser = $browser;
+                break;
+            }
+        }
 
-	return $browser_name . ' ' . $browser_version;
+        switch ($user_browser) {
+            case 'MSIE':
+                $user_browser = 'Internet Explorer';
+                break;
+
+            case 'Trident':
+                $user_browser = 'Internet Explorer';
+                break;
+
+            case 'Edge':
+                $user_browser = 'Microsoft Edge';
+                break;
+        }
+    }
+
+    return $user_browser;
+
+//    $path = get_home_path();
+//    $path .= 'wp-admin/includes/dashboard.php';
+//
+//	require_once( $path );
+//	$browser_data = wp_check_browser_version();
+//
+//	isset( $browser_data['name'] ) ? $browser_name = $browser_data['name'] : $browser_name = '';
+//	isset( $browser_data['version'] ) ? $browser_version = $browser_data['version'] : $browser_version = '';
+
+//	return $browser_name . ' ' . $browser_version;
 }
 
 // label display functions
@@ -540,6 +597,10 @@ function seamless_donations_recalculate_donor_total( $donor_id ) {
 
 function seamless_donations_store_url() {
 	return "https://zatzlabs.com";
+}
+
+function seamless_donations_telemetry_url() {
+    return "https://zatzlabs.com";
 }
 
 function seamless_donations_get_license_key( $item ) {

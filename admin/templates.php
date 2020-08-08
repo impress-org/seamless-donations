@@ -1,359 +1,340 @@
 <?php
-/*
-Seamless Donations by David Gewirtz, adopted from Allen Snook
+/**
+ * Seamless Donations by David Gewirtz, adopted from Allen Snook
+ *
+ * Lab Notes: http://zatzlabs.com/lab-notes/
+ * Plugin Page: http://zatzlabs.com/seamless-donations/
+ * Contact: http://zatzlabs.com/contact-us/
+ *
+ * Copyright (c) 2015-2020 by David Gewirtz
+ *
+ */
 
-Lab Notes: http://zatzlabs.com/lab-notes/
-Plugin Page: http://zatzlabs.com/seamless-donations/
-Contact: http://zatzlabs.com/contact-us/
+//	Exit if .php file accessed directly
+if (!defined('ABSPATH')) exit;
 
-Copyright (c) 2015 by David Gewirtz
-*/
-
-//// TEMPLATES - TAB ////
-function seamless_donations_admin_templates ( $setup_object ) {
-
-	do_action ( 'seamless_donations_admin_templates_before', $setup_object );
-
-	// create the admin tab menu
-	seamless_donations_admin_templates_menu ( $setup_object );
-
-	// create the two sections
-	seamless_donations_admin_templates_section_test ( $setup_object );
-	seamless_donations_admin_templates_section_template ( $setup_object );
-
-	do_action ( 'seamless_donations_admin_templates_after', $setup_object );
-
-	add_filter (
-		'validate_page_slug_seamless_donations_admin_templates',
-		'validate_page_slug_seamless_donations_admin_templates_callback',
-		10, // priority (for this, always 10)
-		3 ); // number of arguments passed (for this, always 3)
-
-}
+add_action('cmb2_admin_init', 'seamless_donations_admin_templates_menu');
 
 //// TEMPLATES - MENU ////
-function seamless_donations_admin_templates_menu ( $_setup_object ) {
+function seamless_donations_admin_templates_menu() {
+    $args = array(
+        'id'           => 'seamless_donations_tab_templates_page',
+        'title'        => 'Seamless Donations - Thank You Templates',
+        // page title
+        'menu_title'   => 'Thank You Templates',
+        // title on left sidebar
+        'tab_title'    => 'Thank You Templates',
+        // title displayed on the tab
+        'object_types' => array('options-page'),
+        'option_key'   => 'seamless_donations_tab_templates',
+        'parent_slug'  => 'seamless_donations_tab_main',
+        'tab_group'    => 'seamless_donations_tab_set',
+        'save_button'  => 'Save Settings',
+    );
 
-	$sub_menu_array = array(
-		'title'     => __ ( 'Thank You Templates', 'seamless-donations' ),
-		'page_slug' => 'seamless_donations_admin_templates',
-	);
-	$sub_menu_array = apply_filters ( 'seamless_donations_admin_templates_menu', $sub_menu_array );
-	$_setup_object->addSubMenuPage ( $sub_menu_array );
-}
+    // 'tab_group' property is supported in > 2.4.0.
+    if (version_compare(CMB2_VERSION, '2.4.0')) {
+        $args['display_cb'] = 'seamless_donations_cmb_options_display_with_tabs';
+    }
 
-//// TEMPLATES - PROCESS ////
-function validate_page_slug_seamless_donations_admin_templates_callback (
-	$_submitted_array, $_existing_array, $_setup_object ) {
+    do_action('seamless_donations_tab_templates_before', $args);
 
-	$_submitted_array = apply_filters (
-		'validate_page_slug_seamless_donations_admin_templates_callback',
-		$_submitted_array, $_existing_array, $_setup_object );
+    // call on button hit for page save
+    add_action('admin_post_seamless_donations_tab_templates', 'seamless_donations_tab_templates_process_buttons');
 
-	$section = seamless_donations_get_submitted_admin_section ( $_submitted_array );
+    // clear previous error messages if coming from another page
+    seamless_donations_clear_cmb2_submit_button_messages($args['option_key']);
 
-	switch( $section ) {
-		case 'seamless_donations_admin_templates_section_test': // SAVE EMAILS //
-			$test_mail = $_submitted_array[ $section ]['email_test_address'];
-			$test_mail = sanitize_email ( $test_mail );
-			if( ! is_email ( $test_mail ) ) { // check address
-				$_aErrors[ $section ]['email_test_address'] = __ (
-					'Valid email address required.', 'seamless-donations' );
-				$_setup_object->setFieldErrors ( $_aErrors );
-				$_setup_object->setSettingNotice (
-					__ ( 'There were errors in your submission.', 'seamless-donations' ) );
+    $args             = apply_filters('seamless_donations_tab_templates_menu', $args);
+    $template_options = new_cmb2_box($args);
 
-				return $_existing_array;
-			}
-			dgx_donate_send_thank_you_email ( 0, $test_mail );
-			$_setup_object->setSettingNotice ( 'Test email sent.', 'updated' );
-			break;
-		case 'seamless_donations_admin_templates_section_template': // SAVE TEMPLATE //
-			// check email address
-			$email = $_submitted_array[ $section ]['dgx_donate_email_reply'];
-			$email = sanitize_email ( $email );
-			if( ! is_email ( $email ) ) {
-				$_aErrors[ $section ]['dgx_donate_paypal_email'] = __ (
-					'Valid email address required.', 'seamless-donations' );
-				$_setup_object->setFieldErrors ( $_aErrors );
-				$_setup_object->setSettingNotice (
-					__ ( 'There were errors in your submission.', 'seamless-donations' ) );
+    if (isset($_REQUEST['page'])) {
+        if ($_REQUEST['page'] == 'seamless_donations_tab_templates') {
+            seamless_donations_admin_templates_test_section_data($template_options);
+            seamless_donations_admin_templates_section_data($template_options);
 
-				return $_existing_array;
-			}
-			// check array fields for clean and not-empty
-			for( $i = 0; $i < count ( $_submitted_array[ $section ] ); ++ $i ) {
-				$key   = seamless_donations_name_of ( $_submitted_array[ $section ], $i );
-				$value = trim ( $_submitted_array[ $section ][ $key ] );
-				$value = wp_kses_post ( $value );
-				if( $key == 'submit' ) {
-					continue; // not a text field
-				}
-				if( $key == 'dgx_donate_email_reply' ) {
-					continue; // already tested for validation
-				}
-				if( $value == "" ) {
-					$_aErrors[ $section ][ $key ] = __ (
-						'This field must not be empty.', 'seamless-donations' );
-					$_setup_object->setFieldErrors ( $_aErrors );
-					$_setup_object->setSettingNotice (
-						__ ( 'There were errors in your submission.', 'seamless-donations' ) );
-
-					return $_existing_array;
-				}
-			}
-			// save array fields as clean, sanitized options
-			for( $i = 0; $i < count ( $_submitted_array[ $section ] ); ++ $i ) {
-				$key   = seamless_donations_name_of ( $_submitted_array[ $section ], $i );
-				$value = trim ( $_submitted_array[ $section ][ $key ] );
-				if( $key == 'dgx_donate_email_reply' ) {
-					$value = sanitize_email ( $value );
-				} else {
-					$value = wp_kses_post ( $value );
-				}
-
-				if( $key == 'submit' ) {
-					continue; // not a text field
-				}
-				update_option ( $key, $value );
-			}
-			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
-			break;
-		case 'seamless_donations_admin_templates_section_extension': // LET EXTENSIONS DO THE PROCESSING
-			break;
-		default:
-			$_setup_object->setSettingNotice (
-				__ ( 'There was an unexpected error in your entry.', 'seamless-donations' ) );
-	}
+            do_action('seamless_donations_tab_templates_after', $template_options);
+        }
+    }
 }
 
 //// TEMPLATES - SECTION - TEST ////
-function seamless_donations_admin_templates_section_test ( $_setup_object ) {
+function seamless_donations_admin_templates_test_section_data($section_options) {
+    // init values
+    $handler_function = 'seamless_donations_admin5_templates_preload'; // setup the preload handler function
+    $section_options  = apply_filters('seamless_donations_tab_templates_test_section_data', $section_options);
 
-	// Test email section
-	$section_desc = 'Enter an email address (e.g. your own) to have a test email sent using the template.';
+    // Test email section
+    $section_desc = '<i>Enter an email address (e.g. your own) to have a test email sent using the template.</i>';
 
-	$email_test_section
-		                = array(
-		'section_id'  => 'seamless_donations_admin_templates_section_test',    // the section ID
-		'page_slug'   => 'seamless_donations_admin_templates',    // the page slug that the section belongs to
-		'title'       => __ ( 'Send a Test Email', 'seamless-donations' ),   // the section title
-		'description' => __ ( $section_desc, 'seamless-donations' ),
-	);
-	$email_test_section = apply_filters ( 'seamless_donations_admin_templates_section_test', $email_test_section );
+    $section_options->add_field(array(
+        'name'        => 'Send a Test Email',
+        'id'          => 'seamless_donations_template_email_title',
+        'type'        => 'title',
+        'after_field' => $section_desc,
+    ));
 
-	$email_test_options = array(
-		array(
-			'field_id'    => 'email_test_address',
-			'type'        => 'text',
-			'title'       => __ ( 'Email Address', 'seamless-donations' ),
-			'description' => __ (
-				'The email address to receive the test message.', 'seamless-donations' ),
-			'attributes'  => array(
-				'size' => 40,
-			),
-		),
-		array(
-			'field_id' => 'submit',
-			'type'     => 'submit',
-			'label'    => __ ( 'Send Test Email', 'seamless-donations' ),
-		)
-	);
-	$email_test_options = apply_filters (
-		'seamless_donations_admin_templates_section_test_options', $email_test_options );
+    $section_options->add_field(array(
+        'name' => 'Send a Test Email',
+        'id'   => 'seamless_donations_template_email_test',
+        'type' => 'text_email',
+        'desc' => __('The email address to receive the test message.', 'seamless_donations'),
+    ));
 
-	seamless_donations_process_add_settings_fields_with_options (
-		$email_test_options, $_setup_object, $email_test_section );
+    seamless_donations_cmb2_add_action_button($section_options, "Send Test Email", "dgx_donate_button_settings_templates_test_email");
+
+    seamless_donations_display_cmb2_submit_button($section_options, array(
+        'button_id'          => 'dgx_donate_button_settings_templates_test_email',
+        'button_text'        => 'Send Test Email',
+        'button_success_msg' => __('Test email sent.', 'seamless-donations'),
+        'button_error_msg'   => __('Please enter valid email addresses.', 'seamless-donations'),
+    ));
+    $section_options = apply_filters('seamless_donations_tab_templates_test_section_data_options', $section_options);
 }
 
-//// TEMPLATES - SECTION - TEMPLATE ////
-function seamless_donations_admin_templates_section_template ( $_setup_object ) {
+//// TEMPLATES - SECTION - EMAIL TEMPLATES ////
+function seamless_donations_admin_templates_section_data($section_options) {
+    // init values
+    $handler_function = 'seamless_donations_admin5_templates_preload'; // setup the preload handler function
+    $section_options  = apply_filters('seamless_donations_tab_templates_section_data', $section_options);
 
-	// Email template settings
-	$section_desc = 'The template on this page is used to generate thank you emails for ';
-	$section_desc .= 'each donation.dgx-donate You can include placeholders ';
-	$section_desc .= 'such as [firstname] [lastname] [fund] and/or [amount]. These placeholders will ';
-	$section_desc .= 'automatically be filled in with the donor and donation details. ';
+    // Template email section
+    $section_desc = '<i>The template on this page is used to generate thank you emails for ';
+    $section_desc .= 'donation. You can include placeholders ';
+    $section_desc .= '[firstname] [lastname] [fund] and/or [amount]. These placeholders will ';
+    $section_desc .= 'be filled in with the donor and donation details.</i>';
 
-	$email_template_section = array(
-		'section_id'  => 'seamless_donations_admin_templates_section_template',    // the section ID
-		'page_slug'   => 'seamless_donations_admin_templates',    // the page slug that the section belongs to
-		'title'       => __ ( 'Email Template', 'seamless-donations' ),   // the section title
-		'description' => __ ( $section_desc, 'seamless-donations' ),
-	);
-	$email_template_section = apply_filters (
-		'seamless_donations_admin_templates_section_template', $email_template_section );
+    $section_options->add_field(array(
+        'name'        => 'Email Template',
+        'id'          => 'seamless_donations_template_title',
+        'type'        => 'title',
+        'after_field' => $section_desc,
+    ));
 
-	// array for setting up settings element for this section
-	// be sure to use the name of the option (i.e., get_option) for the field_id
-	$email_options = array(
-		array(
-			'field_id'    => 'dgx_donate_email_name',
-			'type'        => 'text',
-			'title'       => __ ( 'From / Reply-To Name', 'seamless-donations' ),
-			'description' => __ (
-				'The name the thank you email should appear to come from (e.g. your organization name or your name).',
-				'seamless-donations' ),
-			'default'     => __ ( '', 'seamless-donations' ),
-			'attributes'  => array(
-				'size' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_reply',
-			'type'        => 'text',
-			'title'       => __ ( 'From / Reply-To Email Address', 'seamless-donations' ),
-			'description' => __ (
-				'The email address the thank you email should appear to come from.',
-				'seamless-donations' ),
-			'default'     => __ ( '', 'seamless-donations' ),
-			'attributes'  => array(
-				'size' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_subj',
-			'type'        => 'text',
-			'title'       => __ ( 'Subject', 'seamless-donations' ),
-			'description' => __ (
-				'The subject of the email (e.g. Thank You for Your Donation).',
-				'seamless-donations' ),
-			'default'     => __ ( 'Thank you for your donation', 'seamless-donations' ),
-			'attributes'  => array(
-				'size' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_body',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Body', 'seamless-donations' ),
-			'description' => __ (
-				'The body of the email message to all donors.',
-				'seamless-donations' ),
-			'default'     => __ (
-				'Dear [firstname] [lastname],' . PHP_EOL . PHP_EOL .
-				'Thank you for your generous donation of [amount]. ' .
-				'Please note that no goods or services were received in exchange for this donation.',
-				'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_recur',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Recurring Donations', 'seamless-donations' ),
-			'description' => __ (
-				'This message will be included when the donor elects to make their donation recurring.',
-				'seamless-donations' ),
-			'default'     => __ (
-				'Thank you for electing to have your donation automatically repeated each month.',
-				'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_desig',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Designated Fund', 'seamless-donations' ),
-			'description' => __ (
-				'This message will be included when the donor designates their donation to a specific fund.',
-				'seamless-donations' ),
-			'default'     => __ ( 'Your donation has been designated to the [fund] fund.', 'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_anon',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Anonymous Donations', 'seamless-donations' ),
-			'description' => __ (
-				'This message will be included when the donor requests their donation get kept anonymous.',
-				'seamless-donations' ),
-			'default'     => __ (
-				'You have requested that your donation be kept anonymous. ' .
-				'Your name will not be revealed to the public.', 'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_list',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Mailing List Join', 'seamless-donations' ),
-			'description' => __ (
-				'This message will be included when the donor elects to join the mailing list.',
-				'seamless-donations' ),
-			'default'     => __ (
-				'Thank you for joining our mailing list.  We will send you updates from time-to-time. ' .
-				'If at any time you would like to stop receiving emails, please ' .
-				'send us an email to be removed from the mailing list.', 'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_empl',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Employer Match', 'seamless-donations' ),
-			'description' => __ (
-				'This message will be included when the donor selects the employer match.',
-				'seamless-donations' ),
-			'default'     => __ (
-				'You have specified that your employer matches some or all of your donation.', 'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_trib',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Tribute Gift', 'seamless-donations' ),
-			'description' => __ (
-				'This message will be included when the donor elects to make their donation a tribute gift.',
-				'seamless-donations' ),
-			'default'     => __ (
-				'You have asked to make this donation in honor of or memory of someone else. ' .
-				'We will notify the honoree within the next 5-10 business days.', 'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_close',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Closing', 'seamless-donations' ),
-			'description' => __ (
-				'The closing text of the email message to all donors.',
-				'seamless-donations' ),
-			'default'     => __ ( 'Thanks again for your support!', 'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id'    => 'dgx_donate_email_sig',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Signature', 'seamless-donations' ),
-			'description' => __ (
-				'The signature at the end of the email message to all donors.',
-				'seamless-donations' ),
-			'default'     => __ ( 'Director of Donor Relations', 'seamless-donations' ),
-			'attributes'  => array(
-				'cols' => 80,
-			),
-		),
-		array(
-			'field_id' => 'submit',
-			'type'     => 'submit',
-			'label'    => __ ( 'Save Changes', 'seamless-donations' ),
-		)
-	);
-	$email_options = apply_filters ( 'seamless_donations_admin_templates_section_template_options', $email_options );
+    $section_options->add_field(array(
+        'name'    => __('From / Reply-To Name', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_name',
+        'type'    => 'text',
+        'desc'    => __('The name the thank you email should appear to come from (e.g. your organization name or your name).',
+            'seamless_donations'),
+        'default' => '',
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_name', $handler_function);
 
-	seamless_donations_process_add_settings_fields_with_options (
-		$email_options, $_setup_object, $email_template_section );
+    $section_options->add_field(array(
+        'name'    => __('From / Reply-To Email Address', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_reply',
+        'type'    => 'text_email',
+        'desc'    => __('The email address the thank you email should appear to come from.',
+            'seamless_donations'),
+        'default' => '',
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_reply', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Subject', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_subj',
+        'type'    => 'text',
+        'desc'    => __('The subject of the email (e.g. Thank You for Your Donation).',
+            'seamless_donations'),
+        'default' => __('Thank you for your donation', 'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_subj', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Body', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_body',
+        'type'    => 'textarea',
+        'desc'    => __('The body of the email message to all donors.',
+            'seamless_donations'),
+        'default' => __(
+            'Dear [firstname] [lastname],' . PHP_EOL . PHP_EOL .
+            'Thank you for your generous donation of [amount]. ' .
+            'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_body', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Recurring Donations', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_recur',
+        'type'    => 'textarea',
+        'desc'    => __('This message will be included when the donor elects to make their donation recurring.',
+            'seamless_donations'),
+        'default' => __(
+            'Dear [firstname] [lastname],' . PHP_EOL . PHP_EOL .
+            'Thank you for electing to have your donation automatically repeated each month.' .
+            'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_recur', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Designated Fund', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_desig',
+        'type'    => 'textarea',
+        'desc'    => __('This message will be included when the donor designates their donation to a specific fund.',
+            'seamless_donations'),
+        'default' => __(
+            'Your donation has been designated to the [fund] fund.' .
+            'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_desig', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Anonymous Donations', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_anon',
+        'type'    => 'textarea',
+        'desc'    => __('This message will be included when the donor requests their donation get kept anonymous.',
+            'seamless_donations'),
+        'default' => __(
+            'You have requested that your donation be kept anonymous. ' .
+            'Your name will not be revealed to the public.', 'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_anon', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Mailing List Join', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_list',
+        'type'    => 'textarea',
+        'desc'    => __('This message will be included when the donor elects to join the mailing list.',
+            'seamless_donations'),
+        'default' => __(
+            'Thank you for joining our mailing list.  We will send you updates from time-to-time. ' .
+            'If at any time you would like to stop receiving emails, please ' .
+            'send us an email to be removed from the mailing list.', 'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_list', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Employer Match', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_empl',
+        'type'    => 'textarea',
+        'desc'    => __('This message will be included when the donor selects the employer match.',
+            'seamless_donations'),
+        'default' => __(
+            'You have specified that your employer matches some or all of your donation.',
+            'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_empl', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Tribute Gift', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_trib',
+        'type'    => 'textarea',
+        'desc'    => __('This message will be included when the donor elects to make their donation a tribute gift.',
+            'seamless_donations'),
+        'default' => __(
+            'You have asked to make this donation in honor of or memory of someone else. ' .
+            'We will notify the honoree within the next 5-10 business days.', 'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_trib', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Closing', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_close',
+        'type'    => 'textarea',
+        'desc'    => __('The closing text of the email message to all donors.',
+            'seamless_donations'),
+        'default' => __('Thanks again for your support!', 'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_close', $handler_function);
+
+    $section_options->add_field(array(
+        'name'    => __('Signature', 'seamless-donations'),
+        'id'      => 'dgx_donate_email_sig',
+        'type'    => 'textarea',
+        'desc'    => __('The signature at the end of the email message to all donors.',
+            'seamless_donations'),
+        'default' => __('Director of Donor Relations', 'seamless-donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_email_sig', $handler_function);
+
+    seamless_donations_display_cmb2_submit_button($section_options, array(
+        'button_id'          => 'dgx_donate_button_template_settings',
+        'button_text'        => 'Save Changes',
+        'button_success_msg' => __('Changes saved.', 'seamless-donations'),
+        'button_error_msg'   => __('', 'seamless-donations'),
+    ));
+    $section_options = apply_filters('seamless_donations_tab_templates_section_data_options', $section_options);
 }
 
+//// FORM OPTIONS - PRELOAD DATA
+function seamless_donations_admin5_templates_preload($data, $object_id, $args, $field) {
+    // preload function to ensure compatibility with pre-5.0 settings data
+
+    // find out what field we're setting
+    $field_id = $args["field_id"];
+
+    // Pull from existing Seamless Donations data formats
+    switch ($field_id) {
+        // defaults
+        case 'dgx_donate_email_name':
+            return (get_option('dgx_donate_email_name'));
+        case 'dgx_donate_email_reply':
+            return (get_option('dgx_donate_email_reply'));
+        case 'dgx_donate_email_subj':
+            return (get_option('dgx_donate_email_subj'));
+            break;
+        case 'dgx_donate_email_body':
+            return (get_option('dgx_donate_email_body'));
+            break;
+        case 'dgx_donate_email_recur':
+            return (get_option('dgx_donate_email_recur'));
+            break;
+        case 'dgx_donate_email_desig':
+            return (get_option('dgx_donate_email_desig'));
+            break;
+        case 'dgx_donate_email_anon':
+            return (get_option('dgx_donate_email_anon'));
+            break;
+        case 'dgx_donate_email_list':
+            return (get_option('dgx_donate_email_list'));
+            break;
+        case 'dgx_donate_email_empl':
+            return (get_option('dgx_donate_email_empl'));
+            break;
+        case 'dgx_donate_email_trib':
+            return (get_option('dgx_donate_email_trib'));
+            break;
+        case 'dgx_donate_email_close':
+            return (get_option('dgx_donate_email_close'));
+            break;
+        case 'dgx_donate_email_sig':
+            return (get_option('dgx_donate_email_sig'));
+            break;
+    }
+}
+
+//// FORM OPTIONS - PROCESS FORM SUBMISSIONS
+function seamless_donations_tab_templates_process_buttons() {
+    $_POST = apply_filters('validate_page_slug_seamless_donations_tab_templates', $_POST);
+
+    // Process Test Email button
+    if (isset($_POST['dgx_donate_button_settings_templates_test_email'])) {
+        $none_enabled = true;
+        $test_mail    = $_POST['seamless_donations_template_email_test'];
+        $test_mail    = sanitize_email($test_mail);
+        if (!is_email($test_mail)) { // check address
+            seamless_donations_flag_cmb2_submit_button_error('dgx_donate_button_settings_templates_test_email');
+        } else {
+            dgx_donate_send_thank_you_email(0, $test_mail);
+
+            seamless_donations_flag_cmb2_submit_button_success('dgx_donate_button_settings_templates_test_email');
+        }
+    }
+    // Process Save changes button
+    if (isset($_POST['dgx_donate_button_template_settings'])) {
+        update_option('dgx_donate_email_name', $_POST['dgx_donate_email_name']);
+        update_option('dgx_donate_email_reply', $_POST['dgx_donate_email_reply']);
+        update_option('dgx_donate_email_subj', $_POST['dgx_donate_email_subj']);
+        update_option('dgx_donate_email_body', $_POST['dgx_donate_email_body']);
+        update_option('dgx_donate_email_recur', $_POST['dgx_donate_email_recur']);
+        update_option('dgx_donate_email_desig', $_POST['dgx_donate_email_desig']);
+        update_option('dgx_donate_email_anon', $_POST['dgx_donate_email_anon']);
+        update_option('dgx_donate_email_list', $_POST['dgx_donate_email_list']);
+        update_option('dgx_donate_email_empl', $_POST['dgx_donate_email_empl']);
+        update_option('dgx_donate_email_trib', $_POST['dgx_donate_email_trib']);
+        update_option('dgx_donate_email_close', $_POST['dgx_donate_email_close']);
+        update_option('dgx_donate_email_sig', $_POST['dgx_donate_email_sig']);
+        seamless_donations_flag_cmb2_submit_button_success('dgx_donate_button_template_settings');
+    }
+}

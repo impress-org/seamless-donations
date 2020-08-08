@@ -1,149 +1,157 @@
 .dgxdonatecentered, th.dgxdonatecentered {
-    text-align: center;
+    text-align : center;
 }
 
 #fieldrow-seamless_donations_admin_main_section_data_welcome_information > th {
-    display: none;
+    display : none;
 }
 
 #fieldrow-seamless_donations_admin_addons_section_data_admin_information > th {
-    display: none;
+    display : none;
 }
 
 .sd-admin-box {
-    position: relative;
-    float: left;
-    margin-bottom: 20px;
+    position      : relative;
+    float         : left;
+    margin-bottom : 20px;
 }
+
 .welcome-box-left {
-    position: relative;
-    float: left;
-    padding: 1em;
-    width: 30%;
-    height: 485px;
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
+    position         : relative;
+    float            : left;
+    padding          : 1em;
+    width            : 30%;
+    height           : 485px;
+    border           : 1px solid #dbdbdb;
+    background-color : #ffffff;
 }
+
 .welcome-box-middle {
-    position: relative;
-    float: left;
-    margin-left: 20px;
-    padding: 1em;
-    width: 30%;
-    height: 485px;
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
+    position         : relative;
+    float            : left;
+    margin-left      : 20px;
+    padding          : 1em;
+    width            : 30%;
+    height           : 485px;
+    border           : 1px solid #dbdbdb;
+    background-color : #ffffff;
 }
+
 .welcome-box-right {
-    position: relative;
-    float: left;
-    margin-left: 20px;
-    padding: 1em;
-    width: 30%;
-    height: 485px;
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
+    position         : relative;
+    float            : left;
+    margin-left      : 20px;
+    padding          : 1em;
+    width            : 30%;
+    height           : 485px;
+    border           : 1px solid #dbdbdb;
+    background-color : #ffffff;
 }
+
 .addon-box {
 
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
+    border           : 1px solid #dbdbdb;
+    background-color : #ffffff;
 }
+
 .addon-box-middle {
-    position: relative;
-    float: left;
-    margin-left: 20px;
-    padding: 1em;
-    width: 30%;
-    height: 950px;
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
+    position         : relative;
+    float            : left;
+    margin-left      : 20px;
+    padding          : 1em;
+    width            : 30%;
+    height           : 950px;
+    border           : 1px solid #dbdbdb;
+    background-color : #ffffff;
 }
+
 .addon-box-right {
-    position: relative;
-    float: left;
-    margin-left: 20px;
-    padding: 1em;
-    width: 30%;
-    height: 950px;
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
+    position         : relative;
+    float            : left;
+    margin-left      : 20px;
+    padding          : 1em;
+    width            : 30%;
+    height           : 950px;
+    border           : 1px solid #dbdbdb;
+    background-color : #ffffff;
 }
 
 .dgxdonateadminfooter {
-    text-align: right;
-    color: #777;
-    padding-right: 5px;
+    text-align    : right;
+    color         : #777;
+    padding-right : 5px;
 }
 
 .seamless-donations-plugin-title {
-    display: inline-block;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    padding: 10px 0;
+    display       : inline-block;
+    margin-top    : 1em;
+    margin-bottom : 1em;
+    padding       : 10px 0;
 }
 
 .seamless-donations-plugin-title h1 {
-    margin: 0;
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 2.32em;
-    color: #222;
-    font-weight: 400;
+    margin         : 0;
+    display        : inline-block;
+    vertical-align : middle;
+    font-size      : 2.32em;
+    color          : #222;
+    font-weight    : 400;
 }
 
 .seamless-donations-plugin-title-right {
-    float: right;
-    clear: right;
-    margin: 1em;
+    float  : right;
+    clear  : right;
+    margin : 1em;
 }
 
 .seamless-donations-plugin-icon {
-    float: left;
-    clear: left;
-    margin: 0 1em;
-    vertical-align: top;
-    display: inline-block;
-    height: 64px;
-    width: 64px;
+    float          : left;
+    clear          : left;
+    margin         : 0 1em;
+    vertical-align : top;
+    display        : inline-block;
+    height         : 64px;
+    width          : 64px;
 }
 
 .seamless-donations-dashicon {
-    font-size: 64px;
+    font-size : 64px;
 }
 
 .seamless-donations-warning-box {
-    width: 880px;
-    padding: 5px;
-    background-color: pink;
-    border-color: red;
-    border-style: solid;
-    border-width: 1px;
+    width            : 880px;
+    padding          : 5px;
+    background-color : pink;
+    border-color     : red;
+    border-style     : solid;
+    border-width     : 1px;
 }
 
 .seamless-donations-success-box {
-    width: 880px;
-    padding: 5px;
-    background-color: lightgreen;
-    border-color: darkgreen;
-    border-style: solid;
-    border-width: 1px;
+    width            : 880px;
+    padding          : 5px;
+    background-color : lightgreen;
+    border-color     : darkgreen;
+    border-style     : solid;
+    border-width     : 1px;
 }
 
 .seamless-donations-video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px; height: 0; overflow: hidden;
+    position       : relative;
+    padding-bottom : 56.25%;
+    padding-top    : 30px;
+    height         : 0;
+    overflow       : hidden;
 }
 
 .seamless-donations-video-container iframe,
 .seamless-donations-video-container object,
 .seamless-donations-video-container embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position : absolute;
+    top      : 0;
+    left     : 0;
+    width    : 100%;
+    height   : 100%;
 }
 
 /* Seamless Donations 5.0 classes */
@@ -152,114 +160,337 @@
 /* Admin fields code, where needed */
 #settings_paypal_ipn_https_url.regular-text {
     /* This makes the PayPal IPN field look sexy */
-    width: 670px;
-    background-color: #dbe8da;
-    color: maroon;
+    width            : 670px;
+    background-color : #dbe8da;
+    color            : maroon;
 }
 
 #settings_stripe_webhook_https_url.regular-text {
     /* This makes the Stripe webhook field look sexy */
-    width: 670px;
-    background-color: #dbe8da;
-    color: maroon;
+    width            : 670px;
+    background-color : #dbe8da;
+    color            : maroon;
 }
 
 #settings_processor_tls_status.regular-text {
     /* This makes the PayPal IPN field look sexy */
-    background-color: #dbe8da;
-    color: maroon;
+    background-color : #dbe8da;
+    color            : maroon;
 }
 
 /* Admin 5.0 Grid Code */
+.seamless_donations_addon_grid {
+    display               : grid;
+    grid-template-columns : repeat(auto-fill, minmax(250px, 1fr));
+    /* This is better for small screens, once min() is better supported */
+    /* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
+    grid-gap              : 1rem;
+}
+
 .seamless_donations_main_admin_grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 2em;
+    display               : grid;
+    grid-template-columns : 1fr 1fr 1fr;
+    grid-gap              : 2em;
+}
+
+.seamless_donations_addon_grid div {
+    background-color : white;
+    border-color     : grey;
+    border-width     : 1px;
+    border-style     : solid;
+    padding          : 10px;
+    position         : relative;
+    float            : left;
+    height           : 260px;
+}
+
+.seamless_donations_addon_grid div > p:first-child {
+    font-weight    : bold;
+    margin         : 0;
+    padding-top    : 0;
+    padding-bottom : 2px;
+}
+
+/* https://www.studytonight.com/cascading-style-sheet/styling-link-into-nice-button */
+.seamless_donations_clickme {
+    font-size        : 13px;
+    font-style       : normal;
+    font-weight      : 400;
+    background-color : rgb(241, 241, 241);
+    border-color     : #0071a1;
+    border-style     : solid;
+    border-width     : 1px;
+    right            : 14px;
+    padding          : 5px 10px;
+    text-decoration  : none;
+    border-radius    : 5px;
+    color            : rgb(1, 96, 135);
+    cursor           : pointer;
+    position         : absolute;
+    bottom           : 14px;
 }
 
 /* Clean up CPT donor list table */
-.seamless_donations_cpt_donor_list .page-title-action {display: none}
-.seamless_donations_cpt_donor_list .bulkactions {display: none}
-.seamless_donations_cpt_donor_list .edit {display: none}
-.seamless_donations_cpt_donor_list .trash {display: none}
-.seamless_donations_cpt_donor_list .inline {display: none}
-.seamless_donations_cpt_donor_list .view {display: none}
+.seamless_donations_cpt_donor_list .page-title-action {
+    display : none
+}
 
+.seamless_donations_cpt_donor_list .bulkactions {
+    display : none
+}
+
+.seamless_donations_cpt_donor_list .edit {
+    display : none
+}
+
+.seamless_donations_cpt_donor_list .trash {
+    display : none
+}
+
+.seamless_donations_cpt_donor_list .inline {
+    display : none
+}
+
+.seamless_donations_cpt_donor_list .view {
+    display : none
+}
 
 /* Clean up CPT donor detail table */
-.seamless_donations_cpt_donor_detail div#commentsdiv {display: none}
-.seamless_donations_cpt_donor_detail #commentstatusdiv {display: none}
-.seamless_donations_cpt_donor_detail #screen-meta-links {display: none}
-.seamless_donations_cpt_donor_detail #title {pointer-events: none}
-.seamless_donations_cpt_donor_detail .page-title-action {display: none}
-.seamless_donations_cpt_donor_detail #edit-slug-buttons {display: none}
-.seamless_donations_cpt_donor_detail #delete-action {display: none}
-.seamless_donations_cpt_donor_detail a.edit-timestamp {display: none}
-.seamless_donations_cpt_donor_detail #preview-action {display: none}
-.seamless_donations_cpt_donor_detail label[for=slugdiv-hide] {display: none}
-.seamless_donations_cpt_donor_detail #slugdiv {display: none}
+.seamless_donations_cpt_donor_detail div#commentsdiv {
+    display : none
+}
 
+.seamless_donations_cpt_donor_detail #commentstatusdiv {
+    display : none
+}
+
+.seamless_donations_cpt_donor_detail #screen-meta-links {
+    display : none
+}
+
+.seamless_donations_cpt_donor_detail #title {
+    pointer-events : none
+}
+
+.seamless_donations_cpt_donor_detail .page-title-action {
+    display : none
+}
+
+.seamless_donations_cpt_donor_detail #edit-slug-buttons {
+    display : none
+}
+
+.seamless_donations_cpt_donor_detail #delete-action {
+    display : none
+}
+
+.seamless_donations_cpt_donor_detail a.edit-timestamp {
+    display : none
+}
+
+.seamless_donations_cpt_donor_detail #preview-action {
+    display : none
+}
+
+.seamless_donations_cpt_donor_detail label[for=slugdiv-hide] {
+    display : none
+}
+
+.seamless_donations_cpt_donor_detail #slugdiv {
+    display : none
+}
 
 /* Clean up CPT funds list table */
-.seamless_donations_cpt_funds_list .bulkactions {display: none}
-.seamless_donations_cpt_funds_list .edit {display: none}
-.seamless_donations_cpt_funds_list .trash {display: none}
-.seamless_donations_cpt_funds_list .inline {display: none}
-.seamless_donations_cpt_funds_list .view {display: none}
+.seamless_donations_cpt_funds_list .bulkactions {
+    display : none
+}
+
+.seamless_donations_cpt_funds_list .edit {
+    display : none
+}
+
+.seamless_donations_cpt_funds_list .trash {
+    display : none
+}
+
+.seamless_donations_cpt_funds_list .inline {
+    display : none
+}
+
+.seamless_donations_cpt_funds_list .view {
+    display : none
+}
 
 /* Clean up CPT funds detail table */
-.seamless_donations_cpt_funds_detail div#commentsdiv {display: none}
-.seamless_donations_cpt_funds_detail #commentstatusdiv {display: none}
-.seamless_donations_cpt_funds_detail #screen-meta-links {display: none}
-.seamless_donations_cpt_funds_detail #title {pointer-events: none}
-.seamless_donations_cpt_funds_detail .page-title-action {display: none}
-.seamless_donations_cpt_funds_detail #edit-slug-buttons {display: none}
-.seamless_donations_cpt_funds_detail #delete-action {display: none}
-.seamless_donations_cpt_funds_detail a.edit-timestamp {display: none}
-.seamless_donations_cpt_funds_detail #preview-action {display: none}
-.seamless_donations_cpt_funds_detail label[for=slugdiv-hide] {display: none}
-.seamless_donations_cpt_funds_detail #slugdiv {display: none}
+.seamless_donations_cpt_funds_detail div#commentsdiv {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail #commentstatusdiv {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail #screen-meta-links {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail #title {
+    pointer-events : none
+}
+
+.seamless_donations_cpt_funds_detail .page-title-action {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail #edit-slug-buttons {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail #delete-action {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail a.edit-timestamp {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail #preview-action {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail label[for=slugdiv-hide] {
+    display : none
+}
+
+.seamless_donations_cpt_funds_detail #slugdiv {
+    display : none
+}
 
 /* Clean up CPT donations list table */
 
-.seamless_donations_cpt_donation_list .page-title-action {display: none}
-.seamless_donations_cpt_donation_list .bulkactions {display: none}
-.seamless_donations_cpt_donation_list .edit {display: none}
-.seamless_donations_cpt_donation_list .trash {display: none}
-.seamless_donations_cpt_donation_list .inline {display: none}
-.seamless_donations_cpt_donation_list .view {display: none}
+.seamless_donations_cpt_donation_list .page-title-action {
+    display : none
+}
+
+.seamless_donations_cpt_donation_list .bulkactions {
+    display : none
+}
+
+.seamless_donations_cpt_donation_list .edit {
+    display : none
+}
+
+.seamless_donations_cpt_donation_list .trash {
+    display : none
+}
+
+.seamless_donations_cpt_donation_list .inline {
+    display : none
+}
+
+.seamless_donations_cpt_donation_list .view {
+    display : none
+}
 
 /* Clean up CPT donations detail table */
 
-.seamless_donations_cpt_donation_detail div#commentsdiv {display: none}
-.seamless_donations_cpt_donation_detail #commentstatusdiv {display: none}
-.seamless_donations_cpt_donation_detail #screen-meta-links {display: none}
-.seamless_donations_cpt_donation_detail #title {pointer-events: none}
-.seamless_donations_cpt_donation_detail .page-title-action {display: none}
-.seamless_donations_cpt_donation_detail #edit-slug-buttons {display: none}
-.seamless_donations_cpt_donation_detail #delete-action {display: none}
-.seamless_donations_cpt_donation_detail a.edit-timestamp {display: none}
-.seamless_donations_cpt_donation_detail #preview-action {display: none}
-.seamless_donations_cpt_donation_detail label[for=slugdiv-hide] {display: none}
-.seamless_donations_cpt_donation_detail #slugdiv {display: none}
+.seamless_donations_cpt_donation_detail div#commentsdiv {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail #commentstatusdiv {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail #screen-meta-links {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail #title {
+    pointer-events : none
+}
+
+.seamless_donations_cpt_donation_detail .page-title-action {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail #edit-slug-buttons {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail #delete-action {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail a.edit-timestamp {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail #preview-action {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail label[for=slugdiv-hide] {
+    display : none
+}
+
+.seamless_donations_cpt_donation_detail #slugdiv {
+    display : none
+}
 
 /* Tighten up the CMB groups for GLM  */
 .cmb2-id-dgx-donate-giving-levels .cmb-repeat-group-field.cmb-row {
-    padding: 0 0 0 0;
+    padding : 0 0 0 0;
 }
 
 /* Customize jQuery tabs for admin interface */
 /* Notes from http://keith-wood.name/uiTabs.html */
+/********* I DON'T THINK I'M USING THIS *********/
 #tabs-nobg {
-    padding: 0px;
+    padding : 0px;
 }
+
 #tabs-nobg .ui-tabs-nav {
-    background: transparent;
-    border-width: 0px 0px 1px 0px;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
+    background            : transparent;
+    border-width          : 0px 0px 1px 0px;
+    -moz-border-radius    : 0px;
+    -webkit-border-radius : 0px;
+    border-radius         : 0px;
 }
+
 #tabs-nobg .ui-tabs-panel {
-    margin: 0em 0.2em 0.2em 0.2em;
+    margin : 0em 0.2em 0.2em 0.2em;
+}
+
+/* Fix header issue */
+.option-seamless_donations_tab_main input#submit-cmb.button.button-primary {
+    display : none;
+}
+
+.option-seamless_donations_tab_templates input#submit-cmb.button.button-primary {
+    display : none;
+}
+
+.option-seamless_donations_tab_thanks input#submit-cmb.button.button-primary {
+    display : none;
+}
+
+.option-seamless_donations_tab_forms input#submit-cmb.button.button-primary {
+    display : none;
+}
+
+.option-seamless_donations_tab_addons input#submit-cmb.button.button-primary {
+    display : none;
+}
+
+.option-seamless_donations_tab_settings input#submit-cmb.button.button-primary {
+    display : none;
+}
+
+.option-seamless_donations_tab_licenses input#submit-cmb.button.button-primary {
+    display : none;
+}
+
+.option-seamless_donations_tab_logs input#submit-cmb.button.button-primary {
+    display : none;
 }

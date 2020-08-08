@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
         var guid = jQuery(this).val();
         var ver = 'SDB01-'; // Session ID version: SD=Seamless Donations, B=Browser, 01=first versiom
 
-        if (guid == "browser-uuid") {
+        if (guid === "browser-uuid") {
             return ver + uuid.v4().toUpperCase();
         } else {
             return guid;
@@ -34,12 +34,12 @@ jQuery(document).ready(function () {
         var concealTarget = jQuery(this).attr("data-conceal");
         var checkTarget = jQuery(this).attr('data-check');
         var uncheckTarget = jQuery(this).attr('data-uncheck');
-        if (revealTarget != undefined) {
+        if (revealTarget !== undefined) {
             console.log("radio button: show " + revealTarget);
             jQuery(revealTarget).show('fast');
             showSelectedOptions(revealTarget);
         }
-        if (concealTarget != undefined) {
+        if (concealTarget !== undefined) {
             console.log("radio button: hide " + concealTarget);
             jQuery(concealTarget).hide('fast');
             hideSelectedOptions(concealTarget);

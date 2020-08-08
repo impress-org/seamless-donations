@@ -17,7 +17,7 @@ function seamless_donations_generate_donation_form() {
     $process_form_via = get_option('dgx_donate_form_via_action');
     $form_style       = get_option('dgx_donate_form_style');
     // if the option isn't defined, returns false, if defined = '1'
-    // this option exists for host compatibility, where some hosts won't send a form
+    // this option exists for host compatibility, where some hosts won't send a formhow h
     // to another .php file for processing
 
     if ($process_form_via == '1') {
@@ -285,7 +285,7 @@ function seamless_donations_get_donation_section() {
                 'id'     => 'dgx-donate-designated',
                 'reveal' => 'specific-fund',
                 'prompt' => esc_html__(
-                    "I would like to this donation to go to a specific fund", 'seamless-donations'),
+                    "I would like this donation to go to a specific fund", 'seamless-donations'),
                 'before' => '<p>',
                 'after'  => '</p>',
             );
@@ -348,6 +348,7 @@ function seamless_donations_get_tribute_section() {
     $form_style = get_option('dgx_donate_form_style');
     if (get_option('dgx_donate_show_tribute_section') == 'true') {
         $default_country = get_option('dgx_donate_default_country');
+        $default_state = get_option('dgx_donate_default_state');
         $countries_array = dgx_donate_get_countries();
         $states_array    = dgx_donate_get_states();
         $provinces_array = dgx_donate_get_provinces();
@@ -482,6 +483,7 @@ function seamless_donations_get_tribute_section() {
                     'cloak'   => 'conceal-state',
                     'size'    => 1,
                     'options' => $states_array,
+                    'value' => $default_state,
                     'before'  => esc_html__('State : ', 'seamless-donations'),
                 ),
                 '_dgx_donate_honoree_province'   => array(
@@ -614,7 +616,6 @@ function seamless_donations_get_donor_section() {
             'class-label' => 'seamless-donations-col-25',
             'class-input' => 'seamless-donations-col-25',
             'size'        => 20,
-            'validation'  => 'required',
             'before'      => esc_html__('Phone:', 'seamless-donations'),
         );
         if ($show_donor_telephone_field == 'required') {
@@ -682,6 +683,7 @@ function seamless_donations_get_billing_section() {
     }
 
     $default_country = get_option('dgx_donate_default_country');
+    $default_state = get_option('dgx_donate_default_state');
     $countries_array = dgx_donate_get_countries();
     $states_array    = dgx_donate_get_states();
     $provinces_array = dgx_donate_get_provinces();
@@ -748,6 +750,7 @@ function seamless_donations_get_billing_section() {
                 'class-input' => 'seamless-donations-col-75',
                 'size'        => 1,
                 'options'     => $states_array,
+                'value' => $default_state,
                 'before'      => esc_html__('State : ', 'seamless-donations'),
             ),
             '_dgx_donate_donor_province' => array(

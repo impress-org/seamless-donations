@@ -15,65 +15,69 @@ if ( !defined( 'ABSPATH' ) ) exit;
 // for 5.0 conversion
 
 function seamless_donations_5000_check_addons() {
-    // this disables all pre-5.0 addons because they're wildly incompatible with this new build
-    if (!function_exists('deactivate_plugins')) {
-        require_once ABSPATH . '/wp-admin/includes/plugin.php';
-    }
+    $skip_addon_check = get_option('dgx_donate_legacy_addon_check');
+    if($skip_addon_check != 'on') {
+        // this disables all pre-5.0 addons because they're wildly incompatible with this new build
+        //dgx_donate_debug_log("Performing add-on update check");
+        if (!function_exists('deactivate_plugins')) {
+            require_once ABSPATH . '/wp-admin/includes/plugin.php';
+        }
 
-    // there are four pre-5.0 addons that must be disabled
-    $plugin_list = array(
-        'seamless-donations-basic-widget-pack/seamless-donations-basic-widget-pack.php',
-        'seamless-donations-delete-monster/seamless-donations-delete-monster.php',
-        'seamless-donations-giving-level-manager/seamless-donations-giving-level-manager.php',
-        'seamless-donations-thankyou-enhanced/seamless-donations-thankyou-enhanced.php',
-    );
+        // there are four pre-5.0 addons that must be disabled
+        $plugin_list = array(
+            'seamless-donations-basic-widget-pack/seamless-donations-basic-widget-pack.php',
+            'seamless-donations-delete-monster/seamless-donations-delete-monster.php',
+            'seamless-donations-giving-level-manager/seamless-donations-giving-level-manager.php',
+            'seamless-donations-thankyou-enhanced/seamless-donations-thankyou-enhanced.php',
+        );
 
-    $version_constants = array(
-        'SEAMLESS_DONATIONS_BWP_CURRENT_VERSION',
-        'SEAMLESS_DONATIONS_DM_CURRENT_VERSION',
-        'SEAMLESS_DONATIONS_GLM_CURRENT_VERSION',
-        'SEAMLESS_DONATIONS_TYE_CURRENT_VERSION',
-    );
+        $version_constants = array(
+            'SEAMLESS_DONATIONS_BWP_CURRENT_VERSION',
+            'SEAMLESS_DONATIONS_DM_CURRENT_VERSION',
+            'SEAMLESS_DONATIONS_GLM_CURRENT_VERSION',
+            'SEAMLESS_DONATIONS_TYE_CURRENT_VERSION',
+        );
 
-    $addon_names = array(
-        'Basic Widget Pack',
-        'Delete Monster',
-        'Giving Level Manager',
-        'Thank You Enhanced',
-    );
+        $addon_names = array(
+            'Basic Widget Pack',
+            'Delete Monster',
+            'Giving Level Manager',
+            'Thank You Enhanced',
+        );
 
-    $deactivation_list = '';
+        $deactivation_list = '';
 
-    if (function_exists('is_plugin_active')) {
-        if (function_exists('deactivate_plugins')) {
-            for ($i = 0; $i < count($plugin_list); $i++) {
-                $plugin  = $plugin_list[$i];
-                $version = $version_constants[$i];
-                $addon   = $addon_names[$i];
+        if (function_exists('is_plugin_active')) {
+            if (function_exists('deactivate_plugins')) {
+                for ($i = 0; $i < count($plugin_list); $i++) {
+                    $plugin  = $plugin_list[$i];
+                    $version = $version_constants[$i];
+                    $addon   = $addon_names[$i];
 
-                if (is_plugin_active($plugin)) {
-                    if (version_compare(constant($version), '2.0.0', "<")) {
-                        // remove incompatible addon and update deactivation list
-                        deactivate_plugins($plugin);
-                        if ($deactivation_list != '') $deactivation_list .= ', ';
-                        $deactivation_list .= $addon;
-                        update_option('dgx_donate_5000_deactivated_addons', $deactivation_list);
-                    } else {
-                        // update deactivation list for any addons now current
-                        $unset_index        = false;
-                        $deactivation_list  = get_option('dgx_donate_5000_deactivated_addons');
-                        $deactivation_array = explode(',', $deactivation_list);
-                        for ($j = 0; $j < count($deactivation_array); $j++) {
-                            $deactivation_test = $deactivation_array[$j];
-                            if (strcmp(trim($deactivation_test), trim($addon)) == 0) {
-                                $unset_index = $j;
+                    if (is_plugin_active($plugin)) {
+                        if (version_compare(constant($version), '2.0.0', "<")) {
+                            // remove incompatible addon and update deactivation list
+                            deactivate_plugins($plugin);
+                            if ($deactivation_list != '') $deactivation_list .= ', ';
+                            $deactivation_list .= $addon;
+                            update_option('dgx_donate_5000_deactivated_addons', $deactivation_list);
+                        } else {
+                            // update deactivation list for any addons now current
+                            $unset_index        = false;
+                            $deactivation_list  = get_option('dgx_donate_5000_deactivated_addons');
+                            $deactivation_array = explode(',', $deactivation_list);
+                            for ($j = 0; $j < count($deactivation_array); $j++) {
+                                $deactivation_test = $deactivation_array[$j];
+                                if (strcmp(trim($deactivation_test), trim($addon)) == 0) {
+                                    $unset_index = $j;
+                                }
                             }
+                            if ($unset_index !== false) {
+                                $deactivation_array = seamless_donations_force_unset_array_by_index($deactivation_array, $unset_index);
+                            }
+                            $deactivation_list = implode(', ', $deactivation_array);
+                            update_option('dgx_donate_5000_deactivated_addons', $deactivation_list);
                         }
-                        if ($unset_index !== false) {
-                            $deactivation_array = seamless_donations_force_unset_array_by_index($deactivation_array, $unset_index);
-                        }
-                        $deactivation_list = implode(', ', $deactivation_array);
-                        update_option('dgx_donate_5000_deactivated_addons', $deactivation_list);
                     }
                 }
             }

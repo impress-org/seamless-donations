@@ -11,7 +11,7 @@
  */
 
 //	Exit if .php file accessed directly
-if ( !defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) exit;
 
 function seamless_donations_addon_version_check($addon, $version) {
     // validation code that will run in later versions to disable plugins, if necessary
@@ -19,50 +19,85 @@ function seamless_donations_addon_version_check($addon, $version) {
     return true;
 }
 
-function seamless_donations_sd4_plugin_load_check() {
-    // deactivate legacy plugins on site load
+function seamless_donations_addon_legacy_addons_still_loaded() {
     $bwp = "seamless-donations-basic-widget-pack/seamless-donations-basic-widget-pack.php";
     $dlm = "seamless-donations-delete-monster/seamless-donations-delete-monster.php";
     $glm = "seamless-donations-giving-level-manager/seamless-donations-giving-level-manager.php";
     $tye = "seamless-donations-thankyou-enhanced/seamless-donations-thankyou-enhanced.php";
 
     // this could be an array and a loop, but it's not
-    include_once(ABSPATH . 'wp-admin/includes/plugin.php');
     $plugins = get_plugins();
     if (isset($plugins[$bwp])) {
         if (substr($plugins[$bwp]["Version"], 0, 1) == '1') {
-            deactivate_plugins($bwp);
-            flush_rewrite_rules();
-            remove_filter(
-                'seamless_donations_admin_licenses_section_registration_options',
-                'seamless_donations_bwp_admin_licenses_section_registration_options');
+            return true;
         }
     }
     if (isset($plugins[$dlm])) {
         if (substr($plugins[$dlm]["Version"], 0, 1) == '1') {
-            deactivate_plugins($dlm);
-            flush_rewrite_rules();
-            remove_filter(
-                'seamless_donations_admin_licenses_section_registration_options',
-                'seamless_donations_dm_admin_licenses_section_registration_options');
+            return true;
         }
     }
     if (isset($plugins[$glm])) {
         if (substr($plugins[$glm]["Version"], 0, 1) == '1') {
-            deactivate_plugins($glm);
-            flush_rewrite_rules();
-            remove_filter(
-                'seamless_donations_admin_licenses_section_registration_options',
-                'seamless_donations_glm_admin_licenses_section_registration_options');
+            return true;
         }
     }
     if (isset($plugins[$tye])) {
         if (substr($plugins[$tye]["Version"], 0, 1) == '1') {
-            deactivate_plugins($tye);
-            flush_rewrite_rules();
-            remove_filter(
-                'seamless_donations_admin_licenses_section_registration_options',
-                'seamless_donations_tye_admin_licenses_section_registration_options');
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function seamless_donations_sd4_plugin_load_check() {
+    $skip_addon_check = get_option('dgx_donate_legacy_addon_check');
+    if ($skip_addon_check != 'on') {
+        // deactivate legacy plugins on site load
+        $bwp = "seamless-donations-basic-widget-pack/seamless-donations-basic-widget-pack.php";
+        $dlm = "seamless-donations-delete-monster/seamless-donations-delete-monster.php";
+        $glm = "seamless-donations-giving-level-manager/seamless-donations-giving-level-manager.php";
+        $tye = "seamless-donations-thankyou-enhanced/seamless-donations-thankyou-enhanced.php";
+
+        // this could be an array and a loop, but it's not
+        include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        $plugins = get_plugins();
+        if (isset($plugins[$bwp])) {
+            if (substr($plugins[$bwp]["Version"], 0, 1) == '1') {
+                deactivate_plugins($bwp);
+                flush_rewrite_rules();
+                remove_filter(
+                    'seamless_donations_admin_licenses_section_registration_options',
+                    'seamless_donations_bwp_admin_licenses_section_registration_options');
+            }
+        }
+        if (isset($plugins[$dlm])) {
+            if (substr($plugins[$dlm]["Version"], 0, 1) == '1') {
+                deactivate_plugins($dlm);
+                flush_rewrite_rules();
+                remove_filter(
+                    'seamless_donations_admin_licenses_section_registration_options',
+                    'seamless_donations_dm_admin_licenses_section_registration_options');
+            }
+        }
+        if (isset($plugins[$glm])) {
+            if (substr($plugins[$glm]["Version"], 0, 1) == '1') {
+                deactivate_plugins($glm);
+                flush_rewrite_rules();
+                remove_filter(
+                    'seamless_donations_admin_licenses_section_registration_options',
+                    'seamless_donations_glm_admin_licenses_section_registration_options');
+            }
+        }
+        if (isset($plugins[$tye])) {
+            if (substr($plugins[$tye]["Version"], 0, 1) == '1') {
+                deactivate_plugins($tye);
+                flush_rewrite_rules();
+                remove_filter(
+                    'seamless_donations_admin_licenses_section_registration_options',
+                    'seamless_donations_tye_admin_licenses_section_registration_options');
+            }
         }
     }
 }
@@ -172,7 +207,7 @@ function seamless_donations_sd4_plugin_reactivation_check() {
 
 function seamless_donations_sd5004_debug_mode_update() {
     $mode = get_option('dgx_donate_debug_mode');
-    if($mode == 1) {
+    if ($mode == 1) {
         update_option('dgx_donate_debug_mode', 'VERBOSE');
     }
 }

@@ -1,118 +1,162 @@
 <?php
-/*
-Seamless Donations by David Gewirtz, adopted from Allen Snook
+/**
+ *
+ * Seamless Donations by David Gewirtz, adopted from Allen Snook
+ *
+ * Lab Notes: http://zatzlabs.com/lab-notes/
+ * Plugin Page: http://zatzlabs.com/seamless-donations/
+ * Contact: http://zatzlabs.com/contact-us/
+ *
+ * Copyright (c) 2015-2020 by David Gewirtz
+ * /
+ */
 
-Lab Notes: http://zatzlabs.com/lab-notes/
-Plugin Page: http://zatzlabs.com/seamless-donations/
-Contact: http://zatzlabs.com/contact-us/
+//	Exit if .php file accessed directly
+if (!defined('ABSPATH')) exit;
 
-Copyright (c) 2015 by David Gewirtz
-*/
+add_action('cmb2_admin_init', 'seamless_donations_admin_thanks_menu');
 
-//// THANKS - TAB ////
-function seamless_donations_admin_thanks ( $setup_object ) {
+//// THANK YOU - MENU ////
+function seamless_donations_admin_thanks_menu() {
+    $args = array(
+        'id'           => 'seamless_donations_tab_thanks_page',
+        'title'        => 'Seamless Donations - Thank You Page',
+        // page title
+        'menu_title'   => 'Thank You Page',
+        // title on left sidebar
+        'tab_title'    => 'Thank You Page',
+        // title displayed on the tab
+        'object_types' => array('options-page'),
+        'option_key'   => 'seamless_donations_tab_thanks',
+        'parent_slug'  => 'seamless_donations_tab_main',
+        'tab_group'    => 'seamless_donations_tab_set',
+        'save_button'  => 'Save Settings',
+    );
 
-	do_action ( 'seamless_donations_admin_thanks_before', $setup_object );
+    // 'tab_group' property is supported in > 2.4.0.
+    if (version_compare(CMB2_VERSION, '2.4.0')) {
+        $args['display_cb'] = 'seamless_donations_cmb_options_display_with_tabs';
+    }
 
-	seamless_donations_admin_thanks_menu ( $setup_object );
-	seamless_donations_admin_thanks_section_note ( $setup_object );
+    do_action('seamless_donations_tab_thanks_before', $args);
 
-	do_action ( 'seamless_donations_admin_thanks_after', $setup_object );
+    // call on button hit for page save
+    add_action('admin_post_seamless_donations_tab_thanks', 'seamless_donations_tab_thanks_process_buttons');
 
-	add_filter (
-		'validate_page_slug_seamless_donations_admin_thanks',
-		'validate_page_slug_seamless_donations_admin_thanks_callback',
-		10, // priority (for this, always 10)
-		3 ); // number of arguments passed (for this, always 3)
+    // clear previous error messages if coming from another page
+    seamless_donations_clear_cmb2_submit_button_messages($args['option_key']);
+
+    $args           = apply_filters('seamless_donations_tab_thanks_menu', $args);
+    $thanks_options = new_cmb2_box($args);
+    if (isset($_REQUEST['page'])) {
+        if ($_REQUEST['page'] == 'seamless_donations_tab_thanks') {
+            seamless_donations_admin_thanks_section_data($thanks_options);
+
+            do_action('seamless_donations_tab_forms_after', $thanks_options);
+        }
+    }
 }
 
-//// THANKS - MENU ////
-function seamless_donations_admin_thanks_menu ( $_setup_object ) {
+//// THANK YOU - SECTION - DATA ////
+function seamless_donations_admin_thanks_section_data($section_options) {
+    // init values
+    $handler_function = 'seamless_donations_admin5_thanks_preload'; // setup the preload handler function
+    $section_options  = apply_filters('seamless_donations_tab_thanks_section_data', $section_options);
 
-	$sub_menu_array = array(
-		'title'     => __ ( 'Thank You Page', 'seamless-donations' ),
-		'page_slug' => 'seamless_donations_admin_thanks',
-	);
-	$sub_menu_array = apply_filters ( 'seamless_donations_admin_thanks_menu', $sub_menu_array );
-	$_setup_object->addSubMenuPage ( $sub_menu_array );
+    $section_desc = 'On this page you can configure a special thank you message which will appear to your ';
+    $section_desc .= 'donors after they complete their donations. This is separate from the thank you email ';
+    $section_desc .= 'that gets emailed to your donors.';
+
+    // promo
+    $feature_desc = 'Thank You Enhanced provides landing page redirect and short codes.';
+    $feature_url  = 'http://zatzlabs.com/project/seamless-donations-thank-you-enhanced/';
+    $section_desc .= seamless_donations_get_feature_promo($feature_desc, $feature_url, 'UPGRADE', ' ');
+
+    seamless_donations_sd4_plugin_filter_remove(); // clean up for sd4 add-on
+    $section_desc = apply_filters('seamless_donations_admin_thanks_section_note', $section_desc);
+
+    seamless_donations_cmb2_add_static_desc($section_options, $section_desc, 'thank_you_desc');
+
+    $section_options->add_field(array(
+        'name'    => 'Thank You Page Text',
+        'id'      => 'dgx_donate_thanks_text',
+        'type'    => 'textarea',
+        'default' => 'Thank you for donating!  A thank you email with the details of your donation will be sent to the email address you provided.',
+        'desc'    => __('The text to display to a donor after a donation is completed.', 'seamless_donations'),
+    ));
+    seamless_donations_preload_cmb2_field_filter('dgx_donate_thanks_text', $handler_function);
+
+    seamless_donations_display_cmb2_submit_button($section_options, array(
+        'button_id'          => 'dgx_donate_button_thanks_settings',
+        'button_text'        => 'Save Text',
+        'button_success_msg' => __('Thank you message saved.', 'seamless-donations'),
+        'button_error_msg'   => __('Please enter an appropriate thank you message.', 'seamless-donations'),
+    ));
+    $section_options = apply_filters('seamless_donations_tab_thanks_section_data_options', $section_options);
 }
 
-//// SETTINGS - PROCESS ////
-function validate_page_slug_seamless_donations_admin_thanks_callback (
-	$_submitted_array, $_existing_array, $_setup_object ) {
+//// THANK YOU OPTIONS - PRELOAD DATA
+function seamless_donations_admin5_thanks_preload($data, $object_id, $args, $field) {
+    // preload function to ensure compatibility with pre-5.0 settings data
 
-	$_submitted_array = apply_filters (
-		'validate_page_slug_seamless_donations_admin_thanks_callback',
-		$_submitted_array, $_existing_array, $_setup_object );
+    // find out what field we're setting
+    $field_id = $args["field_id"];
 
-	$section = seamless_donations_get_submitted_admin_section ( $_submitted_array );
-
-	// no real need for switch, but structured this way for easy expansion
-	switch( $section ) {
-		case 'seamless_donations_admin_thanks_section_note': // SAVE EMAILS //
-			$note = trim ( $_submitted_array[ $section ]['dgx_donate_thanks_text'] );
-			$note = sanitize_text_field ( $note );
-			if( $note == "" ) {
-				$_aErrors[ $section ]['dgx_donate_thanks_text'] = __ (
-					'Field must not be empty.', 'seamless-donations' );
-				$_setup_object->setFieldErrors ( $_aErrors );
-				$_setup_object->setSettingNotice (
-					__ ( 'There were errors in your submission.', 'seamless-donations' ) );
-
-				return $_existing_array;
-			}
-			update_option ( 'dgx_donate_thanks_text', $note );
-			$_setup_object->setSettingNotice ( 'Form updated successfully.', 'updated' );
-			break;
-		case 'seamless_donations_admin_thanks_section_extension': // LET EXTENSIONS DO THE PROCESSING
-			break;
-		default:
-			$_setup_object->setSettingNotice (
-				__ ( 'There was an unexpected error in your entry.', 'seamless-donations' ) );
-	}
+    // Pull from existing Seamless Donations data formats
+    switch ($field_id) {
+        // defaults
+        case 'dgx_donate_thanks_text':
+            return (get_option('dgx_donate_thanks_text'));
+            break;
+    }
 }
 
-//// THANKS - SECTION - NOTE ////
-function seamless_donations_admin_thanks_section_note ( $_setup_object ) {
+//// FORM OPTIONS - PROCESS FORM SUBMISSIONS
+function seamless_donations_tab_thanks_process_buttons() {
+    // Process Save changes button
 
-	$section_desc = 'On this page you can configure a special thank you message which will appear to your ';
-	$section_desc .= 'donors after they complete their donations. This is separate from the thank you email ';
-	$section_desc .= 'that gets emailed to your donors.';
+    $_POST = apply_filters('validate_page_slug_seamless_donations_tab_thanks', $_POST);
 
-	// promo
-	$feature_desc = 'Thank You Enhanced provides landing page redirect and short codes.';
-	$feature_url  = 'http://zatzlabs.com/project/seamless-donations-thank-you-enhanced/';
-	$section_desc .= seamless_donations_get_feature_promo ( $feature_desc, $feature_url );
+    if (isset($_POST['dgx_donate_button_thanks_settings'])) {
+        $note = trim($_POST['dgx_donate_thanks_text']);
 
-	$thanks_note_section = array(
-		'section_id'  => 'seamless_donations_admin_thanks_section_note',    // the section ID
-		'page_slug'   => 'seamless_donations_admin_thanks',    // the page slug that the section belongs to
-		'title'       => __ ( 'Thank You Page', 'seamless-donations' ),   // the section title
-		'description' => __ ( $section_desc, 'seamless-donations' ),
-	);
+        $note = stripslashes($note);
+        $allowed_html = [
+            'a'      => [
+                'href'  => [],
+                'title' => [],
+                'class' => [],
+                'id' => [],
+                'style' => [],
+            ],
+            'span'      => [
+                'class' => [],
+                'id' => [],
+                'style' => [],
+            ],
+            'div'      => [
+                'class' => [],
+                'id' => [],
+                'style' => [],
+            ],
+            'br'     => [],
+            'em'     => [],
+            'strong' => [],
+            'b' => [],
+            'i' => [],
+            'h1' => [],
+            'h2' => [],
+            'h3' => [],
+        ];
+        $note= wp_kses( $note, $allowed_html );
 
-	$thanks_note_section = apply_filters ( 'seamless_donations_admin_thanks_section_note', $thanks_note_section );
+        //$note = sanitize_text_field($note);
 
-	$thanks_note_options = array(
-		array(
-			'field_id'    => 'dgx_donate_thanks_text',
-			'type'        => 'textarea',
-			'title'       => __ ( 'Thank You Page Text', 'seamless-donations' ),
-			'description' => __ (
-				'The text to display to a donor after a donation is completed.', 'seamless-donations' ),
-			'default'     => 'Thank you for donating! A thank you email with the details of ' .
-			                 'your donation will be sent to the email address you provided.',
-		),
-		array(
-			'field_id' => 'submit',
-			'type'     => 'submit',
-			'label'    => __ ( 'Save Changes', 'seamless-donations' ),
-		)
-	);
-
-	$thanks_note_options = apply_filters (
-		'seamless_donations_admin_thanks_section_note_options', $thanks_note_options );
-
-	seamless_donations_process_add_settings_fields_with_options (
-		$thanks_note_options, $_setup_object, $thanks_note_section );
+        if ($note == '') { // ain't right
+            seamless_donations_flag_cmb2_submit_button_error('dgx_donate_button_thanks_settings');
+        } else {
+            update_option('dgx_donate_thanks_text', $note);
+            seamless_donations_flag_cmb2_submit_button_success('dgx_donate_button_thanks_settings');
+        }
+    }
 }

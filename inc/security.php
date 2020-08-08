@@ -37,9 +37,10 @@ function seamless_donations_get_security_status() {
     $status['ipn_domain_url']            = 'N/A';
     $status['payment_ready_ok']          = false;
 
-    $http_ipn_url  = plugins_url('/dgx-donate-paypalstd-ipn.php', dirname(__FILE__));
+    //$http_ipn_url  = plugins_url('/dgx-donate-paypalstd-ipn.php', dirname(__FILE__));
     $https_ipn_url = plugins_url('/pay/paypalstd/ipn.php', dirname(__FILE__));
     $https_ipn_url = str_ireplace('http://', 'https://', $https_ipn_url); // force https check
+    $https_ipn_url .= '?status_check=true';
 
     // determine availability and version compatibility
     // all these calls are stfu'd because we have no idea what they'll do across the interwebs
@@ -69,10 +70,10 @@ function seamless_donations_get_security_status() {
     if (@ini_get('allow_url_fopen')) {
         $status['file_get_contents_enabled'] = true;
 
-        $test_result = @file_get_contents($http_ipn_url);
-        if ($test_result !== false) {
-            $status['http_ipn_works'] = true;
-        }
+//        $test_result = @file_get_contents($http_ipn_url);
+//        if ($test_result !== false) {
+//            $status['http_ipn_works'] = true;
+//        }
 
         $test_result = @file_get_contents($https_ipn_url);
         if ($test_result !== false) {

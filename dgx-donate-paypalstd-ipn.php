@@ -327,6 +327,7 @@ class Dgx_Donate_IPN_Handler {
 }
 
 dgx_donate_debug_log("dgx-donate-paypalstd-ipn.php called outside of constructor.");
+
 $dgx_donate_ipn_responder = new Dgx_Donate_IPN_Handler();
 
 /**

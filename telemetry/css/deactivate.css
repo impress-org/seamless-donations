@@ -1,0 +1,46 @@
+/*
+ * Seamless Donations by David Gewirtz, adopted from Allen Snook
+ *
+ * Lab Notes: http://zatzlabs.com/lab-notes/
+ * Plugin Page: http://zatzlabs.com/seamless-donations/
+ * Contact: http://zatzlabs.com/contact-us/
+ *
+ * Copyright (c) 2015-2020 by David Gewirtz
+ *
+ */
+
+/* // Based on code from https://github.com/CodeCabin/plugin-deactivation-survey */
+
+.seamless-donations-deactivate-dialog
+{
+	text-align: left;
+	width: auto;
+	border-radius: 10px;
+}
+
+.seamless-donations-deactivate-dialog-buttons
+{
+	text-align: right;
+}
+
+.seamless-donations-deactivate-dialog
+{
+	width: auto !important;
+}
+
+.seamless-donations-deactivate-dialog h2
+{
+	color: gray;
+	font-variant: small-caps;
+	font-size: 1.2em;
+	padding-bottom: 0.2em;
+	border-bottom: 1px solid lightgray;
+	
+}
+
+.seamless-donations-deactivate-dialog textarea[name="comments"]
+{
+	width: 100%;
+}
+
+

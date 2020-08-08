@@ -3,8 +3,8 @@ Contributors: dgewirtz
 Donate link: http://zatzlabs.com/project-donations/
 Tags: donation, donations, donate, stripe, paypal, recurring donations, non-profit, charity, gifts, church, worship, churches, crowdfunding, donation plugin, fundraiser, fundraising, giving, nonprofit, paypal, PayPal Donate, paypal donations, recurring, recurring donations, wordpress donation plugin, wordpress donations, wp donation
 Requires at least: 3.4
-Tested up to: 5.4.2
-Stable tag: 5.0.10
+Tested up to: 5.5
+Stable tag: 5.0.20
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Seamless Donations is so easy to install and configure that your Web site can accept donations via your Stripe or PayPal account within five minutes of downloading the plugin.
 
-**Seamless Donations is free and will never, ever charge you a commission.**
+**Seamless Donations is free and does not charge you a commission or percentage fee.**
+
+Other vendors take 2% right off the top of every Stripe transaction unless you purchase an expensive add-on. Seamless Donations does not siphon off money from donations intended for your good causes.
 
 Learn more on the [Seamless Donations home page](http://zatzlabs.com/project/seamless-donations/).
 
@@ -53,6 +55,7 @@ Visit [Seamless Donation's comprehensive documentation and video tutorial sectio
 Seamless Donations supports [compatible free plugins including CAPTCHA, export, and mail integration, plus premium add-ons and extensions](http://zatzlabs.com/project/seamless-donations-plugins-and-extensions/) that can help you get the most out of your fund-raising efforts. New premium add-ons include:
 
 * [Giving Level Manager](http://zatzlabs.com/project/seamless-donations-giving-level-manager/)
+* [Donors Pay Fees](https://zatzlabs.com/project/seamless-donations-donors-pay-fees/)
 * [Beautiful Donation Forms](https://zatzlabs.com/project/seamless-donations-beautiful-donation-forms/)
 * [Colorful Donation Forms](https://zatzlabs.com/project/seamless-donations-colorful-donation-forms/)
 * [Basic Widget Pack](http://zatzlabs.com/project/seamless-donations-basic-widget-pack/)
@@ -102,6 +105,7 @@ Support for the following currencies is built into Seamless Donations 4.0:
 * Portuguese translation, courtesy Daniel Sousa (as of 4.0.9)
 * Hebrew translation, courtesy user semistazic (as of 4.0.16)
 * Norwegian translation, courtesy of an anonymous user (as of 4.0.16)
+* Italian translation, courtest of Giuseppe F. (as of 5.0.17)
 * HUGE thank you to users doing these translations!
 * [Assist with translations](https://wordpress.org/support/topic/translators-check-in-here-so-youre-not-duplicating-work)
 
@@ -215,6 +219,50 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 == Changelog ==
 
 **IMPORTANT: Support has moved to the ZATZLabs site and is no longer provided on the WordPress.org forums. If you need a timely reply from the developer, please [open a ticket](http://zatzlabs.com/submit-ticket/).**
+
+= 5.0.20 =
+* Added additional diagnostic log data for Stripe payments
+* Fixed bug in form styles that would sometimes cause a crash
+
+= 5.0.19 =
+* Added selective HTML tag support inside Thank You message
+* Preliminary testing with WordPress 5.5
+
+= 5.0.18 =
+* Added more debugging telemetry to Stripe gateway functionality
+* Added a please post a review item to plugin's menu
+
+= 5.0.17 =
+* Fixed bug where non-required telephone number was required
+* Fixed bug where an error would be triggered if form style set to None
+* Fixed some undefined variable warnings
+* Fixed another bug in legacy licensing code
+
+= 5.0.16 =
+* Fixed bug in legacy licensing code
+
+= 5.0.15 =
+* Fixed bug in Stripe production/live server processing
+* Fixed bug in Funds where the fund visibility wouldn't save
+* Fixed initiation issue with PayPal IPN.php processing
+
+= 5.0.14 =
+* Fixed a conflict in browser identification code when a WordPress component wasn't loaded in time
+* Fixed a minor bug in donor, donation, and fund details where an undefined variable was sometimes referenced
+
+= 5.0.13 =
+* Added long-overdue default state option to form options
+* Added settings debug option to no longer check for pre-5.0 add-ons
+* Fixed newly-introduced bug that prevented donor, donation, and funds detail from being shown
+* Fixed a bug where browser identification in debug log failed for WordPress.com Business Plan users
+
+= 5.0.12 =
+* Fixed duplicate header bug found on some systems
+
+= 5.0.11 =
+* Added uninstall reason dialog so I can get feedback and make Seamless Donations better
+* Fixed bug where ipn.php was invoked every few seconds.
+* Eliminated a bunch (but possibly not all) warning messages that showed when WP_DEBUG turned on.
 
 = 5.0.10 =
 * Added helpful up-to-the-minute server status info link to Logs page for PayPal servers

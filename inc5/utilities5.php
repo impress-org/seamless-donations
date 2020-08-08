@@ -102,24 +102,6 @@ function seamless_donations_cmb_options_page_tabs($cmb_options) {
     return $tabs;
 }
 
-function seamless_donations_cmb2_remove_primary_save_button() {
-    // hack to fix media library hang
-    // this should make sure this only runs on a Seamless Donations tab
-    if (isset($_REQUEST["page"])) {
-        $the_page = $_REQUEST["page"];
-        $len      = strlen("seamless_donations_");
-        if (substr($the_page, 0, $len) === "seamless_donations_") {
-            ?>
-            <style type="text/css" media="screen">
-                input#submit-cmb.button.button-primary {
-                    display: none;
-                }
-            </style>
-            <?php
-        }
-    }
-}
-
 // set up filter to pre-load field values from Seamless Donations database
 // from: https://github.com/CMB2/CMB2/wiki/Tips-&-Tricks#override-the-data-storage-location-for-a-cmb2-box
 function seamless_donations_preload_cmb2_field_filter($field_id, $handler_function_name) {
@@ -132,6 +114,10 @@ function seamless_donations_display_cmb2_submit_button($section_options, $button
     $section_options->add_field(array(
         'name'           => $button_options['button_text'],
         'id'             => $button_options['button_id'],
+        'type' => 'text',
+        'attributes' => array(
+            'readonly' => 'readonly',
+        ),
         'button_options' => $button_options,
         'render_row_cb'  => 'seamless_donations_display_cmb2_submit_button_callback',
     ));
@@ -291,6 +277,10 @@ function seamless_donations_cmb2_add_action_button($section_options, $name, $id)
     $section_options->add_field(array(
         'name'          => esc_attr($name),
         'id'            => esc_attr($id),
+        'type' => 'text',
+        'attributes' => array(
+            'readonly' => 'readonly',
+        ),
         'render_row_cb' => 'seamless_donations_cmb2_row_callback_for_action_button',
     ));
 }
@@ -340,6 +330,10 @@ function seamless_donations_cmb2_add_static_desc($section_options, $desc, $id) {
     $section_options->add_field(array(
         'desc'          => $desc,
         'id'            => esc_attr($id),
+        'type' => 'text',
+        'attributes' => array(
+            'readonly' => 'readonly',
+        ),
         'render_row_cb' => 'seamless_donations_cmb2_row_callback_for_static_desc',
     ));
 }
@@ -395,12 +389,16 @@ function seamless_donations_is_referred_by_page($page) {
     // takes the value of $args['option_key']) from calling function as parameter
     // this is the name of the admin page we're checking
     // good for seeing if self-referring, if user was redirected from the current page
+    if(!isset($_SERVER["HTTP_REFERER"])) {
+        return false;
+    }
     $referring_page = $_SERVER["HTTP_REFERER"];
 
     $parts_list = parse_url($referring_page);
 
-    $query = $parts_list["query"];
-    if (!isset($query)) {
+    if(isset($parts_list["query"])) {
+        $query = $parts_list["query"];
+    } else {
         $query = '';
     }
 
