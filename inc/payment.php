@@ -628,7 +628,7 @@ function seamless_donations_redirect_to_paypal($post_args, $paypal_server) {
 function seamless_donations_redirect_to_stripe($post_data, $api_key, $notify_url, $cancel_url) {
     $session = false;
     dgx_donate_debug_log('Preparing Stripe donation description...');
-    $desc    = seamless_donations_build_donation_description($post_data);
+    $desc = seamless_donations_build_donation_description($post_data);
 
     dgx_donate_debug_log('Preparing redirect to Stripe...');
     dgx_donate_debug_log('-- Using API key: ' . seamless_donations_obscurify_stripe_key($api_key));
@@ -705,7 +705,7 @@ function seamless_donations_redirect_to_stripe($post_data, $api_key, $notify_url
     } catch (\Stripe\Exception\InvalidRequestException $e) {
         dgx_donate_debug_log("Invalid parameters were supplied to Stripe API");
         dgx_donate_debug_log('-- Stripe message is: ' . $e->getMessage());
-          // Invalid parameters were supplied to Stripe's API
+        // Invalid parameters were supplied to Stripe's API
     } catch (\Stripe\Exception\AuthenticationException $e) {
         dgx_donate_debug_log("Authentication with Stripe API failed");
         dgx_donate_debug_log('-- Stripe message is: ' . $e->getMessage());
@@ -726,16 +726,16 @@ function seamless_donations_redirect_to_stripe($post_data, $api_key, $notify_url
         // Something else happened, completely unrelated to Stripe
     }
 
-//    https://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
-//    $body = $e->getJsonBody();
-//    $err  = $body['error'];
-//
-//    print('Status is:' . $e->getHttpStatus() . "\n");
-//    print('Type is:' . $err['type'] . "\n");
-//    print('Code is:' . $err['code'] . "\n");
-//    // param is '' in this case
-//    print('Param is:' . $err['param'] . "\n");
-//    print('Message is:' . $err['message'] . "\n");
+    //    https://stackoverflow.com/questions/17750143/catching-stripe-errors-with-try-catch-php-method
+    //    $body = $e->getJsonBody();
+    //    $err  = $body['error'];
+    //
+    //    print('Status is:' . $e->getHttpStatus() . "\n");
+    //    print('Type is:' . $err['type'] . "\n");
+    //    print('Code is:' . $err['code'] . "\n");
+    //    // param is '' in this case
+    //    print('Param is:' . $err['param'] . "\n");
+    //    print('Message is:' . $err['message'] . "\n");
 
     return $session;
 }
@@ -812,7 +812,6 @@ function seamless_donations_stripe_js_redirect($session) {
 }
 */
 
-
 function seamless_donations_stripe_js_redirect($session) {
     $stripe_mode = get_option('dgx_donate_stripe_server');
     if ($stripe_mode == 'LIVE') {
@@ -845,6 +844,14 @@ function seamless_donations_stripe_js_redirect($session) {
     <?php
 }
 
+function seamless_donations_provisionally_process_gateway_result() {
+    if (isset($_GET['thanks'])) {
+        $gateway = get_option('dgx_donate_payment_processor_choice');
+        if ($gateway == 'STRIPE') {
+            $result = seamless_donations_stripe_poll_payments();
+        }
+    }
+}
 
 function seamless_donations_stripe_poll_payments() {
     // https://stripe.com/docs/payments/checkout/accept-a-payment#payment-success
@@ -883,8 +890,13 @@ function seamless_donations_stripe_poll_payments() {
     foreach ($events->autoPagingIterator() as $event) {
         $stripe_session    = $event->data->object;
         $stripe_session_id = $stripe_session->id;
-        $stripe_payment_id = $stripe_session->payment_intent;
-        $sd_session_id     = $stripe_session->metadata['sd_session_id'];
+        $stripe_mode       = $stripe_session->mode;
+        if ($stripe_mode == 'payment') {
+            $stripe_transaction_id = $stripe_session->payment_intent;
+        } else {
+            $stripe_transaction_id = $stripe_session->subscription;
+        }
+        $sd_session_id = $stripe_session->metadata['sd_session_id'];
 
         if ($sd_session_id == $donation_session_id) {
             $donation_succeeded = true;
@@ -894,20 +906,11 @@ function seamless_donations_stripe_poll_payments() {
     }
 
     if ($donation_succeeded) {
-        seamless_donations_process_confirmed_purchase('STRIPE', $currency_code, $donation_session_id, $stripe_payment_id, $stripe_session);
+        seamless_donations_process_confirmed_purchase('STRIPE', $currency_code, $donation_session_id, $stripe_transaction_id, $stripe_session);
     } else {
         dgx_donate_debug_log('Donation not showing as succeeded');
     }
     return 'PASS';
-}
-
-function seamless_donations_provisionally_process_gateway_result() {
-    if (isset($_GET['thanks'])) {
-        $gateway = get_option('dgx_donate_payment_processor_choice');
-        if ($gateway == 'STRIPE') {
-            $result = seamless_donations_stripe_poll_payments();
-        }
-    }
 }
 
 function seamless_donations_process_confirmed_purchase($gateway, $currency, $donation_session_id, $transaction_id, $transaction_data) {
@@ -996,9 +999,15 @@ function seamless_donations_process_confirmed_purchase($gateway, $currency, $don
     }
 
     if (!empty($donation_id)) {
-        // Update the raw paypal data
+        // Update the raw gateway data
         update_post_meta($donation_id, '_dgx_donate_transaction_id', $transaction_id);
         update_post_meta($donation_id, '_dgx_donate_payment_processor', $gateway);
+        if ($gateway == 'STRIPE') {
+            $stripe_session_id  = $transaction_data->id;
+            $stripe_customer_id = $transaction_data->customer;
+            update_post_meta($donation_id, '_dgx_donate_stripe_session_id', $stripe_session_id);
+            update_post_meta($donation_id, '_dgx_donate_stripe_customer_id', $stripe_customer_id);
+        }
         update_post_meta($donation_id, '_dgx_donate_payment_processor_data', $transaction_data);
 
         dgx_donate_debug_log("Payment currency = {$currency}");
