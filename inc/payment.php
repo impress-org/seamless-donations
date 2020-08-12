@@ -848,16 +848,16 @@ function seamless_donations_provisionally_process_gateway_result() {
     if (isset($_GET['thanks'])) {
         $gateway = get_option('dgx_donate_payment_processor_choice');
         if ($gateway == 'STRIPE') {
-            $result = seamless_donations_stripe_poll_payments();
+            $result = seamless_donations_stripe_check_for_successful_transaction();
         }
     }
 }
 
-function seamless_donations_stripe_poll_payments() {
+function seamless_donations_stripe_check_for_successful_transaction() {
     // https://stripe.com/docs/payments/checkout/accept-a-payment#payment-success
     // https://stripe.com/docs/cli/flags
 
-    dgx_donate_debug_log('Entering Stripe polling processing');
+    dgx_donate_debug_log('Entering Stripe checking for successful transaction');
 
     $donation_succeeded  = false;
     $donation_session_id = $_GET["sessionid"];
@@ -892,9 +892,13 @@ function seamless_donations_stripe_poll_payments() {
         $stripe_session_id = $stripe_session->id;
         $stripe_mode       = $stripe_session->mode;
         if ($stripe_mode == 'payment') {
+            // record a payment intent ID if a one-off donation
             $stripe_transaction_id = $stripe_session->payment_intent;
         } else {
-            $stripe_transaction_id = $stripe_session->subscription;
+            // record an invoice ID if a subscription
+            $subscription_id       = $stripe_session->subscription;
+            $stripe_transaction_id = seamless_donations_stripe_get_latest_subscription_invoice($subscription_id);
+            seamless_donations_add_audit_string('STRIPE-SUBSCRIPTION-' . $subscription_id, $donation_session_id);
         }
         $sd_session_id = $stripe_session->metadata['sd_session_id'];
 
@@ -913,12 +917,184 @@ function seamless_donations_stripe_poll_payments() {
     return 'PASS';
 }
 
+function seamless_donations_stripe_get_latest_subscription_invoice($subscription_id) {
+    // takes a subscription ID and generates the latest invoice from that ID
+    // assumes that the invoice was just created as part of the cart checkout process
+    $events = \Stripe\Subscription::all([
+        'created' => [
+            // Check for events created in the last 30 days.
+            'gte' => time() - 60 * 60,
+        ],
+    ]);
+
+    foreach ($events->autoPagingIterator() as $event) {
+        $sub_id = $event->id;
+        if ($sub_id == $subscription_id) {
+            $inv = $event->latest_invoice;
+            return $inv;
+        }
+    }
+    return '';
+}
+
+function seamless_donations_stripe_poll_last_months_transactions() {
+    dgx_donate_debug_log('Entering Stripe polling for unrecorded transactions');
+
+    $server_mode = get_option('dgx_donate_stripe_server');
+    if ($server_mode == 'LIVE') {
+        $stripe_secret_key = get_option('dgx_donate_live_stripe_secret_key');
+    } else {
+        $stripe_secret_key = get_option('dgx_donate_test_stripe_secret_key');
+    }
+
+    // Set your secret key. Remember to switch to your live secret key in production!
+    // See your keys here: https://dashboard.stripe.com/account/apikeys
+    \Stripe\Stripe::setApiKey($stripe_secret_key);
+    dgx_donate_debug_log('Stripe API key set');
+
+    // list of intents
+    $events = \Stripe\PaymentIntent::all([
+        'created' => [
+            // Check for events created in the last 30 days.
+            'gte' => time() - 30 * 24 * 60 * 60,
+        ],
+    ]);
+
+    $wtf = array();
+
+    foreach ($events->autoPagingIterator() as $event) {
+        $intent_id = $event->id;
+
+        //        $wtf[$intent_id] = array(
+        //            'payment_intent' => $event->id,
+        //            'amount'         => $event->amount,
+        //            'currency'       => $event->currency,
+        //            'created_date'   => $event->created,
+        //            'customer'       => $event->customer,
+        //            'description'    => $event->description,
+        //            'invoice'        => $event->invoice,
+        //            'email'          => $event->receipt_email,
+        //            'status'         => $event->status,
+        //        );
+
+        // check if already recorded
+        $transaction_id = $event->invoice;
+        $mode           = 'subscription';
+        if ($transaction_id == NULL) {
+            $transaction_id = $event->id;
+            $mode           = 'payment';
+        }
+
+        $donation_id = get_donations_by_meta('_dgx_donate_transaction_id', $transaction_id, 1);
+
+        if (count($donation_id) == 0) {
+            // We haven't seen this transaction ID already
+            if ($mode == 'subscription') {
+                $invoice             = \Stripe\Invoice::retrieve($transaction_id);
+                $subscription_id     = $invoice->subscription;
+                $original_session_id = seamless_donations_get_audit_option('STRIPE-SUBSCRIPTION-' . $subscription_id);
+                if ($original_session_id !== false) {
+                    $original_session = seamless_donations_get_audit_option($original_session_id);
+                    // we'll want to copy the contents of the session, pull out data for the call to
+                    // seamless_donations_process_confirmed_purchase, create a new session id
+                    // and write the old session data with the new ID to the audit table
+                    // this for any new subscription entry
+                }
+                $a = 1;
+                //seamless_donations_add_audit_string('STRIPE-SUBSCRIPTION-' . $subscription_id, $donation_session_id);
+
+            }
+        }
+    }
+
+    // \Stripe\Invoice::retrieve('in_1HDrwGIXmeTtBLbYX1MYqv2m')
+    // \Stripe\Subscription::retrieve('sub_Hn5dXDPGvRDpKR')
+    // \Stripe\Customer::retrieve('cus_Hn5d8Xt1Vu2gUe')
+
+    return 'PASS';
+}
+
+function seamless_donations_stripe_convert_uninvoiced_donation_subscriptions() {
+    // this should only happen once as part of the Stripe update for 5.0.21
+    // initiate Stripe
+
+    $run_update = false;
+    $server_mode = get_option('dgx_donate_stripe_server');
+    if ($server_mode == 'LIVE') {
+        $stripe_secret_key = get_option('dgx_donate_live_stripe_secret_key');
+        $stripe_updated = get_option('dgx_donate_5021_stripe_invoices_live');
+        if (!$stripe_updated) {
+            $run_update = true;
+            $plugin_version = 'sd5021';
+            update_option('dgx_donate_5021_stripe_invoices_live', $plugin_version);
+        }
+    } else {
+        $stripe_secret_key = get_option('dgx_donate_test_stripe_secret_key');
+        $stripe_updated = get_option('dgx_donate_5021_stripe_invoices_test');
+        if (!$stripe_updated) {
+            $run_update = true;
+            $plugin_version = 'sd5021';
+            update_option('dgx_donate_5021_stripe_invoices_test', $plugin_version);
+        }
+    }
+    if(!$run_update) return;
+
+    \Stripe\Stripe::setApiKey($stripe_secret_key);
+
+    // initiate donation scan
+    $count     = -1; // all
+    $post_type = 'donation';
+    $args      = array(
+        'numberposts' => $count,
+        'post_type'   => $post_type,
+        'orderby'     => 'post_date',
+        'order'       => 'DESC',
+    );
+    // scann all historical donations
+    $my_donations = get_posts($args);
+
+    foreach ($my_donations as $donation) {
+        $donation_id    = $donation->ID;
+        $sub_id         = '';
+        $transaction_id = get_post_meta($donation_id, '_dgx_donate_transaction_id', true);
+        if (strpos($transaction_id, 'sub_', 0) !== false) {
+            $sub_id = $transaction_id;
+        }
+        if ($transaction_id == NULL) {
+            $method1   = get_post_meta($donation_id, '_dgx_donate_payment_method', true);
+            $method2   = get_post_meta($donation_id, '_dgx_donate_payment_processor', true);
+            $repeating = get_post_meta($donation_id, '_dgx_donate_repeating', true);
+
+            if ($method1 == 'STRIPE' and $method2 == 'STRIPE' and $repeating == 'on') {
+                $stripe_data = get_post_meta($donation_id, '_dgx_donate_payment_processor_data', true);
+                $sub_id      = $stripe_data->subscription;
+            }
+        }
+        if ($sub_id != '') {
+            // get first invoice for subscription
+            $invoice_list = \Stripe\Invoice::all([
+                'created'      => [
+                    // Check for subscriptions created in the last year.
+                    'gte' => time() - 365 * 24 * 60 * 60,
+                ],
+                'subscription' => $sub_id,
+            ]);
+            foreach ($invoice_list->autoPagingIterator() as $invoice) {
+                $reason = $invoice->billing_reason;
+                if($reason == 'subscription_update') {
+                    $invoice_id = $invoice->id;
+                }
+            }
+            $session_id = get_post_meta($donation_id, '_dgx_donate_session_id', true);
+            update_post_meta($donation_id, '_dgx_donate_transaction_id', $invoice_id);
+            seamless_donations_add_audit_string('STRIPE-SUBSCRIPTION-' . $sub_id, $session_id);
+        }
+
+    }
+}
+
 function seamless_donations_process_confirmed_purchase($gateway, $currency, $donation_session_id, $transaction_id, $transaction_data) {
     $sd4_mode = get_option('dgx_donate_start_in_sd4_mode');
-
-    //    $audit_record = seamless_donations_get_audit_option($donation_session_id);
-    //    dgx_donate_debug_log($audit_record);
-
     dgx_donate_debug_log($gateway . 'TRANSACTION VERIFIED for session ID ' . $donation_session_id);
 
     // Check if we've already logged a transaction with this same transaction id

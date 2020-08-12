@@ -408,6 +408,7 @@ function seamless_donations_init() {
 
         // check for any sd5 upgrades
         seamless_donations_sd5004_debug_mode_update();
+        seamless_donations_sd5021_stripe_invoices();
 
         // prepare payment gateways
         seamless_donations_init_payment_gateways();
@@ -462,6 +463,10 @@ function seamless_donations_init() {
             }
         }
     }
+
+    // DEBUG
+    //seamless_donations_stripe_poll_last_months_transactions();
+   // seamless_donations_stripe_convert_uninvoiced_donation_subscriptions();
 }
 
 add_action('init', 'seamless_donations_init');
@@ -786,6 +791,28 @@ function seamless_donations_init_audit() {
     } else {
         // in future releases, might want to check dgx_donate_db_version and update database if desired
     }
+}
+
+function seamless_donations_add_audit_string($option_name, $option_value) {
+    global $wpdb;
+
+    $table_name  = $wpdb->prefix . "seamless_donations_audit";
+    $option_name = trim($option_name);
+
+    if (empty($option_name)) {
+        return false;
+    }
+
+    // http://codex.wordpress.org/Class_Reference/wpdb#REPLACE_row
+    $replace_result = $wpdb->replace(
+        $table_name,
+        array(
+            'option_name'  => $option_name,
+            'option_value' => $option_value,
+        )
+    );
+
+    return $replace_result;
 }
 
 function seamless_donations_update_audit_option($option_name, $option_value) {

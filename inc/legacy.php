@@ -14,6 +14,13 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 // for 5.0 conversion
 
+// for 5.0.21 clean up stripe invoice data from earlier release
+function seamless_donations_sd5021_stripe_invoices() {
+    // prior to 5.0.21, didn't properly record Stripe repeating donation transaction ids
+    seamless_donations_stripe_convert_uninvoiced_donation_subscriptions();
+
+}
+
 function seamless_donations_5000_check_addons() {
     $skip_addon_check = get_option('dgx_donate_legacy_addon_check');
     if($skip_addon_check != 'on') {
