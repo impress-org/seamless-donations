@@ -143,7 +143,7 @@ function seamless_donations_admin_settings_basics_section_data($section_options)
         'type'    => 'select',
         'default' => 'NEVER',
         'options' => array('NEVER' => 'Donors Never Pay Gateway Fees'),
-        'desc' => $feature_desc,
+        'desc'    => $feature_desc,
     ));
 
     seamless_donations_display_cmb2_submit_button($section_options, array(
@@ -383,56 +383,22 @@ function seamless_donations_admin_settings_stripe_section_data($section_options)
         ));
         seamless_donations_preload_cmb2_field_filter('dgx_donate_test_stripe_secret_key', $handler_function);
 
-        /*        $https_webhook_url             = plugins_url('/pay/stripe/webhook.php', dirname(__FILE__));
-                $https_webhook_url             = str_ireplace('http://', 'https://', $https_webhook_url); // force https check
-                $sandbox_stripe_webhook_url    = 'https://dashboard.stripe.com/test/webhooks';
-                $production_stripe_webhook_url = 'https://dashboard.stripe.com/webhooks';
-                $server_mode                   = get_option('dgx_donate_stripe_server');
-                if ($server_mode == 'LIVE') {
-                    $helpful_url = $production_stripe_webhook_url;
-                } else {
-                    $helpful_url = $sandbox_stripe_webhook_url;
-                }
-                $webhook_url_msg = 'This is the SSL-compliant URL you will use with Stripe once you have a valid SSL certificate installed. ';
-                $webhook_url_msg .= 'Click <a href="' . $production_stripe_webhook_url . '" target="_blank">here</a> to create a LIVE';
-                $webhook_url_msg .= ' webhook endpoint in Stripe. Once on the Stripe endpoints page, click Add Endpoint. ';
-                $webhook_url_msg .= 'Click <a href="' . $sandbox_stripe_webhook_url . '" target="_blank">here</a> to create a TEST';
-                $webhook_url_msg .= ' webhook endpoint in Stripe.';
-                $webhook_url_msg .= ' Paste the above URL into the Endpoint URL field. Under the Events to Send dropdown, click';
-                $webhook_url_msg .= ' "receive all events." Now, follow the instructions for the next field, below.';
-
-                $section_options->add_field(array(
-                    'name'        => __('Stripe Webhook URL', 'seamless-donations'),
-                    'id'          => 'settings_stripe_webhook_https_url',
-                    'type'        => 'text',
-                    'default'     => $https_webhook_url,
-                    'save_field'  => false,
-                    'attributes'  => array(
-                        'readonly' => 'readonly',
-                        'disabled' => 'disabled',
-                    ),
-                    'description' => $webhook_url_msg,
-                ));
-
-                $desc = 'This is the Signing Secret key associated with your live Stripe account webhooks.';
-                $desc .= ' Once you create the webhook above, copy the Signing Secret Key from the Stripe site and paste here.';
-                $section_options->add_field(array(
-                    'name' => 'Live Webhook Secret Key',
-                    'id'   => 'dgx_donate_live_webhook_stripe_secret_key',
-                    'type' => 'text',
-                    'desc' => $desc,
-                ));
-                seamless_donations_preload_cmb2_field_filter('dgx_donate_live_webhook_stripe_secret_key', $handler_function);
-
-                $desc = 'This is the Signing Secret key associated with your test Stripe account webhooks.';
-                $desc .= ' Once you create the webhook above, copy the Signing Secret Key from the Stripe site and paste here.';
-                $section_options->add_field(array(
-                    'name' => 'Test Webhook Secret Key',
-                    'id'   => 'dgx_donate_test_webhook_stripe_secret_key',
-                    'type' => 'text',
-                    'desc' => $desc,
-                ));
-                seamless_donations_preload_cmb2_field_filter('dgx_donate_test_webhook_stripe_secret_key', $handler_function);*/
+        $stripe_billing_address_options = array(
+            'auto'     => 'Auto',
+            'required' => 'Required',
+        );
+        $section_options->add_field(array(
+            'name'    => 'Stripe Billing Address Mode',
+            'id'      => 'dgx_donate_stripe_billing_address',
+            'type'    => 'select',
+            'default' => 'false',
+            'options' => $stripe_billing_address_options,
+            'desc' => __(
+                'If set to Required, Stripe will require the donor to enter billng information, ' .
+                'even if the billing address was already entered on the donation form.',
+                'seamless-donations'),
+        ));
+        seamless_donations_preload_cmb2_field_filter('dgx_donate_stripe_billing_address', $handler_function);
 
         seamless_donations_display_cmb2_submit_button($section_options, array(
             'button_id'          => 'dgx_donate_button_stripe_settings',
@@ -559,11 +525,11 @@ function seamless_donations_admin_debug_section_data($section_options) {
     $handler_function = 'seamless_donations_admin5_settings_preload'; // setup the preload handler function
 
     $mode_options = array(
-        'OFF'     => 'Debug Mode Off',
-        'VERBOSE' => 'Expanded Log Messages',
-        'PREFILL' => 'Prefill Donation Form',
-        'RAWLOG'  => 'Show Raw Log Data',
-        'BLOCK' => 'Run Debug Test Block',
+        'OFF'       => 'Debug Mode Off',
+        'VERBOSE'   => 'Expanded Log Messages',
+        'PREFILL'   => 'Prefill Donation Form',
+        'RAWLOG'    => 'Show Raw Log Data',
+        'BLOCK'     => 'Run Debug Test Block',
         'PAYPALIPN' => 'Enable PayPal IPN Verbosity',
     );
 
@@ -613,10 +579,10 @@ function seamless_donations_admin_debug_section_data($section_options) {
     $legacy_addon_desc .= "shouldn't run this unless requested to by the developer.</span></i>";
 
     $section_options->add_field(array(
-        'name'    => __('Legacy Add-on Check', 'seamless-donations'),
-        'id'      => 'dgx_donate_legacy_addon_check',
-        'type'    => 'checkbox',
-        'after'   => $legacy_addon_desc,
+        'name'  => __('Legacy Add-on Check', 'seamless-donations'),
+        'id'    => 'dgx_donate_legacy_addon_check',
+        'type'  => 'checkbox',
+        'after' => $legacy_addon_desc,
     ));
     seamless_donations_preload_cmb2_field_filter('dgx_donate_legacy_addon_check', $handler_function);
 
@@ -689,12 +655,9 @@ function seamless_donations_admin5_settings_preload($data, $object_id, $args, $f
         case 'dgx_donate_test_stripe_secret_key':
             return (get_option('dgx_donate_test_stripe_secret_key'));
             break;
-        //        case 'dgx_donate_live_webhook_stripe_secret_key':
-        //            return (get_option('dgx_donate_live_webhook_stripe_secret_key'));
-        //            break;
-        //        case 'dgx_donate_test_webhook_stripe_secret_key':
-        //            return (get_option('dgx_donate_test_webhook_stripe_secret_key'));
-        //            break;
+        case 'dgx_donate_stripe_billing_address':
+            return(get_option('dgx_donate_stripe_billing_address'));
+            break;
         case 'dgx_donate_form_via_action':
             if (get_option('dgx_donate_form_via_action') == '1') {
                 return 'on';
@@ -808,6 +771,20 @@ function seamless_donations_tab_settings_process_buttons() {
         //        $stripe_live_webhook_secret_key = trim($_POST['dgx_donate_live_webhook_stripe_secret_key']);
         //        $stripe_test_webhook_secret_key = trim($_POST['dgx_donate_test_webhook_stripe_secret_key']);
         update_option('dgx_donate_stripe_server', $_POST['dgx_donate_stripe_server']);
+        update_option('dgx_donate_stripe_billing_address', $_POST['dgx_donate_stripe_billing_address']);
+
+        if ($stripe_live_api_key != '') {
+            update_option('dgx_donate_live_stripe_api_key', $stripe_live_api_key);
+        }
+        if ($stripe_live_secret_key != '') {
+            update_option('dgx_donate_live_stripe_secret_key', $stripe_live_secret_key);
+        }
+        if ($stripe_test_api_key != '') {
+            update_option('dgx_donate_test_stripe_api_key', $stripe_test_api_key);
+        }
+        if ($stripe_test_secret_key != '') {
+            update_option('dgx_donate_test_stripe_secret_key', $stripe_test_secret_key);
+        }
 
         if ($stripe_live_api_key == '' or
             $stripe_live_secret_key == '' or
@@ -815,12 +792,6 @@ function seamless_donations_tab_settings_process_buttons() {
             $stripe_test_secret_key == '') {
             seamless_donations_flag_cmb2_submit_button_error('dgx_donate_button_stripe_settings');
         } else {
-            update_option('dgx_donate_live_stripe_api_key', $stripe_live_api_key);
-            update_option('dgx_donate_live_stripe_secret_key', $stripe_live_secret_key);
-            update_option('dgx_donate_test_stripe_api_key', $stripe_test_api_key);
-            update_option('dgx_donate_test_stripe_secret_key', $stripe_test_secret_key);
-            //            update_option('dgx_donate_live_webhook_stripe_secret_key', $stripe_live_webhook_secret_key);
-            //            update_option('dgx_donate_test_webhook_stripe_secret_key', $stripe_test_webhook_secret_key);
             seamless_donations_flag_cmb2_submit_button_success('dgx_donate_button_stripe_settings');
         }
     }

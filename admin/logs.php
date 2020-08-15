@@ -206,6 +206,10 @@ function seamless_donations_admin_cron_logs_section_data($section_options) {
             'id'      => 'seamless_donations_cron_log_data_field',
             'type'    => 'textarea_code',
             'default' => $log_data,
+            'desc'    => __('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' .
+                'If you want more control over your cron, consider installing ' .
+                '<A target="_blank" HREF="https://wordpress.org/plugins/wp-crontrol/">' .
+                'WP Crontrol</A> from the WordPress.org plugin repository.', 'seamless-donations'),
         ));
 
         seamless_donations_display_cmb2_submit_button($section_options, array(

@@ -617,6 +617,11 @@ function seamless_donations_init_defaults() {
         update_option('dgx_donate_stripe_server', 'SANDBOX');
     }
 
+    $stripe_billing = get_option('dgx_donate_stripe_billing_address');
+    if(empty($stripe_billing)) {
+        update_option('dgx_donate_stripe_billing_address', 'auto');
+    }
+
     $paypal_email = get_option('dgx_donate_paypal_email');
     if (!is_email($paypal_email)) {
         update_option('dgx_donate_paypal_email', '');

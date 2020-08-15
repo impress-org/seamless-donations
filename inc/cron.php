@@ -17,10 +17,10 @@ function seamless_donations_schedule_crons() {
         wp_schedule_event(time(), 'daily', 'seamless_donations_daily_cron_hook');
         dgx_donate_cron_log('Daily cron scheduled.');
     }
-    if (!wp_next_scheduled('seamless_donations_hourly_cron_hook')) {
-        wp_schedule_event(time(), 'hourly', 'seamless_donations_hourly_cron_hook');
-        dgx_donate_cron_log('Hourly cron scheduled.');
-    }
+//    if (!wp_next_scheduled('seamless_donations_hourly_cron_hook')) {
+//        wp_schedule_event(time(), 'hourly', 'seamless_donations_hourly_cron_hook');
+//        dgx_donate_cron_log('Hourly cron scheduled.');
+//    }
 }
 
 function seamless_donations_daily_cron() {
@@ -35,5 +35,5 @@ function seamless_donations_daily_cron() {
 }
 
 function seamless_donations_hourly_cron() {
-    dgx_donate_cron_log('Processing hourly cron.');
+    //dgx_donate_cron_log('Processing hourly cron.');
 }

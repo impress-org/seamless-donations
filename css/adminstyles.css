@@ -172,13 +172,16 @@
     color            : maroon;
 }
 
+#dgx_donate_test_stripe_secret_key.regular-text,
+#dgx_donate_live_stripe_secret_key.regular-text,
+#dgx_donate_test_stripe_api_key.regular-text,
+#dgx_donate_live_stripe_api_key.regular-text{
+    width            : 500px;
+}
+
+#settings_stripe_tls_status.regular-text,
 #settings_processor_tls_status.regular-text {
     /* This makes the PayPal SSL field look sexy */
-    background-color : #dbe8da;
-    color            : maroon;
-}
-#settings_stripe_tls_status.regular-text {
-    /* This makes the Stripe SSL field look sexy */
     background-color : #dbe8da;
     color            : maroon;
 }

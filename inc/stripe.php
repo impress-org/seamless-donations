@@ -25,7 +25,6 @@ function seamless_donations_init_stripe($api_key) {
 
     if (isset($_SERVER['HTTPS'])) {
         // Present an error to the user
-        dgx_donate_debug_log("Error running Stripe init sequence.");
     }
 }
 
