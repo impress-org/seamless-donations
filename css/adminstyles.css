@@ -173,7 +173,12 @@
 }
 
 #settings_processor_tls_status.regular-text {
-    /* This makes the PayPal IPN field look sexy */
+    /* This makes the PayPal SSL field look sexy */
+    background-color : #dbe8da;
+    color            : maroon;
+}
+#settings_stripe_tls_status.regular-text {
+    /* This makes the Stripe SSL field look sexy */
     background-color : #dbe8da;
     color            : maroon;
 }

@@ -221,6 +221,7 @@ If you'd like to keep up with the latest updates to this plugin, please visit [D
 **IMPORTANT: Support has moved to the ZATZLabs site and is no longer provided on the WordPress.org forums. If you need a timely reply from the developer, please [open a ticket](http://zatzlabs.com/submit-ticket/).**
 
 = 5.0.21 =
+* Added SSL security status indicators and checks for Stripe
 * Added code to poll Stripe for repeating donation transaction data
 * Added an Seamless Donations cron subsystem, mostly for Stripe polling
 * Added one-time-run function that fixes transaction IDs for Stripe recurring donations

@@ -11,10 +11,11 @@
  */
 
 //	Exit if .php file accessed directly
-if ( !defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) exit;
 
 function seamless_donations_get_security_status() {
-    $status = array();
+    $gateway = get_option('dgx_donate_payment_processor_choice');
+    $status  = array();
 
     $required_curl_version = '7.34.0';
     $required_ssl_version  = '1.0.1';
@@ -70,10 +71,10 @@ function seamless_donations_get_security_status() {
     if (@ini_get('allow_url_fopen')) {
         $status['file_get_contents_enabled'] = true;
 
-//        $test_result = @file_get_contents($http_ipn_url);
-//        if ($test_result !== false) {
-//            $status['http_ipn_works'] = true;
-//        }
+        //        $test_result = @file_get_contents($http_ipn_url);
+        //        if ($test_result !== false) {
+        //            $status['http_ipn_works'] = true;
+        //        }
 
         $test_result = @file_get_contents($https_ipn_url);
         if ($test_result !== false) {
@@ -110,11 +111,21 @@ function seamless_donations_get_security_status() {
         $status['ipn_domain_ip'] = 'N/A';
     }
 
-    if (!$status['file_get_contents_enabled'] || !$status['curl_enabled'] || !$status['tls_version_ok'] ||
-        !$status['curl_version_ok'] || !$status['https_ipn_works'] or !$status['ipn_domain_ok']) {
-        $status['payment_ready_ok'] = false;
-    } else {
-        $status['payment_ready_ok'] = true;
+    if ($gateway == 'PAYPAL') {
+        if (!$status['file_get_contents_enabled'] || !$status['curl_enabled'] || !$status['tls_version_ok'] ||
+            !$status['curl_version_ok'] || !$status['https_ipn_works'] or !$status['ipn_domain_ok']) {
+            $status['payment_ready_ok'] = false;
+        } else {
+            $status['payment_ready_ok'] = true;
+        }
+    }
+    if ($gateway == 'STRIPE') {
+        if (!$status['file_get_contents_enabled'] || !$status['curl_enabled'] || !$status['tls_version_ok'] ||
+            !$status['curl_version_ok']) {
+            $status['payment_ready_ok'] = false;
+        } else {
+            $status['payment_ready_ok'] = true;
+        }
     }
 
     return $status;
@@ -213,6 +224,8 @@ EOT;
 }
 
 function seamless_donations_display_tls_status($status) {
+    $gateway = get_option('dgx_donate_payment_processor_choice');
+
     $msg = '';
     $msg .= '<TABLE id="seamless_donations_tls_table">';
     $msg .= '<TR>';
@@ -274,38 +287,44 @@ function seamless_donations_display_tls_status($status) {
         }
     }
 
-    $msg .= '<TR>';
-    if (!$status['https_ipn_works']) {
-        $msg .= '<TD>';
-        $msg .= seamless_donations_display_fail();
-        $msg .= '</TD><TD>';
-        $msg .= ' HTTPS IPN</TD><TD>Unreachable';
-        $msg .= '</TD><TD>';
-        $msg .= '<i>The payment processor notification URL is not responding.</i>';
-        $msg .= '</TD>';
-    } else {
-        $msg .= '<TD>' . seamless_donations_display_pass() . '</TD><TD>';
-        $msg .= ' HTTPS IPN</TD><TD>Responds OK';
-        $msg .= '</TD><TD>';
-        $msg .= '</TD>';
+    if ($gateway == 'PAYPAL') {
+        $msg .= '<TR>';
+        if (!$status['https_ipn_works']) {
+            $msg .= '<TD>';
+            $msg .= seamless_donations_display_fail();
+            $msg .= '</TD><TD>';
+            $msg .= ' HTTPS IPN</TD><TD>Unreachable';
+            $msg .= '</TD><TD>';
+            $msg .= '<i>The payment processor notification URL is not responding.</i>';
+            $msg .= '</TD>';
+        } else {
+            $msg .= '<TD>' . seamless_donations_display_pass() . '</TD><TD>';
+            $msg .= ' HTTPS IPN</TD><TD>Responds OK';
+            $msg .= '</TD><TD>';
+            $msg .= '</TD>';
+        }
+        $msg .= '</TR>';
     }
-    $msg .= '</TR>';
-    $msg .= '<TR>';
-    if (!$status['ipn_domain_ok']) {
-        $msg .= '<TD>';
-        $msg .= seamless_donations_display_fail();
-        $msg .= '</TD><TD>';
-        $msg .= ' ' . $status['ipn_domain_url'] . '</TD><TD>Unreachable';
-        $msg .= '</TD><TD>';
-        $msg .= '<i>This domain is not reachable from the public Internet.</i>';
-        $msg .= '</TD>';
-    } else {
-        $msg .= '<TD>' . seamless_donations_display_pass() . '</TD><TD>';
-        $msg .= ' ' . $status['ipn_domain_url'] . '</TD><TD>' . $status['ipn_domain_ip'];
-        $msg .= '</TD><TD>';
-        $msg .= '</TD>';
+
+    if ($gateway == 'PAYPAL') {
+        $msg .= '<TR>';
+        if (!$status['ipn_domain_ok']) {
+            $msg .= '<TD>';
+            $msg .= seamless_donations_display_fail();
+            $msg .= '</TD><TD>';
+            $msg .= ' ' . $status['ipn_domain_url'] . '</TD><TD>Unreachable';
+            $msg .= '</TD><TD>';
+            $msg .= '<i>This domain is not reachable from the public Internet.</i>';
+            $msg .= '</TD>';
+        } else {
+            $msg .= '<TD>' . seamless_donations_display_pass() . '</TD><TD>';
+            $msg .= ' ' . $status['ipn_domain_url'] . '</TD><TD>' . $status['ipn_domain_ip'];
+            $msg .= '</TD><TD>';
+            $msg .= '</TD>';
+        }
+        $msg .= '</TR>';
     }
-    $msg .= '</TR>';
+
     $msg .= '</TABLE>';
 
     return $msg;

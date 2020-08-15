@@ -63,35 +63,40 @@ function seamless_donations_admin_logs_menu() {
 //// LOGS - SECTION - DATA ////
 function seamless_donations_admin_logs_section_ssl($section_options) {
     $gateway = get_option('dgx_donate_payment_processor_choice');
-    if ($gateway == 'PAYPAL') {
-        // the following code is indicative of a minor architectural flaw in Seamless Donations
-        // in that all admin pages are always instantiated. The approach doesn't seem to cause
-        // too much of a load, except for the following, which calls the IPN processor.
-        // This poorly optimized approach is being left in because callbacks might have been
-        // used by user code that expected this behavior and changing it could cause breakage
-        if (isset($_REQUEST['page'])) {
-            if ($_REQUEST['page'] == 'seamless_donations_tab_logs') {
-                $security     = seamless_donations_get_security_status();
-                $section_desc = seamless_donations_display_tls_status($security);
-                $section_desc .= '<BR>Get comprehensive SSL report for ';
-                $section_desc .= '<A target="_blank" HREF="https://www.ssllabs.com/ssltest/analyze.html?d=';
-                $section_desc .= $security["ipn_domain_url"] . '">' . $security["ipn_domain_url"] . '</A>.';
+
+    // the following code is indicative of a minor architectural flaw in Seamless Donations
+    // in that all admin pages are always instantiated. The approach doesn't seem to cause
+    // too much of a load, except for the following, which calls the IPN processor.
+    // This poorly optimized approach is being left in because callbacks might have been
+    // used by user code that expected this behavior and changing it could cause breakage
+    if (isset($_REQUEST['page'])) {
+        if ($_REQUEST['page'] == 'seamless_donations_tab_logs') {
+            $security     = seamless_donations_get_security_status();
+            $section_desc = seamless_donations_display_tls_status($security);
+            $section_desc .= '<BR>Get comprehensive SSL report for ';
+            $section_desc .= '<A target="_blank" HREF="https://www.ssllabs.com/ssltest/analyze.html?d=';
+            $section_desc .= $security["ipn_domain_url"] . '">' . $security["ipn_domain_url"] . '</A>.';
+            if ($gateway == 'PAYPAL') {
                 $section_desc .= ' Review up-to-the-minute system operation status for PayPal ';
                 $section_desc .= '<A target="_blank" HREF="https://www.paypal-status.com/product/sandbox">Sandbox</A> and ';
                 $section_desc .= '<A target="_blank" HREF="https://www.paypal-status.com/product/production">Live</A> ';
                 $section_desc .= 'servers.';
             }
+            if ($gateway == 'STRIPE') {
+                $section_desc .= ' Review up-to-the-minute system operation status for ';
+                $section_desc .= '<A target="_blank" HREF="https://status.stripe.com/">Stripe servers</A>.';
+            }
         }
-
-        $section_options->add_field(array(
-            'name'        => __('Payment Processor Compatibility', 'cmb2'),
-            'id'          => 'seamless_donations_log_ssl',
-            'type'        => 'title',
-            'after_field' => $section_desc,
-
-        ));
-        $section_options = apply_filters('seamless_donations_tab_logs_section_ssl', $section_options);
     }
+
+    $section_options->add_field(array(
+        'name'        => __('Payment Processor Compatibility', 'cmb2'),
+        'id'          => 'seamless_donations_log_ssl',
+        'type'        => 'title',
+        'after_field' => $section_desc,
+
+    ));
+    $section_options = apply_filters('seamless_donations_tab_logs_section_ssl', $section_options);
 }
 
 //// LOGS - SECTION - DATA ////

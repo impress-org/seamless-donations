@@ -308,6 +308,31 @@ function seamless_donations_admin_settings_stripe_section_data($section_options)
             'after_field' => $section_desc,
         ));
 
+        $status    = seamless_donations_get_security_status();
+        $admin_url = get_admin_url();
+        $logs_url  = $admin_url . 'admin.php?page=seamless_donations_tab_logs';
+        if ($status['payment_ready_ok']) {
+            $status_msg     = seamless_donations_display_pass();
+            $status_note    = 'Your server is ready';
+            $status_details = ' See <A HREF="' . $logs_url . '">payment processor compatibility summary</A> for details. ';
+        } else {
+            $status_msg     = seamless_donations_display_fail();
+            $status_note    = 'Some server features incompatible';
+            $status_details = ' See <A HREF="' . $logs_url . '">payment processor compatibility summary</A> for details to discuss with your hosting provider. ';
+        }
+        $section_options->add_field(array(
+            'name'        => __('Stripe SSL security compatibility', 'seamless-donations'),
+            'id'          => 'settings_stripe_tls_status',
+            'type'        => 'text',
+            'default'     => $status_note,
+            'save_field'  => false,
+            'attributes'  => array(
+                'readonly' => 'readonly',
+                'disabled' => 'disabled',
+            ),
+            'description' => $status_msg . $status_details,
+        ));
+
         $section_options->add_field(array(
             'name'    => __('Stripe Interface Mode', 'seamless-donations'),
             'id'      => 'dgx_donate_stripe_server',
