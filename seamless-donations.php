@@ -62,6 +62,7 @@ require_once 'inc/legacy.php';
 require_once 'inc/payment.php';
 require_once 'inc/stripe.php';
 require_once 'inc/security.php';
+require_once 'inc/cron.php';
 require_once 'inc5/utilities5.php';
 require_once 'inc5/widgets5.php';
 
@@ -129,6 +130,20 @@ function seamless_donations_plugin_loaded() {
 }
 
 add_action('plugins_loaded', 'seamless_donations_plugin_loaded');
+
+//// Register activation and deactivation
+
+//register_activation_hook(__FILE__, 'seamless_donations_plugin_activated');
+register_deactivation_hook(__FILE__, 'seamless_donations_plugin_deactivated');
+
+function seamless_donations_plugin_activated() {
+}
+
+function seamless_donations_plugin_deactivated() {
+    wp_clear_scheduled_hook('seamless_donations_daily_cron_hook');
+    wp_clear_scheduled_hook('seamless_donations_hourly_cron_hook');
+    dgx_donate_cron_log('Hourly and daily crons deactivated.');
+}
 
 //// load and enqueue supporting resources
 
@@ -413,6 +428,9 @@ function seamless_donations_init() {
         // prepare payment gateways
         seamless_donations_init_payment_gateways();
         seamless_donations_provisionally_process_gateway_result();
+
+        // enable cron
+        seamless_donations_schedule_crons();
     } else {
         dgx_donate_init_session();
         dgx_donate_init_defaults();
@@ -464,9 +482,11 @@ function seamless_donations_init() {
         }
     }
 
-    // DEBUG
-    //seamless_donations_stripe_poll_last_months_transactions();
-   // seamless_donations_stripe_convert_uninvoiced_donation_subscriptions();
+    // This runs a debug block defined in debug.php used for code testing
+    $debug_mode = get_option('dgx_donate_debug_mode');
+    if ($debug_mode == 'BLOCK') {
+        debug_test_block();
+    }
 }
 
 add_action('init', 'seamless_donations_init');

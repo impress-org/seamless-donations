@@ -53,6 +53,7 @@ function seamless_donations_admin_logs_menu() {
         if ($_REQUEST['page'] == 'seamless_donations_tab_logs') {
             seamless_donations_admin_logs_section_ssl($log_options);
             seamless_donations_admin_logs_section_data($log_options);
+            seamless_donations_admin_cron_logs_section_data($log_options);
 
             do_action('seamless_donations_tab_logs_after', $log_options);
         }
@@ -164,6 +165,55 @@ function seamless_donations_admin_logs_section_data($section_options) {
     $section_options = apply_filters('seamless_donations_tab_logs_section_data_options', $section_options);
 }
 
+//// CRON LOGS - SECTION - DATA ////
+function seamless_donations_admin_cron_logs_section_data($section_options) {
+    $gateway = get_option('dgx_donate_payment_processor_choice');
+    if ($gateway == 'STRIPE') {
+        $section_options->add_field(array(
+            'name'    => __('Cron Log Data', 'cmb2'),
+            'id'      => 'seamless_donations_cron_log_data',
+            'type'    => 'title',
+            'default' => 'log data',
+        ));
+        $section_options = apply_filters('seamless_donations_tab_cron_logs_section_data', $section_options);
+
+        $debug_log_option  = get_option('dgx_donate_debug_mode');
+        $debug_log_content = get_option('dgx_donate_cron_log');
+        $log_data          = '';
+
+        if (empty($debug_log_content)) {
+            $log_data = esc_html__('The log is empty.', 'seamless-donations');
+        } else {
+            foreach ($debug_log_content as $debug_log_entry) {
+                if ($log_data != "") {
+                    $log_data .= "\n";
+                }
+                if ($debug_log_option == 'RAWLOG') {
+                    $log_data .= $debug_log_entry;
+                } else {
+                    $log_data .= esc_html($debug_log_entry);
+                }
+            }
+        }
+
+        $section_options->add_field(array(
+            'name'    => __('Cron Log', 'cmb2'),
+            'id'      => 'seamless_donations_cron_log_data_field',
+            'type'    => 'textarea_code',
+            'default' => $log_data,
+        ));
+
+        seamless_donations_display_cmb2_submit_button($section_options, array(
+            'button_id'          => 'dgx_donate_button_settings_cron_logs_delete',
+            'button_text'        => 'Delete Cron Log',
+            'button_success_msg' => __('Cron log deleted.', 'seamless-donations'),
+            'button_error_msg'   => '',
+        ));
+
+        $section_options = apply_filters('seamless_donations_tab_cron_logs_section_data_options', $section_options);
+    }
+}
+
 //// LOGS - PROCESS ////
 function seamless_donations_tab_logs_process_buttons() {
     $_POST = apply_filters('validate_page_slug_seamless_donations_tab_logs', $_POST);
@@ -172,4 +222,10 @@ function seamless_donations_tab_logs_process_buttons() {
         delete_option('dgx_donate_log');
         seamless_donations_flag_cmb2_submit_button_success('dgx_donate_button_settings_logs_delete');
     }
+
+    if (isset($_POST['dgx_donate_button_settings_cron_logs_delete'])) {
+        delete_option('dgx_donate_cron_log');
+        seamless_donations_flag_cmb2_submit_button_success('dgx_donate_button_settings_cron_logs_delete');
+    }
 }
+

@@ -538,6 +538,7 @@ function seamless_donations_admin_debug_section_data($section_options) {
         'VERBOSE' => 'Expanded Log Messages',
         'PREFILL' => 'Prefill Donation Form',
         'RAWLOG'  => 'Show Raw Log Data',
+        'BLOCK' => 'Run Debug Test Block',
         'PAYPALIPN' => 'Enable PayPal IPN Verbosity',
     );
 

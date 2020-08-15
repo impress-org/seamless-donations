@@ -11,10 +11,11 @@
  */
 
 $check_sd_dir = WP_CONTENT_DIR . '/plugins/' . "seamless-donations/seamless-donations.php";
-register_activation_hook($check_sd_dir, 'seamless_donations_plugin_activated');
+register_activation_hook($check_sd_dir, 'seamless_donations_telemetry_activated');
+register_deactivation_hook($check_sd_dir, 'seamless_donations_telemetry_deactivated');
 
 // when the plugin is activated, record activation count and timestamp
-function seamless_donations_plugin_activated(){
+function seamless_donations_telemetry_activated(){
     $activation_count = get_option('dgx_donate_activation_count');
     if($activation_count !== false) {
         update_option('dgx_donate_activation_count', $activation_count+1);
@@ -25,8 +26,12 @@ function seamless_donations_plugin_activated(){
     update_option('dgx_donate_activation_timestamp', $timestamp);
 }
 
+function seamless_donations_telemetry_deactivated(){
+    $timestamp = time();
+    update_option('dgx_donate_deactivation_timestamp', $timestamp);
+}
 
-function time_elapsed_A($secs){
+/*function time_elapsed_A($secs){
     $bit = array(
         'y' => $secs / 31556926 % 12,
         'w' => $secs / 604800 % 52,
@@ -61,7 +66,7 @@ function time_elapsed_B($secs){
     $ret[] = 'ago.';
 
     return join(' ', $ret);
-}
+}*/
 
 
 

@@ -10,6 +10,15 @@
  *
  */
 
+function debug_test_block() {
+    // This is triggered by the Run Debug Test Block menu item in Debug Mode
+    // It kicks off at the end of Seamless Donations init
+
+//    $stripe_secret_key = get_option('dgx_donate_test_stripe_secret_key');
+//    \Stripe\Stripe::setApiKey($stripe_secret_key);
+//    seamless_donations_stripe_poll_last_months_transactions();
+}
+
 function dgx_donate_debug_log($message) {
     $max_log_line_count = 200;
     $debug_log = get_option('dgx_donate_log');
@@ -26,6 +35,24 @@ function dgx_donate_debug_log($message) {
     }
 
     update_option('dgx_donate_log', $debug_log);
+}
+
+function dgx_donate_cron_log($message) {
+    $max_log_line_count = 200;
+    $debug_log = get_option('dgx_donate_cron_log');
+
+    if (empty($debug_log)) {
+        $debug_log = array();
+    }
+
+    $timestamp = current_time('mysql');
+    $debug_log[] = $timestamp . ' ' . $message;
+
+    if (count($debug_log) > $max_log_line_count) {
+        $debug_log = array_slice($debug_log, -$max_log_line_count, 0);
+    }
+
+    update_option('dgx_donate_cron_log', $debug_log);
 }
 
 function seamless_donations_debug_alert($a) {

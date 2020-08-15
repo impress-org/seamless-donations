@@ -12,18 +12,16 @@
 
 // based on code from https://github.com/CodeCabin/plugin-deactivation-survey
 
-
-
 add_filter('seamless_donations_deactivate_feedback_form_plugins', function ($plugins) {
-    $time_now = time();
+    $time_now  = time();
     $time_then = get_option('dgx_donate_first_run_time');
 
     $plugins[] = (object)array(
-        'slug'        => 'seamless-donations',
-        'version'     => get_option('dgx_donate_active_version'),
-        'timeNow'     => $time_now,
-        'installTime' => $time_then,
-        'useDuration' => $time_now - $time_then,
+        'slug'         => 'seamless-donations',
+        'version'      => get_option('dgx_donate_active_version'),
+        'timeNow'      => $time_now,
+        'installTime'  => $time_then,
+        'useDuration'  => $time_now - $time_then,
         'telemetryUrl' => seamless_donations_telemetry_url(),
     );
     return $plugins;
