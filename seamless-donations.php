@@ -3,7 +3,7 @@
 Plugin Name: Seamless Donations
 Plugin URI: http://zatzlabs.com/seamless-donations/
 Description: A platform for global fundraising and rebuilding.
-Version: 5.0.20
+Version: 5.0.21
 Author: David Gewirtz
 Author URI: http://zatzlabs.com/lab-notes/
 Text Domain: seamless-donations
